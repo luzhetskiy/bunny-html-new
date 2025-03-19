@@ -1,0 +1,176 @@
+// stylelint-disable function-disallowed-list
+
+%offcanvas-css-vars {
+  // scss-docs-start offcanvas-css-vars
+  --bs-offcanvas-zindex: 1045;
+  --bs-offcanvas-width: 25rem;
+  --bs-offcanvas-height: 100%;
+  --bs-offcanvas-padding: 1.5rem 0;
+  --bs-offcanvas-color: inherit;
+  --bs-offcanvas-bg: var(--light);
+  --bs-offcanvas-border-width: 0;
+  --bs-offcanvas-border-color: transparent;
+  --bs-offcanvas-box-shadow: 0px 0.3px 0px 0px rgba(0, 0, 0, 0.01), 0px 4px 24px 0px rgba(0, 0, 0, 0.08);
+  --bs-offcanvas-transition: transform var(--transition-duration) var(--transition-timing-function);
+  --bs-offcanvas-title-line-height: var(--lh-base);
+}
+
+.offcanvas {
+  @extend %offcanvas-css-vars;
+
+  position: fixed;
+  bottom: 0;
+  z-index: var(--bs-offcanvas-zindex);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--bs-offcanvas-width);
+  color: var(--bs-offcanvas-color);
+  visibility: hidden;
+  background-color: var(--bs-offcanvas-bg);
+  background-clip: padding-box;
+  padding-inline: var(--container-offset);
+  box-shadow: var(--bs-offcanvas-box-shadow);
+  outline: 0;
+  transition: var(--bs-offcanvas-transition);
+
+  &.offcanvas-start {
+    top: 0;
+    left: 0;
+    border-right: var(--bs-offcanvas-border-width) solid var(--bs-offcanvas-border-color);
+    transform: translateX(-100%);
+  }
+
+  &.offcanvas-end {
+    top: 0;
+    right: 0;
+    border-left: var(--bs-offcanvas-border-width) solid var(--bs-offcanvas-border-color);
+    transform: translateX(100%);
+  }
+
+  &.offcanvas-top {
+    top: 0;
+    right: 0;
+    left: 0;
+    height: var(--bs-offcanvas-height);
+    max-height: 100%;
+    border-bottom: var(--bs-offcanvas-border-width) solid var(--bs-offcanvas-border-color);
+    transform: translateY(-100%);
+  }
+
+  &.offcanvas-bottom {
+    right: 0;
+    left: 0;
+    height: var(--bs-offcanvas-height);
+    max-height: 100%;
+    border-top: var(--bs-offcanvas-border-width) solid var(--bs-offcanvas-border-color);
+    transform: translateY(100%);
+  }
+
+  &.showing,
+  &.show:not(.hiding) {
+    transform: none;
+  }
+
+  &.showing,
+  &.hiding,
+  &.show {
+    visibility: visible;
+  }
+}
+
+.offcanvas-backdrop {
+  display: block;
+  background-color: var(--backdrop);
+  backdrop-filter: blur(.5rem);
+  cursor: pointer;
+  position: fixed;
+  inset: 0;
+  z-index: 1040;
+}
+
+.offcanvas-header {
+  display: flex;
+  align-items: center;
+  padding: var(--bs-offcanvas-padding);
+
+  .btn-close {
+    margin-left: auto;
+  }
+}
+
+.offcanvas-title {
+  margin-bottom: 0;
+  line-height: var(--bs-offcanvas-title-line-height);
+}
+
+.offcanvas-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  border-block: 1px solid var(--border-color);
+  padding: var(--bs-offcanvas-padding);
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  .header-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+
+    .dropdown--menu {
+
+      .dropdown-toggle {
+        --_icon-size: .75rem;
+
+        width: 100%;
+      }
+
+      .dropdown-menu {
+        display: block;
+        padding: var(--bs-offcanvas-padding);
+        padding-top: 1.5rem;
+        opacity: 0;
+        inset: 0 !important;
+        position: absolute !important;
+        transform: translateX(100%) !important;
+        transition-property: transform, opacity;
+        transition-duration: var(--transition-duration);
+        transition-timing-function: var(--transition-timing-function);
+
+        &.show {
+          opacity: 1;
+          transform: translateX(0) !important;
+        }
+      }
+    }
+
+
+    .dropdown--menu .dropdown-toggle,
+    > .btn {
+      --_fw: 500;
+
+      font-family: var(--font-second);
+      text-transform: uppercase;
+
+      .text {
+        flex: 1;
+      }
+    }
+  }
+
+  .menu-col {
+    ul {
+      padding-bottom: 1.5rem;
+    }
+  }
+}
+
+.offcanvas-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: var(--bs-offcanvas-padding);
+}

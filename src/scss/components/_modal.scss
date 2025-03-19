@@ -1,0 +1,228 @@
+// stylelint-disable function-disallowed-list
+
+// .modal-open      - body class for killing the scroll
+// .modal           - container to scroll within
+// .modal-dialog    - positioning shell for the actual modal
+// .modal-content   - actual modal w/ bg and corners and stuff
+
+
+// Container that the modal scrolls within
+.modal {
+  // scss-docs-start modal-css-vars
+  --bs-modal-zindex: 1055;
+  --bs-modal-width: 28rem;
+  --bs-modal-padding: 2.5rem var(--container-offset);
+  --bs-modal-margin: var(--container-offset);
+  --bs-modal-color: var(--text-color);
+  --bs-modal-bg: var(--body-bg);
+  --bs-modal-border-color: transparent;
+  --bs-modal-border-width: 0;
+  --bs-modal-border-radius: .375rem;
+  --bs-modal-box-shadow: 0px 0.3px 0px 0px rgba(0, 0, 0, 0.01), 0px 4px 24px 0px rgba(0, 0, 0, 0.08);
+  --bs-modal-inner-border-radius: 0;
+  --bs-modal-header-padding-x: 0;
+  --bs-modal-header-padding-y: 0;
+  --bs-modal-header-padding: var(--bs-modal-padding); // Todo in v6: Split this padding into x and y
+  --bs-modal-header-border-color: var(--border-color);
+  --bs-modal-header-border-width: 1px;
+  --bs-modal-title-line-height: normal;
+  --bs-modal-footer-gap: 0;
+  --bs-modal-footer-bg: transparent;
+  --bs-modal-footer-border-color: transparent;
+  --bs-modal-footer-border-width: 0;
+  // scss-docs-end modal-css-vars
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--bs-modal-zindex);
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  // Prevent Chrome on Windows from adding a focus outline. For details, see
+  // https://github.com/twbs/bootstrap/pull/10951.
+  outline: 0;
+  // We deliberately don't use `-webkit-overflow-scrolling: touch;` due to a
+  // gnarly iOS Safari bug: https://bugs.webkit.org/show_bug.cgi?id=158342
+  // See also https://github.com/twbs/bootstrap/issues/17695
+
+  @include breakpoint-up(sm) {
+    --bs-modal-margin: 2rem;
+    --bs-modal-padding: 2.5rem;
+  }
+
+  .btn-close {
+    box-shadow: var(--bs-modal-box-shadow);
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
+}
+
+// Shell div to position the modal with bottom padding
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: var(--bs-modal-margin);
+  // allow clicks to pass through for custom click handling to close modal
+  pointer-events: none;
+
+  @include breakpoint-up(sm) {
+    max-width: var(--bs-modal-width);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  // When fading in the modal, animate it to slide down
+  .modal.fade & {
+    transition-property: transform;
+    transition-duration: var(--transition-duration);
+    transition-timing-function: var(--transition-timing-function);
+    transform: translate(0, -3rem);
+  }
+  .modal.show & {
+    transform: none;
+  }
+
+  // When trying to close, animate focus to scale
+  .modal.modal-static & {
+    transform: scale(1.02);
+  }
+}
+
+.modal-dialog-scrollable {
+  height: calc(100% - var(--bs-modal-margin) * 2);
+
+  .modal-content {
+    max-height: 100%;
+    overflow: hidden;
+  }
+
+  .modal-body {
+    overflow-y: auto;
+  }
+}
+
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - var(--bs-modal-margin) * 2);
+}
+
+// Actual modal
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%; // Ensure `.modal-content` extends the full width of the parent `.modal-dialog`
+  // counteract the pointer-events: none; in the .modal-dialog
+  color: var(--bs-modal-color);
+  pointer-events: auto;
+  background-color: var(--bs-modal-bg);
+  background-clip: padding-box;
+  border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+  border-radius: var(--bs-modal-border-radius);
+  padding: var(--bs-modal-padding);
+  box-shadow: var(--bs-modal-box-shadow);
+  // Remove focus outline from opened modal
+  outline: 0;
+}
+
+// Modal background
+.modal-backdrop {
+  // scss-docs-start modal-backdrop-css-vars
+  --bs-backdrop-zindex: 1050;
+  --bs-backdrop-bg: var(--backdrop);
+  --bs-backdrop-opacity: 1;
+  // scss-docs-end modal-backdrop-css-vars
+
+  display: block;
+  background-color: var(--bs-backdrop-bg);
+  opacity: var(--bs-backdrop-opacity);
+  backdrop-filter: blur(.5rem);
+  cursor: pointer;
+  position: fixed;
+  inset: 0;
+  z-index: var(--bs-backdrop-zindex);
+}
+
+// Modal header
+// Top section of the modal w/ title and dismiss
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+// Title text within header
+.modal-title {
+  font-family: var(--font-second);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: var(--bs-modal-title-line-height);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+// Modal body
+// Where all modal content resides (sibling of .modal-header and .modal-footer)
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  // Enable `flex-grow: 1` so that the body take up as much space as possible
+  // when there should be a fixed height on `.modal-dialog`.
+  flex: 1 1 auto;
+}
+
+// Footer (for actions)
+.modal-footer {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: center; // vertically center
+  gap: .5rem;
+  // background-color: var(--bs-modal-footer-bg);
+  // border-top: var(--bs-modal-footer-border-width) solid var(--bs-modal-footer-border-color);
+
+  .btn {
+    flex: 1;
+  }
+}
+
+.modal-fullscreen {
+  width: 100vw;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+
+  .modal-content {
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .modal-header,
+  .modal-footer {
+    border-radius: 0;
+  }
+
+  .modal-body {
+    overflow-y: auto;
+  }
+}
+// scss-docs-end modal-fullscreen-loop
+
+.modal-alert {
+
+  .modal-body {
+    font-size: .75rem;
+    text-align: center;
+  }
+}

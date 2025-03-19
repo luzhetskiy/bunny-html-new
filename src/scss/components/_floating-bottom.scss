@@ -1,0 +1,22 @@
+.floating-bottom {
+  padding-block: 1.25rem;
+  pointer-events: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+
+  > .container {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  }
+
+  .btn-gray-200 {
+    --_color: var(--light);
+    --_bg: var(--text-color);
+    --_bg-hover: var(--text-color);
+    --_bg-active: var(--text-color);
+  }
+}

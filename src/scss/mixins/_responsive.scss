@@ -1,0 +1,29 @@
+$breakpoints: (
+  'xxl': 1400px,
+  'xl': 1200px,
+  'lg': 992px,
+  'md': 768px,
+  'sm': 576px
+);
+
+@mixin breakpoint-up($size) {
+  $value: map-get($breakpoints, $size);
+  @if $value {
+    @media (min-width: #{$value - 0.02px}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint #{$size} не найден в карте \$breakpoints!";
+  }
+}
+
+@mixin breakpoint-down($size) {
+  $value: map-get($breakpoints, $size);
+  @if $value {
+    @media (max-width: $value) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint #{$size} не найден в карте \$breakpoints!";
+  }
+}

@@ -1,0 +1,28 @@
+.badge {
+  --_badge-size: .875rem;
+  --_badge-color: var(--text-color);
+  --_badge-bg: transparent;
+
+  min-width: var(--_badge-size);
+  height: var(--_badge-size);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .625rem;
+  font-weight: 500;
+  line-height: normal;
+  color: var(--_badge-color);
+  background-color: var(--_badge-bg);
+  border-radius: var(--_badge-size);
+  padding: 0 .25rem;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.badge-primary {
+  --_badge-color: var(--light);
+  --_badge-bg: var(--primary);
+}

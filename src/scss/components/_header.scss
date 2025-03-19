@@ -1,0 +1,80 @@
+.header {
+  background-color: var(--light);
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+
+  &-top {
+    gap: 1rem;
+    justify-content: space-between;
+    padding-block: .75rem;
+    position: relative;
+
+    @include breakpoint-up(lg) {
+      padding-block: 1.25rem;
+    }
+
+    .logo {
+
+      @include breakpoint-up(lg) {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    &,
+    &-start,
+    &-end {
+      display: flex;
+      align-items: center;
+    }
+
+    &-start {
+      gap: .5rem;
+
+      @include breakpoint-up(lg) {
+        gap: 1rem;
+      }
+
+      li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:empty {
+          display: none;
+        }
+      }
+    }
+
+    &-end {
+      gap: .5rem;
+    }
+  }
+
+  &-bottom {
+    display: none;
+
+    @include breakpoint-up(lg) {
+      display: block;
+      border-top: 1px solid var(--border-color);
+      padding-block: 2rem;
+    }
+  }
+
+  &-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .btn-menu {
+
+    @include breakpoint-up(lg) {
+      display: none;
+    }
+  }
+}

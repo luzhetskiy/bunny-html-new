@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="format-detection" content="date=no">
+  <meta name="format-detection" content="address=no">
+  <meta name="format-detection" content="email=no">
+
+  <title></title>
+
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+  <link rel="preload" href="fonts/Onest-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Onest-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Onest-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Benzin-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Benzin-Semibold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/BasisGrotesqueArabicPro-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/BasisGrotesqueArabicPro-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/PPEditorialNew-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="css/vendor.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <script defer src="js/main.js"></script>
+</head>
+
+<body class="page-body">
+  <h1 class="visually-hidden">
+    Главная страница
+</h1>
+
+  <div class="site-container">
+    <header class="header">
+  <div class="container">
+    <div class="header-top">
+      <ul class="list-reset header-top-start">
+        <li><button type="button" class="btn btn-location"
+            data-bs-toggle="modal"
+            data-bs-target="#modalLocation"
+            data-transfer-origin="offcanvas-menu-header"
+            data-transfer-breakpoint="991.98"
+            data-transfer-placement="first">
+            <span class="icon">
+              <svg>
+                <use xlink:href="img/icons/location.svg#svg-location"></use>
+              </svg>
+            </span>
+            <span class="text">
+              Самара
+            </span>
+            <span class="icon btn-location-dropdown">
+              <svg>
+                <use xlink:href="img/icons/arrow-down.svg#svg-arrow-down"></use>
+              </svg>
+            </span>
+          </button></li>
+
+        <li>
+          <button type="button" class="btn btn-icon btn-gray-200">
+            <span class="icon">
+              <svg>
+                <use xlink:href="img/icons/search.svg#svg-search"></use>
+              </svg>
+            </span>
+          </button>
+        </li>
+
+        <li
+          data-transfer-target="header-top-start"></li>
+      </ul>
+
+      <a href="#" class="btn logo">
+        <img loading="lazy" src="./img/logo.svg" class="image" width="200" height="32" alt="Логотип">
+      </a>
+
+      <div class="header-top-end">
+        <button type="button" class="btn btn-icon btn-gray-200"
+          data-transfer-origin="header-top-start"
+          data-transfer-breakpoint="991.98">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/user.svg#svg-user"></use>
+            </svg>
+          </span>
+        </button>
+        <button type="button" class="btn btn-icon btn-gray-200">
+          <span class="badge badge-primary"></span>
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/heart.svg#svg-heart"></use>
+            </svg>
+          </span>
+        </button>
+        <button type="button" class="btn btn-icon btn-gray-200"
+          data-transfer-origin="floating-bottom"
+          data-transfer-breakpoint="991.98">
+          <span class="badge badge-primary">2</span>
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/bag.svg#svg-bag"></use>
+            </svg>
+          </span>
+        </button>
+
+        <button type="button" class="btn btn-icon btn-gray-200 btn-menu"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-menu"
+          aria-controls="offcanvas-menu">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/menu.svg#svg-menu"></use>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div class="header-bottom">
+      <nav class="header-nav"
+        data-transfer-origin="offcanvas-menu-body"
+        data-transfer-breakpoint="991.98">
+        <div class="dropdown dropdown--menu">
+          <button type="button" class="btn dropdown-toggle"
+            data-bs-toggle="dropdown"
+            data-bs-offset="0,32"
+            data-bs-auto-close="outside"
+            aria-expanded="false">
+            <span class="text">
+              Каталог
+            </span>
+            <span class="icons">
+              <span class="icon">
+                <svg>
+                  <use xlink:href="img/icons/dropdown.svg#svg-dropdown"></use>
+                </svg>
+              </span>
+              <span class="icon">
+                <svg>
+                  <use xlink:href="img/icons/arrow-right.svg#svg-arrow-right"></use>
+                </svg>
+              </span>
+            </span>
+          </button>
+          <div class="dropdown-menu">
+            <ul data-create-menu="">
+              <li>
+                <button type="button"
+                  data-create-menu-img="./img/menu/image-284.jpg">
+                  Секс игрушки
+                </button>
+
+                <ul>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для женщин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Фаллоимитаторы
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Реалистичные
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Нереалистичные
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Двусторонние
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Большие размеры
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Вибраторы
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Вакуумно-волновые стимуляторы
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Вагинальные шарики
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Игрушки с электростимуляцией
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Вакуумные помпы
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Стимуляция груди
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Секс-машины
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для мужчин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Фаллоимитаторы
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Реалистичные
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Нереалистичные
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Двусторонние
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Большие размеры
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Вибраторы
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Вакуумно-волновые стимуляторы
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Вагинальные шарики
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Игрушки с электростимуляцией
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Вакуумные помпы
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Стимуляция груди
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Секс-машины
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <button type="button"
+                  data-create-menu-img="./img/menu/image-284.jpg">
+                  Косметика и гигиена
+                </button>
+
+                <ul>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для женщин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <a href="#"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Ссылка
+                        </a>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для мужчин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <button type="button"
+                  data-create-menu-img="./img/menu/image-284.jpg">
+                  Белье
+                </button>
+
+                <ul>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для женщин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для мужчин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <button type="button"
+                  data-create-menu-img="./img/menu/image-284.jpg">
+                  Презервативы и бады
+                </button>
+
+                <ul>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для женщин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для мужчин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <button type="button"
+                  data-create-menu-img="./img/menu/image-284.jpg">
+                  БДСМ
+                </button>
+
+                <ul>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для женщин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для мужчин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <button type="button"
+                  data-create-menu-img="./img/menu/image-284.jpg">
+                  Приятные мелочи и сувениры
+                </button>
+
+                <ul>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для женщин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для мужчин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <a href="#" class="btn hover-underline">
+          <span class="text">
+            Доставка и оплата
+          </span>
+        </a>
+        <a href="#" class="btn hover-underline">
+          <span class="text">
+            Программа лояльности
+          </span>
+        </a>
+        <a href="#" class="btn hover-underline">
+          <span class="text">
+            Подарочные карты
+          </span>
+        </a>
+        <a href="#" class="btn hover-underline">
+          <span class="text">
+            Магазины
+          </span>
+        </a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+    <main class="main">
+      <div class="main-sections"></div>
+
+      <div class="floating-bottom">
+  <div class="container"
+    data-transfer-target="floating-bottom"></div>
+</div>
+
+      <div class="offcanvas offcanvas-end" tabindex="-1"
+  id="offcanvas-menu">
+  <div class="offcanvas-header"
+    data-transfer-target="offcanvas-menu-header">
+    <button type="button" class="btn btn-close btn-icon btn-gray-200"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close">
+      <span class="icon">
+        <svg>
+          <use xlink:href="img/icons/close.svg#svg-close"></use>
+        </svg>
+      </span>
+    </button>
+  </div>
+  <div class="offcanvas-body"
+    data-transfer-target="offcanvas-menu-body"></div>
+  <div class="offcanvas-footer">
+    <div class="callback">
+      <p>
+        Есть вопросы?
+      </p>
+
+      <a href="tel:+78463004449" class="btn">
+        +7 (846-30) 0-44-49
+      </a>
+    </div>
+
+    <div class="socials">
+  <a href="#" class="btn btn-sm btn-icon btn-primary"
+    target="_blank">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/vk.svg#svg-vk"></use>
+      </svg>
+    </span>
+  </a>
+  <a href="#" class="btn btn-sm btn-icon btn-primary"
+    target="_blank">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/dzen.svg#svg-dzen"></use>
+      </svg>
+    </span>
+  </a>
+  <a href="#" class="btn btn-sm btn-icon btn-primary"
+    target="_blank">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/telegram.svg#svg-telegram"></use>
+      </svg>
+    </span>
+  </a>
+</div>
+
+  </div>
+</div>
+
+      <div role="dialog" class="modal modal-alert fade" tabindex="-1"
+  id="modalAgeRestriction"
+  data-bs-backdrop="static"
+  aria-labelledby="modalAgeRestrictionLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"
+          id="modalAgeRestrictionLabel">
+          НА САЙТЕ
+          <br>
+          ПРИСУТСТВУЮТ
+          <span class="text-primary">
+            МАТЕРИАЛЫ
+            <br>
+            ДЛЯ ВЗРОСЛЫХ
+          </span>
+        </h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          Вам есть 18 лет?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-base btn-primary"
+          data-success=""
+          data-bs-dismiss="modal">
+          Да, мне есть 18 лет
+        </button>
+        <button type="button" class="btn btn-base btn-secondary">
+          Мне еще нет 18 лет
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div role="dialog" class="modal modal-location fade" tabindex="-1"
+  id="modalLocation"
+  aria-labelledby="modalLocationLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"
+          id="modalLocationLabel">
+          Выберите свой город
+        </h3>
+
+        <button type="button" class="btn btn-light btn-icon btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/close.svg#svg-close"></use>
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="location">
+          <button type="button" class="btn is-active">
+            Тольятти
+          </button>
+          <button type="button" class="btn">
+            Самара
+          </button>
+          <button type="button" class="btn">
+            Коломна
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </main>
+
+    <footer class="footer">
+  <div class="container"></div>
+</footer>
+
+  </div>
+</body>
+
+</html>

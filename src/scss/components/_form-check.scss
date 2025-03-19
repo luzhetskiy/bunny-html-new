@@ -1,0 +1,51 @@
+.form-check {
+	--bs-form-check-bg: transparent;
+
+	font-size: .625rem;
+	color: var(--gray);
+
+	@media (min-width: 992px) {
+		font-size: .75rem;
+	}
+
+	&:not(:first-child) {
+		margin-top: 1.5rem;
+	}
+
+	&-label,
+	&-input {
+		cursor: pointer;
+	}
+
+	&-label {
+		display: flex;
+		align-items: center;
+		gap: 1em;
+	}
+
+	&-input {
+		flex-shrink: 0;
+    width: 1.25em;
+    height: 1.25em;
+    appearance: none;
+		color: inherit;
+    background-color: var(--bs-form-check-bg);
+    background-image: var(--bs-form-check-bg-image);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: .5em;
+    border: 1px solid currentColor;
+		border-radius: 50%;
+    color-adjust: exact;
+    print-color-adjust: exact;
+
+		@media (min-width: 992px) {
+			width: 1em;
+			height: 1em;
+		}
+
+		&:checked {
+			--bs-form-check-bg-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"%3E%3Ccircle cx="10" cy="10" r="8" stroke="none" fill="%23808080" /%3E%3C/svg%3E');
+		}
+	}
+}

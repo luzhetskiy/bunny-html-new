@@ -1,0 +1,12 @@
+.callback {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  font-size: .75rem;
+  color: var(--text-color-50);
+  line-height: 1;
+
+  .btn {
+    --_fs: .875rem;
+  }
+}

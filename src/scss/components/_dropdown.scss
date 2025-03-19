@@ -1,0 +1,220 @@
+// The dropdown wrapper (`<div>`)
+.dropup,
+.dropend,
+.dropdown,
+.dropstart,
+.dropup-center,
+.dropdown-center {
+  position: relative;
+}
+
+.dropdown-toggle {
+  --_icon-size: .625rem;
+
+  gap: .25rem;
+  white-space: nowrap;
+
+  &[aria-expanded="true"] {
+
+    .icon {
+      transform: rotateX(180deg);
+    }
+  }
+}
+
+// The dropdown menu
+.dropdown-menu {
+  // scss-docs-start dropdown-css-vars
+  --bs-dropdown-zindex: 1040;
+  --bs-dropdown-min-width: 18rem;
+  --bs-dropdown-padding-x: .75rem;
+  --bs-dropdown-padding-y: .75rem;
+  --bs-dropdown-spacer: 0rem;
+  --bs-dropdown-font-size: var(--fs-base);
+  --bs-dropdown-color: inherit;
+  --bs-dropdown-bg: var(--light);
+  --bs-dropdown-border-color: transparent;
+  --bs-dropdown-border-radius: 1.25rem;
+  --bs-dropdown-border-width: 0rem;
+  --bs-dropdown-box-shadow: 0px 8px 24px -6px rgba(0, 0, 0, 0.15);
+  --bs-dropdown-item-border-radius: .75rem;
+  --bs-dropdown-link-color: var(--text-color);
+  --bs-dropdown-link-hover-color: var(--primary);
+  --bs-dropdown-link-hover-bg: var(--gray-color-250);
+  --bs-dropdown-link-active-color: var(--primary);
+  --bs-dropdown-link-active-bg: var(--gray-color-250);
+  --bs-dropdown-link-disabled-color: var(--gray);
+  --bs-dropdown-item-padding-x: .75rem;
+  --bs-dropdown-item-padding-y: .5rem;
+  --bs-dropdown-header-color: var(--dark-color);
+  --bs-dropdown-header-padding-x: .75rem;
+  --bs-dropdown-header-padding-y: .5rem;
+  // scss-docs-end dropdown-css-vars
+
+  min-width: var(--bs-dropdown-min-width);
+  display: none; // none by default, but block on "open" of the menu
+  font-size: var(--bs-dropdown-font-size);
+  line-height: 1.5;
+  color: var(--bs-dropdown-color);
+  text-align: start; // Ensures proper alignment if parent has it changed (e.g., modal footer)
+  list-style: none;
+  background-color: var(--bs-dropdown-bg);
+  background-clip: padding-box;
+  margin: 0; // Override default margin of ul
+  border: var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color);
+  border-radius: var(--bs-dropdown-border-radius);
+  padding: var(--bs-dropdown-padding-y) var(--bs-dropdown-padding-x);
+  box-shadow: var(--bs-dropdown-box-shadow);
+  position: absolute;
+  z-index: var(--bs-dropdown-zindex);
+
+  &[data-bs-popper] {
+    top: 100%;
+    left: 0;
+    margin-top: var(--bs-dropdown-spacer);
+  }
+
+  .vanilla-calendar {
+
+    &,
+    &-controls {
+      padding: 0;
+    }
+
+    &-controls {
+      padding-top: .25rem;
+    }
+
+    @media (min-width: 767.98px) {
+      min-width: max-content;
+    }
+  }
+}
+
+.dropdown-menu-end {
+  --bs-position: end;
+}
+
+// Allow for dropdowns to go bottom up (aka, dropup-menu)
+// Just add .dropup after the standard .dropdown class and you're set.
+.dropup {
+  .dropdown-menu[data-bs-popper] {
+    top: auto;
+    bottom: 100%;
+    margin-top: 0;
+    margin-bottom: var(--bs-dropdown-spacer);
+  }
+}
+
+.dropend {
+  .dropdown-menu[data-bs-popper] {
+    top: 0;
+    right: auto;
+    left: 100%;
+    margin-top: 0;
+    margin-left: var(--bs-dropdown-spacer);
+  }
+}
+
+.dropstart {
+  .dropdown-menu[data-bs-popper] {
+    top: 0;
+    right: 100%;
+    left: auto;
+    margin-top: 0;
+    margin-right: var(--bs-dropdown-spacer);
+  }
+}
+
+// Links, buttons, and more within the dropdown menu
+//
+// `<button>`-specific styles are denoted with `// For <button>s`
+.dropdown-item {
+  --_width: 100%; // For `<button>`s
+  --_fw: 500;
+  --_lh: inherit;
+  --_color: var(--bs-dropdown-link-color);
+  --_bg: transparent; // For `<button>`s
+  --_border-width: 0; // For `<button>`s
+  --_rounded: var(--bs-dropdown-item-border-radius, 0);
+  --_padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+
+  --_color-hover: var(--bs-dropdown-link-hover-color);
+  --_bg-hover: var(--bs-dropdown-link-hover-bg);
+
+  --_color-active: var(--bs-dropdown-link-active-color);
+  --_bg-active: var(--bs-dropdown-link-active-bg);
+
+  --_color-disabled: var(--bs-dropdown-link-disabled-color);
+  --_bg-disabled: transparent;
+
+  justify-content: initial;
+  text-align: inherit; // For `<button>`s
+  white-space: nowrap; // prevent links from randomly breaking onto new lines
+
+  &--remove {
+    --_color: #E61414;
+    --_color-hover: #E61414;
+    --_color-active: #E61414;
+  }
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+// Dropdown section headers
+.dropdown-header {
+  display: block;
+  padding: var(--bs-dropdown-header-padding-y) var(--bs-dropdown-header-padding-x);
+  margin-bottom: 0; // for use with heading elements
+  color: var(--bs-dropdown-header-color);
+  white-space: nowrap; // as with > li > a
+}
+
+// Dropdown text
+.dropdown-item-text {
+  display: block;
+  padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+  color: var(--bs-dropdown-link-color);
+}
+
+.dropdown--menu {
+  position: static;
+
+  .dropdown-toggle {
+    --_fw: 700;
+
+    .icons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      .icon {
+
+        &:first-child {
+
+          @include breakpoint-down(lg) {
+            display: none;
+          }
+        }
+
+        &:last-child {
+
+          @include breakpoint-up(lg) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .dropdown-menu {
+    --bs-dropdown-min-width: 100%;
+    --bs-dropdown-padding-x: 0;
+    --bs-dropdown-padding-y: 0;
+    --bs-dropdown-border-radius: 0;
+    --bs-dropdown-box-shadow: unset;
+  }
+}

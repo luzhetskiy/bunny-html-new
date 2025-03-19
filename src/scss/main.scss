@@ -1,0 +1,25 @@
+// базовые подключения
+@import "mixins";
+@import "vars";
+@import "fonts";
+@import "settings";
+
+// подключения компонентов страницы
+@import "./components/utilities";
+@import "./components/containers";
+@import "./components/section";
+@import "./components/icons";
+@import "./components/buttons";
+@import "./components/field-control";
+@import "./components/form-check";
+@import "./components/badge";
+@import "./components/location";
+@import "./components/socials";
+@import "./components/callback";
+@import "./components/logo";
+@import "./components/header";
+@import "./components/menu";
+@import "./components/floating-bottom";
+@import "./components/dropdown";
+@import "./components/offcanvas";
+@import "./components/modal";

@@ -1,0 +1,9 @@
+.socials {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+
+  .btn-icon.btn-sm {
+    --_padding: .5rem
+  }
+}

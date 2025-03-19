@@ -1,0 +1,226 @@
+.btn {
+	--_width: initial;
+	--_height: initial;
+	--_fs: var(--fs-base);
+	--_fw: 300;
+	--_lh: normal;
+	--_ls: inherit;
+	--_color: var(--text-color);
+	--_bg: transparent;
+	--_border-width: 0;
+	--_border-style: solid;
+	--_border-color: transparent;
+	--_rounded: 0;
+	--_padding: 0;
+	--_transform: translateZ(0);
+	--_transition-duration: var(--transition-duration);
+	--_transition-timing-function: var(--transition-timing-function);
+
+	--_color-hover: var(--primary);
+	--_bg-hover: transparent;
+	--_border-color-hover: transparent;
+	--_transform-hover: translateZ(0);
+
+	--_color-active: var(--primary);
+	--_bg-active: transparent;
+	--_border-color-active: transparent;
+	--_transform-active: initial;
+
+	--_icon-size: 1rem;
+	--_icon-color: currentColor;
+
+	width: var(--_width);
+	height: var(--_height);
+
+	display: inline-flex;
+	align-items: center;
+	gap: .5rem;
+
+	font-size: var(--_fs);
+	font-weight: var(--_fw);
+	line-height: var(--_lh);
+	letter-spacing: var(--_ls);
+	color: var(--_color);
+	cursor: pointer;
+	background-color: var(--_bg);
+	border: var(--_border-width) var(--_border-style) var(--_border-color);
+	border-radius: var(--_rounded);
+	padding: var(--_padding);
+  pointer-events: auto;
+	outline: none;
+  text-align: start;
+	transform: var(--_transform);
+	transition-property: color, text-shadow, background, border, transform, opacity;
+	transition-duration: var(--_transition-duration);
+	transition-timing-function: var(--_transition-timing-function);
+
+	@media (hover: hover) {
+		&:is(:hover, :focus-visible) {
+			color: var(--_color-hover);
+			background-color: var(--_bg-hover);
+			border-color: var(--_border-color-hover);
+			transform: var(--_transform-hover);
+		}
+	}
+
+	&:is(:active, .is-active) {
+		color: var(--_color-active);
+		background-color: var(--_bg-active);
+		border-color: var(--_border-color-active);
+		transform: var(--_transform-active);
+	}
+
+	.icon {
+		--_size: var(--_icon-size);
+		--_color: var(--_icon-color);
+	}
+}
+
+.btn-check {
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+	pointer-events: none;
+
+	&:checked {
+		+ .btn {
+			--_color: var(--primary);
+			--_color-hover: var(--primary);
+			--_color-active: var(--primary);
+		}
+	}
+}
+
+.btn-inline {
+	--_color: inherit;
+}
+
+.btn-inherit {
+	--_fs: inherit;
+	--_fw: inherit;
+	--_lh: inherit;
+	--_ls: inherit;
+	--_color: inherit;
+
+	display: inline;
+	text-transform: initial;
+}
+
+.btn-icon {
+  --_width: 2rem;
+  --_height: 2rem;
+	--_rounded: 50%;
+	--_padding: .625rem;
+  --_icon-size: 100%;
+
+  position: relative;
+
+  @include breakpoint-up(lg) {
+    --_width: 2.5rem;
+    --_height: 2.5rem;
+    --_padding: .75rem;
+  }
+
+  .badge {
+    position: absolute;
+    top: 0;
+    right: -.25rem;
+  }
+
+  &.btn-sm {
+    --_width: 2rem;
+    --_height: 2rem;
+    --_padding: .625rem;
+  }
+
+  &.btn-lg {
+
+    @include breakpoint-up(lg) {
+      --_width: 3rem;
+      --_height: 3rem;
+      --_padding: 1rem;
+    }
+  }
+
+  &.btn-menu {
+    --_padding: .5rem;
+
+    @include breakpoint-up(lg) {
+      --_padding: .625rem
+    }
+  }
+}
+
+.btn-location {
+  --_icon-size: 1.25rem;
+
+  .icon:not(.btn-location-dropdown) {
+    --_color: var(--primary);
+  }
+
+  &-dropdown.icon {
+    --_size: .75rem;
+  }
+}
+
+
+.btn-primary {
+  --_color: var(--light);
+  --_bg: var(--primary);
+  --_color-hover: var(--light);
+  --_bg-hover: var(--text-color);
+  --_color-active: var(--light);
+  --_bg-active: var(--text-color);
+}
+
+.btn-secondary {
+  --_color: var(--light);
+  --_bg: var(--text-color);
+  --_color-hover: var(--light);
+  --_bg-hover: var(--primary);
+  --_color-active: var(--light);
+  --_bg-active: var(--primary);
+}
+
+.btn-light {
+  --_bg: var(--light);
+  --_bg-hover: var(--light);
+  --_bg-active: var(--light);
+}
+
+.btn-gray-200 {
+  --_bg: var(--gray-200);
+  --_bg-hover: var(--gray-200);
+  --_bg-active: var(--gray-200);
+}
+
+
+.btn-base {
+
+  &:not(.btn-icon) {
+    --_height: 2.25rem;
+    --_fs: .875rem;
+    --_rounded: .375rem;
+    --_padding: .25rem 1rem;
+
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+.btn-lg {
+
+  &:not(.btn-icon) {
+    --_height: 2.25rem;
+    --_rounded: .375rem;
+    --_padding: .25rem 1.25rem;
+
+    text-align: center;
+    justify-content: center;
+
+    @include breakpoint-up(lg) {
+      --_height: 3rem;
+      --_fs: var(--fs-base);
+      --_padding: .25rem 1.5rem;
+    }
+  }
+}

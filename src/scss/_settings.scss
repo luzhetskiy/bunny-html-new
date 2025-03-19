@@ -1,0 +1,38 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.page {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+.page-body {
+  min-width: 20rem;
+  min-height: 100%;
+  margin: 0;
+
+  font-family: var(--font-family, sans-serif);
+  font-size: var(--fs-base);
+  font-weight: var(--fs-base);
+  line-height: var(--lh-base);
+  color: var(--text-color);
+  letter-spacing: -.02em;
+  background-color: var(--body-bg);
+}
+
+.page-body,
+.site-container,
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.site-container,
+.main,
+.main-section {
+  flex: 1;
+}
