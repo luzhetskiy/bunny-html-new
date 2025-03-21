@@ -1,0 +1,58 @@
+.swiper {
+
+  &-container {
+
+    .swiper {
+      padding-inline: max(var(--container-offset), calc((100% - var(--content-width)) / 2));
+    }
+  }
+
+  &-relative {
+    position: relative;
+  }
+
+  &-navigation {
+    display: flex;
+    align-items: flex-end;
+    gap: .5rem;
+    pointer-events: none;
+    position: absolute;
+    left: max(var(--container-offset), calc((100% - var(--content-width)) / 2));
+    right: max(var(--container-offset), calc((100% - var(--content-width)) / 2));
+    bottom: 1.5rem;
+    z-index: 1;
+
+    > * {
+      pointer-events: auto;
+      position: static;
+    }
+  }
+
+  &-pagination {
+    --swiper-pagination-color: var(--light);
+    --swiper-pagination-bullet-inactive-color: var(--light);
+    --swiper-pagination-bullet-inactive-opacity: .2;
+
+    display: flex;
+
+    @include breakpoint-up(lg) {
+      --swiper-pagination-bullet-inactive-opacity: .5;
+    }
+  }
+
+  &-button {
+
+    &-next,
+    &-prev {
+      margin: 0;
+
+      &::after {
+        all: unset;
+      }
+
+      @include breakpoint-down(lg) {
+        --_padding: .5rem;
+      }
+    }
+  }
+}

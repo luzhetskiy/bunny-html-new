@@ -7,6 +7,7 @@
 // подключения компонентов страницы
 @import "./components/utilities";
 @import "./components/containers";
+@import "./components/typography";
 @import "./components/section";
 @import "./components/icons";
 @import "./components/buttons";
@@ -19,7 +20,11 @@
 @import "./components/logo";
 @import "./components/header";
 @import "./components/menu";
+@import "./components/hero";
+@import "./components/new-arrivals";
+@import "./components/about";
 @import "./components/floating-bottom";
 @import "./components/dropdown";
 @import "./components/offcanvas";
 @import "./components/modal";
+@import "./components/swiper";

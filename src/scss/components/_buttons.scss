@@ -137,7 +137,7 @@
     @include breakpoint-up(lg) {
       --_width: 3rem;
       --_height: 3rem;
-      --_padding: 1rem;
+      --_padding: .75rem;
     }
   }
 
@@ -191,6 +191,20 @@
   --_bg: var(--gray-200);
   --_bg-hover: var(--gray-200);
   --_bg-active: var(--gray-200);
+}
+
+.btn-blur {
+  --_color: var(--light);
+  --_bg: var(--light-05);
+  --_border-width: 1px;
+  --_border-color: var(--light-20);
+
+  --_bg-hover: var(--light-05);
+  --_bg-active: var(--light-05);
+  --_border-color-hover: var(--light-20);
+  --_border-color-active: var(--light-20);
+
+  backdrop-filter: blur(.25rem);
 }
 
 

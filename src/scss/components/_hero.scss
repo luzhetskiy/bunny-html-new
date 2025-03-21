@@ -1,0 +1,90 @@
+.hero {
+  position: relative;
+
+  &-backgrounds {
+    pointer-events: none;
+    user-select: none;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    &-desktop {
+      display: none;
+
+      @include breakpoint-up(lg) {
+        display: block;
+      }
+    }
+
+    &-mobile {
+      display: block;
+
+      @include breakpoint-up(lg) {
+        display: none;
+      }
+    }
+
+    > * {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  }
+
+  &-container {
+    min-height: 31.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-block: 2rem;
+
+    @include breakpoint-up(lg) {
+      min-height: 35rem;
+      justify-content: center;
+      gap: 2rem;
+    }
+  }
+
+  &-content,
+  &-buttons {
+    @include breakpoint-up(lg) {
+      margin-left: 15%;
+    }
+  }
+
+  &-content {
+    max-width: 13.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    @include breakpoint-up(lg) {
+      max-width: 37.5rem;
+      gap: 1rem;
+    }
+
+    p {
+      font-size: .875rem;
+
+      @include breakpoint-up(lg) {
+        font-size: 1.125rem;
+      }
+    }
+  }
+
+  &-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .btn {
+      min-width: 10.5rem;
+
+      @include breakpoint-up(lg) {
+        min-width: 12.5rem;
+      }
+    }
+  }
+}

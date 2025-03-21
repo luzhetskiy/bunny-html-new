@@ -133,16 +133,14 @@ class MenuCreator {
       groups = nextGroups
     }
 
-    // Добавляем последнюю колонку со статичным изображением
-    const imageCol = document.createElement("div")
-    imageCol.classList.add("menu-col")
-    const img = document.createElement("img")
-    img.setAttribute("loading", "lazy")
-    img.setAttribute("src", "")
-    img.classList.add("image", "is-hidden")
-    img.setAttribute("alt", "Фото")
-    imageCol.appendChild(img)
-    container.appendChild(imageCol)
+    container.appendChild(
+      Object.assign(document.createElement("div"), {
+        className: 'menu-col',
+        innerHTML: `
+          <img loading="lazy" src="" class="image is-hidden" alt="Фото">
+        `,
+      })
+    )
 
     // Добавляем .container в menuContainer
     menuContainer.appendChild(container)

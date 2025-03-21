@@ -1,0 +1,79 @@
+.new-arrivals {
+
+  &-swiper {
+    margin-top: 1rem;
+
+    @include breakpoint-up(lg) {
+      margin-top: 3rem;
+    }
+
+    .swiper-wrapper {
+
+      @include breakpoint-up(md) {
+        justify-content: center;
+      }
+    }
+
+    .swiper-slide {
+      width: auto;
+    }
+  }
+
+  &-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .25rem;
+    text-align: center;
+    position: relative;
+
+    picture {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image {
+      border: 1px solid var(--text-color-20);
+      border-radius: 50%;
+      transition-property: border;
+      transition-duration: var(--transition-duration);
+      transition-timing-function: var(--transition-timing-function);
+
+      @include breakpoint-up(lg) {
+        border-width: 2px;
+      }
+    }
+
+    h3 {
+      font-family: var(--font-family);
+      font-size: .625rem;
+      font-weight: 400;
+      text-transform: initial;
+      transition-property: color;
+      transition-duration: var(--transition-duration);
+      transition-timing-function: var(--transition-timing-function);
+
+      @include breakpoint-up(lg) {
+        font-size: .875rem;
+      }
+    }
+
+    .stretched-link {
+
+      @media (hover: hover) {
+
+        &:is(:hover, :focus-visible) {
+
+          ~ picture .image {
+            border-color: var(--primary-50);
+          }
+
+          ~ h3 {
+            color: var(--primary);
+          }
+        }
+      }
+    }
+  }
+}

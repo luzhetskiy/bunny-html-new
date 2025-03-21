@@ -1,0 +1,41 @@
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-second);
+  font-weight: 600;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+h1, h2, h3, h4, h5, p {
+	margin: 0;
+}
+
+h1, .h1 {
+  font-size: 1.125rem;
+
+  @include breakpoint-up(lg) {
+    font-size: 3.75rem;
+  }
+}
+
+h2, .h2 {
+  font-size: 1.125rem;
+
+  @include breakpoint-up(lg) {
+    font-size: 3.125rem;
+  }
+}
+
+h4, .h4 {
+  font-size: 1.125rem;
+
+  @include breakpoint-up(lg) {
+    font-size: 2rem;
+  }
+}
+
+p {
+
+	+ p {
+		margin-top: 1rem;
+	}
+}
