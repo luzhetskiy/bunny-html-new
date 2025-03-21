@@ -1,0 +1,52 @@
+<article class="card">
+  <div class="card-header">
+    <label class="label-check">
+      <input type="checkbox" class="btn-check">
+      <button type="button" class="btn">
+        <span class="icon">
+          <svg>
+            <use xlink:href="img/icons/heart.svg#svg-heart"></use>
+          </svg>
+        </span>
+      </button>
+    </label>
+
+    <div class="swiper swiper-card-pictures">
+      <div class="swiper-wrapper">
+        @for (var i = 0; i < 4; i++) {
+          <div class="swiper-slide">
+            <picture>
+              <source srcset="./img/card/image-1.webp" type="image/webp">
+              <img loading="lazy" src="./img/card/image-1.jpg" class="image" width="296" height="296" alt="Фото">
+            </picture>
+          </div>
+        }
+      </div>
+
+      <div class="swiper-navigation">
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-body-header">
+      <h3 class="card-title">
+        Парфюмированное масло Libido
+      </h3>
+
+      <p class="card-price">
+        930 ₽
+      </p>
+    </div>
+    <div class="card-body-main">
+      <p class="card-description">
+        Парфюмированное масло с феромонами и пьянящим в меру сладким ароматом, 10 мл
+      </p>
+    </div>
+  </div>
+  <div class="card-buttons">
+    <button type="button" class="btn btn-base btn-outline-secondary card-add">
+      В корзину
+    </button>
+  </div>
+</article>

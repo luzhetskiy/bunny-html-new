@@ -67,3 +67,92 @@ document.querySelectorAll('.new-arrivals-swiper')?.forEach((element) => {
     }
   })
 })
+
+document.querySelectorAll('.cards-swiper')?.forEach((element) => {
+  const swiperElement = element.querySelector('.swiper')
+  const swiperPrev = element.querySelector('.swiper-button-prev')
+  const swiperNext = element.querySelector('.swiper-button-next')
+
+  const swiper = new Swiper(swiperElement, {
+    slidesPerView: 4,
+    slidesPerGroup: 4,
+    spaceBetween: 16,
+
+    navigation: {
+      prevEl: swiperPrev,
+      nextEl: swiperNext,
+    },
+
+    breakpoints: {
+      0: {
+        slidesPerView: 2,
+        slidesPerGroup: 2,
+        spaceBetween: 8,
+      },
+      576: {
+        slidesPerView: 3,
+        slidesPerGroup: 3,
+        spaceBetween: 8,
+      },
+      768: {
+        slidesPerView: 4,
+        slidesPerGroup: 4,
+        spaceBetween: 8,
+      },
+      992: {
+        spaceBetween: 16,
+      }
+    }
+  })
+})
+
+document.querySelectorAll('.swiper-card-pictures')?.forEach((swiperElement) => {
+  const swiperPagination = swiperElement.querySelector('.swiper-pagination')
+
+  let isTouchScreen = window.matchMedia('(hover: none)').matches
+
+  const swiperCardImage = new Swiper(swiperElement, {
+    slidesPerView: 1,
+    nested: true,
+
+    loop: isTouchScreen,
+
+    pagination: {
+      el: swiperPagination,
+      type: 'bullets',
+      clickable: true,
+    },
+
+    on: {
+      init: function() {
+        const swiper = this
+        const slides = swiper.slides
+
+        let hoverWrapper = swiper.el.querySelector('.swiper-hover')
+
+        if (!hoverWrapper) {
+          hoverWrapper = document.createElement('div')
+          hoverWrapper.classList.add('swiper-hover')
+          swiper.el.appendChild(hoverWrapper)
+        } else {
+          hoverWrapper.innerHTML = ''
+        }
+
+        slides.forEach((slide, index) => {
+          const div = document.createElement('div')
+          hoverWrapper.appendChild(div)
+
+          div.addEventListener('mouseenter', () => {
+            swiperCardImage.slideTo(index)
+            swiperPagination.querySelectorAll('.swiper-pagination-bullet')[index].click()
+          })
+        })
+
+        swiper.el.addEventListener('mouseleave', () => {
+          swiperCardImage.slideTo(0)
+          swiperPagination.querySelectorAll('.swiper-pagination-bullet')[0].click()
+        })
+      },
+    },
+  })
+})

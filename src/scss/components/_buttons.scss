@@ -76,6 +76,14 @@
 	}
 }
 
+.label-check {
+  cursor: pointer;
+
+  .btn {
+    pointer-events: none;
+  }
+}
+
 .btn-check {
 	position: absolute;
 	clip: rect(0, 0, 0, 0);
@@ -181,6 +189,19 @@
   --_bg-active: var(--primary);
 }
 
+.btn-outline-secondary {
+  --_color: var(--text-color);
+  --_bg: transparent;
+  --_border-width: 1px;
+  --_border-color: var(--text-color-20);
+  --_color-hover: var(--light);
+  --_bg-hover: var(--text-color);
+  --_border-color-hover: var(--text-color);
+  --_color-active: var(--light);
+  --_bg-active: var(--text-color);
+  --_border-color-active: var(--text-color);
+}
+
 .btn-light {
   --_bg: var(--light);
   --_bg-hover: var(--light);
@@ -193,7 +214,7 @@
   --_bg-active: var(--gray-200);
 }
 
-.btn-blur {
+.btn-blur-light {
   --_color: var(--light);
   --_bg: var(--light-05);
   --_border-width: 1px;
@@ -203,6 +224,20 @@
   --_bg-active: var(--light-05);
   --_border-color-hover: var(--light-20);
   --_border-color-active: var(--light-20);
+
+  backdrop-filter: blur(.25rem);
+}
+
+.btn-blur-secondary {
+  --_color: var(--text-color);
+  --_bg: var(--light-10);
+  --_border-width: 1px;
+  --_border-color: var(--text-color-10);
+
+  --_bg-hover: var(--light-10);
+  --_bg-active: var(--light-10);
+  --_border-color-hover: var(--text-color-20);
+  --_border-color-active: var(--text-color-20);
 
   backdrop-filter: blur(.25rem);
 }
@@ -218,6 +253,10 @@
 
     text-align: center;
     justify-content: center;
+
+    @include breakpoint-up(lg) {
+      --_height: 2.5rem;
+    }
   }
 }
 

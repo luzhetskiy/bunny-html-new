@@ -1,0 +1,120 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .label-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+
+    .btn-check:checked + .btn {
+      --_color: var(--primary);
+      --_color-hover: var(--primary);
+      --_color-active: var(--primary);
+    }
+
+    .btn {
+      --_color: #9A9A9A;
+      --_padding: .5rem;
+      --_icon-size: 1.25rem;
+
+      @include breakpoint-up(lg) {
+        --_padding: 1rem;
+        --_icon-size: 1.5rem;
+      }
+    }
+  }
+
+  &-header {
+    position: relative;
+
+    .image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      aspect-ratio: 1 / 1;
+      border-radius: .375rem;
+    }
+  }
+
+  &-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    margin-top: .75rem;
+
+    @include breakpoint-up(lg) {
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    &-header {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+
+      @include breakpoint-up(lg) {
+        flex-direction: row;
+        gap: .75rem;
+      }
+
+      .card-price {
+
+        @include breakpoint-up(lg) {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+
+  &-title {
+    max-width: 11.25rem;
+    font-family: var(--font-family);
+    font-size: var(--fs-base);
+    font-weight: 700;
+    text-transform: initial;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &-price {
+    flex-shrink: 0;
+    font-size: var(--fs-base);
+    font-weight: 700;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  &-description {
+    font-size: .625rem;
+    color: var(--text-color-50);
+
+    @include breakpoint-up(lg) {
+      font-size: .75rem;
+    }
+  }
+
+  &-buttons {
+    display: flex;
+    gap: .75rem;
+    margin-top: 1rem;
+
+    @include breakpoint-up(lg) {
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+  }
+
+  &-add {
+    flex: 1;
+  }
+}

@@ -47,8 +47,8 @@
             <div class="swiper-navigation">
               <div class="swiper-pagination"></div>
 
-              <button type="button" class="btn btn-lg btn-icon btn-blur swiper-button-prev"></button>
-              <button type="button" class="btn btn-lg btn-icon btn-blur swiper-button-next"></button>
+              <button type="button" class="btn btn-lg btn-icon btn-blur-light swiper-button-prev"></button>
+              <button type="button" class="btn btn-lg btn-icon btn-blur-light swiper-button-next"></button>
             </div>
           </div>
 
@@ -117,6 +117,83 @@
                     <img loading="lazy" src="./img/about/image-3.jpg" class="image" width="400" height="200" alt="Фото">
                   </picture>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section-border">
+          <div class="container cards-swiper">
+            <div class="section-header">
+              <h2 class="section-title">
+                со скидкой
+              </h2>
+
+              <div class="swiper-navigation">
+                <button type="button" class="btn btn-sm btn-icon btn-blur-secondary swiper-button-prev"></button>
+                <button type="button" class="btn btn-sm btn-icon btn-blur-secondary swiper-button-next"></button>
+              </div>
+            </div>
+
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                @for (var i = 0; i < 10; i++) {
+                  <div class="swiper-slide">
+                    @include('partials/card.html')
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+        <section class="section section-border">
+          <div class="container cards-swiper">
+            <div class="section-header">
+              <h2 class="section-title">
+                новинки
+              </h2>
+
+              <div class="swiper-navigation">
+                <button type="button" class="btn btn-sm btn-icon btn-blur-secondary swiper-button-prev"></button>
+                <button type="button" class="btn btn-sm btn-icon btn-blur-secondary swiper-button-next"></button>
+              </div>
+            </div>
+
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                @for (var i = 0; i < 10; i++) {
+                  <div class="swiper-slide">
+                    @include('partials/card.html')
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section-border">
+          <div class="container cards-swiper">
+            <div class="section-header">
+              <h2 class="section-title">
+                Хиты
+              </h2>
+
+              <div class="swiper-navigation">
+                <button type="button" class="btn btn-sm btn-icon btn-blur-secondary swiper-button-prev"></button>
+                <button type="button" class="btn btn-sm btn-icon btn-blur-secondary swiper-button-next"></button>
+              </div>
+            </div>
+
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                @for (var i = 0; i < 10; i++) {
+                  <div class="swiper-slide">
+                    @include('partials/card.html')
+                  </div>
+                }
               </div>
             </div>
           </div>

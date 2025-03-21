@@ -5,15 +5,29 @@
     margin-bottom: 7.5rem;
   }
 
-	&-header {
-		margin-bottom: 1.5rem;
+  &-border {
 
-		@media (min-width: 992px) {
-			margin-bottom: 2.5rem;
-		}
-	}
+    &::before {
+      content: '';
+      display: block;
+      margin-inline: max(var(--container-offset), calc((100% - var(--content-width)) / 2));
+      margin-bottom: 2.5rem;
+      border-top: 1px solid var(--text-color-20);
+    }
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    @include breakpoint-up(lg) {
+      margin-bottom: 2.5rem;
+    }
+  }
 
 	&-title {
+    flex: 1;
 
 		+ .section-subtitle {
 			margin-top: 1rem;
