@@ -156,3 +156,34 @@ document.querySelectorAll('.swiper-card-pictures')?.forEach((swiperElement) => {
     },
   })
 })
+
+document.querySelectorAll('.articles-swiper')?.forEach((element) => {
+  const swiperElement = element.querySelector('.swiper')
+
+  const swiper = new Swiper(swiperElement, {
+    slidesPerView: 3,
+    slidesPerGroup: 3,
+    spaceBetween: 16,
+
+    breakpoints: {
+      0: {
+        slidesPerView: 1.25,
+        slidesPerGroup: 1,
+        spaceBetween: 8,
+      },
+      576: {
+        slidesPerView: 2.25,
+        slidesPerGroup: 2,
+        spaceBetween: 8,
+      },
+      768: {
+        slidesPerView: 3,
+        slidesPerGroup: 3,
+        spaceBetween: 8,
+      },
+      992: {
+        spaceBetween: 16,
+      }
+    }
+  })
+})

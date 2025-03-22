@@ -1,0 +1,24 @@
+@if (slide === true) {
+  <div class="swiper-slide">
+}
+  <article class="articles-card">
+    <a href="#" class="stretched-link"></a>
+
+    <picture class="articles-card-picture">
+      <source srcset="./img/articles/@img.webp" type="image/webp">
+      <img loading="lazy" src="./img/articles/@img.jpg" class="articles-card-image" width="400" height="200" alt="Фото">
+    </picture>
+
+    <div class="articles-card-body">
+      <h3 class="articles-card-title">
+        @title
+      </h3>
+
+      <p class="articles-card-description">
+        @description
+      </p>
+    </div>
+  </article>
+@if (slide === true) {
+  </div>
+}

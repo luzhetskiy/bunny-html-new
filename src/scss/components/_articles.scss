@@ -1,0 +1,60 @@
+.articles {
+
+  &-swiper {
+
+    .swiper {
+
+      @include breakpoint-down(lg) {
+        margin-inline: calc(var(--container-offset) * -1);
+        padding-inline: var(--container-offset);
+      }
+    }
+  }
+
+  &-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--light);
+    border-radius: .375rem;
+    position: relative;
+
+    &-picture {
+      border-radius: inherit;
+    }
+
+    &-image {
+      display: block;
+      aspect-ratio: 16 / 9;
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+    }
+
+    &-body {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      padding: 1rem;
+
+      @include breakpoint-up(lg) {
+        gap: 1rem;
+        padding: 1.5rem 1rem;
+      }
+    }
+
+    &-title {
+      font-family: var(--font-family);
+      font-size: var(--fs-base);
+      font-weight: 700;
+      text-transform: initial;
+    }
+
+    &-description {
+      font-size: .625rem;
+      color: var(--text-color-50);
+
+      @include breakpoint-up(lg) {
+        font-size: .75rem;
+      }
+    }
+  }
+}

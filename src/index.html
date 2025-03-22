@@ -172,7 +172,9 @@
               </h2>
 
               <div class="section-header-more">
-                <a href="#" class="btn btn-more text-underline">
+                <a href="#" class="btn btn-more text-underline"
+                  data-transfer-origin="activities-more"
+                  data-transfer-breakpoint="991.98">
                   Все мероприятия
                 </a>
               </div>
@@ -185,6 +187,40 @@
                 { "img": "image-3", "time": "21 ноября, суббота", "title": "Мануальные <br> ласки", "description": "Практики мануального массажа", "buttonText": "Записаться" },
               ])
             </div>
+
+            <div class="section-more"
+              data-transfer-target="activities-more"></div>
+          </div>
+        </section>
+
+        <section class="section section-border articles">
+          <div class="container articles-swiper">
+            <div class="section-header">
+              <h2 class="section-title">
+                Половое воспитание
+              </h2>
+
+              <div class="section-header-more">
+                <a href="#" class="btn btn-more text-underline"
+                  data-transfer-origin="articles-more"
+                  data-transfer-breakpoint="991.98">
+                  Перейти в блог
+                </a>
+              </div>
+            </div>
+
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                @loop('partials/articles-card.html', [
+                  { "slide": true, "img": "image-1", "title": "Как выбрать первую игрушку?", "description": "Как выбрать то, что будет радовать с самого первого дня, а не томно пылиться в коробке с ненужным хламом? И не потратить деньги впустую? Мы заботливо подготовили для вас несколько важных советов по выбору идеального девайса." },
+                  { "slide": true, "img": "image-1", "title": "Как выбрать первую игрушку?", "description": "Как выбрать то, что будет радовать с самого первого дня, а не томно пылиться в коробке с ненужным хламом? И не потратить деньги впустую? Мы заботливо подготовили для вас несколько важных советов по выбору идеального девайса." },
+                  { "slide": true, "img": "image-1", "title": "Как выбрать первую игрушку?", "description": "Как выбрать то, что будет радовать с самого первого дня, а не томно пылиться в коробке с ненужным хламом? И не потратить деньги впустую? Мы заботливо подготовили для вас несколько важных советов по выбору идеального девайса." },
+                ])
+              </div>
+            </div>
+
+            <div class="section-more"
+              data-transfer-target="articles-more"></div>
           </div>
         </section>
       </div>
