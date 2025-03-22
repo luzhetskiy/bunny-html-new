@@ -7,6 +7,10 @@
       padding-inline: var(--container-offset);
     }
 
+    &-slide {
+      height: auto;
+    }
+
     &-navigation {
       position: static;
     }

@@ -24,6 +24,22 @@
     @include breakpoint-up(lg) {
       margin-bottom: 2.5rem;
     }
+
+    &-more {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .btn-more {
+        --_fs: .75rem;
+
+        @include breakpoint-up(lg) {
+          --_fs: var(--fs-base);
+
+          display: none;
+        }
+      }
+    }
   }
 
 	&-title {
@@ -37,4 +53,14 @@
 	&-subtitle {
 		font-size: 1.5rem;
 	}
+
+  &-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+
+    &:empty {
+      display: none;
+    }
+  }
 }

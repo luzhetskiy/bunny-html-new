@@ -122,82 +122,47 @@
           </div>
         </section>
 
-        <section class="section section-border">
-          <div class="container cards-swiper">
+        @include('partials/cards-swiper.html', {
+          title: 'Со скидкой',
+          transferId: 'cards-swiper-1'
+        })
+
+        <section class="section section-border brands">
+          <div class="container">
             <div class="section-header">
               <h2 class="section-title">
-                со скидкой
+                бренды
               </h2>
-
-              <div class="swiper-navigation">
-                <button type="button" class="btn btn-sm btn-icon btn-blur-secondary swiper-button-prev"></button>
-                <button type="button" class="btn btn-sm btn-icon btn-blur-secondary swiper-button-next"></button>
-              </div>
             </div>
 
-            <div class="swiper">
-              <div class="swiper-wrapper">
-                @for (var i = 0; i < 10; i++) {
-                  <div class="swiper-slide">
-                    @include('partials/card.html')
-                  </div>
-                }
-              </div>
+            <div class="brands-body">
+              @loop('partials/brands-card.html', [
+                { "img": "image-1", "title": "Svakom"},
+                { "img": "image-2", "title": "We vibe"},
+                { "img": "image-4", "title": "jo"},
+                { "img": "image-3", "title": "Tenga"},
+                { "img": "image-7", "title": "Satisfyer"},
+                { "img": "image-5", "title": "Womanizer"},
+                { "img": "image-6", "title": "Sagami"},
+                { "img": "image-8", "title": "We vibe"},
+                { "img": "image-9", "title": "Fun toys"},
+                { "img": "image-10", "title": "Shunga"},
+                { "img": "image-11", "title": "Pjur"},
+                { "img": "image-12", "title": "Womanizer"},
+              ])
             </div>
           </div>
         </section>
 
+        @include('partials/cards-swiper.html', {
+          title: 'Новинки',
+          transferId: 'cards-swiper-2'
+        })
 
-
-        <section class="section section-border">
-          <div class="container cards-swiper">
-            <div class="section-header">
-              <h2 class="section-title">
-                новинки
-              </h2>
-
-              <div class="swiper-navigation">
-                <button type="button" class="btn btn-sm btn-icon btn-blur-secondary swiper-button-prev"></button>
-                <button type="button" class="btn btn-sm btn-icon btn-blur-secondary swiper-button-next"></button>
-              </div>
-            </div>
-
-            <div class="swiper">
-              <div class="swiper-wrapper">
-                @for (var i = 0; i < 10; i++) {
-                  <div class="swiper-slide">
-                    @include('partials/card.html')
-                  </div>
-                }
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section section-border">
-          <div class="container cards-swiper">
-            <div class="section-header">
-              <h2 class="section-title">
-                Хиты
-              </h2>
-
-              <div class="swiper-navigation">
-                <button type="button" class="btn btn-sm btn-icon btn-blur-secondary swiper-button-prev"></button>
-                <button type="button" class="btn btn-sm btn-icon btn-blur-secondary swiper-button-next"></button>
-              </div>
-            </div>
-
-            <div class="swiper">
-              <div class="swiper-wrapper">
-                @for (var i = 0; i < 10; i++) {
-                  <div class="swiper-slide">
-                    @include('partials/card.html')
-                  </div>
-                }
-              </div>
-            </div>
-          </div>
-        </section>
+        @include('partials/cards-swiper.html', {
+          title: 'Хиты',
+          transferId: 'cards-swiper-3'
+        })
       </div>
 
       @include('partials/floating-bottom.html')

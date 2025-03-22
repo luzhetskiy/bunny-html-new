@@ -1,4 +1,5 @@
 .card {
+  height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -111,6 +112,11 @@
     @include breakpoint-up(lg) {
       gap: 1rem;
       margin-top: 1.5rem;
+    }
+
+    .btn {
+      position: relative;
+      z-index: 1;
     }
   }
 

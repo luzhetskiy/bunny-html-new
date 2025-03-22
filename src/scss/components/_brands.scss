@@ -1,0 +1,100 @@
+.brands {
+
+  &-body {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: .5rem;
+
+    @include breakpoint-up(lg) {
+      gap: 1rem;
+    }
+  }
+
+  &-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: .375rem;
+    padding: .5rem .25rem;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    aspect-ratio: 1 / 1;
+
+    @include breakpoint-up(lg) {
+      padding: 1rem;
+    }
+
+    &:nth-child(8n + 2),
+    &:nth-child(8n + 5),
+    &:nth-child(8n + 6) {
+
+      @include breakpoint-down(md) {
+        grid-column: span 2;
+      }
+    }
+
+    &:nth-child(8n + 2),
+    &:nth-child(8n + 3),
+    &:nth-child(8n + 5) {
+
+      @include breakpoint-down(md) {
+        grid-row: span 2;
+      }
+
+      .brands-card-title {
+
+        @include breakpoint-down(lg) {
+          font-size: 1.375rem;
+        }
+      }
+    }
+
+    &:nth-child(8n + 3) {
+
+      @include breakpoint-down(md) {
+        aspect-ratio: initial;
+      }
+    }
+
+    &:nth-child(8n + 6) {
+
+      @include breakpoint-down(md) {
+        aspect-ratio: 2 / 1;
+      }
+    }
+
+
+    &-title {
+      font-family: var(--font-fourth);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--light);
+      text-align: center;
+      word-break: break-word;
+      transition-property: color;
+      transition-duration: var(--transition-duration);
+      transition-timing-function: var(--transition-timing-function);
+
+      @include breakpoint-up(lg) {
+        font-size: 2.5rem;
+      }
+    }
+
+    .stretched-link {
+
+      @media (hover: hover) {
+
+        &:is(:hover, :focus-visible) {
+
+          ~ .brands-card-title {
+            color: var(--primary);
+          }
+        }
+      }
+    }
+  }
+}
