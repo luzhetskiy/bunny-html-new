@@ -567,8 +567,10 @@ p + p {
 
 .btn-light {
   --_bg: var(--light);
-  --_bg-hover: var(--light);
-  --_bg-active: var(--light);
+  --_color-hover: var(--text-color);
+  --_bg-hover: #ccc;
+  --_color-active: var(--text-color);
+  --_bg-active: #ccc;
 }
 
 .btn-gray-200 {
@@ -2085,6 +2087,16 @@ textarea {
     -ms-flex: initial;
     flex: initial;
   }
+}
+@media (hover: hover) {
+  .activities-card .stretched-link:is(:hover, :focus-visible) ~ .activities-card-footer .btn-light {
+    --_color: var(--text-color);
+    --_bg: #ccc;
+  }
+}
+.activities-card .stretched-link:active ~ .activities-card-footer .btn-light {
+  --_color: var(--text-color);
+  --_bg: #ccc;
 }
 
 .floating-bottom {

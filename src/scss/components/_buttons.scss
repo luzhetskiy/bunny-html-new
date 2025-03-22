@@ -204,8 +204,10 @@
 
 .btn-light {
   --_bg: var(--light);
-  --_bg-hover: var(--light);
-  --_bg-active: var(--light);
+  --_color-hover: var(--text-color);
+  --_bg-hover: #ccc;
+  --_color-active: var(--text-color);
+  --_bg-active: #ccc;
 }
 
 .btn-gray-200 {

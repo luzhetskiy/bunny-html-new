@@ -166,5 +166,33 @@
         }
       }
     }
+
+    .stretched-link {
+
+      @media (hover: hover) {
+
+        &:is(:hover, :focus-visible) {
+
+          ~ .activities-card-footer {
+
+            .btn-light {
+              --_color: var(--text-color);
+              --_bg: #ccc;
+            }
+          }
+        }
+      }
+
+      &:active {
+
+        ~ .activities-card-footer {
+
+          .btn-light {
+            --_color: var(--text-color);
+            --_bg: #ccc;
+          }
+        }
+      }
+    }
   }
 }
