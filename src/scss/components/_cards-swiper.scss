@@ -1,5 +1,15 @@
 .cards-swiper {
 
+  &-more {
+
+    .btn-more {
+
+      @include breakpoint-up(lg) {
+        display: none;
+      }
+    }
+  }
+
   .swiper {
 
     &:not(.swiper-card-pictures) {

@@ -18,7 +18,6 @@
 
   &-header {
     display: flex;
-    align-items: center;
     margin-bottom: 1.5rem;
 
     @include breakpoint-up(lg) {
@@ -27,7 +26,7 @@
 
     &-more {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       gap: 1rem;
 
       .btn-more {
@@ -35,8 +34,6 @@
 
         @include breakpoint-up(lg) {
           --_fs: var(--fs-base);
-
-          display: none;
         }
       }
     }

@@ -1,0 +1,38 @@
+<article class="activities-card">
+  <a href="#" class="stretched-link"></a>
+
+  <span class="activities-card-backgrounds">
+    <span class="activities-card-bg"
+      style="background-image: url(./img/activities/@img.webp);"></span>
+  </span>
+
+  @if (time) {
+    <time datetime="" class="activities-card-time">
+      <span class="icon">
+        <svg>
+          <use xlink:href="img/icons/calendar-time.svg#svg-calendar-time"></use>
+        </svg>
+      </span>
+
+      @time
+    </time>
+  }
+
+  <div class="activities-card-body">
+    <h3 class="activities-card-title">
+      @title
+    </h3>
+
+    @if (description) {
+      <p class="activities-card-description">
+        @description
+      </p>
+    }
+  </div>
+
+  <div class="activities-card-footer">
+    <button type="button" class="btn btn-base btn-light">
+      @buttonText
+    </button>
+  </div>
+</article>

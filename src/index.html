@@ -163,6 +163,30 @@
           title: 'Хиты',
           transferId: 'cards-swiper-3'
         })
+
+        <section class="section section-border activities">
+          <div class="container">
+            <div class="section-header">
+              <h2 class="section-title">
+                Мероприятия
+              </h2>
+
+              <div class="section-header-more">
+                <a href="#" class="btn btn-more text-underline">
+                  Все мероприятия
+                </a>
+              </div>
+            </div>
+
+            <div class="activities-body">
+              @loop('partials/activities-card.html', [
+                { "img": "image-1", "time": "", "title": "Те самые девичники", "description": "", "buttonText": "Перейти" },
+                { "img": "image-2", "time": "18 ноября, суббота", "title": "Бархатный <br> БДСМ", "description": "", "buttonText": "Записаться" },
+                { "img": "image-3", "time": "21 ноября, суббота", "title": "Мануальные <br> ласки", "description": "Практики мануального массажа", "buttonText": "Записаться" },
+              ])
+            </div>
+          </div>
+        </section>
       </div>
 
       @include('partials/floating-bottom.html')
