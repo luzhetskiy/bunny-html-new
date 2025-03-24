@@ -1,0 +1,53 @@
+.mailing-list {
+  margin-bottom: 1.5rem;
+
+  &-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--light);
+    background-color: var(--primary);
+    border-radius: .375rem;
+    padding: 1.5rem;
+
+    @include breakpoint-up(lg) {
+      padding: 2.5rem;
+    }
+  }
+
+  &-title {
+    max-width: 57.25rem;
+    font-size: .875rem;
+    text-align: center;
+
+    @include breakpoint-up(lg) {
+      font-size: 2rem;
+    }
+  }
+
+  &-form {
+    max-width: 22.5rem;
+    width: 100%;
+
+    .field {
+
+      &:-webkit-autofill {
+
+        ~ .field-button {
+          --_color: var(--text-color);
+        }
+      }
+
+      &:not(:-webkit-autofill) {
+
+        ~ .field-button {
+          --_color: inherit;
+          --_color-hover: var(--text-color);
+          --_color-active: var(--text-color);
+          --_icon-size: .875rem;
+        }
+      }
+    }
+  }
+}

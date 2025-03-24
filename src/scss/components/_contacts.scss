@@ -1,0 +1,31 @@
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @include breakpoint-up(lg) {
+    gap: 1.5rem;
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  h3 {
+    font-family: var(--font-family);
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.1;
+  }
+
+  .btn {
+    --_fs: 1.25rem;
+    --_fw: 600;
+    --_lh: 1;
+
+    font-family: var(--font-second);
+    text-transform: uppercase;
+  }
+}

@@ -1,3 +1,81 @@
 <footer class="footer">
-  <div class="container"></div>
+  <div class="container">
+    <div class="footer-info">
+      <a href="#" class="btn logo">
+        <img loading="lazy" src="./img/logo.svg" class="image" width="200" height="32" alt="Логотип">
+      </a>
+
+      @include('socials.html')
+
+      <p class="footer-copy"
+        data-transfer-origin="footer-copy"
+        data-transfer-breakpoint="991.98">
+        © 2023 BunnyLove
+        <br>
+        Все права защищены.
+      </p>
+    </div>
+    <nav class="footer-nav">
+      <ul class="list-reset footer-list">
+        <li>
+          <h3>
+            Каталог
+          </h3>
+        </li>
+        @loop('footer-list.html', [
+          { "text": "Секс игрушки" },
+          { "text": "Эротическое белье" },
+          { "text": "BDSM" },
+          { "text": "Интимная косметика" },
+        ])
+      </ul>
+      <ul class="list-reset footer-list">
+        <li>
+          <h3>
+            Покупателями
+          </h3>
+        </li>
+        @loop('footer-list.html', [
+          { "text": "Доставка" },
+          { "text": "Оплата" },
+          { "text": "Вопросы" },
+          { "text": "Подарочные сертификаты" },
+        ])
+      </ul>
+      <ul class="list-reset footer-list">
+        <li>
+          <h3>
+            О компании
+          </h3>
+        </li>
+        @loop('footer-list.html', [
+          { "text": "О нас" },
+          { "text": "Анонимность" },
+          { "text": "Реквизиты" },
+        ])
+      </ul>
+    </nav>
+    <div class="footer-contacts">
+      <ul class="list-reset contacts">
+        <li>
+          <h3>
+            Позвонить
+          </h3>
+          <a href="tel:+78463004449" class="btn">
+            +7 (846) 300-44-49
+          </a>
+        </li>
+        <li>
+          <h3>
+            Написать
+          </h3>
+          <a href="mailto:info@bunnylove.ru" class="btn">
+            info@bunnylove.ru
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-bottom"
+      data-transfer-target="footer-copy"></div>
+  </div>
 </footer>

@@ -46,6 +46,9 @@
       font-size: var(--fs-base);
       font-weight: 700;
       text-transform: initial;
+      transition-property: color;
+      transition-duration: var(--transition-duration);
+      transition-timing-function: var(--transition-timing-function);
     }
 
     &-description {
@@ -54,6 +57,32 @@
 
       @include breakpoint-up(lg) {
         font-size: .75rem;
+      }
+    }
+
+    .stretched-link {
+
+      @media (hover: hover) {
+
+        &:is(:hover, :focus-visible) {
+
+          ~ .articles-card-body {
+
+            .articles-card-title {
+              color: var(--primary);
+            }
+          }
+        }
+      }
+
+      &:active {
+
+        ~ .articles-card-body {
+
+          .articles-card-title {
+            color: var(--primary);
+          }
+        }
       }
     }
   }

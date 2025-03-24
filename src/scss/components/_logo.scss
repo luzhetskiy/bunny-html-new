@@ -1,11 +1,11 @@
 .logo {
 
   .image {
-    height: 1.75rem;
+    width: 8.75rem;
     object-fit: contain;
 
     @include breakpoint-up(lg) {
-      height: 2rem;
+      width: 12.5rem;
     }
   }
 }
