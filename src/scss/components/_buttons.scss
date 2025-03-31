@@ -54,6 +54,11 @@
 	transition-duration: var(--_transition-duration);
 	transition-timing-function: var(--_transition-timing-function);
 
+	.icon {
+		--_size: var(--_icon-size);
+		--_color: var(--_icon-color);
+	}
+
 	@media (hover: hover) {
 		&:is(:hover, :focus-visible) {
 			color: var(--_color-hover);
@@ -70,10 +75,10 @@
 		transform: var(--_transform-active);
 	}
 
-	.icon {
-		--_size: var(--_icon-size);
-		--_color: var(--_icon-color);
-	}
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
 }
 
 .label-check {
@@ -244,6 +249,58 @@
   backdrop-filter: blur(.25rem);
 }
 
+.btn-volume {
+
+  .text {
+    position: relative;
+
+    > span {
+
+      &:last-child {
+        opacity: 0;
+        position: absolute;
+      }
+    }
+
+    @include breakpoint-down(sm) {
+      display: none;
+    }
+  }
+
+  &.is-active {
+
+    .icon-container {
+
+      .icon {
+
+        &:first-child {
+          opacity: 0;
+        }
+
+        &:last-child {
+          opacity: 1;
+        }
+      }
+    }
+
+    .text {
+      position: relative;
+
+      > span {
+
+        &:first-child {
+          opacity: 0;
+          position: absolute;
+        }
+
+        &:last-child {
+          opacity: 1;
+          position: static;
+        }
+      }
+    }
+  }
+}
 
 .btn-base {
 

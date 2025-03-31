@@ -55,21 +55,18 @@
           <div class="swiper-container new-arrivals-swiper">
             <div class="swiper">
               <div class="swiper-wrapper">
-                @for (var i = 0; i < 10; i++) {
-                  <div class="swiper-slide">
-                    <article class="new-arrivals-card">
-                      <a href="#" class="stretched-link"></a>
-
-                      <picture>
-                        <source srcset="./img/new-arrivals/image-1.webp" type="image/webp">
-                        <img loading="lazy" src="./img/new-arrivals/image-1.png" class="image" width="60" height="60" alt="Фото">
-                      </picture>
-                      <h3>
-                        новинки
-                      </h3>
-                    </article>
-                  </div>
-                }
+                @loop('partials/stories-button.html', [
+                  { "id": "stories-1" },
+                  { "id": "stories-2" },
+                  { "id": "stories-3" },
+                  { "id": "stories-4" },
+                  { "id": "stories-5" },
+                  { "id": "stories-6" },
+                  { "id": "stories-7" },
+                  { "id": "stories-8" },
+                  { "id": "stories-9" },
+                  { "id": "stories-10" },
+                ])
               </div>
             </div>
           </div>

@@ -16489,12 +16489,20 @@ document.body.addEventListener('click', event => {
     }
     modalInstances.get(targetElement).show();
   }
-  target.hasAttribute('data-success') && localStorage.setItem('hideModal', 'true');
+  const closestTarget = event.target.closest('[data-bs-toggle="modal"][data-stories-index]');
+  if (closestTarget) {
+    const modalElement = document.querySelector(closestTarget.getAttribute('data-bs-target'));
+    const storiesIndex = closestTarget.getAttribute('data-stories-index').replace(/[^0-9]/g, '');
+    modalInstances.get(modalElement).show();
+    modalElement.addEventListener('shown.bs.modal', () => {
+      const swiperStories = document.querySelector('.swiper-stories').swiper;
+      swiperStories.slideTo(storiesIndex - 1);
+    });
+  }
 });
-if (localStorage.getItem('hideModal') === 'false') {
-  const modalElement = document.querySelector('#modalAgeRestriction');
-  modalElement && modalInstances.get(modalElement)?.show();
-}
+
+// const modalElement = document.querySelector('#modalAgeRestriction')
+// modalElement && modalInstances.get(modalElement)?.show()
 
 /***/ }),
 
@@ -16697,6 +16705,247 @@ document.querySelectorAll('.articles-swiper')?.forEach(element => {
         spaceBetween: 16
       }
     }
+  });
+});
+document.querySelectorAll('.modal-stories')?.forEach(element => {
+  const swiperElementMain = element.querySelector('.swiper-stories');
+  const buttonVolume = element.querySelector('.btn-volume');
+  const swiperStories = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](swiperElementMain, {
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+    centeredSlides: true,
+    slideToClickedSlide: true
+  });
+  const storiesInstances = [];
+  swiperElementMain.querySelectorAll('.stories')?.forEach((storyElement, storyIndex) => {
+    const swiperElement = storyElement.querySelector('.swiper');
+    const swiperPagination = storyElement.querySelector('.swiper-pagination');
+    const swiperPrev = storyElement.querySelector('.swiper-button-prev');
+    const swiperNext = storyElement.querySelector('.swiper-button-next');
+    let timeoutId = null;
+    let progressIntervals = {};
+    const swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](swiperElement, {
+      slidesPerView: 1,
+      nested: true,
+      allowTouchMove: false,
+      navigation: false,
+      pagination: {
+        el: swiperPagination,
+        type: 'custom',
+        renderCustom: (swiper, current, total) => {
+          return Array.from({
+            length: total
+          }).map((_, index) => `<div class="progress-bar" data-index="${index}"><span></span></div>`).join('');
+        }
+      }
+    });
+    function goToNextSlide() {
+      if (swiper.activeIndex < swiper.slides.length - 1) {
+        swiper.slideNext();
+      } else {
+        swiperStories.slideNext();
+      }
+    }
+    function startProgress(duration) {
+      const progressBars = swiperPagination.querySelectorAll('.progress-bar span');
+      // Для всех пройденных слайдов ставим ширину 100%
+      progressBars.forEach((span, index) => {
+        span.style.width = index < swiper.activeIndex ? '100%' : '0%';
+      });
+      const currentSpan = progressBars[swiper.activeIndex];
+      if (!currentSpan) return;
+      let startTime = performance.now();
+      function updateProgressBar(time) {
+        let elapsed = time - startTime;
+        let progress = Math.min(elapsed / duration * 100, 100);
+        currentSpan.style.width = progress + '%';
+        if (progress < 100) {
+          progressIntervals[swiper.activeIndex] = requestAnimationFrame(updateProgressBar);
+        }
+      }
+      progressIntervals[swiper.activeIndex] = requestAnimationFrame(updateProgressBar);
+    }
+    function stopProgress() {
+      Object.keys(progressIntervals).forEach(key => {
+        cancelAnimationFrame(progressIntervals[key]);
+      });
+      progressIntervals = {};
+    }
+    function resetSwiper() {
+      clearTimeout(timeoutId);
+      stopProgress();
+      swiper.slideTo(0, 0);
+      swiper.slides.forEach(slide => {
+        const video = slide.querySelector('video');
+        if (video) {
+          video.pause();
+          video.currentTime = 0;
+          video.onended = null;
+        }
+      });
+      const progressBars = swiperPagination.querySelectorAll('.progress-bar span');
+      progressBars.forEach(span => {
+        span.style.width = '0%';
+      });
+    }
+    function setupCurrentSlide() {
+      clearTimeout(timeoutId);
+      stopProgress();
+      const currentSlide = swiper.slides[swiper.activeIndex];
+      const pictureElement = currentSlide.querySelector('picture');
+      const videoElement = currentSlide.querySelector('video');
+      if (pictureElement) {
+        startProgress(5000);
+        timeoutId = setTimeout(goToNextSlide, 5000);
+      } else if (videoElement) {
+        if (videoElement.readyState >= 2) {
+          // HAVE_CURRENT_DATA или выше
+          setupVideoProgress(videoElement);
+        } else {
+          videoElement.addEventListener('loadedmetadata', function handler() {
+            videoElement.removeEventListener('loadedmetadata', handler);
+            setupVideoProgress(videoElement);
+          });
+        }
+      }
+    }
+    function setupVideoProgress(videoElement) {
+      videoElement.currentTime = 0;
+      videoElement.play();
+      startProgress(videoElement.duration * 1000);
+      videoElement.onended = goToNextSlide;
+    }
+    function updateNavigationButtons() {
+      // For prev button:
+      // Disable only if we're at the first slide of swiperStories AND at the first slide of inner swiper
+      if (swiperStories.activeIndex === 0 && swiper.activeIndex === 0) {
+        swiperPrev.setAttribute('disabled', 'disabled');
+      } else {
+        swiperPrev.removeAttribute('disabled');
+      }
+
+      // For next button:
+      // Disable only if we're at the last slide of swiperStories AND at the last slide of inner swiper
+      if (swiperStories.activeIndex === swiperStories.slides.length - 1 && swiper.activeIndex === swiper.slides.length - 1) {
+        swiperNext.setAttribute('disabled', 'disabled');
+      } else {
+        swiperNext.removeAttribute('disabled');
+      }
+    }
+    swiper.on('slideChange', () => {
+      const previousSlide = swiper.slides[swiper.previousIndex];
+      if (previousSlide) {
+        const prevVideo = previousSlide.querySelector('video');
+        if (prevVideo) {
+          prevVideo.pause();
+          prevVideo.currentTime = 0;
+          prevVideo.onended = null;
+        }
+      }
+      setupCurrentSlide();
+      updateNavigationButtons();
+    });
+
+    // Кастомные обработчики навигации
+    swiperPrev.addEventListener('click', () => {
+      if (swiper.activeIndex > 0) {
+        swiper.slidePrev();
+      } else {
+        if (swiperStories.activeIndex > 0) {
+          swiperStories.slidePrev();
+        }
+      }
+      updateNavigationButtons();
+    });
+    swiperNext.addEventListener('click', () => {
+      if (swiper.activeIndex < swiper.slides.length - 1) {
+        swiper.slideNext();
+      } else {
+        if (swiperStories.activeIndex < swiperStories.slides.length - 1) {
+          swiperStories.slideNext();
+        }
+      }
+      updateNavigationButtons();
+    });
+    storiesInstances.push({
+      instance: swiper,
+      setupCurrentSlide,
+      resetSwiper,
+      index: storyIndex
+    });
+    element.addEventListener('shown.bs.modal', () => {
+      if (swiperStories.activeIndex === storyIndex) {
+        setupCurrentSlide();
+      }
+      updateNavigationButtons();
+    });
+    element.addEventListener('hide.bs.modal', () => {
+      resetSwiper();
+    });
+  });
+
+  // Глобальный обработчик для переключения swiper‑stories:
+  swiperStories.on('slideChangeTransitionEnd', () => {
+    storiesInstances.forEach(story => {
+      if (story.index === swiperStories.activeIndex) {
+        story.setupCurrentSlide();
+      } else {
+        story.resetSwiper();
+      }
+    });
+    // Обновляем кнопки для всех stories
+    storiesInstances.forEach(story => {
+      // Предполагаем, что у каждой stories своя навигация, обновляем их кнопки
+      const storyElement = element.querySelectorAll('.stories')[story.index];
+      const prevBtn = storyElement.querySelector('.swiper-button-prev');
+      const nextBtn = storyElement.querySelector('.swiper-button-next');
+      if (swiperStories.activeIndex === story.index) {
+        prevBtn.removeAttribute('disabled');
+        nextBtn.removeAttribute('disabled');
+      } else {
+        prevBtn.setAttribute('disabled', 'disabled');
+        nextBtn.setAttribute('disabled', 'disabled');
+      }
+    });
+  });
+  function updateGlobalNavigation() {
+    element.querySelectorAll('.stories').forEach((storyElement, idx) => {
+      const prevBtn = storyElement.querySelector('.swiper-button-prev');
+      const nextBtn = storyElement.querySelector('.swiper-button-next');
+      const innerSwiper = storiesInstances[idx].instance;
+      if (swiperStories.activeIndex === idx) {
+        // For prev button
+        if (swiperStories.activeIndex === 0 && innerSwiper.activeIndex === 0) {
+          prevBtn.setAttribute('disabled', 'disabled');
+        } else {
+          prevBtn.removeAttribute('disabled');
+        }
+
+        // For next button
+        if (swiperStories.activeIndex === swiperStories.slides.length - 1 && innerSwiper.activeIndex === innerSwiper.slides.length - 1) {
+          nextBtn.setAttribute('disabled', 'disabled');
+        } else {
+          nextBtn.removeAttribute('disabled');
+        }
+      } else {
+        // If not active story, disable both buttons
+        prevBtn.setAttribute('disabled', 'disabled');
+        nextBtn.setAttribute('disabled', 'disabled');
+      }
+    });
+  }
+  updateGlobalNavigation();
+  buttonVolume.addEventListener('click', () => {
+    const isMuted = buttonVolume.classList.contains('is-active');
+    const videos = element.querySelectorAll('video');
+    videos.forEach(video => {
+      if (isMuted) {
+        video.muted = true;
+      } else {
+        video.muted = false;
+      }
+    });
+    buttonVolume.classList.toggle('is-active');
   });
 });
 

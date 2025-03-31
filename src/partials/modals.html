@@ -75,3 +75,62 @@
     </div>
   </div>
 </div>
+
+<div role="dialog" class="modal modal-stories fade" tabindex="-1"
+  id="modalStories"
+  aria-labelledby="modalStoriesLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn btn-volume">
+          <span class="icon-container">
+            <span class="icon">
+              <svg>
+                <use xlink:href="img/icons/volume-off.svg#svg-volume-off"></use>
+              </svg>
+            </span>
+            <span class="icon">
+              <svg>
+                <use xlink:href="img/icons/volume.svg#svg-volume"></use>
+              </svg>
+            </span>
+          </span>
+
+          <span class="text">
+            <span>Выключено</span>
+            <span>Включено</span>
+          </span>
+        </button>
+
+        <button type="button" class="btn btn-light btn-icon btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/close.svg#svg-close"></use>
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="swiper swiper-stories">
+          <div class="swiper-wrapper">
+            @loop('stories.html', [
+              { "id": "stories-1" },
+              { "id": "stories-2" },
+              { "id": "stories-3" },
+              { "id": "stories-4" },
+              { "id": "stories-5" },
+              { "id": "stories-6" },
+              { "id": "stories-7" },
+              { "id": "stories-8" },
+              { "id": "stories-9" },
+              { "id": "stories-10" },
+            ])
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
