@@ -1,0 +1,111 @@
+.search {
+  display: none;
+
+  &.is-show {
+    flex: 1 1;
+    display: flex;
+    gap: .25rem;
+
+    @include breakpoint-up(lg) {
+      gap: .5rem;
+    }
+
+    ~ .logo {
+      display: none;
+    }
+  }
+
+  .field-control {
+    flex: 1 1;
+
+    .field {
+      --_height: 2rem;
+      --_fs: .75rem;
+	    --_rounded: 50rem;
+
+      --_bg: var(--gray-200);
+      --_bg-hover: var(--gray-200);
+      --_bg-active: var(--gray-200);
+
+      --_border-color: var(--_bg);
+      --_border-color-hover: var(--_bg-hover);
+      --_border-color-active: var(--_bg-active);
+
+      padding-right: 2.75rem;
+
+      @include breakpoint-up(lg) {
+        --_height: 2.5rem;
+        --_fs: .875rem;
+
+        padding-right: 3rem;
+      }
+    }
+  }
+
+  .field-button {
+    --_padding: .25rem 1rem;
+  }
+}
+
+.search-result {
+  min-height: 20rem;
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  @supports (height: 100dvh) {
+    height: calc(100dvh - var(--header-height));
+  }
+
+  &-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    &-picture {
+      width: 8.75rem;
+      height: 8.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50rem;
+      background-color: var(--light);
+    }
+  }
+}
+
+.search-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 1rem;
+  padding-top: 2.5rem;
+
+  @include breakpoint-up(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include breakpoint-up(lg) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding-top: 3.75rem;
+  }
+
+  @include breakpoint-up(xl) {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  &-more {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1.5rem;
+
+    @include breakpoint-up(lg) {
+      padding-top: 3.75rem;
+    }
+  }
+}

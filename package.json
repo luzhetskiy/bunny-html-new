@@ -59,13 +59,15 @@
     "@popperjs/core": "^2.11.8",
     "aos": "^2.3.4",
     "bootstrap": "^5.3.3",
+    "choices.js": "^11.1.0",
     "graph-modal": "^1.0.7",
     "graph-tabs": "^1.0.2",
     "inputmask": "^5.0.8",
     "just-validate": "^4.3.0",
+    "nouislider": "^15.8.1",
     "rellax": "^1.12.1",
     "simplebar": "^6.2.5",
     "swiped-events": "^1.1.9",
-    "swiper": "^11.1.1"
+    "swiper": "^11.2.10"
   }
 }

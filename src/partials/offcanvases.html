@@ -28,3 +28,373 @@
     @include('socials.html')
   </div>
 </div>
+
+<div class="offcanvas offcanvas--filter offcanvas-bottom" tabindex="-1"
+  id="offcanvas-filter">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Фильтры
+      </h3>
+
+      <button type="reset" class="btn btn-reset">
+        сбросить все
+      </button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="filter-item">
+        <div class="filter-item-header">
+          <p>в наличии</p>
+
+          <label class="field-toggle">
+            <input type="checkbox" class="visually-hidden" name="instock" checked>
+            <span class="field-toggle-background"></span>
+            <span class="field-toggle-placeholder"></span>
+          </label>
+        </div>
+      </div>
+      <div class="filter-item">
+        <div class="filter-item-header">
+          <p>цена</p>
+        </div>
+
+        <div class="nouislider" data-nouislider="">
+          <div data-nouislider-element=""></div>
+
+          <div class="nouislider-fields">
+            <div class="field-control">
+              <label class="field">
+                <span class="field-prefix">
+                  от
+                </span>
+                <input type="text" class="field--plaintext" name="price-min" min="50" max="50000">
+                <span class="field-postfix">
+                  ₽
+                </span>
+              </label>
+            </div>
+            <div class="field-control">
+              <label class="field">
+                <span class="field-prefix">
+                  до
+                </span>
+                <input type="text" class="field--plaintext" name="price-max" min="50" max="50000">
+                <span class="field-postfix">
+                  ₽
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-item">
+        <div class="accordion accordion--filter" id="accordion-filter">
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <button class="accordion-button" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse-filter-0"
+                aria-expanded="true"
+                aria-controls="collapse-filter-0">
+                цвет
+
+                <span class="icon-container accordion-button-icon">
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/plus.svg#svg-plus"></use>
+                    </svg>
+                  </span>
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/minus.svg#svg-minus"></use>
+                    </svg>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="accordion-collapse collapse show"
+              id="collapse-filter-0"
+              data-bs-parent="#accordion-filter">
+              <div class="accordion-body">
+                <div class="filter-item-body">
+                  <label class="field-radio">
+                    <span class="field-radio-label">ABS</span>
+                    <input type="radio" class="field-radio-input" name="color" checked>
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPE</span>
+                    <input type="radio" class="field-radio-input" name="color">
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPR</span>
+                    <input type="radio" class="field-radio-input" name="color">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <button class="accordion-button collapsed" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse-filter-1"
+                aria-expanded="false"
+                aria-controls="collapse-filter-1">
+                материал
+
+                <span class="icon-container accordion-button-icon">
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/plus.svg#svg-plus"></use>
+                    </svg>
+                  </span>
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/minus.svg#svg-minus"></use>
+                    </svg>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="accordion-collapse collapse"
+              id="collapse-filter-1"
+              data-bs-parent="#accordion-filter">
+              <div class="accordion-body">
+                <div class="filter-item-body">
+                  <label class="field-radio">
+                    <span class="field-radio-label">ABS</span>
+                    <input type="radio" class="field-radio-input" name="material" checked>
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPE</span>
+                    <input type="radio" class="field-radio-input" name="material">
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPR</span>
+                    <input type="radio" class="field-radio-input" name="material">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <button class="accordion-button collapsed" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse-filter-2"
+                aria-expanded="false"
+                aria-controls="collapse-filter-2">
+                бренд
+
+                <span class="icon-container accordion-button-icon">
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/plus.svg#svg-plus"></use>
+                    </svg>
+                  </span>
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/minus.svg#svg-minus"></use>
+                    </svg>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="accordion-collapse collapse"
+              id="collapse-filter-2"
+              data-bs-parent="#accordion-filter">
+              <div class="accordion-body">
+                <div class="filter-item-body">
+                  <label class="field-radio">
+                    <span class="field-radio-label">ABS</span>
+                    <input type="radio" class="field-radio-input" name="brand" checked>
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPE</span>
+                    <input type="radio" class="field-radio-input" name="brand">
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPR</span>
+                    <input type="radio" class="field-radio-input" name="brand">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <button class="accordion-button collapsed" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse-filter-3"
+                aria-expanded="false"
+                aria-controls="collapse-filter-3">
+                управление
+
+                <span class="icon-container accordion-button-icon">
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/plus.svg#svg-plus"></use>
+                    </svg>
+                  </span>
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/minus.svg#svg-minus"></use>
+                    </svg>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="accordion-collapse collapse"
+              id="collapse-filter-3"
+              data-bs-parent="#accordion-filter">
+              <div class="accordion-body">
+                <div class="filter-item-body">
+                  <label class="field-radio">
+                    <span class="field-radio-label">ABS</span>
+                    <input type="radio" class="field-radio-input" name="managment" checked>
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPE</span>
+                    <input type="radio" class="field-radio-input" name="managment">
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPR</span>
+                    <input type="radio" class="field-radio-input" name="managment">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="submit" class="btn btn-lg btn-secondary">
+        применить
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas-bottom" tabindex="-1"
+  id="offcanvas-sort">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        сортировка
+      </h3>
+
+      <button type="reset" class="btn btn-reset">
+        сбросить все
+      </button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="filter-item">
+        <div class="filter-item-body">
+          <label class="field-radio">
+            <span class="field-radio-label">По популярности</span>
+            <input type="radio" class="field-radio-input" name="sort" checked>
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Со скидкой</span>
+            <input type="radio" class="field-radio-input" name="sort">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">По новизне</span>
+            <input type="radio" class="field-radio-input" name="sort">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">По убыванию цены</span>
+            <input type="radio" class="field-radio-input" name="sort">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">По возрастанию цены</span>
+            <input type="radio" class="field-radio-input" name="sort">
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="submit" class="btn btn-lg btn-secondary">
+        применить
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas-bottom" tabindex="-1"
+  id="offcanvas-sort-instock">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Наличие
+      </h3>
+
+      <button type="reset" class="btn btn-reset">
+        сбросить все
+      </button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="filter-item">
+        <div class="filter-item-body">
+          <label class="field-radio">
+            <span class="field-radio-label">Все магазины</span>
+            <input type="radio" class="field-radio-input" name="sort-instock" checked>
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Ново-вокзальная</span>
+            <input type="radio" class="field-radio-input" name="sort-instock">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Московское шоссе</span>
+            <input type="radio" class="field-radio-input" name="sort-instock">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Гагарина</span>
+            <input type="radio" class="field-radio-input" name="sort-instock">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Авроры</span>
+            <input type="radio" class="field-radio-input" name="sort-instock">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Аэродромная</span>
+            <input type="radio" class="field-radio-input" name="sort-instock">
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="submit" class="btn btn-lg btn-secondary">
+        применить
+      </button>
+    </div>
+  </form>
+</div>

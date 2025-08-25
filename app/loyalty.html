@@ -1,0 +1,2450 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="format-detection" content="date=no">
+  <meta name="format-detection" content="address=no">
+  <meta name="format-detection" content="email=no">
+
+  <title>Программа лояльности</title>
+
+  <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
+
+  <link rel="preload" href="fonts/Onest-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Onest-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Onest-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Benzin-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Benzin-Semibold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/BasisGrotesqueArabicPro-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/BasisGrotesqueArabicPro-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/PPEditorialNew-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="css/vendor.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <script defer src="js/main.js"></script>
+</head>
+
+
+<body class="page-body">
+  <h1 class="visually-hidden">
+	Программа лояльности
+</h1>
+
+  <div class="site-container">
+    <header class="header">
+  <div class="container">
+    <div class="header-top">
+      <div class="header-top-start"
+        data-transfer-target="header-top-start">
+        <button type="button" class="btn btn-location"
+          data-bs-toggle="modal"
+          data-bs-target="#modalLocation"
+          data-transfer-origin="offcanvas-menu-header"
+          data-transfer-breakpoint="991.98"
+          data-transfer-placement="first">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/location.svg#svg-location"></use>
+            </svg>
+          </span>
+          <span class="text">
+            Самара
+          </span>
+          <span class="icon btn-location-dropdown">
+            <svg>
+              <use xlink:href="img/icons/arrow-down.svg#svg-arrow-down"></use>
+            </svg>
+          </span>
+        </button>
+        <button type="button" class="btn btn-icon btn-gray-200"
+          data-toggle="search"
+          data-target="#form-search">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/search.svg#svg-search"></use>
+            </svg>
+          </span>
+        </button>
+      </div>
+
+      <form id="form-search" class="search">
+        <div class="field-control">
+          <input type="text" class="field" name="search" placeholder="Поиск...">
+          <button type="submit" class="btn field-button">
+            <span class="icon">
+              <svg>
+                <use xlink:href="img/icons/search.svg#svg-search"></use>
+              </svg>
+            </span>
+          </button>
+        </div>
+        <button type="button" class="btn btn-icon btn-gray-200"
+          data-dismiss="search">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/close.svg#svg-close"></use>
+            </svg>
+          </span>
+        </button>
+      </form>
+      <a href="/" class="btn logo">
+        <img loading="lazy" src="./img/logo.svg" class="image" width="200" height="32" alt="Логотип">
+      </a>
+
+      <div class="header-top-end">
+        <button type="button" class="btn btn-icon btn-gray-200"
+          data-transfer-origin="header-top-start"
+          data-transfer-breakpoint="991.98"
+          data-transfer-placement="last">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/user.svg#svg-user"></use>
+            </svg>
+          </span>
+        </button>
+        <button type="button" class="btn btn-icon btn-gray-200">
+          <span class="badge badge-primary"></span>
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/heart.svg#svg-heart"></use>
+            </svg>
+          </span>
+        </button>
+        <button type="button" class="btn btn-icon btn-gray-200"
+          data-transfer-origin="floating-bottom"
+          data-transfer-breakpoint="991.98">
+          <span class="badge badge-primary">2</span>
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/bag.svg#svg-bag"></use>
+            </svg>
+          </span>
+        </button>
+
+        <button type="button" class="btn btn-icon btn-gray-200 btn-menu"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-menu"
+          aria-controls="offcanvas-menu">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/menu.svg#svg-menu"></use>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div class="header-bottom">
+      <nav class="header-nav"
+        data-transfer-origin="offcanvas-menu-body"
+        data-transfer-breakpoint="991.98">
+        <div class="dropdown dropdown--menu">
+          <button type="button" class="btn dropdown-toggle"
+            data-bs-toggle="dropdown"
+            data-bs-offset="0,32"
+            data-bs-auto-close="outside"
+            aria-expanded="false">
+            <span class="text">
+              Каталог
+            </span>
+            <span class="icons">
+              <span class="icon">
+                <svg>
+                  <use xlink:href="img/icons/dropdown.svg#svg-dropdown"></use>
+                </svg>
+              </span>
+              <span class="icon">
+                <svg>
+                  <use xlink:href="img/icons/arrow-right.svg#svg-arrow-right"></use>
+                </svg>
+              </span>
+            </span>
+          </button>
+          <div class="dropdown-menu">
+            <ul data-create-menu="">
+              <li>
+                <button type="button"
+                  data-create-menu-img="./img/menu/image-282.jpg">
+                  Секс игрушки
+                </button>
+
+                <ul>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для женщин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-282.jpg">
+                          Фаллоимитаторы
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Реалистичные
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Нереалистичные
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Двусторонние
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Большие размеры
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-283.jpg">
+                          Вибраторы
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Вакуумно-волновые стимуляторы
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-282.jpg">
+                          Вагинальные шарики
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-283.jpg">
+                          Игрушки с электростимуляцией
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Вакуумные помпы
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-282.jpg">
+                          Стимуляция груди
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-283.jpg">
+                          Секс-машины
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-282.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-283.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для мужчин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Фаллоимитаторы
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Реалистичные
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Нереалистичные
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Двусторонние
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Большие размеры
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Вибраторы
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Вакуумно-волновые стимуляторы
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Вагинальные шарики
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Игрушки с электростимуляцией
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Вакуумные помпы
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Стимуляция груди
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Секс-машины
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-1
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт 1-1-2-2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <button type="button"
+                  data-create-menu-img="./img/menu/image-283.jpg">
+                  Косметика и гигиена
+                </button>
+
+                <ul>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для женщин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <a href="#"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Ссылка
+                        </a>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для мужчин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <button type="button"
+                  data-create-menu-img="./img/menu/image-284.jpg">
+                  Белье
+                </button>
+
+                <ul>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для женщин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для мужчин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <button type="button"
+                  data-create-menu-img="./img/menu/image-282.jpg">
+                  Презервативы и бады
+                </button>
+
+                <ul>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для женщин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для мужчин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Подпункт
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <button type="button"
+                  data-create-menu-img="./img/menu/image-283.jpg">
+                  БДСМ
+                </button>
+
+                <ul>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для женщин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для мужчин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <button type="button"
+                  data-create-menu-img="./img/menu/image-284.jpg">
+                  Приятные мелочи и сувениры
+                </button>
+
+                <ul>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для женщин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <button type="button"
+                      data-create-menu-img="./img/menu/image-284.jpg">
+                      Для мужчин
+                    </button>
+
+                    <ul>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <button type="button"
+                          data-create-menu-img="./img/menu/image-284.jpg">
+                          Подпункт
+                        </button>
+
+                        <ul>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              data-create-menu-img="./img/menu/image-284.jpg">
+                              Ссылка
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <a href="./delivery-payment.html" class="btn hover-underline">
+          <span class="text">
+            Доставка и оплата
+          </span>
+        </a>
+        <a href="./loyalty.html" class="btn hover-underline">
+          <span class="text">
+            Программа лояльности
+          </span>
+        </a>
+        <a href="./gift.html" class="btn hover-underline">
+          <span class="text">
+            Подарочные карты
+          </span>
+        </a>
+        <a href="./contacts.html" class="btn hover-underline">
+          <span class="text">
+            Контакты
+          </span>
+        </a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+
+    <main class="main">
+      <div class="main-sections">
+        <section class="section">
+          <div class="container">
+            <div class="page-header">
+              <nav class="breadcrumb">
+                <ul class="list-reset breadcrumb-list">
+                  <li class="breadcrumb-item">
+                    <a href="/" class="btn btn-inherit breadcrumb-link">
+                      главная
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <p>
+                      программа лояльности
+                    </p>
+                  </li>
+                </ul>
+              </nav>
+
+              <h2 class="page-header-title">
+                Программа лояльности
+              </h2>
+            </div>
+
+            <div class="content-container">
+              <div class="content-col">
+                <div class="content">
+                  <h2>
+                    дисконтные карты
+                  </h2>
+                </div>
+              </div>
+              <div class="content-col">
+                <div class="content">
+                  <p>
+                    В нашем магазине действуют дисконтные карты с номиналом скидки 5%, 10%, 15% и 20%.
+                  </p>
+                  <p>
+                    При единовременной покупке на сумму свыше 1000 рублей выдаётся 5% дисконтная карта на следующие приобретения (сумма первой покупки не зачисляется на счет), которые могут быть совершены сразу же в день получения карты.
+                  </p>
+                  <p>
+                    При единовременной покупке на сумму свыше 10000 рублей выдаётся 10% дисконтная карта на следующие приобретения.
+                  </p>
+                  <p>
+                    При единовременной покупке на сумму свыше 15000 рублей выдаётся 15% дисконтная карта на следующие приобретения.
+                  </p>
+                  <p>
+                    При единовременной покупке на сумму свыше 20000 рублей выдаётся 20% дисконтная карта на следующие приобретения.
+                  </p>
+                </div>
+              </div>
+
+              <div class="content-col">
+                <div class="content">
+                  <h2>
+                    рост карты
+                  </h2>
+                </div>
+              </div>
+              <div class="content-col">
+                <div class="content">
+                  <ul>
+                    <li>
+                      10% при накоплении 15000 руб на 5% карте
+                    </li>
+                    <li>
+                      15% при накоплении 15000 руб на 10% карте
+                    </li>
+                    <li>
+                      20% при накоплении 15000 руб на 15% карте
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="content-col">
+                <div class="content">
+                  <h2>
+                    виртуальная дисконтная карта
+                  </h2>
+                </div>
+              </div>
+              <div class="content-col">
+                <div class="content">
+                  <p>
+                    Для удобства использования, помимо классических пластиковых карт, существует возможность оформления виртуальной дисконтной карты по номеру телефона (используется в качестве номера карты, не для рассылок).
+                  </p>
+
+                  <p>
+                    Любая дисконтная карта может быть привязана к аккаунту в личном кабинете, что позволит использовать ее при совершении покупки через интернет магазин (сумма покупки зачисляется на счет карты, приближая ее к следующей по величине скидке).
+                  </p>
+                </div>
+              </div>
+
+              <div class="content-col">
+                <div class="content">
+                  <h2>
+                    бонусные баллы (1 балл = 1 руб)
+                  </h2>
+                </div>
+              </div>
+              <div class="content-col">
+                <div class="content">
+                  <ul>
+                    <li>
+                      300 бонусных рублей зачисляются на счет в личном кабинете при регистрации
+                    </li>
+                    <li>
+                      200 бонусных рублей зачисляются на счет в личном кабинете при подписке на новостную рассылку
+                    </li>
+                    <li>
+                      на бонусный счет зачисляются 5% от суммы оплаченного заказа
+                    </li>
+                    <li>
+                      за отзыв на товар также начисляются от 50 до 300 бонусов, в зависимости от полезности оставленного отзыва
+                    </li>
+                    <li>
+                      имеющимися бонусами можно оплатить до 20% нового заказа (в корзине поле "Оплатить бонусами")*
+                    </li>
+                  </ul>
+
+                  <p>
+                    *Кроме товаров с ограничением по скидке.
+                  </p>
+                </div>
+              </div>
+
+              <div class="content-col">
+                <div class="content">
+                  <h2>
+                    скидки по дисконтным картам и оплата бонусными баллами суммируются
+                  </h2>
+                </div>
+              </div>
+              <div class="content-col">
+                <div class="content">
+                  <p>
+                    При использовании 5%, 10%, 15% дисконтных карт, максимальная общая скидка на заказ - 20%.
+                  </p>
+                  <p>
+                    При использовании 20% дисконтной карты, максимальная общая скидка на заказ - 25%.
+                  </p>
+                </div>
+              </div>
+
+              <div class="content-col">
+                <div class="content">
+                  <h2>
+                    раздел распродаж
+                  </h2>
+                </div>
+              </div>
+              <div class="content-col">
+                <div class="content">
+                  <p>
+                    На главной странице сайта есть постоянный раздел "Со скидкой",
+                    <br>
+                    где Вы можете отобрать товары по лучшей цене.
+                  </p>
+                </div>
+              </div>
+
+              <div class="content-col">
+                <div class="content">
+                  <h2>
+                    скидки на доставку
+                  </h2>
+                </div>
+              </div>
+              <div class="content-col">
+                <div class="content">
+                  <p>
+                    Доставка по Самаре осуществляется бесплатно при сумме заказа от:
+                  </p>
+                  <ul>
+                    <li>
+                      3000 руб (если выбранные товары находятся в одном магазине)
+                    </li>
+                    <li>
+                      5000 руб (если выбранные товары находятся в двух разных магазинах)
+                    </li>
+                    <li>
+                      7000 руб (если выбранные товары находятся в трех разных магазинах)
+                    </li>
+                  </ul>
+                  <p>
+                    При заказе в любой другой город России и покупке на сумму более:
+                  </p>
+                  <ul>
+                    <li>
+                      3000 руб, скидка на доставку составит 200 руб
+                    </li>
+                    <li>
+                      5000 руб, скидка на доставку составит 350 руб
+                    </li>
+                    <li>
+                      7000 руб, скидка на доставку составит 500 руб
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section mailing-list">
+  <div class="container">
+    <div class="mailing-list-body">
+      <h2 class="mailing-list-title">
+        Подпишитесь на рассылку и будьте в курсе всех наших акций и скидок!
+      </h2>
+      <form class="mailing-list-form">
+        <div class="fieldset">
+          <div class="field-control">
+            <input type="email" class="field" name="email" placeholder="E-mail" required>
+            <button type="submit" class="btn field-button">
+              <span class="icon">
+                <svg>
+                  <use xlink:href="img/icons/swiper-arrow-next.svg#svg-swiper-arrow-next"></use>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+      </div>
+
+      <div class="floating-bottom">
+  <div class="container"
+    data-transfer-target="floating-bottom"></div>
+</div>
+
+      <div class="offcanvas offcanvas-end" tabindex="-1"
+  id="offcanvas-menu">
+  <div class="offcanvas-header"
+    data-transfer-target="offcanvas-menu-header">
+    <button type="button" class="btn btn-close btn-icon btn-gray-200"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close">
+      <span class="icon">
+        <svg>
+          <use xlink:href="img/icons/close.svg#svg-close"></use>
+        </svg>
+      </span>
+    </button>
+  </div>
+  <div class="offcanvas-body"
+    data-transfer-target="offcanvas-menu-body"></div>
+  <div class="offcanvas-footer">
+    <div class="callback">
+      <p>
+        Есть вопросы?
+      </p>
+
+      <a href="tel:+78463004449" class="btn">
+        +7 (846) 300-44-49
+      </a>
+    </div>
+
+    <div class="socials">
+  <a href="#" class="btn btn-sm btn-icon btn-primary"
+    target="_blank">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/vk.svg#svg-vk"></use>
+      </svg>
+    </span>
+  </a>
+  <a href="#" class="btn btn-sm btn-icon btn-primary"
+    target="_blank">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/dzen.svg#svg-dzen"></use>
+      </svg>
+    </span>
+  </a>
+  <a href="#" class="btn btn-sm btn-icon btn-primary"
+    target="_blank">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/telegram.svg#svg-telegram"></use>
+      </svg>
+    </span>
+  </a>
+</div>
+
+  </div>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas-bottom" tabindex="-1"
+  id="offcanvas-filter">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Фильтры
+      </h3>
+
+      <button type="reset" class="btn btn-reset">
+        сбросить все
+      </button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="filter-item">
+        <div class="filter-item-header">
+          <p>в наличии</p>
+
+          <label class="field-toggle">
+            <input type="checkbox" class="visually-hidden" name="instock" checked>
+            <span class="field-toggle-background"></span>
+            <span class="field-toggle-placeholder"></span>
+          </label>
+        </div>
+      </div>
+      <div class="filter-item">
+        <div class="filter-item-header">
+          <p>цена</p>
+        </div>
+
+        <div class="nouislider" data-nouislider="">
+          <div data-nouislider-element=""></div>
+
+          <div class="nouislider-fields">
+            <div class="field-control">
+              <label class="field">
+                <span class="field-prefix">
+                  от
+                </span>
+                <input type="text" class="field--plaintext" name="price-min" min="50" max="50000">
+                <span class="field-postfix">
+                  ₽
+                </span>
+              </label>
+            </div>
+            <div class="field-control">
+              <label class="field">
+                <span class="field-prefix">
+                  до
+                </span>
+                <input type="text" class="field--plaintext" name="price-max" min="50" max="50000">
+                <span class="field-postfix">
+                  ₽
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-item">
+        <div class="accordion accordion--filter" id="accordion-filter">
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <button class="accordion-button" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse-filter-0"
+                aria-expanded="true"
+                aria-controls="collapse-filter-0">
+                цвет
+
+                <span class="icon-container accordion-button-icon">
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/plus.svg#svg-plus"></use>
+                    </svg>
+                  </span>
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/minus.svg#svg-minus"></use>
+                    </svg>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="accordion-collapse collapse show"
+              id="collapse-filter-0"
+              data-bs-parent="#accordion-filter">
+              <div class="accordion-body">
+                <div class="filter-item-body">
+                  <label class="field-radio">
+                    <span class="field-radio-label">ABS</span>
+                    <input type="radio" class="field-radio-input" name="color" checked>
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPE</span>
+                    <input type="radio" class="field-radio-input" name="color">
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPR</span>
+                    <input type="radio" class="field-radio-input" name="color">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <button class="accordion-button collapsed" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse-filter-1"
+                aria-expanded="false"
+                aria-controls="collapse-filter-1">
+                материал
+
+                <span class="icon-container accordion-button-icon">
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/plus.svg#svg-plus"></use>
+                    </svg>
+                  </span>
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/minus.svg#svg-minus"></use>
+                    </svg>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="accordion-collapse collapse"
+              id="collapse-filter-1"
+              data-bs-parent="#accordion-filter">
+              <div class="accordion-body">
+                <div class="filter-item-body">
+                  <label class="field-radio">
+                    <span class="field-radio-label">ABS</span>
+                    <input type="radio" class="field-radio-input" name="material" checked>
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPE</span>
+                    <input type="radio" class="field-radio-input" name="material">
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPR</span>
+                    <input type="radio" class="field-radio-input" name="material">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <button class="accordion-button collapsed" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse-filter-2"
+                aria-expanded="false"
+                aria-controls="collapse-filter-2">
+                бренд
+
+                <span class="icon-container accordion-button-icon">
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/plus.svg#svg-plus"></use>
+                    </svg>
+                  </span>
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/minus.svg#svg-minus"></use>
+                    </svg>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="accordion-collapse collapse"
+              id="collapse-filter-2"
+              data-bs-parent="#accordion-filter">
+              <div class="accordion-body">
+                <div class="filter-item-body">
+                  <label class="field-radio">
+                    <span class="field-radio-label">ABS</span>
+                    <input type="radio" class="field-radio-input" name="brand" checked>
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPE</span>
+                    <input type="radio" class="field-radio-input" name="brand">
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPR</span>
+                    <input type="radio" class="field-radio-input" name="brand">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <button class="accordion-button collapsed" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse-filter-3"
+                aria-expanded="false"
+                aria-controls="collapse-filter-3">
+                управление
+
+                <span class="icon-container accordion-button-icon">
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/plus.svg#svg-plus"></use>
+                    </svg>
+                  </span>
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/minus.svg#svg-minus"></use>
+                    </svg>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="accordion-collapse collapse"
+              id="collapse-filter-3"
+              data-bs-parent="#accordion-filter">
+              <div class="accordion-body">
+                <div class="filter-item-body">
+                  <label class="field-radio">
+                    <span class="field-radio-label">ABS</span>
+                    <input type="radio" class="field-radio-input" name="managment" checked>
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPE</span>
+                    <input type="radio" class="field-radio-input" name="managment">
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPR</span>
+                    <input type="radio" class="field-radio-input" name="managment">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="submit" class="btn btn-lg btn-secondary">
+        применить
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas-bottom" tabindex="-1"
+  id="offcanvas-sort">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        сортировка
+      </h3>
+
+      <button type="reset" class="btn btn-reset">
+        сбросить все
+      </button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="filter-item">
+        <div class="filter-item-body">
+          <label class="field-radio">
+            <span class="field-radio-label">По популярности</span>
+            <input type="radio" class="field-radio-input" name="sort" checked>
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Со скидкой</span>
+            <input type="radio" class="field-radio-input" name="sort">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">По новизне</span>
+            <input type="radio" class="field-radio-input" name="sort">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">По убыванию цены</span>
+            <input type="radio" class="field-radio-input" name="sort">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">По возрастанию цены</span>
+            <input type="radio" class="field-radio-input" name="sort">
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="submit" class="btn btn-lg btn-secondary">
+        применить
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas-bottom" tabindex="-1"
+  id="offcanvas-sort-instock">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Наличие
+      </h3>
+
+      <button type="reset" class="btn btn-reset">
+        сбросить все
+      </button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="filter-item">
+        <div class="filter-item-body">
+          <label class="field-radio">
+            <span class="field-radio-label">Все магазины</span>
+            <input type="radio" class="field-radio-input" name="sort-instock" checked>
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Ново-вокзальная</span>
+            <input type="radio" class="field-radio-input" name="sort-instock">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Московское шоссе</span>
+            <input type="radio" class="field-radio-input" name="sort-instock">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Гагарина</span>
+            <input type="radio" class="field-radio-input" name="sort-instock">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Авроры</span>
+            <input type="radio" class="field-radio-input" name="sort-instock">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Аэродромная</span>
+            <input type="radio" class="field-radio-input" name="sort-instock">
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="submit" class="btn btn-lg btn-secondary">
+        применить
+      </button>
+    </div>
+  </form>
+</div>
+
+      <div role="dialog" class="modal modal-alert fade" tabindex="-1"
+  id="modalAgeRestriction"
+  data-bs-backdrop="static"
+  aria-labelledby="modalAgeRestrictionLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"
+          id="modalAgeRestrictionLabel">
+          НА САЙТЕ
+          <br>
+          ПРИСУТСТВУЮТ
+          <span class="text-primary">
+            МАТЕРИАЛЫ
+            <br>
+            ДЛЯ ВЗРОСЛЫХ
+          </span>
+        </h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          Вам есть 18 лет?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-base btn-primary"
+          data-success=""
+          data-bs-dismiss="modal">
+          Да, мне есть 18 лет
+        </button>
+        <button type="button" class="btn btn-base btn-secondary">
+          Мне еще нет 18 лет
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div role="dialog" class="modal modal-location fade" tabindex="-1"
+  id="modalLocation"
+  aria-labelledby="modalLocationLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"
+          id="modalLocationLabel">
+          Выберите свой город
+        </h3>
+
+        <button type="button" class="btn btn-light btn-icon btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/close.svg#svg-close"></use>
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="location">
+          <button type="button" class="btn is-active">
+            Тольятти
+          </button>
+          <button type="button" class="btn">
+            Самара
+          </button>
+          <button type="button" class="btn">
+            Коломна
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div role="dialog" class="modal modal-stories fade" tabindex="-1"
+  id="modalStories"
+  aria-labelledby="modalStoriesLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn btn-volume">
+          <span class="icon-container">
+            <span class="icon">
+              <svg>
+                <use xlink:href="img/icons/volume-off.svg#svg-volume-off"></use>
+              </svg>
+            </span>
+            <span class="icon">
+              <svg>
+                <use xlink:href="img/icons/volume.svg#svg-volume"></use>
+              </svg>
+            </span>
+          </span>
+
+          <span class="text">
+            <span>Выключено</span>
+            <span>Включено</span>
+          </span>
+        </button>
+
+        <button type="button" class="btn btn-light btn-icon btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/close.svg#svg-close"></use>
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="swiper swiper-stories">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" data-history="stories-1">
+  <article class="stories">
+    <div class="swiper-pagination"></div>
+    <button type="button" class="btn swiper-button-prev"></button>
+    <button type="button" class="btn swiper-button-next"></button>
+
+    <div class="stories-header">
+      <picture class="stories-header-picture">
+        <source srcset="./img/new-arrivals/image-1.webp" type="image/webp">
+        <img loading="lazy" src="./img/new-arrivals/image-1.png" class="image" width="32" height="32" alt="Картинка">
+      </picture>
+      <div class="stories-header-name">
+        Новинка
+      </div>
+    </div>
+    <div class="stories-body">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <video src="https://www.w3schools.com/html/mov_bbb.mp4"
+              muted
+              playsinline></video>
+          </div>
+          <div class="swiper-slide">
+            <picture>
+              <source srcset="./img/card/image-1.webp" type="image/webp">
+              <img loading="lazy" src="./img/card/image-1.jpg" class="image" width="" height="" alt="">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+<div class="swiper-slide" data-history="stories-2">
+  <article class="stories">
+    <div class="swiper-pagination"></div>
+    <button type="button" class="btn swiper-button-prev"></button>
+    <button type="button" class="btn swiper-button-next"></button>
+
+    <div class="stories-header">
+      <picture class="stories-header-picture">
+        <source srcset="./img/new-arrivals/image-1.webp" type="image/webp">
+        <img loading="lazy" src="./img/new-arrivals/image-1.png" class="image" width="32" height="32" alt="Картинка">
+      </picture>
+      <div class="stories-header-name">
+        Новинка
+      </div>
+    </div>
+    <div class="stories-body">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <video src="https://www.w3schools.com/html/mov_bbb.mp4"
+              muted
+              playsinline></video>
+          </div>
+          <div class="swiper-slide">
+            <picture>
+              <source srcset="./img/card/image-1.webp" type="image/webp">
+              <img loading="lazy" src="./img/card/image-1.jpg" class="image" width="" height="" alt="">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+<div class="swiper-slide" data-history="stories-3">
+  <article class="stories">
+    <div class="swiper-pagination"></div>
+    <button type="button" class="btn swiper-button-prev"></button>
+    <button type="button" class="btn swiper-button-next"></button>
+
+    <div class="stories-header">
+      <picture class="stories-header-picture">
+        <source srcset="./img/new-arrivals/image-1.webp" type="image/webp">
+        <img loading="lazy" src="./img/new-arrivals/image-1.png" class="image" width="32" height="32" alt="Картинка">
+      </picture>
+      <div class="stories-header-name">
+        Новинка
+      </div>
+    </div>
+    <div class="stories-body">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <video src="https://www.w3schools.com/html/mov_bbb.mp4"
+              muted
+              playsinline></video>
+          </div>
+          <div class="swiper-slide">
+            <picture>
+              <source srcset="./img/card/image-1.webp" type="image/webp">
+              <img loading="lazy" src="./img/card/image-1.jpg" class="image" width="" height="" alt="">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+<div class="swiper-slide" data-history="stories-4">
+  <article class="stories">
+    <div class="swiper-pagination"></div>
+    <button type="button" class="btn swiper-button-prev"></button>
+    <button type="button" class="btn swiper-button-next"></button>
+
+    <div class="stories-header">
+      <picture class="stories-header-picture">
+        <source srcset="./img/new-arrivals/image-1.webp" type="image/webp">
+        <img loading="lazy" src="./img/new-arrivals/image-1.png" class="image" width="32" height="32" alt="Картинка">
+      </picture>
+      <div class="stories-header-name">
+        Новинка
+      </div>
+    </div>
+    <div class="stories-body">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <video src="https://www.w3schools.com/html/mov_bbb.mp4"
+              muted
+              playsinline></video>
+          </div>
+          <div class="swiper-slide">
+            <picture>
+              <source srcset="./img/card/image-1.webp" type="image/webp">
+              <img loading="lazy" src="./img/card/image-1.jpg" class="image" width="" height="" alt="">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+<div class="swiper-slide" data-history="stories-5">
+  <article class="stories">
+    <div class="swiper-pagination"></div>
+    <button type="button" class="btn swiper-button-prev"></button>
+    <button type="button" class="btn swiper-button-next"></button>
+
+    <div class="stories-header">
+      <picture class="stories-header-picture">
+        <source srcset="./img/new-arrivals/image-1.webp" type="image/webp">
+        <img loading="lazy" src="./img/new-arrivals/image-1.png" class="image" width="32" height="32" alt="Картинка">
+      </picture>
+      <div class="stories-header-name">
+        Новинка
+      </div>
+    </div>
+    <div class="stories-body">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <video src="https://www.w3schools.com/html/mov_bbb.mp4"
+              muted
+              playsinline></video>
+          </div>
+          <div class="swiper-slide">
+            <picture>
+              <source srcset="./img/card/image-1.webp" type="image/webp">
+              <img loading="lazy" src="./img/card/image-1.jpg" class="image" width="" height="" alt="">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+<div class="swiper-slide" data-history="stories-6">
+  <article class="stories">
+    <div class="swiper-pagination"></div>
+    <button type="button" class="btn swiper-button-prev"></button>
+    <button type="button" class="btn swiper-button-next"></button>
+
+    <div class="stories-header">
+      <picture class="stories-header-picture">
+        <source srcset="./img/new-arrivals/image-1.webp" type="image/webp">
+        <img loading="lazy" src="./img/new-arrivals/image-1.png" class="image" width="32" height="32" alt="Картинка">
+      </picture>
+      <div class="stories-header-name">
+        Новинка
+      </div>
+    </div>
+    <div class="stories-body">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <video src="https://www.w3schools.com/html/mov_bbb.mp4"
+              muted
+              playsinline></video>
+          </div>
+          <div class="swiper-slide">
+            <picture>
+              <source srcset="./img/card/image-1.webp" type="image/webp">
+              <img loading="lazy" src="./img/card/image-1.jpg" class="image" width="" height="" alt="">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+<div class="swiper-slide" data-history="stories-7">
+  <article class="stories">
+    <div class="swiper-pagination"></div>
+    <button type="button" class="btn swiper-button-prev"></button>
+    <button type="button" class="btn swiper-button-next"></button>
+
+    <div class="stories-header">
+      <picture class="stories-header-picture">
+        <source srcset="./img/new-arrivals/image-1.webp" type="image/webp">
+        <img loading="lazy" src="./img/new-arrivals/image-1.png" class="image" width="32" height="32" alt="Картинка">
+      </picture>
+      <div class="stories-header-name">
+        Новинка
+      </div>
+    </div>
+    <div class="stories-body">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <video src="https://www.w3schools.com/html/mov_bbb.mp4"
+              muted
+              playsinline></video>
+          </div>
+          <div class="swiper-slide">
+            <picture>
+              <source srcset="./img/card/image-1.webp" type="image/webp">
+              <img loading="lazy" src="./img/card/image-1.jpg" class="image" width="" height="" alt="">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+<div class="swiper-slide" data-history="stories-8">
+  <article class="stories">
+    <div class="swiper-pagination"></div>
+    <button type="button" class="btn swiper-button-prev"></button>
+    <button type="button" class="btn swiper-button-next"></button>
+
+    <div class="stories-header">
+      <picture class="stories-header-picture">
+        <source srcset="./img/new-arrivals/image-1.webp" type="image/webp">
+        <img loading="lazy" src="./img/new-arrivals/image-1.png" class="image" width="32" height="32" alt="Картинка">
+      </picture>
+      <div class="stories-header-name">
+        Новинка
+      </div>
+    </div>
+    <div class="stories-body">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <video src="https://www.w3schools.com/html/mov_bbb.mp4"
+              muted
+              playsinline></video>
+          </div>
+          <div class="swiper-slide">
+            <picture>
+              <source srcset="./img/card/image-1.webp" type="image/webp">
+              <img loading="lazy" src="./img/card/image-1.jpg" class="image" width="" height="" alt="">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+<div class="swiper-slide" data-history="stories-9">
+  <article class="stories">
+    <div class="swiper-pagination"></div>
+    <button type="button" class="btn swiper-button-prev"></button>
+    <button type="button" class="btn swiper-button-next"></button>
+
+    <div class="stories-header">
+      <picture class="stories-header-picture">
+        <source srcset="./img/new-arrivals/image-1.webp" type="image/webp">
+        <img loading="lazy" src="./img/new-arrivals/image-1.png" class="image" width="32" height="32" alt="Картинка">
+      </picture>
+      <div class="stories-header-name">
+        Новинка
+      </div>
+    </div>
+    <div class="stories-body">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <video src="https://www.w3schools.com/html/mov_bbb.mp4"
+              muted
+              playsinline></video>
+          </div>
+          <div class="swiper-slide">
+            <picture>
+              <source srcset="./img/card/image-1.webp" type="image/webp">
+              <img loading="lazy" src="./img/card/image-1.jpg" class="image" width="" height="" alt="">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+<div class="swiper-slide" data-history="stories-10">
+  <article class="stories">
+    <div class="swiper-pagination"></div>
+    <button type="button" class="btn swiper-button-prev"></button>
+    <button type="button" class="btn swiper-button-next"></button>
+
+    <div class="stories-header">
+      <picture class="stories-header-picture">
+        <source srcset="./img/new-arrivals/image-1.webp" type="image/webp">
+        <img loading="lazy" src="./img/new-arrivals/image-1.png" class="image" width="32" height="32" alt="Картинка">
+      </picture>
+      <div class="stories-header-name">
+        Новинка
+      </div>
+    </div>
+    <div class="stories-body">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <video src="https://www.w3schools.com/html/mov_bbb.mp4"
+              muted
+              playsinline></video>
+          </div>
+          <div class="swiper-slide">
+            <picture>
+              <source srcset="./img/card/image-1.webp" type="image/webp">
+              <img loading="lazy" src="./img/card/image-1.jpg" class="image" width="" height="" alt="">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </main>
+
+    <script>
+  document.querySelectorAll('.card')?.forEach(card => {
+    const cardAdd = card.querySelector('.card-add')
+
+    if (!cardAdd) return
+
+    cardAdd.addEventListener('click', () => {
+      const link = document.createElement('a')
+      link.href = './cart'
+      link.className = 'btn btn-base btn-secondary card-add'
+      link.textContent = 'Оформить заказ'
+
+      cardAdd.replaceWith(link)
+    }, { once: true })
+  })
+</script>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-info">
+      <a href="#" class="btn logo">
+        <img loading="lazy" src="./img/logo.svg" class="image" width="200" height="32" alt="Логотип">
+      </a>
+
+      <div class="socials">
+  <a href="#" class="btn btn-sm btn-icon btn-primary"
+    target="_blank">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/vk.svg#svg-vk"></use>
+      </svg>
+    </span>
+  </a>
+  <a href="#" class="btn btn-sm btn-icon btn-primary"
+    target="_blank">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/dzen.svg#svg-dzen"></use>
+      </svg>
+    </span>
+  </a>
+  <a href="#" class="btn btn-sm btn-icon btn-primary"
+    target="_blank">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/telegram.svg#svg-telegram"></use>
+      </svg>
+    </span>
+  </a>
+</div>
+
+
+      <p class="footer-copy"
+        data-transfer-origin="footer-copy"
+        data-transfer-breakpoint="991.98">
+        © 2023 BunnyLove
+        <br>
+        Все права защищены.
+      </p>
+    </div>
+    <nav class="footer-nav">
+      <ul class="list-reset footer-list">
+        <li>
+          <h3>
+            Каталог
+          </h3>
+        </li>
+        <li>
+  <a href="#" class="btn hover-underline">
+    <span class="text">
+      Секс игрушки
+    </span>
+  </a>
+</li>
+<li>
+  <a href="#" class="btn hover-underline">
+    <span class="text">
+      Эротическое белье
+    </span>
+  </a>
+</li>
+<li>
+  <a href="#" class="btn hover-underline">
+    <span class="text">
+      BDSM
+    </span>
+  </a>
+</li>
+<li>
+  <a href="#" class="btn hover-underline">
+    <span class="text">
+      Интимная косметика
+    </span>
+  </a>
+</li>
+
+      </ul>
+      <ul class="list-reset footer-list">
+        <li>
+          <h3>
+            Покупателями
+          </h3>
+        </li>
+        <li>
+  <a href="#" class="btn hover-underline">
+    <span class="text">
+      Доставка
+    </span>
+  </a>
+</li>
+<li>
+  <a href="#" class="btn hover-underline">
+    <span class="text">
+      Оплата
+    </span>
+  </a>
+</li>
+<li>
+  <a href="#" class="btn hover-underline">
+    <span class="text">
+      Вопросы
+    </span>
+  </a>
+</li>
+<li>
+  <a href="#" class="btn hover-underline">
+    <span class="text">
+      Подарочные сертификаты
+    </span>
+  </a>
+</li>
+
+      </ul>
+      <ul class="list-reset footer-list">
+        <li>
+          <h3>
+            О компании
+          </h3>
+        </li>
+        <li>
+  <a href="#" class="btn hover-underline">
+    <span class="text">
+      О нас
+    </span>
+  </a>
+</li>
+<li>
+  <a href="#" class="btn hover-underline">
+    <span class="text">
+      Анонимность
+    </span>
+  </a>
+</li>
+<li>
+  <a href="#" class="btn hover-underline">
+    <span class="text">
+      Реквизиты
+    </span>
+  </a>
+</li>
+
+      </ul>
+    </nav>
+    <div class="footer-contacts">
+      <ul class="list-reset contacts">
+        <li>
+          <h3>
+            Позвонить
+          </h3>
+          <a href="tel:+78463004449" class="btn">
+            +7 (846) 300-44-49
+          </a>
+        </li>
+        <li>
+          <h3>
+            Написать
+          </h3>
+          <a href="mailto:info@bunnylove.ru" class="btn">
+            info@bunnylove.ru
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-bottom"
+      data-transfer-target="footer-copy"></div>
+  </div>
+</footer>
+
+  </div>
+</body>
+
+</html>

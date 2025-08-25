@@ -1,0 +1,33 @@
+.breadcrumb {
+
+  &,
+  &-list,
+  &-item {
+    display: flex;
+  }
+
+  &-list,
+  &-item {
+    gap: .25rem;
+  }
+
+  &-list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &-item {
+
+    &:not(:first-child) {
+
+      &::before {
+        content: '/';
+        display: inline-block;
+      }
+    }
+
+    &:not(:last-child) {
+      color: var(--text-color-50);
+    }
+  }
+}

@@ -42,6 +42,10 @@
 
     @include breakpoint-up(sm) {
       height: calc(100vh - var(--header-height));
+
+      @supports (height: 100dvh) {
+        height: calc(100dvh - var(--header-height));
+      }
     }
 
     @include breakpoint-up(lg) {

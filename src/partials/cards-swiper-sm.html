@@ -1,0 +1,41 @@
+<section class="section section-border">
+  <div class="container cards-swiper"
+    data-swiper="cards-sm">
+    <div class="section-header">
+      <h2 class="section-title h4">
+        @title
+      </h2>
+
+      <div class="section-header-more cards-swiper-more">
+        <a href="#" class="btn btn-more text-underline">
+          посмотреть все
+        </a>
+
+        <div class="swiper-navigation"
+          data-transfer-origin="@transferId"
+          data-transfer-breakpoint="991.98">
+          <button type="button" class="btn btn-sm btn-icon btn-blur-secondary swiper-button-prev"></button>
+          <button type="button" class="btn btn-sm btn-icon btn-blur-secondary swiper-button-next"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        @loop('card.html', [
+          { "slide": true, "rating": 0, "title": "Парфюмированное масло Libido", "price": "930 ₽", "description": "Парфюмированное масло с феромонами и пьянящим в меру сладким ароматом, 10 мл" },
+          { "slide": true, "rating": 0, "title": "Поводок-петля BunnyLove 2", "price": "370 ₽", "description": "Черный поводок-петля из натуральной кожи черного цвета с карабином, длина 21 см" },
+          { "slide": true, "rating": 0, "title": "Лубрикант Bunnylove Classic", "price": "1 390 ₽", "description": "Ухаживающая смазка на водной основе с молочной кислотой и соком Алоэ Вера, 200 мл" },
+          { "slide": true, "rating": 0, "title": "Лубрикант Tutti-Frutti Bubble Gum сашет", "price": "70 ₽", "description": "Съедобная смазка на водной основе со вкусом жвачки. сашет 4 гр" },
+          { "slide": true, "rating": 0, "title": "Парфюмированное масло Libido", "price": "930 ₽", "description": "Парфюмированное масло с феромонами и пьянящим в меру сладким ароматом, 10 мл" },
+          { "slide": true, "rating": 0, "title": "Поводок-петля BunnyLove 2", "price": "370 ₽", "description": "Черный поводок-петля из натуральной кожи черного цвета с карабином, длина 21 см" },
+          { "slide": true, "rating": 0, "title": "Лубрикант Bunnylove Classic", "price": "1 390 ₽", "description": "Ухаживающая смазка на водной основе с молочной кислотой и соком Алоэ Вера, 200 мл" },
+          { "slide": true, "rating": 0, "title": "Лубрикант Tutti-Frutti Bubble Gum сашет", "price": "70 ₽", "description": "Съедобная смазка на водной основе со вкусом жвачки. сашет 4 гр" },
+        ])
+      </div>
+    </div>
+
+    <div class="section-more"
+      data-transfer-target="@transferId"></div>
+  </div>
+</section>

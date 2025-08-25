@@ -39,50 +39,68 @@
     <header class="header">
   <div class="container">
     <div class="header-top">
-      <ul class="list-reset header-top-start">
-        <li><button type="button" class="btn btn-location"
-            data-bs-toggle="modal"
-            data-bs-target="#modalLocation"
-            data-transfer-origin="offcanvas-menu-header"
-            data-transfer-breakpoint="991.98"
-            data-transfer-placement="first">
-            <span class="icon">
-              <svg>
-                <use xlink:href="img/icons/location.svg#svg-location"></use>
-              </svg>
-            </span>
-            <span class="text">
-              Самара
-            </span>
-            <span class="icon btn-location-dropdown">
-              <svg>
-                <use xlink:href="img/icons/arrow-down.svg#svg-arrow-down"></use>
-              </svg>
-            </span>
-          </button></li>
+      <div class="header-top-start"
+        data-transfer-target="header-top-start">
+        <button type="button" class="btn btn-location"
+          data-bs-toggle="modal"
+          data-bs-target="#modalLocation"
+          data-transfer-origin="offcanvas-menu-header"
+          data-transfer-breakpoint="991.98"
+          data-transfer-placement="first">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/location.svg#svg-location"></use>
+            </svg>
+          </span>
+          <span class="text">
+            Самара
+          </span>
+          <span class="icon btn-location-dropdown">
+            <svg>
+              <use xlink:href="img/icons/arrow-down.svg#svg-arrow-down"></use>
+            </svg>
+          </span>
+        </button>
+        <button type="button" class="btn btn-icon btn-gray-200"
+          data-toggle="search"
+          data-target="#form-search">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/search.svg#svg-search"></use>
+            </svg>
+          </span>
+        </button>
+      </div>
 
-        <li>
-          <button type="button" class="btn btn-icon btn-gray-200">
+      <form id="form-search" class="search">
+        <div class="field-control">
+          <input type="text" class="field" name="search" placeholder="Поиск...">
+          <button type="submit" class="btn field-button">
             <span class="icon">
               <svg>
                 <use xlink:href="img/icons/search.svg#svg-search"></use>
               </svg>
             </span>
           </button>
-        </li>
-
-        <li
-          data-transfer-target="header-top-start"></li>
-      </ul>
-
-      <a href="#" class="btn logo">
+        </div>
+        <button type="button" class="btn btn-icon btn-gray-200"
+          data-dismiss="search">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/close.svg#svg-close"></use>
+            </svg>
+          </span>
+        </button>
+      </form>
+      <a href="/" class="btn logo">
         <img loading="lazy" src="./img/logo.svg" class="image" width="200" height="32" alt="Логотип">
       </a>
 
       <div class="header-top-end">
         <button type="button" class="btn btn-icon btn-gray-200"
           data-transfer-origin="header-top-start"
-          data-transfer-breakpoint="991.98">
+          data-transfer-breakpoint="991.98"
+          data-transfer-placement="last">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/user.svg#svg-user"></use>
@@ -1080,24 +1098,24 @@
           </div>
         </div>
 
-        <a href="#" class="btn hover-underline">
+        <a href="./delivery-payment.html" class="btn hover-underline">
           <span class="text">
             Доставка и оплата
           </span>
         </a>
-        <a href="#" class="btn hover-underline">
+        <a href="./loyalty.html" class="btn hover-underline">
           <span class="text">
             Программа лояльности
           </span>
         </a>
-        <a href="#" class="btn hover-underline">
+        <a href="./gift.html" class="btn hover-underline">
           <span class="text">
             Подарочные карты
           </span>
         </a>
-        <a href="#" class="btn hover-underline">
+        <a href="./contacts.html" class="btn hover-underline">
           <span class="text">
-            Магазины
+            Контакты
           </span>
         </a>
       </nav>
@@ -1109,7 +1127,8 @@
     <main class="main">
       <div class="main-sections">
         <section class="section hero">
-          <div class="swiper-relative hero-swiper">
+          <div class="swiper-relative hero-swiper"
+            data-swiper="hero">
             <div class="swiper">
               <div class="swiper-wrapper">
                 
@@ -1199,7 +1218,8 @@
             </div>
           </div>
 
-          <div class="swiper-container new-arrivals-swiper">
+          <div class="swiper-container new-arrivals-swiper"
+            data-swiper="arrivals">
             <div class="swiper">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -1436,7 +1456,8 @@
         </section>
 
         <section class="section section-border">
-  <div class="container cards-swiper">
+  <div class="container cards-swiper"
+    data-swiper="cards">
     <div class="section-header">
       <h2 class="section-title">
         Со скидкой
@@ -1462,21 +1483,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -1511,6 +1533,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Парфюмированное масло Libido
@@ -1539,21 +1562,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -1588,6 +1612,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Поводок-петля BunnyLove 2
@@ -1616,21 +1641,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -1665,6 +1691,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Лубрикант Bunnylove Classic
@@ -1693,21 +1720,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -1742,6 +1770,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Лубрикант Tutti-Frutti Bubble Gum сашет
@@ -1770,21 +1799,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -1819,6 +1849,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Парфюмированное масло Libido
@@ -1847,21 +1878,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -1896,6 +1928,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Поводок-петля BunnyLove 2
@@ -1924,21 +1957,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -1973,6 +2007,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Лубрикант Bunnylove Classic
@@ -2001,21 +2036,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -2050,6 +2086,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Лубрикант Tutti-Frutti Bubble Gum сашет
@@ -2195,7 +2232,8 @@
         </section>
 
         <section class="section section-border">
-  <div class="container cards-swiper">
+  <div class="container cards-swiper"
+    data-swiper="cards">
     <div class="section-header">
       <h2 class="section-title">
         Новинки
@@ -2221,21 +2259,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -2270,6 +2309,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Парфюмированное масло Libido
@@ -2298,21 +2338,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -2347,6 +2388,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Поводок-петля BunnyLove 2
@@ -2375,21 +2417,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -2424,6 +2467,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Лубрикант Bunnylove Classic
@@ -2452,21 +2496,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -2501,6 +2546,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Лубрикант Tutti-Frutti Bubble Gum сашет
@@ -2529,21 +2575,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -2578,6 +2625,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Парфюмированное масло Libido
@@ -2606,21 +2654,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -2655,6 +2704,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Поводок-петля BunnyLove 2
@@ -2683,21 +2733,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -2732,6 +2783,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Лубрикант Bunnylove Classic
@@ -2760,21 +2812,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -2809,6 +2862,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Лубрикант Tutti-Frutti Bubble Gum сашет
@@ -2844,7 +2898,8 @@
 
 
         <section class="section section-border">
-  <div class="container cards-swiper">
+  <div class="container cards-swiper"
+    data-swiper="cards">
     <div class="section-header">
       <h2 class="section-title">
         Хиты
@@ -2870,21 +2925,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -2919,6 +2975,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Парфюмированное масло Libido
@@ -2947,21 +3004,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -2996,6 +3054,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Поводок-петля BunnyLove 2
@@ -3024,21 +3083,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -3073,6 +3133,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Лубрикант Bunnylove Classic
@@ -3101,21 +3162,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -3150,6 +3212,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Лубрикант Tutti-Frutti Bubble Gum сашет
@@ -3178,21 +3241,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -3227,6 +3291,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Парфюмированное масло Libido
@@ -3255,21 +3320,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -3304,6 +3370,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Поводок-петля BunnyLove 2
@@ -3332,21 +3399,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -3381,6 +3449,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Лубрикант Bunnylove Classic
@@ -3409,21 +3478,22 @@
   <div class="swiper-slide">
 
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
   <picture>
@@ -3458,6 +3528,7 @@
       </a>
     </div>
     <div class="card-body">
+      
       <div class="card-body-header">
         <h3 class="card-title">
           Лубрикант Tutti-Frutti Bubble Gum сашет
@@ -3617,7 +3688,8 @@
         </section>
 
         <section class="section section-border articles">
-          <div class="container articles-swiper">
+          <div class="container articles-swiper"
+            data-swiper="articles">
             <div class="section-header">
               <h2 class="section-title">
                 Половое воспитание
@@ -3716,30 +3788,30 @@
         </section>
 
         <section class="section section-border-transparent subscribe">
-          <div class="container">
-            <div class="subscribe-header">
-              <picture>
-                <source srcset="./img/subscribe/image-1.webp" type="image/webp">
-                <img loading="lazy" src="./img/subscribe/image-1.jpg" class="image" width="200" height="258" alt="Фото">
-              </picture>
-              <picture>
-                <source srcset="./img/subscribe/image-2.webp" type="image/webp">
-                <img loading="lazy" src="./img/subscribe/image-2.jpg" class="image" width="224" height="224" alt="Фото">
-              </picture>
-              <picture>
-                <source srcset="./img/subscribe/image-3.webp" type="image/webp">
-                <img loading="lazy" src="./img/subscribe/image-3.jpg" class="image" width="200" height="200" alt="Фото">
-              </picture>
-            </div>
-            <div class="subscribe-body">
-              <h2>
-                Подписывайтесь
-                <br>
-                <span class="text-primary">
-                  @bunnyloveru
-                </span>
-              </h2>
-              <div class="socials">
+  <div class="container">
+    <div class="subscribe-header">
+      <picture>
+        <source srcset="./img/subscribe/image-1.webp" type="image/webp">
+        <img loading="lazy" src="./img/subscribe/image-1.jpg" class="image" width="200" height="258" alt="Фото">
+      </picture>
+      <picture>
+        <source srcset="./img/subscribe/image-2.webp" type="image/webp">
+        <img loading="lazy" src="./img/subscribe/image-2.jpg" class="image" width="224" height="224" alt="Фото">
+      </picture>
+      <picture>
+        <source srcset="./img/subscribe/image-3.webp" type="image/webp">
+        <img loading="lazy" src="./img/subscribe/image-3.jpg" class="image" width="200" height="200" alt="Фото">
+      </picture>
+    </div>
+    <div class="subscribe-body">
+      <h2>
+        Подписывайтесь
+        <br>
+        <span class="text-primary">
+          @bunnyloveru
+        </span>
+      </h2>
+      <div class="socials">
   <a href="#" class="btn btn-sm btn-icon btn-primary"
     target="_blank">
     <span class="icon">
@@ -3766,23 +3838,23 @@
   </a>
 </div>
 
-            </div>
-            <div class="subscribe-footer">
-              <picture>
-                <source srcset="./img/subscribe/image-4.webp" type="image/webp">
-                <img loading="lazy" src="./img/subscribe/image-4.jpg" class="image" width="224" height="224" alt="Фото">
-              </picture>
-              <picture>
-                <source srcset="./img/subscribe/image-5.webp" type="image/webp">
-                <img loading="lazy" src="./img/subscribe/image-5.jpg" class="image" width="140" height="140" alt="Фото">
-              </picture>
-              <picture>
-                <source srcset="./img/subscribe/image-6.webp" type="image/webp">
-                <img loading="lazy" src="./img/subscribe/image-6.jpg" class="image" width="200" height="200" alt="Фото">
-              </picture>
-            </div>
-          </div>
-        </section>
+    </div>
+    <div class="subscribe-footer">
+      <picture>
+        <source srcset="./img/subscribe/image-4.webp" type="image/webp">
+        <img loading="lazy" src="./img/subscribe/image-4.jpg" class="image" width="224" height="224" alt="Фото">
+      </picture>
+      <picture>
+        <source srcset="./img/subscribe/image-5.webp" type="image/webp">
+        <img loading="lazy" src="./img/subscribe/image-5.jpg" class="image" width="140" height="140" alt="Фото">
+      </picture>
+      <picture>
+        <source srcset="./img/subscribe/image-6.webp" type="image/webp">
+        <img loading="lazy" src="./img/subscribe/image-6.jpg" class="image" width="200" height="200" alt="Фото">
+      </picture>
+    </div>
+  </div>
+</section>
 
         <section class="section mailing-list">
   <div class="container">
@@ -3870,6 +3942,376 @@
 </div>
 
   </div>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas-bottom" tabindex="-1"
+  id="offcanvas-filter">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Фильтры
+      </h3>
+
+      <button type="reset" class="btn btn-reset">
+        сбросить все
+      </button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="filter-item">
+        <div class="filter-item-header">
+          <p>в наличии</p>
+
+          <label class="field-toggle">
+            <input type="checkbox" class="visually-hidden" name="instock" checked>
+            <span class="field-toggle-background"></span>
+            <span class="field-toggle-placeholder"></span>
+          </label>
+        </div>
+      </div>
+      <div class="filter-item">
+        <div class="filter-item-header">
+          <p>цена</p>
+        </div>
+
+        <div class="nouislider" data-nouislider="">
+          <div data-nouislider-element=""></div>
+
+          <div class="nouislider-fields">
+            <div class="field-control">
+              <label class="field">
+                <span class="field-prefix">
+                  от
+                </span>
+                <input type="text" class="field--plaintext" name="price-min" min="50" max="50000">
+                <span class="field-postfix">
+                  ₽
+                </span>
+              </label>
+            </div>
+            <div class="field-control">
+              <label class="field">
+                <span class="field-prefix">
+                  до
+                </span>
+                <input type="text" class="field--plaintext" name="price-max" min="50" max="50000">
+                <span class="field-postfix">
+                  ₽
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-item">
+        <div class="accordion accordion--filter" id="accordion-filter">
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <button class="accordion-button" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse-filter-0"
+                aria-expanded="true"
+                aria-controls="collapse-filter-0">
+                цвет
+
+                <span class="icon-container accordion-button-icon">
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/plus.svg#svg-plus"></use>
+                    </svg>
+                  </span>
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/minus.svg#svg-minus"></use>
+                    </svg>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="accordion-collapse collapse show"
+              id="collapse-filter-0"
+              data-bs-parent="#accordion-filter">
+              <div class="accordion-body">
+                <div class="filter-item-body">
+                  <label class="field-radio">
+                    <span class="field-radio-label">ABS</span>
+                    <input type="radio" class="field-radio-input" name="color" checked>
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPE</span>
+                    <input type="radio" class="field-radio-input" name="color">
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPR</span>
+                    <input type="radio" class="field-radio-input" name="color">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <button class="accordion-button collapsed" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse-filter-1"
+                aria-expanded="false"
+                aria-controls="collapse-filter-1">
+                материал
+
+                <span class="icon-container accordion-button-icon">
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/plus.svg#svg-plus"></use>
+                    </svg>
+                  </span>
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/minus.svg#svg-minus"></use>
+                    </svg>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="accordion-collapse collapse"
+              id="collapse-filter-1"
+              data-bs-parent="#accordion-filter">
+              <div class="accordion-body">
+                <div class="filter-item-body">
+                  <label class="field-radio">
+                    <span class="field-radio-label">ABS</span>
+                    <input type="radio" class="field-radio-input" name="material" checked>
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPE</span>
+                    <input type="radio" class="field-radio-input" name="material">
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPR</span>
+                    <input type="radio" class="field-radio-input" name="material">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <button class="accordion-button collapsed" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse-filter-2"
+                aria-expanded="false"
+                aria-controls="collapse-filter-2">
+                бренд
+
+                <span class="icon-container accordion-button-icon">
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/plus.svg#svg-plus"></use>
+                    </svg>
+                  </span>
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/minus.svg#svg-minus"></use>
+                    </svg>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="accordion-collapse collapse"
+              id="collapse-filter-2"
+              data-bs-parent="#accordion-filter">
+              <div class="accordion-body">
+                <div class="filter-item-body">
+                  <label class="field-radio">
+                    <span class="field-radio-label">ABS</span>
+                    <input type="radio" class="field-radio-input" name="brand" checked>
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPE</span>
+                    <input type="radio" class="field-radio-input" name="brand">
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPR</span>
+                    <input type="radio" class="field-radio-input" name="brand">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <button class="accordion-button collapsed" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse-filter-3"
+                aria-expanded="false"
+                aria-controls="collapse-filter-3">
+                управление
+
+                <span class="icon-container accordion-button-icon">
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/plus.svg#svg-plus"></use>
+                    </svg>
+                  </span>
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/minus.svg#svg-minus"></use>
+                    </svg>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="accordion-collapse collapse"
+              id="collapse-filter-3"
+              data-bs-parent="#accordion-filter">
+              <div class="accordion-body">
+                <div class="filter-item-body">
+                  <label class="field-radio">
+                    <span class="field-radio-label">ABS</span>
+                    <input type="radio" class="field-radio-input" name="managment" checked>
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPE</span>
+                    <input type="radio" class="field-radio-input" name="managment">
+                  </label>
+                  <label class="field-radio">
+                    <span class="field-radio-label">TPR</span>
+                    <input type="radio" class="field-radio-input" name="managment">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="submit" class="btn btn-lg btn-secondary">
+        применить
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas-bottom" tabindex="-1"
+  id="offcanvas-sort">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        сортировка
+      </h3>
+
+      <button type="reset" class="btn btn-reset">
+        сбросить все
+      </button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="filter-item">
+        <div class="filter-item-body">
+          <label class="field-radio">
+            <span class="field-radio-label">По популярности</span>
+            <input type="radio" class="field-radio-input" name="sort" checked>
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Со скидкой</span>
+            <input type="radio" class="field-radio-input" name="sort">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">По новизне</span>
+            <input type="radio" class="field-radio-input" name="sort">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">По убыванию цены</span>
+            <input type="radio" class="field-radio-input" name="sort">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">По возрастанию цены</span>
+            <input type="radio" class="field-radio-input" name="sort">
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="submit" class="btn btn-lg btn-secondary">
+        применить
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas-bottom" tabindex="-1"
+  id="offcanvas-sort-instock">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Наличие
+      </h3>
+
+      <button type="reset" class="btn btn-reset">
+        сбросить все
+      </button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="filter-item">
+        <div class="filter-item-body">
+          <label class="field-radio">
+            <span class="field-radio-label">Все магазины</span>
+            <input type="radio" class="field-radio-input" name="sort-instock" checked>
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Ново-вокзальная</span>
+            <input type="radio" class="field-radio-input" name="sort-instock">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Московское шоссе</span>
+            <input type="radio" class="field-radio-input" name="sort-instock">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Гагарина</span>
+            <input type="radio" class="field-radio-input" name="sort-instock">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Авроры</span>
+            <input type="radio" class="field-radio-input" name="sort-instock">
+          </label>
+          <label class="field-radio">
+            <span class="field-radio-label">Аэродромная</span>
+            <input type="radio" class="field-radio-input" name="sort-instock">
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="submit" class="btn btn-lg btn-secondary">
+        применить
+      </button>
+    </div>
+  </form>
 </div>
 
       <div role="dialog" class="modal modal-alert fade" tabindex="-1"
@@ -4340,7 +4782,24 @@
 
     </main>
 
-    <footer class="footer">
+    <script>
+  document.querySelectorAll('.card')?.forEach(card => {
+    const cardAdd = card.querySelector('.card-add')
+
+    if (!cardAdd) return
+
+    cardAdd.addEventListener('click', () => {
+      const link = document.createElement('a')
+      link.href = './cart'
+      link.className = 'btn btn-base btn-secondary card-add'
+      link.textContent = 'Оформить заказ'
+
+      cardAdd.replaceWith(link)
+    }, { once: true })
+  })
+</script>
+
+<footer class="footer">
   <div class="container">
     <div class="footer-info">
       <a href="#" class="btn logo">

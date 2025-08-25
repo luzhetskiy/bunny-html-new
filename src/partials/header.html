@@ -1,50 +1,68 @@
 <header class="header">
   <div class="container">
     <div class="header-top">
-      <ul class="list-reset header-top-start">
-        <li><button type="button" class="btn btn-location"
-            data-bs-toggle="modal"
-            data-bs-target="#modalLocation"
-            data-transfer-origin="offcanvas-menu-header"
-            data-transfer-breakpoint="991.98"
-            data-transfer-placement="first">
-            <span class="icon">
-              <svg>
-                <use xlink:href="img/icons/location.svg#svg-location"></use>
-              </svg>
-            </span>
-            <span class="text">
-              Самара
-            </span>
-            <span class="icon btn-location-dropdown">
-              <svg>
-                <use xlink:href="img/icons/arrow-down.svg#svg-arrow-down"></use>
-              </svg>
-            </span>
-          </button></li>
+      <div class="header-top-start"
+        data-transfer-target="header-top-start">
+        <button type="button" class="btn btn-location"
+          data-bs-toggle="modal"
+          data-bs-target="#modalLocation"
+          data-transfer-origin="offcanvas-menu-header"
+          data-transfer-breakpoint="991.98"
+          data-transfer-placement="first">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/location.svg#svg-location"></use>
+            </svg>
+          </span>
+          <span class="text">
+            Самара
+          </span>
+          <span class="icon btn-location-dropdown">
+            <svg>
+              <use xlink:href="img/icons/arrow-down.svg#svg-arrow-down"></use>
+            </svg>
+          </span>
+        </button>
+        <button type="button" class="btn btn-icon btn-gray-200"
+          data-toggle="search"
+          data-target="#form-search">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/search.svg#svg-search"></use>
+            </svg>
+          </span>
+        </button>
+      </div>
 
-        <li>
-          <button type="button" class="btn btn-icon btn-gray-200">
+      <form id="form-search" class="search">
+        <div class="field-control">
+          <input type="text" class="field" name="search" placeholder="Поиск...">
+          <button type="submit" class="btn field-button">
             <span class="icon">
               <svg>
                 <use xlink:href="img/icons/search.svg#svg-search"></use>
               </svg>
             </span>
           </button>
-        </li>
-
-        <li
-          data-transfer-target="header-top-start"></li>
-      </ul>
-
-      <a href="#" class="btn logo">
+        </div>
+        <button type="button" class="btn btn-icon btn-gray-200"
+          data-dismiss="search">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/close.svg#svg-close"></use>
+            </svg>
+          </span>
+        </button>
+      </form>
+      <a href="/" class="btn logo">
         <img loading="lazy" src="./img/logo.svg" class="image" width="200" height="32" alt="Логотип">
       </a>
 
       <div class="header-top-end">
         <button type="button" class="btn btn-icon btn-gray-200"
           data-transfer-origin="header-top-start"
-          data-transfer-breakpoint="991.98">
+          data-transfer-breakpoint="991.98"
+          data-transfer-placement="last">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/user.svg#svg-user"></use>
@@ -1042,24 +1060,24 @@
           </div>
         </div>
 
-        <a href="#" class="btn hover-underline">
+        <a href="./delivery-payment.html" class="btn hover-underline">
           <span class="text">
             Доставка и оплата
           </span>
         </a>
-        <a href="#" class="btn hover-underline">
+        <a href="./loyalty.html" class="btn hover-underline">
           <span class="text">
             Программа лояльности
           </span>
         </a>
-        <a href="#" class="btn hover-underline">
+        <a href="./gift.html" class="btn hover-underline">
           <span class="text">
             Подарочные карты
           </span>
         </a>
-        <a href="#" class="btn hover-underline">
+        <a href="./contacts.html" class="btn hover-underline">
           <span class="text">
-            Магазины
+            Контакты
           </span>
         </a>
       </nav>

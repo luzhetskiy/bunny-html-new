@@ -1,3 +1,20 @@
+<script>
+  document.querySelectorAll('.card')?.forEach(card => {
+    const cardAdd = card.querySelector('.card-add')
+
+    if (!cardAdd) return
+
+    cardAdd.addEventListener('click', () => {
+      const link = document.createElement('a')
+      link.href = './cart'
+      link.className = 'btn btn-base btn-secondary card-add'
+      link.textContent = 'Оформить заказ'
+
+      cardAdd.replaceWith(link)
+    }, { once: true })
+  })
+</script>
+
 <footer class="footer">
   <div class="container">
     <div class="footer-info">

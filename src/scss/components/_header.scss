@@ -6,12 +6,13 @@
   z-index: 1040;
 
   &-top {
-    gap: 1rem;
+    gap: .5rem;
     justify-content: space-between;
     padding-block: .75rem;
     position: relative;
 
     @include breakpoint-up(lg) {
+      gap: 1rem;
       padding-block: 1.25rem;
     }
 
@@ -59,7 +60,7 @@
 
     @include breakpoint-up(lg) {
       display: block;
-      border-top: 1px solid var(--border-color);
+      border-top: .0625rem solid var(--border-color);
       padding-block: 2rem;
     }
   }

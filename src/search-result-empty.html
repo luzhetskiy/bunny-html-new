@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+
+@include('partials/head.html', {title: 'Результат поиска'})
+
+<body class="page-body">
+  @include('partials/h1.html', {title: 'Результат поиска'})
+
+  <div class="site-container">
+    @include('partials/header.html')
+
+    <main class="main">
+      <div class="main-sections">
+        <section class="section">
+          <div class="container">
+            <div class="search-result">
+              <div class="search-result-empty">
+                <div class="search-result-empty-picture">
+                  <img loading="lazy" src="./img/search/empty.svg" class="image" width="66" height="66" alt="Картинка">
+                </div>
+                <div class="search-result-empty-content">
+                  <p>
+                    ничего не найдено
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      @include('partials/floating-bottom.html')
+      @include('partials/offcanvases.html')
+      @include('partials/modals.html')
+    </main>
+
+    @include('partials/footer.html')
+  </div>
+</body>
+
+</html>

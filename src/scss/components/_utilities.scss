@@ -12,7 +12,6 @@ a {
   --_underline-size: .0625em;
   --_underline-offset: .125em;
 
-
   .text {
     background-image: linear-gradient(90deg, currentColor, currentColor);
     background-size: 0% var(--_underline-size);
@@ -36,6 +35,20 @@ a {
   }
 }
 
+.underline {
+  --_underline-size: .0625em;
+  --_underline-offset: 0rem;
+
+  .text {
+    background-image: linear-gradient(90deg, currentColor, currentColor);
+    background-size: 100% var(--_underline-size);
+    background-repeat: no-repeat;
+    background-position: left 100%;
+    margin-bottom: calc(var(--_underline-offset) * -1);
+    padding-bottom: var(--_underline-offset);
+  }
+}
+
 .is-hidden {
   display: none !important;
 }
@@ -45,14 +58,14 @@ a {
 }
 
 .visually-hidden {
-  position: absolute;
-  overflow: hidden;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  width: 1px;
-  height: 1px;
-  clip: rect(0 0 0 0);
+  position: absolute !important;
+  overflow: hidden !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  clip: rect(0 0 0 0) !important;
 }
 
 .text-underline {

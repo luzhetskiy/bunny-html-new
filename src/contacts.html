@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+
+@include('partials/head.html', {title: 'Адреса магазинов в Самаре'})
+
+<body class="page-body">
+  @include('partials/h1.html', {title: 'Адреса магазинов в Самаре'})
+
+  <div class="site-container">
+    @include('partials/header.html')
+
+    <main class="main">
+      <div class="main-sections">
+        <section class="section contacts-section">
+          <div class="container">
+            <div class="page-header">
+              <nav class="breadcrumb">
+                <ul class="list-reset breadcrumb-list">
+                  <li class="breadcrumb-item">
+                    <a href="/" class="btn btn-inherit breadcrumb-link">
+                      главная
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <p>
+                      контакты
+                    </p>
+                  </li>
+                </ul>
+              </nav>
+
+              <h2 class="page-header-title">
+                Адреса магазинов в Самаре
+              </h2>
+            </div>
+
+            <div class="contacts-container content-container">
+              <div class="content-col contacts-col">
+                <div class="content">
+                  <h2>
+                    контакты
+                  </h2>
+                </div>
+
+                <ul class="list-reset contacts">
+                  <li>
+                    <a href="tel:+78463004449" class="btn">
+                      +7 (846) 300-44-49
+                    </a>
+                  </li>
+                  <li>
+                    <a href="mailto:info@bunnylove.ru" class="btn">
+                      info@bunnylove.ru
+                    </a>
+                  </li>
+                  <li>
+                    @include('partials/socials.html')
+                  </li>
+                </ul>
+
+                <div class="contacts-delivery"
+                  data-transfer-origin="contacts-map"
+                  data-transfer-breakpoint="767.98"
+                  data-transfer-placement="last">
+                  <span class="icon contacts-delivery-icon">
+                    <svg>
+                      <use xlink:href="img/icons/box.svg#svg-box"></use>
+                    </svg>
+                  </span>
+                  <div class="contacts-delivery-content">
+                    <p>
+                      Курьерская доставка осуществляется круглосуточно
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="content-col contacts-col-2"
+                data-transfer-target="contacts-map">
+                <div class="map">
+                  <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3AekYu0TMx6ki1_vxPv3WvRXxUcGi5A9Mf&amp;width=100%25&amp;height=390&amp;lang=ru_RU&amp;scroll=true"></script>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="contacts-background">
+          <section class="section">
+            <div class="container">
+              <div class="contacts-addresses">
+                <div class="contacts-address">
+                  <div class="contacts-address-header">
+                    <h3 class="contacts-address-title">
+                      г. Самара, ул. Ново-Вокзальная, 146а
+                    </h3>
+                  </div>
+                  <div class="content-container">
+                    <div class="content-col">
+                      <div class="contacts-address-info">
+                        <div class="contacts-address-content">
+                          <ul class="list-reset contacts">
+                            <li>
+                              <h3>
+                                позвонить:
+                              </h3>
+                              <a href="tel:+78463004449" class="btn">
+                                +7 (846) 300-44-49
+                              </a>
+                            </li>
+                            <li>
+                              <a href="tel:+78463004449" class="btn">
+                                +7 (846) 300-44-49
+                              </a>
+                            </li>
+                          </ul>
+                          <ul class="list-reset contacts">
+                            <li>
+                              <h3>
+                                время работы:
+                              </h3>
+                              <div class="contacts-text">
+                                <b>круглосуточно</b>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div class="contacts-address-footer"
+                          data-transfer-origin="contacts-address-0"
+                          data-transfer-breakpoint="767.98"
+                          data-transfer-placement="last">
+                          <div class="contacts-address-action">
+                            <a href="#" class="btn btn-lg btn-outline-secondary">
+                              Найти на карте
+                            </a>
+                          </div>
+
+                          <div class="contacts-delivery">
+                            <span class="icon contacts-delivery-icon">
+                              <svg>
+                                <use xlink:href="img/icons/info.svg#svg-info"></use>
+                              </svg>
+                            </span>
+                            <div class="contacts-delivery-content">
+                              <p>
+                                Находится на пересечении с Московским шоссе
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="content-col"
+                      data-transfer-target="contacts-address-0">
+                      <div class="contacts-swiper"
+                        data-swiper="contacts">
+                        <div class="swiper">
+                          <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-1.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-1.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-2.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-2.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-3.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-3.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-4.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-4.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-5.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-5.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-icon btn-light swiper-button-prev"></button>
+                        <button type="button" class="btn btn-sm btn-icon btn-light swiper-button-next"></button>
+
+                        <div class="swiper-navigation">
+                          <div class="swiper-pagination"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="contacts-address">
+                  <div class="contacts-address-header">
+                    <h3 class="contacts-address-title">
+                      г. Самара, Московское шоссе, Лит.В
+                    </h3>
+                  </div>
+                  <div class="content-container">
+                    <div class="content-col">
+                      <div class="contacts-address-info">
+                        <div class="contacts-address-content">
+                          <ul class="list-reset contacts">
+                            <li>
+                              <h3>
+                                позвонить:
+                              </h3>
+                              <a href="tel:+78463004449" class="btn">
+                                +7 (846) 300-44-49
+                              </a>
+                            </li>
+                            <li>
+                              <a href="tel:+78463004449" class="btn">
+                                +7 (846) 300-44-49
+                              </a>
+                            </li>
+                          </ul>
+                          <ul class="list-reset contacts">
+                            <li>
+                              <h3>
+                                время работы:
+                              </h3>
+                              <div class="contacts-text">
+                                <b>круглосуточно</b>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div class="contacts-address-footer"
+                          data-transfer-origin="contacts-address-1"
+                          data-transfer-breakpoint="767.98"
+                          data-transfer-placement="last">
+                          <div class="contacts-address-action">
+                            <a href="#" class="btn btn-lg btn-outline-secondary">
+                              Найти на карте
+                            </a>
+                          </div>
+
+                          <div class="contacts-delivery">
+                            <span class="icon contacts-delivery-icon">
+                              <svg>
+                                <use xlink:href="img/icons/info.svg#svg-info"></use>
+                              </svg>
+                            </span>
+                            <div class="contacts-delivery-content">
+                              <p>
+                                Находится напротив ТОЦ «СкалаХолл»
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="content-col"
+                      data-transfer-target="contacts-address-1">
+                      <div class="contacts-swiper"
+                        data-swiper="contacts">
+                        <div class="swiper">
+                          <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-1.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-1.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-2.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-2.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-3.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-3.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-4.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-4.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-5.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-5.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-icon btn-light swiper-button-prev"></button>
+                        <button type="button" class="btn btn-sm btn-icon btn-light swiper-button-next"></button>
+
+                        <div class="swiper-navigation">
+                          <div class="swiper-pagination"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="contacts-address">
+                  <div class="contacts-address-header">
+                    <h3 class="contacts-address-title">
+                      г. Самара, Гагарина, 48
+                    </h3>
+                  </div>
+                  <div class="content-container">
+                    <div class="content-col">
+                      <div class="contacts-address-info">
+                        <div class="contacts-address-content">
+                          <ul class="list-reset contacts">
+                            <li>
+                              <h3>
+                                позвонить:
+                              </h3>
+                              <a href="tel:+78463004449" class="btn">
+                                +7 (846) 300-44-49
+                              </a>
+                            </li>
+                            <li>
+                              <a href="tel:+78463004449" class="btn">
+                                +7 (846) 300-44-49
+                              </a>
+                            </li>
+                          </ul>
+                          <ul class="list-reset contacts">
+                            <li>
+                              <h3>
+                                время работы:
+                              </h3>
+                              <div class="contacts-text">
+                                <b>круглосуточно</b>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div class="contacts-address-footer"
+                          data-transfer-origin="contacts-address-2"
+                          data-transfer-breakpoint="767.98"
+                          data-transfer-placement="last">
+                          <div class="contacts-address-action">
+                            <a href="#" class="btn btn-lg btn-outline-secondary">
+                              Найти на карте
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="content-col"
+                      data-transfer-target="contacts-address-2">
+                      <div class="contacts-swiper"
+                        data-swiper="contacts">
+                        <div class="swiper">
+                          <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-1.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-1.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-2.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-2.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-3.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-3.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-4.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-4.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-5.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-5.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-icon btn-light swiper-button-prev"></button>
+                        <button type="button" class="btn btn-sm btn-icon btn-light swiper-button-next"></button>
+
+                        <div class="swiper-navigation">
+                          <div class="swiper-pagination"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="contacts-address">
+                  <div class="contacts-address-header">
+                    <h3 class="contacts-address-title">
+                      г. Самара, ул. Авроры, 199
+                    </h3>
+                  </div>
+                  <div class="content-container">
+                    <div class="content-col">
+                      <div class="contacts-address-info">
+                        <div class="contacts-address-content">
+                          <ul class="list-reset contacts">
+                            <li>
+                              <h3>
+                                позвонить:
+                              </h3>
+                              <a href="tel:+78463004449" class="btn">
+                                +7 (846) 300-44-49
+                              </a>
+                            </li>
+                            <li>
+                              <a href="tel:+78463004449" class="btn">
+                                +7 (846) 300-44-49
+                              </a>
+                            </li>
+                          </ul>
+                          <ul class="list-reset contacts">
+                            <li>
+                              <h3>
+                                время работы:
+                              </h3>
+                              <div class="contacts-text">
+                                <b>круглосуточно</b>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div class="contacts-address-footer"
+                          data-transfer-origin="contacts-address-3"
+                          data-transfer-breakpoint="767.98"
+                          data-transfer-placement="last">
+                          <div class="contacts-address-action">
+                            <a href="#" class="btn btn-lg btn-outline-secondary">
+                              Найти на карте
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="content-col"
+                      data-transfer-target="contacts-address-3">
+                      <div class="contacts-swiper"
+                        data-swiper="contacts">
+                        <div class="swiper">
+                          <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-1.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-1.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-2.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-2.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-3.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-3.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-4.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-4.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-5.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-5.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-icon btn-light swiper-button-prev"></button>
+                        <button type="button" class="btn btn-sm btn-icon btn-light swiper-button-next"></button>
+
+                        <div class="swiper-navigation">
+                          <div class="swiper-pagination"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="contacts-address">
+                  <div class="contacts-address-header">
+                    <h3 class="contacts-address-title">
+                      г. Самара, Аэродромная, 47А
+                    </h3>
+                  </div>
+                  <div class="content-container">
+                    <div class="content-col">
+                      <div class="contacts-address-info">
+                        <div class="contacts-address-content">
+                          <ul class="list-reset contacts">
+                            <li>
+                              <h3>
+                                позвонить:
+                              </h3>
+                              <a href="tel:+78463004449" class="btn">
+                                +7 (846) 300-44-49
+                              </a>
+                            </li>
+                            <li>
+                              <a href="tel:+78463004449" class="btn">
+                                +7 (846) 300-44-49
+                              </a>
+                            </li>
+                          </ul>
+                          <ul class="list-reset contacts">
+                            <li>
+                              <h3>
+                                время работы:
+                              </h3>
+                              <div class="contacts-text">
+                                <b>круглосуточно</b>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div class="contacts-address-footer"
+                          data-transfer-origin="contacts-address-4"
+                          data-transfer-breakpoint="767.98"
+                          data-transfer-placement="last">
+                          <div class="contacts-address-action">
+                            <a href="#" class="btn btn-lg btn-outline-secondary">
+                              Найти на карте
+                            </a>
+                          </div>
+
+                          <div class="contacts-delivery">
+                            <span class="icon contacts-delivery-icon">
+                              <svg>
+                                <use xlink:href="img/icons/info.svg#svg-info"></use>
+                              </svg>
+                            </span>
+                            <div class="contacts-delivery-content">
+                              <p>
+                                вход со стороны ул. Авроры
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="content-col"
+                      data-transfer-target="contacts-address-4">
+                      <div class="contacts-swiper"
+                        data-swiper="contacts">
+                        <div class="swiper">
+                          <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-1.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-1.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-2.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-2.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-3.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-3.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-4.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-4.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                            <div class="swiper-slide">
+                              <div class="contacts-swiper-slide">
+                                <picture>
+                                  <source srcset="./img/contacts/image-5.webp" type="image/webp">
+                                  <img loading="lazy" src="./img/contacts/image-5.jpg" class="image" width="792" height="440" alt="Картинка">
+                                </picture>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-icon btn-light swiper-button-prev"></button>
+                        <button type="button" class="btn btn-sm btn-icon btn-light swiper-button-next"></button>
+
+                        <div class="swiper-navigation">
+                          <div class="swiper-pagination"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          @include('partials/mailing-list.html')
+        </div>
+      </div>
+
+      @include('partials/floating-bottom.html')
+      @include('partials/offcanvases.html')
+      @include('partials/modals.html')
+    </main>
+
+    @include('partials/footer.html')
+  </div>
+</body>
+
+</html>

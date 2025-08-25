@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+
+@include('partials/head.html', {title: 'Каталог'})
+
+<body class="page-body">
+  @include('partials/h1.html', {title: 'Каталог'})
+
+  <div class="site-container">
+    @include('partials/header.html')
+
+    <main class="main">
+      <div class="main-sections">
+        <section class="section">
+          <div class="container">
+            <div class="page-header">
+              <nav class="breadcrumb">
+                <ul class="list-reset breadcrumb-list">
+                  <li class="breadcrumb-item">
+                    <a href="/" class="btn btn-inherit breadcrumb-link">
+                      главная
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="./catalog.html" class="btn btn-inherit breadcrumb-link">
+                      секс игрушки
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <p>
+                      для женщин
+                    </p>
+                  </li>
+                </ul>
+              </nav>
+
+              <h2 class="page-header-title">
+                Секс-игрушки для женщин
+              </h2>
+            </div>
+
+            <div class="filter">
+              <div class="filter-top">
+                <div class="filter-start">
+                  <div class="filter-start-toggle">
+                    <button type="button" class="btn btn-base btn-outline-secondary filter-btn-toggle is-active">
+                      Все
+                    </button>
+                    <button type="button" class="btn btn-base btn-outline-secondary filter-btn-toggle">
+                      Фаллоимитаторы
+                    </button>
+                    <button type="button" class="btn btn-base btn-outline-secondary filter-btn-toggle">
+                      Вагинальные шарики и тренажеры
+                    </button>
+                    <button type="button" class="btn btn-base btn-outline-secondary filter-btn-toggle">
+                      Вакуумные стимуляторы
+                    </button>
+                    <button type="button" class="btn btn-base btn-outline-secondary filter-btn-toggle">
+                      Анальные стимуляторы
+                    </button>
+                    <button type="button" class="btn btn-base btn-outline-secondary filter-btn-toggle">
+                      Вакуумные помпы
+                    </button>
+                    <button type="button" class="btn btn-base btn-outline-secondary filter-btn-toggle">
+                      Стимуляция груди
+                    </button>
+                    <button type="button" class="btn btn-base btn-outline-secondary filter-btn-toggle">
+                      Секс-машины
+                    </button>
+                  </div>
+                  <div class="filter-start-toggle filter-start-toggle--mobile">
+                    <select name="category"
+                      data-choices="choices--secondary"
+                      data-placeholder="">
+                      <option placeholder>Категории</option>
+                      <option value="all">Всё</option>
+                      <option value="0">Фаллоимитаторы</option>
+                      <option value="1">Вагинальные шарики и тренажеры</option>
+                      <option value="2">Вакуумные стимуляторы</option>
+                      <option value="3">Анальные стимуляторы</option>
+                      <option value="4">Вакуумные помпы</option>
+                      <option value="5">Стимуляция груди</option>
+                      <option value="6">Секс-машины</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="filter-end">
+                  <button type="button" class="btn btn-inherit filter-btn-sort filter-btn-sort--mobile"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvas-sort">
+                    <span class="text">
+                      сортировка
+                    </span>
+
+                    <span class="icon">
+                      <svg>
+                        <use xlink:href="img/icons/sort.svg#svg-sort"></use>
+                      </svg>
+                    </span>
+                  </button>
+                  <button type="button" class="btn btn-inherit filter-btn-sort"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvas-filter">
+                    <span class="text">
+                      Фильтры
+                    </span>
+
+                    <span class="icon">
+                      <svg>
+                        <use xlink:href="img/icons/filter.svg#svg-filter"></use>
+                      </svg>
+                    </span>
+                  </button>
+                  <div class="dropdown dropdown--filter"
+                    data-dropdown-filter="">
+                    <input type="hidden" name="sort" value="0">
+                    <button class="btn btn-inherit filter-btn-sort" type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      <span class="text">
+                        <span data-choice-changed="">По популярности</span>
+                      </span>
+                      <span class="icon">
+                        <svg>
+                          <use xlink:href="img/icons/sort.svg#svg-sort"></use>
+                        </svg>
+                      </span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                      <div class="dropdown-menu-body">
+                        <label class="field-radio">
+                          <input type="radio" class="field-radio-input" name="sort" value="0" checked>
+                          <span class="field-radio-label">По популярности</span>
+                        </label>
+                        <label class="field-radio">
+                          <input type="radio" class="field-radio-input" name="sort" value="1">
+                          <span class="field-radio-label">Со скидкой</span>
+                        </label>
+                        <label class="field-radio">
+                          <input type="radio" class="field-radio-input" name="sort" value="2">
+                          <span class="field-radio-label">По новизне</span>
+                        </label>
+                        <label class="field-radio">
+                          <input type="radio" class="field-radio-input" name="sort" value="3">
+                          <span class="field-radio-label">По убыванию цены</span>
+                        </label>
+                        <label class="field-radio">
+                          <input type="radio" class="field-radio-input" name="sort" value="4">
+                          <span class="field-radio-label">По возрастанию цены</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dropdown dropdown--filter"
+                    data-dropdown-filter="">
+                    <input type="hidden" name="sort" value="all">
+                    <button class="btn btn-inherit filter-btn-sort" type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      <span class="text">
+                        Наличие:
+                        <span data-choice-changed="">Все магазины</span>
+                      </span>
+                      <span class="icon">
+                        <svg>
+                          <use xlink:href="img/icons/location-outline.svg#svg-location-outline"></use>
+                        </svg>
+                      </span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                      <div class="dropdown-menu-body">
+                        <label class="field-radio">
+                          <input type="radio" class="field-radio-input" name="sort-instock" value="all" checked>
+                          <span class="field-radio-label">Все магазины</span>
+                        </label>
+                        <label class="field-radio">
+                          <input type="radio" class="field-radio-input" name="sort-instock" value="0">
+                          <span class="field-radio-label">Ново-Вокзальная</span>
+                        </label>
+                        <label class="field-radio">
+                          <input type="radio" class="field-radio-input" name="sort-instock" value="1">
+                          <span class="field-radio-label">Московское шоссе</span>
+                        </label>
+                        <label class="field-radio">
+                          <input type="radio" class="field-radio-input" name="sort-instock" value="2">
+                          <span class="field-radio-label">Гагарина</span>
+                        </label>
+                        <label class="field-radio">
+                          <input type="radio" class="field-radio-input" name="sort-instock" value="3">
+                          <span class="field-radio-label">Авроры</span>
+                        </label>
+                        <label class="field-radio">
+                          <input type="radio" class="field-radio-input" name="sort-instock" value="4">
+                          <span class="field-radio-label">Аэродромная</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="filter-bottom">
+                <button type="button" class="btn btn-inherit filter-btn-sort"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvas-sort-instock">
+                    <span class="text">
+                      Наличие:
+                      <span>Все магазины</span>
+                    </span>
+
+                    <span class="icon">
+                      <svg>
+                        <use xlink:href="img/icons/location-outline.svg#svg-location-outline"></use>
+                      </svg>
+                    </span>
+                  </button>
+              </div>
+            </div>
+
+            <div class="search-cards">
+              @loop('partials/card.html', [
+                { "slide": true, "rating": 4.8, "title": "Парфюмированное масло Libido", "price": "930 ₽", "description": "Парфюмированное масло с феромонами и пьянящим в меру сладким ароматом, 10 мл" },
+                { "slide": true, "rating": 0.1, "title": "Поводок-петля BunnyLove 2", "price": "370 ₽", "description": "Черный поводок-петля из натуральной кожи черного цвета с карабином, длина 21 см" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Bunnylove Classic", "price": "1 390 ₽", "description": "Ухаживающая смазка на водной основе с молочной кислотой и соком Алоэ Вера, 200 мл" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Tutti-Frutti Bubble Gum сашет", "price": "70 ₽", "description": "Съедобная смазка на водной основе со вкусом жвачки. сашет 4 гр" },
+                { "slide": true, "rating": 0.1, "title": "Парфюмированное масло Libido", "price": "930 ₽", "description": "Парфюмированное масло с феромонами и пьянящим в меру сладким ароматом, 10 мл" },
+                { "slide": true, "rating": 0.1, "title": "Поводок-петля BunnyLove 2", "price": "370 ₽", "description": "Черный поводок-петля из натуральной кожи черного цвета с карабином, длина 21 см" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Bunnylove Classic", "price": "1 390 ₽", "description": "Ухаживающая смазка на водной основе с молочной кислотой и соком Алоэ Вера, 200 мл" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Tutti-Frutti Bubble Gum сашет", "price": "70 ₽", "description": "Съедобная смазка на водной основе со вкусом жвачки. сашет 4 гр" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Tutti-Frutti Bubble Gum сашет", "price": "70 ₽", "description": "Съедобная смазка на водной основе со вкусом жвачки. сашет 4 гр" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Tutti-Frutti Bubble Gum сашет", "price": "70 ₽", "description": "Съедобная смазка на водной основе со вкусом жвачки. сашет 4 гр" },
+                { "slide": true, "rating": 4.8, "title": "Парфюмированное масло Libido", "price": "930 ₽", "description": "Парфюмированное масло с феромонами и пьянящим в меру сладким ароматом, 10 мл" },
+                { "slide": true, "rating": 0.1, "title": "Поводок-петля BunnyLove 2", "price": "370 ₽", "description": "Черный поводок-петля из натуральной кожи черного цвета с карабином, длина 21 см" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Bunnylove Classic", "price": "1 390 ₽", "description": "Ухаживающая смазка на водной основе с молочной кислотой и соком Алоэ Вера, 200 мл" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Tutti-Frutti Bubble Gum сашет", "price": "70 ₽", "description": "Съедобная смазка на водной основе со вкусом жвачки. сашет 4 гр" },
+                { "slide": true, "rating": 0.1, "title": "Парфюмированное масло Libido", "price": "930 ₽", "description": "Парфюмированное масло с феромонами и пьянящим в меру сладким ароматом, 10 мл" },
+                { "slide": true, "rating": 0.1, "title": "Поводок-петля BunnyLove 2", "price": "370 ₽", "description": "Черный поводок-петля из натуральной кожи черного цвета с карабином, длина 21 см" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Bunnylove Classic", "price": "1 390 ₽", "description": "Ухаживающая смазка на водной основе с молочной кислотой и соком Алоэ Вера, 200 мл" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Tutti-Frutti Bubble Gum сашет", "price": "70 ₽", "description": "Съедобная смазка на водной основе со вкусом жвачки. сашет 4 гр" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Tutti-Frutti Bubble Gum сашет", "price": "70 ₽", "description": "Съедобная смазка на водной основе со вкусом жвачки. сашет 4 гр" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Tutti-Frutti Bubble Gum сашет", "price": "70 ₽", "description": "Съедобная смазка на водной основе со вкусом жвачки. сашет 4 гр" },
+              ])
+            </div>
+
+            <div class="search-cards-more">
+              <button type="button" class="btn btn-lg btn-outline-secondary">
+                <span class="icon">
+                  <svg>
+                    <use xlink:href="img/icons/plus.svg#svg-plus"></use>
+                  </svg>
+                </span>
+                <span class="text">
+                  Показать еще
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        @include('partials/subscribe.html')
+        @include('partials/mailing-list.html')
+      </div>
+
+      @include('partials/floating-bottom.html')
+      @include('partials/offcanvases.html')
+      @include('partials/modals.html')
+    </main>
+
+    @include('partials/footer.html')
+  </div>
+</body>
+
+</html>

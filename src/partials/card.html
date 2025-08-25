@@ -2,21 +2,22 @@
   <div class="swiper-slide">
 }
   <article class="card">
-    <a href="#" class="stretched-link"></a>
+    <a href="./product.html" class="stretched-link"></a>
 
     <div class="card-header">
-      <label class="label-check">
-        <input type="checkbox" class="btn-check">
-        <button type="button" class="btn">
+      <label class="btn-check">
+        <input type="checkbox" class="visually-hidden" name="favorite">
+        <div class="btn">
           <span class="icon">
             <svg>
               <use xlink:href="img/icons/heart.svg#svg-heart"></use>
             </svg>
           </span>
-        </button>
+        </div>
       </label>
 
-      <a href="#" class="swiper swiper-card-pictures">
+      <a href="./product.html" class="swiper swiper-card-pictures"
+        data-swiper="card-pictures">
         <div class="swiper-wrapper">
           @loop('swiper-card-pictures.html', [
             { "image": "image-1" },
@@ -32,6 +33,44 @@
       </a>
     </div>
     <div class="card-body">
+      @if (rating > 0) {
+        <div class="rating">
+          <div class="rating-stars">
+            <span class="icon @if (rating > 4.5) {is-active}">
+              <svg>
+                <use xlink:href="img/icons/star.svg#svg-star"></use>
+              </svg>
+            </span>
+            <span class="icon @if (rating > 3.5) {is-active}">
+              <svg>
+                <use xlink:href="img/icons/star.svg#svg-star"></use>
+              </svg>
+            </span>
+            <span class="icon @if (rating > 2.5) {is-active}">
+              <svg>
+                <use xlink:href="img/icons/star.svg#svg-star"></use>
+              </svg>
+            </span>
+            <span class="icon @if (rating > 1.5) {is-active}">
+              <svg>
+                <use xlink:href="img/icons/star.svg#svg-star"></use>
+              </svg>
+            </span>
+            <span class="icon @if (rating > 0.1) {is-active}">
+              <svg>
+                <use xlink:href="img/icons/star.svg#svg-star"></use>
+              </svg>
+            </span>
+          </div>
+          @if (rating > 0.1) {
+            <div class="rating-value">
+              <p>
+                @rating
+              </p>
+            </div>
+          }
+        </div>
+      }
       <div class="card-body-header">
         <h3 class="card-title">
           @title

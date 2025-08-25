@@ -1,0 +1,32 @@
+.counter {
+  display: flex;
+  color: var(--body-bg);
+  background-color: var(--dark);
+  border-radius: .5rem;
+
+  &-field {
+    --_fw: 700;
+
+    --_color-placeholder: inherit;
+
+    --_bg: transparent;
+    --_bg-hover: transparent;
+    --_bg-active: transparent;
+
+    max-width: 7.5rem;
+    min-width: 0;
+    border: none;
+    text-align: center;
+
+    &-control {
+      max-width: 100%;
+      flex: 1 1 100%;
+    }
+  }
+
+  &-button {
+    --_color: inherit;
+
+    flex-shrink: 0;
+  }
+}

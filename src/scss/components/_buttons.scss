@@ -5,29 +5,33 @@
 	--_fw: 300;
 	--_lh: normal;
 	--_ls: inherit;
-	--_color: var(--text-color);
-	--_bg: transparent;
 	--_border-width: 0;
 	--_border-style: solid;
-	--_border-color: transparent;
 	--_rounded: 0;
 	--_padding: 0;
-	--_transform: translateZ(0);
 	--_transition-duration: var(--transition-duration);
 	--_transition-timing-function: var(--transition-timing-function);
 
+	--_color: var(--text-color);
 	--_color-hover: var(--primary);
-	--_bg-hover: transparent;
-	--_border-color-hover: transparent;
-	--_transform-hover: translateZ(0);
-
 	--_color-active: var(--primary);
+
+  --_bg: transparent;
+	--_bg-hover: transparent;
 	--_bg-active: transparent;
+
+	--_border-color: transparent;
+	--_border-color-hover: transparent;
 	--_border-color-active: transparent;
+
+	--_transform: translateZ(0);
+	--_transform-hover: translateZ(0);
 	--_transform-active: initial;
 
 	--_icon-size: 1rem;
-	--_icon-color: currentColor;
+	--_icon-color: var(--_color);
+	--_icon-hover-color: var(--_color-hover);
+	--_icon-active-color: var(--_color-active);
 
 	width: var(--_width);
 	height: var(--_height);
@@ -57,6 +61,10 @@
 	.icon {
 		--_size: var(--_icon-size);
 		--_color: var(--_icon-color);
+
+    transition-property: color;
+    transition-duration: var(--_transition-duration);
+    transition-timing-function: var(--_transition-timing-function);
 	}
 
 	@media (hover: hover) {
@@ -65,6 +73,10 @@
 			background-color: var(--_bg-hover);
 			border-color: var(--_border-color-hover);
 			transform: var(--_transform-hover);
+
+      .icon {
+        --_color: var(--_icon-hover-color);
+      }
 		}
 	}
 
@@ -73,6 +85,10 @@
 		background-color: var(--_bg-active);
 		border-color: var(--_border-color-active);
 		transform: var(--_transform-active);
+
+    .icon {
+      --_color: var(--_icon-active-color);
+    }
 	}
 
   &:disabled {
@@ -90,17 +106,61 @@
 }
 
 .btn-check {
-	position: absolute;
-	clip: rect(0, 0, 0, 0);
-	pointer-events: none;
+  display: inline-flex;
 
-	&:checked {
-		+ .btn {
-			--_color: var(--primary);
-			--_color-hover: var(--primary);
-			--_color-active: var(--primary);
-		}
-	}
+	[type=checkbox],
+  [type=radio] {
+
+    &:checked + .btn {
+      --_color: var(--primary);
+      --_color-hover: var(--primary);
+      --_color-active: var(--primary);
+
+      .icon-container {
+
+        .icon {
+
+          &:first-child {
+            opacity: 0;
+          }
+
+          &:last-child {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  [type=checkbox],
+  [type=radio] {
+
+    &:checked + .btn-outline-secondary {
+      --_color: var(--body-bg);
+      --_bg: var(--text-color);
+    }
+  }
+
+  .btn {
+    flex: 1 1;
+  }
+}
+
+.btn-check-outline-favorite {
+
+  [type=checkbox],
+  [type=radio] {
+
+    &:checked + .btn {
+      --_color: var(--text-color);
+      --_color-hover: var(--body-bg);
+      --_color-active: var(--text-color);
+
+      --_icon-color: var(--primary);
+      --_icon-hover-color: var(--primary);
+      --_icon-active-color: var(--primary);
+    }
+  }
 }
 
 .btn-inline {
@@ -116,6 +176,15 @@
 
 	display: inline;
 	text-transform: initial;
+}
+
+.btn-reset {
+  --_fs: .75rem;
+  --_color: var(--text-color-50);
+
+  @include breakpoint-up(lg) {
+    --_fs: .875rem;
+  }
 }
 
 .btn-icon {
@@ -176,59 +245,75 @@
 }
 
 
+
 .btn-primary {
   --_color: var(--light);
-  --_bg: var(--primary);
   --_color-hover: var(--light);
-  --_bg-hover: var(--text-color);
   --_color-active: var(--light);
+
+  --_bg: var(--primary);
+  --_bg-hover: var(--text-color);
   --_bg-active: var(--text-color);
 }
 
 .btn-secondary {
   --_color: var(--light);
-  --_bg: var(--text-color);
   --_color-hover: var(--light);
-  --_bg-hover: var(--primary);
   --_color-active: var(--light);
+
+  --_bg: var(--text-color);
+  --_bg-hover: var(--primary);
   --_bg-active: var(--primary);
+
+  &:disabled {
+    opacity: 0.2;
+  }
 }
 
 .btn-outline-secondary {
-  --_color: var(--text-color);
-  --_bg: transparent;
-  --_border-width: 1px;
+  --_border-width: .0625rem;
   --_border-color: var(--text-color-20);
+
+  --_color: var(--text-color);
   --_color-hover: var(--light);
-  --_bg-hover: var(--text-color);
-  --_border-color-hover: var(--text-color);
   --_color-active: var(--light);
+
+  --_bg: transparent;
+  --_bg-hover: var(--text-color);
   --_bg-active: var(--text-color);
+
+  --_border-color-hover: var(--text-color);
   --_border-color-active: var(--text-color);
 }
 
 .btn-light {
-  --_bg: var(--light);
   --_color-hover: var(--text-color);
-  --_bg-hover: #ccc;
   --_color-active: var(--text-color);
+
+  --_bg: var(--light);
+  --_bg-hover: #ccc;
   --_bg-active: #ccc;
 }
 
 .btn-gray-200 {
+  --_color-hover: var(--light);
+  --_color-active: var(--light);
+
   --_bg: var(--gray-200);
-  --_bg-hover: var(--gray-200);
-  --_bg-active: var(--gray-200);
+  --_bg-hover: var(--text-color);
+  --_bg-active: var(--text-color);
 }
 
 .btn-blur-light {
-  --_color: var(--light);
-  --_bg: var(--light-05);
-  --_border-width: 1px;
+  --_border-width: .0625rem;
   --_border-color: var(--light-20);
 
+  --_color: var(--light);
+
+  --_bg: var(--light-05);
   --_bg-hover: var(--light-05);
   --_bg-active: var(--light-05);
+
   --_border-color-hover: var(--light-20);
   --_border-color-active: var(--light-20);
 
@@ -236,13 +321,15 @@
 }
 
 .btn-blur-secondary {
-  --_color: var(--text-color);
-  --_bg: var(--light-10);
-  --_border-width: 1px;
-  --_border-color: var(--text-color-10);
+  --_border-width: .0625rem;
 
+  --_color: var(--text-color);
+
+  --_bg: var(--light-10);
   --_bg-hover: var(--light-10);
   --_bg-active: var(--light-10);
+
+  --_border-color: var(--text-color-10);
   --_border-color-hover: var(--text-color-20);
   --_border-color-active: var(--text-color-20);
 
@@ -302,6 +389,20 @@
   }
 }
 
+.btn-sm {
+
+  &:not(.btn-icon) {
+    --_height: 2rem;
+    --_fs: .75rem;
+    --_rounded: .375rem;
+    --_padding: .125rem .75rem;
+    --_icon-size: 1rem;
+
+    text-align: center;
+    justify-content: center;
+  }
+}
+
 .btn-base {
 
   &:not(.btn-icon) {
@@ -309,6 +410,7 @@
     --_fs: .875rem;
     --_rounded: .375rem;
     --_padding: .25rem 1rem;
+    --_icon-size: 1.25rem;
 
     text-align: center;
     justify-content: center;

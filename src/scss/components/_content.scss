@@ -1,0 +1,144 @@
+.content-container {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 1rem;
+
+  @include breakpoint-up(md) {
+    grid-template-columns: minmax(0, .5fr) minmax(0, 1fr);
+  }
+}
+
+.content-col {
+  border-top: .0625rem solid var(--text-color-20);
+  border-radius: .75rem;
+  padding-block: 1.5rem .5rem;
+
+  @include breakpoint-up(md) {
+    padding-block: 2rem;
+  }
+
+  &:nth-child(2n) {
+
+    @include breakpoint-down(md) {
+      border-top: none;
+      border-radius: 0;
+      padding-block: 0 1.5rem;
+    }
+  }
+
+  &:last-child {
+
+    @include breakpoint-down(md) {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.content-tab {
+
+  .tab-content {
+    margin-top: 2.25rem;
+
+    @include breakpoint-up(lg) {
+      margin-top: 3.75rem;
+    }
+  }
+}
+
+.content {
+  font-size: .75rem;
+  line-height: 1.4;
+
+  h2,
+  h3 {
+    font-family: inherit;
+    font-weight: 600;
+    line-height: inherit;
+    text-transform: initial;
+
+    + ul,
+    + ol {
+      margin-top: .5rem;
+    }
+  }
+
+  h2 {
+    font-size: 1rem;
+    margin-block: 1.25rem .75rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  h3 {
+    font-size: .875rem;
+    margin-block: 1rem .5rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ol,
+  ul {
+    margin-block: 1rem;
+    padding: 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+
+      &::before {
+        content: '•';
+        display: inline-block;
+        margin-inline: .25rem;
+      }
+    }
+  }
+
+  ol {
+    padding-left: .875rem;
+  }
+
+  a {
+    display: inline;
+    color: var(--primary);
+    transition-property: color;
+    transition-duration: var(--transition-duration);
+    transition-timing-function: var(--transition-timing-function);
+
+    @media (hover: hover) {
+
+      &:is(:hover, :focus-visible) {
+        color: var(--primary-50);
+      }
+    }
+
+    &:active {
+      color: var(--primary-50);
+    }
+  }
+
+  p + p {
+    margin-top: .5rem;
+  }
+}

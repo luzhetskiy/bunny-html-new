@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+
+@include('partials/head.html', {title: 'Результат поиска'})
+
+<body class="page-body">
+  @include('partials/h1.html', {title: 'Результат поиска'})
+
+  <div class="site-container">
+    @include('partials/header.html')
+
+    <main class="main">
+      <div class="main-sections">
+        <section class="section">
+          <div class="container">
+            <div class="search-cards">
+              @loop('partials/card.html', [
+                { "slide": true, "rating": 4.8, "title": "Парфюмированное масло Libido", "price": "930 ₽", "description": "Парфюмированное масло с феромонами и пьянящим в меру сладким ароматом, 10 мл" },
+                { "slide": true, "rating": 0.1, "title": "Поводок-петля BunnyLove 2", "price": "370 ₽", "description": "Черный поводок-петля из натуральной кожи черного цвета с карабином, длина 21 см" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Bunnylove Classic", "price": "1 390 ₽", "description": "Ухаживающая смазка на водной основе с молочной кислотой и соком Алоэ Вера, 200 мл" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Tutti-Frutti Bubble Gum сашет", "price": "70 ₽", "description": "Съедобная смазка на водной основе со вкусом жвачки. сашет 4 гр" },
+                { "slide": true, "rating": 0.1, "title": "Парфюмированное масло Libido", "price": "930 ₽", "description": "Парфюмированное масло с феромонами и пьянящим в меру сладким ароматом, 10 мл" },
+                { "slide": true, "rating": 0.1, "title": "Поводок-петля BunnyLove 2", "price": "370 ₽", "description": "Черный поводок-петля из натуральной кожи черного цвета с карабином, длина 21 см" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Bunnylove Classic", "price": "1 390 ₽", "description": "Ухаживающая смазка на водной основе с молочной кислотой и соком Алоэ Вера, 200 мл" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Tutti-Frutti Bubble Gum сашет", "price": "70 ₽", "description": "Съедобная смазка на водной основе со вкусом жвачки. сашет 4 гр" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Tutti-Frutti Bubble Gum сашет", "price": "70 ₽", "description": "Съедобная смазка на водной основе со вкусом жвачки. сашет 4 гр" },
+                { "slide": true, "rating": 0.1, "title": "Лубрикант Tutti-Frutti Bubble Gum сашет", "price": "70 ₽", "description": "Съедобная смазка на водной основе со вкусом жвачки. сашет 4 гр" },
+              ])
+            </div>
+          </div>
+        </section>
+      </div>
+
+      @include('partials/floating-bottom.html')
+      @include('partials/offcanvases.html')
+      @include('partials/modals.html')
+    </main>
+
+    @include('partials/footer.html')
+  </div>
+</body>
+
+</html>

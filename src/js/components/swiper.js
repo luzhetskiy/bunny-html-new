@@ -1,6 +1,6 @@
 import Swiper from 'swiper'
-import { Navigation, Pagination } from 'swiper/modules'
-Swiper.use([Navigation, Pagination])
+import { Navigation, Pagination, Thumbs, EffectFade, EffectCoverflow } from 'swiper/modules'
+Swiper.use([ Navigation, Pagination ])
 
 const swiperIcons = Object.assign({}, {
   prev: `
@@ -23,169 +23,6 @@ document.querySelectorAll('.swiper-button-prev')?.forEach((button) => {
 
 document.querySelectorAll('.swiper-button-next')?.forEach((button) => {
   button.innerHTML = swiperIcons.next
-})
-
-document.querySelectorAll('.hero-swiper')?.forEach((element) => {
-  const swiperElement = element.querySelector('.swiper')
-  const swiperPagination = element.querySelector('.swiper-pagination')
-  const swiperPrev = element.querySelector('.swiper-button-prev')
-  const swiperNext = element.querySelector('.swiper-button-next')
-
-  const swiper = new Swiper(swiperElement, {
-    slidesPerView: 1,
-    loop: true,
-
-    pagination: {
-      el: swiperPagination,
-      clickable: true,
-    },
-
-    navigation: {
-      prevEl: swiperPrev,
-      nextEl: swiperNext,
-    },
-  })
-})
-
-
-document.querySelectorAll('.new-arrivals-swiper')?.forEach((element) => {
-  const swiperElement = element.querySelector('.swiper')
-
-  const swiper = new Swiper(swiperElement, {
-    slidesPerView: 'auto',
-    spaceBetween: 16,
-
-    breakpoints: {
-      0: {
-        slidesPerView: 'auto',
-        spaceBetween: 8,
-      },
-      992: {
-        slidesPerView: 'auto',
-        spaceBetween: 16,
-      }
-    }
-  })
-})
-
-document.querySelectorAll('.cards-swiper')?.forEach((element) => {
-  const swiperElement = element.querySelector('.swiper')
-  const swiperPrev = element.querySelector('.swiper-button-prev')
-  const swiperNext = element.querySelector('.swiper-button-next')
-
-  const swiper = new Swiper(swiperElement, {
-    slidesPerView: 4,
-    slidesPerGroup: 4,
-    spaceBetween: 16,
-
-    navigation: {
-      prevEl: swiperPrev,
-      nextEl: swiperNext,
-    },
-
-    breakpoints: {
-      0: {
-        slidesPerView: 2,
-        slidesPerGroup: 2,
-        spaceBetween: 8,
-      },
-      576: {
-        slidesPerView: 3,
-        slidesPerGroup: 3,
-        spaceBetween: 8,
-      },
-      768: {
-        slidesPerView: 4,
-        slidesPerGroup: 4,
-        spaceBetween: 8,
-      },
-      992: {
-        spaceBetween: 16,
-      }
-    }
-  })
-})
-
-document.querySelectorAll('.swiper-card-pictures')?.forEach((swiperElement) => {
-  const swiperPagination = swiperElement.querySelector('.swiper-pagination')
-
-  let isTouchScreen = window.matchMedia('(hover: none)').matches
-
-  const swiperCardImage = new Swiper(swiperElement, {
-    slidesPerView: 1,
-    nested: true,
-
-    loop: isTouchScreen,
-
-    pagination: {
-      el: swiperPagination,
-      type: 'bullets',
-      clickable: true,
-    },
-
-    on: {
-      init: function () {
-        const swiper = this
-        const slides = swiper.slides
-
-        let hoverWrapper = swiper.el.querySelector('.swiper-hover')
-
-        if (!hoverWrapper) {
-          hoverWrapper = document.createElement('div')
-          hoverWrapper.classList.add('swiper-hover')
-          swiper.el.appendChild(hoverWrapper)
-        } else {
-          hoverWrapper.innerHTML = ''
-        }
-
-        slides.forEach((slide, index) => {
-          const div = document.createElement('div')
-          hoverWrapper.appendChild(div)
-
-          div.addEventListener('mouseenter', () => {
-            swiperCardImage.slideTo(index)
-            swiperPagination.querySelectorAll('.swiper-pagination-bullet')[index].click()
-          })
-        })
-
-        swiper.el.addEventListener('mouseleave', () => {
-          swiperCardImage.slideTo(0)
-          swiperPagination.querySelectorAll('.swiper-pagination-bullet')[0].click()
-        })
-      },
-    },
-  })
-})
-
-document.querySelectorAll('.articles-swiper')?.forEach((element) => {
-  const swiperElement = element.querySelector('.swiper')
-
-  const swiper = new Swiper(swiperElement, {
-    slidesPerView: 3,
-    slidesPerGroup: 3,
-    spaceBetween: 16,
-
-    breakpoints: {
-      0: {
-        slidesPerView: 1.25,
-        slidesPerGroup: 1,
-        spaceBetween: 8,
-      },
-      576: {
-        slidesPerView: 2.25,
-        slidesPerGroup: 2,
-        spaceBetween: 8,
-      },
-      768: {
-        slidesPerView: 3,
-        slidesPerGroup: 3,
-        spaceBetween: 8,
-      },
-      992: {
-        spaceBetween: 16,
-      }
-    }
-  })
 })
 
 document.querySelectorAll('.modal-stories')?.forEach(element => {
@@ -391,7 +228,6 @@ document.querySelectorAll('.modal-stories')?.forEach(element => {
     })
   })
 
-  // Глобальный обработчик для переключения swiper‑stories:
   swiperStories.on('slideChangeTransitionEnd', () => {
     storiesInstances.forEach(story => {
       if (story.index === swiperStories.activeIndex) {
@@ -464,4 +300,299 @@ document.querySelectorAll('.modal-stories')?.forEach(element => {
 
     buttonVolume.classList.toggle('is-active')
   })
+})
+
+document.querySelectorAll('[data-swiper]')?.forEach((element) => {
+  const type = element.dataset.swiper
+  const swiperElement = element.matches('.swiper') ? element : element.querySelector('.swiper')
+  const swiperPagination = element.querySelector('.swiper-pagination')
+  const swiperPrev = element.querySelector('.swiper-button-prev')
+  const swiperNext = element.querySelector('.swiper-button-next')
+
+  let isTouchScreen = window.matchMedia('(hover: none)').matches
+  let config = {}
+
+  switch (type) {
+    case 'cards':
+      config = {
+        slidesPerView: 4,
+        slidesPerGroup: 4,
+        spaceBetween: 16,
+        navigation: {
+          prevEl: swiperPrev,
+          nextEl: swiperNext,
+        },
+
+        breakpoints: {
+          0: {
+            slidesPerView: 2,
+            slidesPerGroup: 2,
+            spaceBetween: 8,
+          },
+          576: {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+            spaceBetween: 8,
+          },
+          768: {
+            slidesPerView: 4,
+            slidesPerGroup: 4,
+            spaceBetween: 8,
+          },
+          992: {
+            spaceBetween: 16,
+          }
+        }
+      }
+      break
+
+    case 'cards-sm':
+      config = {
+        slidesPerView: 5,
+        slidesPerGroup: 5,
+        spaceBetween: 16,
+        navigation: {
+          prevEl: swiperPrev,
+          nextEl: swiperNext,
+        },
+
+        breakpoints: {
+          0: {
+            slidesPerView: 2,
+            slidesPerGroup: 2,
+            spaceBetween: 8,
+          },
+          576: {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+            spaceBetween: 8,
+          },
+          768: {
+            slidesPerView: 4,
+            slidesPerGroup: 4,
+            spaceBetween: 8,
+          },
+          992: {
+            slidesPerView: 5,
+            slidesPerGroup: 5,
+            spaceBetween: 16,
+          }
+        }
+      }
+      break
+
+    case 'card-pictures':
+      config = {
+        slidesPerView: 1,
+        nested: true,
+
+        loop: isTouchScreen,
+
+        pagination: {
+          el: swiperPagination,
+          type: 'bullets',
+          clickable: true,
+        },
+
+        on: {
+          init: function () {
+            const swiper = this
+            const slides = swiper.slides
+            const paginationBullets = swiper.pagination.bullets
+
+            let hoverWrapper = swiper.el.querySelector('.swiper-hover')
+
+            if (!hoverWrapper) {
+              hoverWrapper = document.createElement('div')
+              hoverWrapper.classList.add('swiper-hover')
+              swiper.el.appendChild(hoverWrapper)
+            } else {
+              hoverWrapper.innerHTML = ''
+            }
+
+            slides.forEach((slide, index) => {
+              const div = document.createElement('div')
+              hoverWrapper.appendChild(div)
+
+              div.addEventListener('mouseenter', () => {
+                swiper.slideTo(index)
+                paginationBullets[index].click()
+              })
+            })
+
+            swiper.el.addEventListener('mouseleave', () => {
+              swiper.slideTo(0)
+              paginationBullets[0].click()
+            })
+          },
+        },
+      }
+      break
+
+    case 'hero':
+      config = {
+        slidesPerView: 1,
+        loop: true,
+
+        pagination: {
+          el: swiperPagination,
+          clickable: true,
+        },
+
+        navigation: {
+          prevEl: swiperPrev,
+          nextEl: swiperNext,
+        },
+      }
+      break
+
+    case 'arrivals':
+      config = {
+        slidesPerView: 'auto',
+        spaceBetween: 16,
+
+        breakpoints: {
+          0: {
+            slidesPerView: 'auto',
+            spaceBetween: 8,
+          },
+          992: {
+            slidesPerView: 'auto',
+            spaceBetween: 16,
+          }
+        }
+      }
+      break
+
+    case 'articles':
+      config = {
+        slidesPerView: 3,
+        slidesPerGroup: 3,
+        spaceBetween: 16,
+
+        breakpoints: {
+          0: {
+            slidesPerView: 1.25,
+            slidesPerGroup: 1,
+            spaceBetween: 8,
+          },
+          576: {
+            slidesPerView: 2.25,
+            slidesPerGroup: 2,
+            spaceBetween: 8,
+          },
+          768: {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+            spaceBetween: 8,
+          },
+          992: {
+            spaceBetween: 16,
+          }
+        }
+      }
+      break
+
+    case 'contacts':
+      config = {
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        spaceBetween: 16,
+        pagination: {
+          el: swiperPagination,
+          clickable: true,
+        },
+
+        navigation: {
+          prevEl: swiperPrev,
+          nextEl: swiperNext,
+        },
+      }
+      break
+
+    case 'gift':
+      config = {
+        modules: [ EffectCoverflow ],
+        loop: true,
+        effect: "coverflow",
+        coverflowEffect: {
+          rotate: 0,
+          stretch: -80,
+          depth: 400,
+          modifier: 1,
+          slideShadows: false,
+        },
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        navigation: {
+          prevEl: swiperPrev,
+          nextEl: swiperNext,
+        },
+        pagination: {
+          el: swiperPagination,
+          type: 'bullets',
+          clickable: true,
+        },
+
+        breakpoints: {
+          0: {
+            coverflowEffect: {
+              rotate: 0,
+              stretch: -64,
+              depth: 400,
+              modifier: 1,
+              slideShadows: false,
+            },
+          },
+          768: {
+            coverflowEffect: {
+              rotate: 0,
+              stretch: -80,
+              depth: 400,
+              modifier: 1,
+              slideShadows: false,
+            },
+          },
+        }
+      }
+      break
+    }
+
+  new Swiper(swiperElement, config)
+})
+
+document.querySelectorAll('.product-swiper')?.forEach(container => {
+  const swiperMainElement = container.querySelector('.product-swiper-main .swiper')
+	const swiperThumbElement = container.querySelector('.product-swiper-thumbs .swiper')
+  const swiperPagination = container.querySelector('.swiper-pagination')
+  const swiperPrev = container.querySelector('.swiper-button-prev')
+  const swiperNext = container.querySelector('.swiper-button-next')
+
+	const swiperThumb = new Swiper(swiperThumbElement, {
+    slidesPerView: 'auto',
+    spaceBetween: 8,
+    watchSlidesProgress: true,
+	})
+
+	const swiperMain = new Swiper(swiperMainElement, {
+    modules: [ EffectFade, Thumbs ],
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true
+    },
+    slidesPerView: 1,
+    navigation: {
+      prevEl: swiperPrev,
+      nextEl: swiperNext,
+    },
+    pagination: {
+      el: swiperPagination,
+      type: 'bullets',
+      clickable: true,
+    },
+    thumbs: {
+      swiper: swiperThumb,
+    },
+	})
 })

@@ -1,0 +1,227 @@
+// Base class
+//
+// Kickstart any navigation component with a set of style resets. Works with
+// `<nav>`s, `<ul>`s or `<ol>`s.
+
+.nav {
+  // scss-docs-start nav-css-vars
+  --bs-nav-link-padding-x: 0;
+  --bs-nav-link-padding-y: 0;
+  --bs-nav-link-font-size: .875rem;
+  --bs-nav-link-font-weight: 400;
+  --bs-nav-link-color: var(--text-color);
+  --bs-nav-link-hover-color: var(--primary);
+  --bs-nav-link-disabled-color: var(--text-color-50);
+  // scss-docs-end nav-css-vars
+
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.nav-link {
+  display: block;
+  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+  font-size: var(--bs-nav-link-font-size);
+  font-weight: var(--bs-nav-link-font-weight);
+  color: var(--bs-nav-link-color);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+
+  &:hover,
+  &:focus {
+    color: var(--bs-nav-link-hover-color);
+  }
+
+  &:focus-visible {
+    outline: 0;
+  }
+
+  // Disabled state lightens text
+  &.disabled,
+  &:disabled {
+    color: var(--bs-nav-link-disabled-color);
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+//
+// Tabs
+//
+
+.nav-tabs {
+  // scss-docs-start nav-tabs-css-vars
+  --bs-nav-tabs-border-width: .0625rem;
+  --bs-nav-tabs-border-color: var(--text-color-10);
+  --bs-nav-tabs-border-radius: 0;
+  --bs-nav-tabs-link-hover-border-color: var(--text-color);
+  --bs-nav-tabs-link-active-color: var(--text-color);
+  --bs-nav-tabs-link-active-bg: transparent
+  --bs-nav-tabs-link-active-border-color: var(--text-color);
+  // scss-docs-end nav-tabs-css-vars
+
+  border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);
+
+  .nav-link {
+    margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width)); // stylelint-disable-line function-disallowed-list
+    border: var(--bs-nav-tabs-border-width) solid transparent;
+    border-top-left-radius: var(--bs-nav-tabs-border-radius);
+    border-top-right-radius: var(--bs-nav-tabs-border-radius);
+
+    &:hover,
+    &:focus {
+      isolation: isolate;
+      border-color: var(--bs-nav-tabs-link-hover-border-color);
+    }
+  }
+
+  .nav-link.active,
+  .nav-item.show .nav-link {
+    color: var(--bs-nav-tabs-link-active-color);
+    background-color: var(--bs-nav-tabs-link-active-bg);
+    border-color: var(--bs-nav-tabs-link-active-border-color);
+  }
+}
+
+
+//
+// Pills
+//
+
+.nav-pills {
+  // scss-docs-start nav-pills-css-vars
+  --bs-nav-pills-border-radius: .5rem;
+  --bs-nav-pills-link-active-color: var(--light);
+  --bs-nav-pills-link-active-bg: var(--text-color);
+  // scss-docs-end nav-pills-css-vars
+  justify-content: center;
+  gap: .5rem;
+
+  .nav-link {
+    height: 2.5rem;
+    font-family: var(--font-second);
+    font-size: .875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-color);
+    background-color: transparent;
+    border: .0625rem solid var(--text-color-20);
+    border-radius: var(--bs-nav-pills-border-radius);
+    padding: .25rem 1.5rem;
+
+    @include breakpoint-up(lg) {
+      padding: .25rem 2.5rem;
+    }
+  }
+
+  .nav-link.active,
+  .show > .nav-link {
+    color: var(--bs-nav-pills-link-active-color);
+    background-color: var(--bs-nav-pills-link-active-bg);
+    border-color: var(--bs-nav-pills-link-active-bg);
+  }
+}
+
+
+//
+// Underline
+//
+
+.nav-underline {
+  // scss-docs-start nav-underline-css-vars
+  --bs-nav-underline-gap: 1rem;
+  --bs-nav-underline-border-width: .0625rem;
+  --bs-nav-underline-link-active-color: var(--text-color);
+  // scss-docs-end nav-underline-css-vars
+
+  max-width: max-content;
+  flex-wrap: nowrap;
+  gap: var(--bs-nav-underline-gap);
+  border-bottom: var(--bs-nav-underline-border-width) solid var(--text-color-10);
+  padding-bottom: var(--bs-nav-underline-border-width);
+  margin-inline: calc(-1 * var(--container-offset));
+  padding-inline: var(--container-offset);
+  overflow-y: hidden;
+  overflow-x: auto;
+
+  @include breakpoint-up(md) {
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+
+  .nav-link {
+    margin-bottom: calc(-1 * (var(--bs-nav-underline-border-width)));
+    padding-right: 0;
+    padding-bottom: calc(.25rem + var(--bs-nav-underline-border-width));
+    padding-left: 0;
+    border-bottom: var(--bs-nav-underline-border-width) solid transparent;
+
+    &:hover,
+    &:focus {
+      border-bottom-color: currentcolor;
+    }
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  .nav-link.active,
+  .show > .nav-link {
+    color: var(--bs-nav-underline-link-active-color);
+    border-bottom-color: currentcolor;
+  }
+}
+
+
+//
+// Justified variants
+//
+
+.nav-fill {
+  > .nav-link,
+  .nav-item {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
+
+.nav-justified {
+  > .nav-link,
+  .nav-item {
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+  }
+}
+
+.nav-fill,
+.nav-justified {
+  .nav-item .nav-link {
+    width: 100%; // Make sure button will grow
+  }
+}
+
+
+// Tabbable tabs
+//
+// Hide tabbable panes to start, show them when `.active`
+
+.tab-content {
+  > .tab-pane {
+    display: none;
+    margin-top: 1.5rem;
+  }
+  > .active {
+    display: block;
+  }
+}

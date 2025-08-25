@@ -218,3 +218,22 @@
     --bs-dropdown-box-shadow: unset;
   }
 }
+
+.dropdown--filter {
+  position: static;
+
+  .dropdown-menu {
+    --bs-dropdown-min-width: initial;
+    --bs-dropdown-padding-y: 1.5rem;
+    --bs-dropdown-padding-x: 1.5rem;
+
+    max-width: 15rem;
+    width: auto;
+
+    &-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+}

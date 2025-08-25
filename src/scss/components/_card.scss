@@ -4,8 +4,7 @@
   flex-direction: column;
   position: relative;
 
-  .label-check {
-    display: flex;
+  .btn-check {
     align-items: center;
     justify-content: center;
     position: absolute;
@@ -13,10 +12,14 @@
     right: 0;
     z-index: 10;
 
-    .btn-check:checked + .btn {
-      --_color: var(--primary);
-      --_color-hover: var(--primary);
-      --_color-active: var(--primary);
+    [type=checkbox],
+    [type=radio] {
+
+      &:checked + .btn {
+        --_color: var(--primary);
+        --_color-hover: var(--primary);
+        --_color-active: var(--primary);
+      }
     }
 
     .btn {

@@ -10,7 +10,16 @@
 // @import "../../node_modules/aos/dist/aos";
 
 // стили для свайпера
-@import "../../node_modules/swiper/swiper-bundle.min";
+@import "../../node_modules/swiper/swiper";
+@import "../../node_modules/swiper/modules/effect-fade";
+@import "../../node_modules/swiper/modules/effect-coverflow";
+@import "../../node_modules/swiper/modules/navigation";
+@import "../../node_modules/swiper/modules/pagination";
+@import "../../node_modules/swiper/modules/thumbs";
+
+@import '../../node_modules/nouislider/dist/nouislider.min';
+
+@import '../../node_modules/choices.js/src/styles/choices.scss';
 
 // стили для скролла simplebar
 // @import "../../node_modules/simplebar/dist/simplebar.min";

@@ -31,6 +31,21 @@
     width: 100%;
 
     .field {
+      --_rounded: 0;
+      --_padding: .5rem 0;
+
+      --_color-placeholder: currentColor;
+
+      --_bg: transparent;
+      --_bg-hover: transparent;
+      --_bg-active: transparent;
+
+      --_border-color: currentColor;
+
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      padding-right: 1.25rem;
 
       &:-webkit-autofill {
 
