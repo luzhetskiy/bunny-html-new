@@ -1,10 +1,13 @@
 .counter {
+  max-width: 100%;
+  flex: 1 1 auto;
   display: flex;
   color: var(--body-bg);
-  background-color: var(--dark);
+  background-color: var(--text-color);
   border-radius: .5rem;
 
   &-field {
+    --_height: 2.25rem;
     --_fw: 700;
 
     --_color-placeholder: inherit;
@@ -13,10 +16,14 @@
     --_bg-hover: transparent;
     --_bg-active: transparent;
 
-    max-width: 7.5rem;
+    max-width: 100%;
     min-width: 0;
     border: none;
     text-align: center;
+
+    @include breakpoint-up(lg) {
+      --_height: 2.5rem;
+    }
 
     &-control {
       max-width: 100%;
@@ -25,8 +32,15 @@
   }
 
   &-button {
+    --_width: 2.25rem;
+    --_height: 2.25rem;
     --_color: inherit;
 
     flex-shrink: 0;
+
+    @include breakpoint-up(lg) {
+      --_width: 2.5rem;
+      --_height: 2.5rem;
+    }
   }
 }

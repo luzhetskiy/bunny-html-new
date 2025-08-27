@@ -4,8 +4,6 @@
 @include('partials/head.html', {title: 'Бесконтактный вибростимулятор Cutie Heart'})
 
 <body class="page-body">
-  @include('partials/h1.html', {title: 'Бесконтактный вибростимулятор Cutie Heart'})
-
   <div class="site-container">
     @include('partials/header.html')
 
@@ -139,9 +137,9 @@
               <div class="product-content">
                 <div class="product-header">
                   <div class="product-info">
-                    <h2 class="h4 product-title">
+                    <h1 class="h4 product-title">
                       Бесконтактный вибростимулятор Cutie Heart
-                    </h2>
+                    </h1>
 
                     <div class="product-subtitle">
                       <p>
@@ -166,9 +164,21 @@
                   </div>
 
                   <div class="product-actions">
-                    <button type="button" class="btn btn-base btn-secondary">
-                      добавить в корзину
+                    <button type="button" class="btn btn-base btn-secondary product-add">
+                      Добавить в корзину
                     </button>
+                    <script>
+                      const productAdd = document.querySelector('.product-add')
+
+                      productAdd.addEventListener('click', () => {
+                        const link = document.createElement('a')
+                        link.href = './cart'
+                        link.className = 'btn btn-base btn-secondary product-add'
+                        link.textContent = 'Оформить заказ'
+
+                        productAdd.replaceWith(link)
+                      }, { once: true })
+                    </script>
 
                     <label class="btn-check btn-check-outline-favorite">
                       <input type="checkbox" class="visually-hidden" name="favorite">
@@ -200,7 +210,7 @@
 
                   <div class="product-actions">
                     <div class="counter">
-                      <button type="button" class="btn btn-base btn-icon counter-button">
+                      <button type="button" class="btn btn-icon counter-button counter-decrement">
                         <span class="icon">
                           <svg>
                             <use xlink:href="img/icons/minus.svg#svg-minus"></use>
@@ -210,7 +220,7 @@
                       <div class="field-control counter-field-control">
                         <input type="text" class="field field-base counter-field" name="counter" placeholder="Кол-во" value="1">
                       </div>
-                      <button type="button" class="btn btn-base btn-icon counter-button">
+                      <button type="button" class="btn btn-icon counter-button counter-increment">
                         <span class="icon">
                           <svg>
                             <use xlink:href="img/icons/plus.svg#svg-plus"></use>
@@ -500,8 +510,8 @@
                   </div>
 
                   <div class="review">
-                    <div class="review-add">
-                      <button type="button" class="btn btn-base btn-outline-secondary">
+                    <div class="review-body">
+                      <button type="button" class="btn btn-base btn-outline-secondary review-add">
                         Добавить свой отзыв
                       </button>
 
@@ -566,6 +576,31 @@
                           </div>
                         </div>
                       </form>
+
+                      <script>
+                        const button = document.querySelector('.review-add')
+                        const form = document.querySelector('.review-form')
+                        const formBody = form.querySelector('.review-form-body')
+                        const formFeedback = form.querySelector('.review-feedback')
+
+                        // 1. Скрываем всё при загрузке
+                        form.style.display = 'none'
+                        formFeedback.style.display = 'none'
+
+                        // 2. Клик по кнопке "Добавить отзыв"
+                        button.addEventListener('click', () => {
+                          form.style.display = ''
+                          button.style.display = 'none'
+                        })
+
+                        // 3. Сабмит формы
+                        form.addEventListener('submit', (event) => {
+                          event.preventDefault()
+
+                          formBody.style.display = 'none'
+                          formFeedback.style.display = ''
+                        })
+                      </script>
                     </div>
 
                     <div class="review-content">
@@ -641,6 +676,7 @@
       @include('partials/floating-bottom.html')
       @include('partials/offcanvases.html')
       @include('partials/modals.html')
+      <div class="alert-container"></div>
     </main>
 
     @include('partials/footer.html')

@@ -4,8 +4,6 @@
 @include('partials/head.html', {title: 'Каталог'})
 
 <body class="page-body">
-  @include('partials/h1.html', {title: 'Каталог'})
-
   <div class="site-container">
     @include('partials/header.html')
 
@@ -34,9 +32,9 @@
                 </ul>
               </nav>
 
-              <h2 class="page-header-title">
+              <h1 class="page-header-title">
                 Секс-игрушки для женщин
-              </h2>
+              </h1>
             </div>
 
             <div class="filter">
@@ -263,6 +261,7 @@
       @include('partials/floating-bottom.html')
       @include('partials/offcanvases.html')
       @include('partials/modals.html')
+      <div class="alert-container"></div>
     </main>
 
     @include('partials/footer.html')

@@ -11,6 +11,11 @@
 
     <main class="main">
       <div class="main-sections">
+        <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            window.handleToggleShow('search')
+          })
+        </script>
         <section class="section">
           <div class="container">
             <div class="search-cards">
@@ -34,6 +39,7 @@
       @include('partials/floating-bottom.html')
       @include('partials/offcanvases.html')
       @include('partials/modals.html')
+      <div class="alert-container"></div>
     </main>
 
     @include('partials/footer.html')

@@ -4,8 +4,6 @@
 @include('partials/head.html', {title: 'Главная страница'})
 
 <body class="page-body">
-  @include('partials/h1.html', {title: 'Главная страница'})
-
   <div class="site-container">
     @include('partials/header.html')
 
@@ -77,11 +75,11 @@
         <section class="section about">
           <div class="container">
             <div class="section-header">
-              <h2 class="section-title">
+              <h1 class="h2 section-title">
                 магазин интимных
                 <br>
                 товаров для взрослых
-              </h2>
+              </h1>
             </div>
 
             <div class="about-body">
@@ -231,6 +229,7 @@
       @include('partials/floating-bottom.html')
       @include('partials/offcanvases.html')
       @include('partials/modals.html')
+      <div class="alert-container"></div>
     </main>
 
     @include('partials/footer.html')

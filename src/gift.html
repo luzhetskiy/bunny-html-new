@@ -4,8 +4,6 @@
 @include('partials/head.html', {title: 'Электронный сертификат'})
 
 <body class="page-body">
-  @include('partials/h1.html', {title: 'Электронный сертификат'})
-
   <div class="site-container">
     @include('partials/header.html')
 
@@ -29,9 +27,9 @@
                 </ul>
               </nav>
 
-              <h2 class="page-header-title">
+              <h1 class="page-header-title">
                 Электронный сертификат
-              </h2>
+              </h1>
             </div>
 
             <form class="content-container">
@@ -321,6 +319,7 @@
       @include('partials/floating-bottom.html')
       @include('partials/offcanvases.html')
       @include('partials/modals.html')
+      <div class="alert-container"></div>
     </main>
 
     @include('partials/footer.html')

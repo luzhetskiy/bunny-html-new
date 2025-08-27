@@ -1098,7 +1098,7 @@
           </div>
         </div>
 
-        <a href="./delivery-payment.html" class="btn hover-underline">
+        <a href="./delivery.html" class="btn hover-underline">
           <span class="text">
             Доставка и оплата
           </span>
@@ -1126,6 +1126,11 @@
 
     <main class="main">
       <div class="main-sections">
+        <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            window.handleToggleShow('search')
+          })
+        </script>
         <section class="section">
           <div class="container">
             <div class="search-cards">
@@ -3139,6 +3144,7 @@
   </div>
 </div>
 
+      <div class="alert-container"></div>
     </main>
 
     <script>
@@ -3154,7 +3160,66 @@
       link.textContent = 'Оформить заказ'
 
       cardAdd.replaceWith(link)
+
+      const alert = document.createElement('div')
+      alert.className = 'alert'
+      alert.innerHTML = `
+        <div class="alert-content">
+          <p>
+            Вы добавили в корзину товары, находящиеся в разных магазинах,
+            это может повлиять на время и стоимость доставки
+          </p>
+        </div>
+      `
+
+      const alertContainer = document.querySelector('.alert-container')
+      if (alertContainer) {
+        alertContainer.appendChild(alert)
+
+        requestAnimationFrame(() => {
+          alert.classList.add('is-show')
+        })
+
+        setTimeout(() => {
+          alert.classList.remove('is-show')
+
+          alert.addEventListener('transitionend', (e) => {
+            alert.remove()
+          }, { once: true })
+        }, 5000)
+      }
     }, { once: true })
+  })
+
+  document.querySelectorAll('.counter')?.forEach(counter => {
+    const increment = counter.querySelector('.counter-increment')
+    const decrement = counter.querySelector('.counter-decrement')
+    const field = counter.querySelector('.counter-field')
+
+    let value = parseInt(field.value, 10) || 0
+
+    increment.addEventListener('click', () => {
+      value++
+      field.value = value
+    })
+
+    decrement.addEventListener('click', () => {
+      if (value > 1) {
+        value--
+        field.value = value
+      }
+    })
+
+    field.addEventListener('input', () => {
+      let newValue = parseInt(field.value, 10)
+
+      if (isNaN(newValue) || newValue < 1) {
+        newValue = 1
+      }
+
+      value = newValue
+      field.value = value
+    })
   })
 </script>
 

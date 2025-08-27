@@ -1,4 +1,4 @@
-function handleDismiss(value) {
+window.handleToggleDismiss = function(value) {
   const toggleBtn = document.querySelector(`[data-toggle="${value}"]`)
   if (toggleBtn) {
     toggleBtn.classList.remove("is-active")
@@ -15,21 +15,30 @@ function handleDismiss(value) {
   }
 }
 
+window.handleToggleShow = function(value) {
+  const toggleBtn = document.querySelector(`[data-toggle="${value}"]`)
+  if (toggleBtn) {
+    toggleBtn.classList.add("is-active")
+
+    if (value === "search") {
+      toggleBtn.classList.add("visually-hidden")
+    }
+  }
+
+  const targetSelector = toggleBtn?.dataset.target
+  if (targetSelector) {
+    const targetEl = document.querySelector(targetSelector)
+    if (targetEl) {
+      targetEl.classList.add("is-show")
+    }
+  }
+}
+
 document.querySelectorAll("[data-toggle]").forEach(toggle => {
   toggle.addEventListener("click", () => {
     const toggleValue = toggle.dataset.toggle
-    const targetSelector = toggle.dataset.target
 
-    if (toggleValue === "search") {
-      toggle.classList.add("is-active", "visually-hidden")
-
-      if (targetSelector) {
-        const targetEl = document.querySelector(targetSelector)
-        if (targetEl) {
-          targetEl.classList.add("is-show")
-        }
-      }
-    }
+    handleToggleShow(toggleValue)
   })
 })
 
@@ -37,6 +46,6 @@ document.querySelectorAll("[data-dismiss]").forEach(dismiss => {
   dismiss.addEventListener("click", () => {
     const dismissValue = dismiss.dataset.dismiss
 
-    handleDismiss(dismissValue)
+    handleToggleDismiss(dismissValue)
   })
 })
