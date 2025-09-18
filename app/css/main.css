@@ -2052,6 +2052,11 @@ textarea.field {
   border-radius: 50rem;
   background-color: var(--light);
 }
+.search-result-value {
+  -ms-flex-item-align: stretch;
+  -ms-grid-row-align: stretch;
+  align-self: stretch;
+}
 
 .search-cards {
   display: -ms-grid;
@@ -4461,6 +4466,11 @@ textarea.field {
 }
 
 .content-container {
+  max-width: 43rem;
+  margin-inline: auto;
+}
+
+.content-cols {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 100%;
@@ -4468,7 +4478,7 @@ textarea.field {
   gap: 1rem;
 }
 @media (min-width: 767.98px) {
-  .content-container {
+  .content-cols {
     -ms-grid-columns: minmax(0, 0.5fr) minmax(0, 1fr);
     grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
   }
@@ -4597,7 +4607,6 @@ textarea.field {
 }
 @media (min-width: 991.98px) {
   .content blockquote {
-    font-size: 1.125rem;
     margin: 2rem 0;
   }
 }

@@ -77,6 +77,10 @@
       background-color: var(--light);
     }
   }
+
+  &-value {
+    align-self: stretch;
+  }
 }
 
 .search-cards {

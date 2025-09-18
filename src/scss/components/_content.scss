@@ -1,4 +1,9 @@
 .content-container {
+  max-width: 43rem;
+  margin-inline: auto;
+}
+
+.content-cols {
   display: grid;
   grid-template-columns: 100%;
   gap: 1rem;
@@ -150,7 +155,6 @@
     padding: 1.5rem 2rem;
 
     @include breakpoint-up(lg) {
-      font-size: 1.125rem;
       margin: 2rem 0;
     }
 
