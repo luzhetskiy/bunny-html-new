@@ -1,0 +1,130 @@
+// Base class
+.tooltip {
+  // scss-docs-start tooltip-css-vars
+  --bs-tooltip-zindex: 1080;
+  --bs-tooltip-max-width: 20rem;
+  --bs-tooltip-padding-x: 1rem;
+  --bs-tooltip-padding-y: 1rem;
+  --bs-tooltip-margin: ;
+  --bs-tooltip-font-size: .875rem;
+  --bs-tooltip-color: var(--light);
+  --bs-tooltip-bg: var(--text-color);
+  --bs-tooltip-border-radius: .5rem;
+  --bs-tooltip-opacity: 1;
+  --bs-tooltip-arrow-width: .75rem;
+  --bs-tooltip-arrow-height: .5rem;
+  // scss-docs-end tooltip-css-vars
+
+  z-index: var(--bs-tooltip-zindex);
+  display: block;
+  margin: var(--bs-tooltip-margin);
+  // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
+  // So reset our font and text properties to avoid inheriting weird values.
+  font-size: var(--bs-tooltip-font-size);
+  // Allow breaking very long words so they don't overflow the tooltip's bounds
+  word-wrap: break-word;
+  opacity: 0;
+
+  &.show { opacity: var(--bs-tooltip-opacity); }
+
+  .tooltip-arrow {
+    display: block;
+    width: var(--bs-tooltip-arrow-width);
+    height: var(--bs-tooltip-arrow-height);
+
+    &::before {
+      position: absolute;
+      content: "";
+      border-color: transparent;
+      border-style: solid;
+    }
+  }
+}
+
+.bs-tooltip-top .tooltip-arrow {
+  bottom: calc(-1 * var(--bs-tooltip-arrow-height)); // stylelint-disable-line function-disallowed-list
+
+  &::before {
+    top: -1px;
+    border-width: var(--bs-tooltip-arrow-height) calc(var(--bs-tooltip-arrow-width) * .5) 0; // stylelint-disable-line function-disallowed-list
+    border-top-color: var(--bs-tooltip-bg);
+  }
+}
+
+/* rtl:begin:ignore */
+.bs-tooltip-end .tooltip-arrow {
+  left: calc(-1 * var(--bs-tooltip-arrow-height)); // stylelint-disable-line function-disallowed-list
+  width: var(--bs-tooltip-arrow-height);
+  height: var(--bs-tooltip-arrow-width);
+
+  &::before {
+    right: -1px;
+    border-width: calc(var(--bs-tooltip-arrow-width) * .5) var(--bs-tooltip-arrow-height) calc(var(--bs-tooltip-arrow-width) * .5) 0; // stylelint-disable-line function-disallowed-list
+    border-right-color: var(--bs-tooltip-bg);
+  }
+}
+
+/* rtl:end:ignore */
+
+.bs-tooltip-bottom .tooltip-arrow {
+  top: calc(-1 * var(--bs-tooltip-arrow-height)); // stylelint-disable-line function-disallowed-list
+
+  &::before {
+    bottom: -1px;
+    border-width: 0 calc(var(--bs-tooltip-arrow-width) * .5) var(--bs-tooltip-arrow-height); // stylelint-disable-line function-disallowed-list
+    border-bottom-color: var(--bs-tooltip-bg);
+  }
+}
+
+/* rtl:begin:ignore */
+.bs-tooltip-start .tooltip-arrow {
+  right: calc(-1 * var(--bs-tooltip-arrow-height)); // stylelint-disable-line function-disallowed-list
+  width: var(--bs-tooltip-arrow-height);
+  height: var(--bs-tooltip-arrow-width);
+
+  &::before {
+    left: -1px;
+    border-width: calc(var(--bs-tooltip-arrow-width) * .5) 0 calc(var(--bs-tooltip-arrow-width) * .5) var(--bs-tooltip-arrow-height); // stylelint-disable-line function-disallowed-list
+    border-left-color: var(--bs-tooltip-bg);
+  }
+}
+
+/* rtl:end:ignore */
+
+.bs-tooltip-auto {
+  &[data-popper-placement^="top"] {
+    @extend .bs-tooltip-top;
+  }
+  &[data-popper-placement^="right"] {
+    @extend .bs-tooltip-end;
+  }
+  &[data-popper-placement^="bottom"] {
+    @extend .bs-tooltip-bottom;
+  }
+  &[data-popper-placement^="left"] {
+    @extend .bs-tooltip-start;
+  }
+}
+
+// Wrapper for the tooltip content
+.tooltip-inner {
+  max-width: var(--bs-tooltip-max-width);
+  padding: var(--bs-tooltip-padding-y) var(--bs-tooltip-padding-x);
+  color: var(--bs-tooltip-color);
+  text-align: start;
+  background-color: var(--bs-tooltip-bg);
+  border-radius: var(--bs-tooltip-border-radius);
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+
+    > li {
+      &::before {
+        content: '–';
+        margin-right: .25rem;
+      }
+    }
+  }
+}

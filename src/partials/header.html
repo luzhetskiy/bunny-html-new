@@ -36,14 +36,16 @@
 
       <form id="form-search" class="search">
         <div class="field-control">
-          <input type="text" class="field" name="search" placeholder="Поиск...">
-          <button type="submit" class="btn field-button">
-            <span class="icon">
-              <svg>
-                <use xlink:href="img/icons/search.svg#svg-search"></use>
-              </svg>
-            </span>
-          </button>
+          <div class="field-wrapper">
+            <input type="text" class="field" name="search" placeholder="Поиск...">
+            <button type="submit" class="btn field-button">
+              <span class="icon">
+                <svg>
+                  <use xlink:href="img/icons/search.svg#svg-search"></use>
+                </svg>
+              </span>
+            </button>
+          </div>
         </div>
         <button type="button" class="btn btn-icon btn-gray-200"
           data-dismiss="search">
@@ -59,7 +61,7 @@
       </a>
 
       <div class="header-top-end">
-        <button type="button" class="btn btn-icon btn-gray-200"
+        <button type="button" class="btn btn-icon btn-gray-200 @if (page === 'profile') {is-active}"
           data-transfer-origin="header-top-start"
           data-transfer-breakpoint="991.98"
           data-transfer-placement="last">
@@ -79,7 +81,10 @@
         </button>
         <button type="button" class="btn btn-icon btn-gray-200"
           data-transfer-origin="floating-bottom"
-          data-transfer-breakpoint="991.98">
+          data-transfer-breakpoint="991.98"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-bag-2"
+          aria-controls="offcanvas-bag">
           <span class="badge badge-primary">2</span>
           <span class="icon">
             <svg>

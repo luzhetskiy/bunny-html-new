@@ -1,0 +1,125 @@
+.order {
+
+  &-container,
+  &-block,
+  &-block-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-container {
+    gap: 2.5rem;
+  }
+
+  &-block {
+    gap: 1.5rem;
+
+    &-title {
+      font-family: var(--font-family);
+      font-size: var(--fs-base);
+      font-weight: 700;
+      text-transform: initial;
+
+    }
+
+    &-content {
+      gap: .5rem;
+    }
+  }
+
+  &-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @include breakpoint-up(lg) {
+      gap: 2rem;
+    }
+
+    &-total {
+      font-size: 2rem;
+
+      @include breakpoint-up(lg) {
+        font-size: 3.125rem;
+      }
+    }
+
+    &-discount {
+
+      .product-characteristics {
+        grid-template-columns: 1fr auto;
+        font-size: var(--fs-base);
+        margin: 0;
+
+        dd {
+          display: inline-flex;
+          gap: .25rem;
+          position: relative;
+        }
+
+        .dd-remove {
+          margin-left: auto;
+
+          @include breakpoint-up(lg) {
+            --_padding: .25rem;
+
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            transform: translateY(-50%);
+            z-index: 1;
+          }
+        }
+      }
+    }
+
+    &-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    &-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    &-actions {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-hint {
+      font-size: .75rem;
+      color: var(--text-color-50);
+
+      @include breakpoint-up(lg) {
+        font-size: .875rem;
+      }
+    }
+  }
+
+  &-info {
+    border: .0625rem solid var(--text-color-20);
+    border-radius: .5rem;
+    padding: 1rem;
+
+    &,
+    &-body {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+
+    &-title {
+      font-family: var(--font-family);
+      font-size: .875rem;
+      text-transform: initial;
+    }
+
+    &-main {
+      font-size: .75rem;
+    }
+  }
+}

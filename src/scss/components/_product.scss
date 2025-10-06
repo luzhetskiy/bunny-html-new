@@ -206,6 +206,28 @@
     &-name {
       color: #12B347;
     }
+
+    &-value {
+
+      > a {
+        --_color-hover: inherit;
+        --_color-active: inherit;
+
+        &:not(:last-child) {
+
+          &::after {
+            content: ',';
+          }
+        }
+
+        @media (hover: hover) {
+
+          &:is(:hover, :focus-visible) {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
   }
 
   &-login {

@@ -5163,6 +5163,561 @@ function withinMaxClamp(min, value, max) {
 
 /***/ }),
 
+/***/ "./node_modules/bootstrap/js/dist/tooltip.js":
+/*!***************************************************!*\
+  !*** ./node_modules/bootstrap/js/dist/tooltip.js ***!
+  \***************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+/*!
+  * Bootstrap tooltip.js v5.3.3 (https://getbootstrap.com/)
+  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+  */
+(function (global, factory) {
+   true ? module.exports = factory(__webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/index.js"), __webpack_require__(/*! ./base-component.js */ "./node_modules/bootstrap/js/dist/base-component.js"), __webpack_require__(/*! ./dom/event-handler.js */ "./node_modules/bootstrap/js/dist/dom/event-handler.js"), __webpack_require__(/*! ./dom/manipulator.js */ "./node_modules/bootstrap/js/dist/dom/manipulator.js"), __webpack_require__(/*! ./util/index.js */ "./node_modules/bootstrap/js/dist/util/index.js"), __webpack_require__(/*! ./util/sanitizer.js */ "./node_modules/bootstrap/js/dist/util/sanitizer.js"), __webpack_require__(/*! ./util/template-factory.js */ "./node_modules/bootstrap/js/dist/util/template-factory.js")) :
+  0;
+})(this, (function (Popper, BaseComponent, EventHandler, Manipulator, index_js, sanitizer_js, TemplateFactory) { 'use strict';
+
+  function _interopNamespaceDefault(e) {
+    const n = Object.create(null, { [Symbol.toStringTag]: { value: 'Module' } });
+    if (e) {
+      for (const k in e) {
+        if (k !== 'default') {
+          const d = Object.getOwnPropertyDescriptor(e, k);
+          Object.defineProperty(n, k, d.get ? d : {
+            enumerable: true,
+            get: () => e[k]
+          });
+        }
+      }
+    }
+    n.default = e;
+    return Object.freeze(n);
+  }
+
+  const Popper__namespace = /*#__PURE__*/_interopNamespaceDefault(Popper);
+
+  /**
+   * --------------------------------------------------------------------------
+   * Bootstrap tooltip.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+
+
+  /**
+   * Constants
+   */
+
+  const NAME = 'tooltip';
+  const DISALLOWED_ATTRIBUTES = new Set(['sanitize', 'allowList', 'sanitizeFn']);
+  const CLASS_NAME_FADE = 'fade';
+  const CLASS_NAME_MODAL = 'modal';
+  const CLASS_NAME_SHOW = 'show';
+  const SELECTOR_TOOLTIP_INNER = '.tooltip-inner';
+  const SELECTOR_MODAL = `.${CLASS_NAME_MODAL}`;
+  const EVENT_MODAL_HIDE = 'hide.bs.modal';
+  const TRIGGER_HOVER = 'hover';
+  const TRIGGER_FOCUS = 'focus';
+  const TRIGGER_CLICK = 'click';
+  const TRIGGER_MANUAL = 'manual';
+  const EVENT_HIDE = 'hide';
+  const EVENT_HIDDEN = 'hidden';
+  const EVENT_SHOW = 'show';
+  const EVENT_SHOWN = 'shown';
+  const EVENT_INSERTED = 'inserted';
+  const EVENT_CLICK = 'click';
+  const EVENT_FOCUSIN = 'focusin';
+  const EVENT_FOCUSOUT = 'focusout';
+  const EVENT_MOUSEENTER = 'mouseenter';
+  const EVENT_MOUSELEAVE = 'mouseleave';
+  const AttachmentMap = {
+    AUTO: 'auto',
+    TOP: 'top',
+    RIGHT: index_js.isRTL() ? 'left' : 'right',
+    BOTTOM: 'bottom',
+    LEFT: index_js.isRTL() ? 'right' : 'left'
+  };
+  const Default = {
+    allowList: sanitizer_js.DefaultAllowlist,
+    animation: true,
+    boundary: 'clippingParents',
+    container: false,
+    customClass: '',
+    delay: 0,
+    fallbackPlacements: ['top', 'right', 'bottom', 'left'],
+    html: false,
+    offset: [0, 6],
+    placement: 'top',
+    popperConfig: null,
+    sanitize: true,
+    sanitizeFn: null,
+    selector: false,
+    template: '<div class="tooltip" role="tooltip">' + '<div class="tooltip-arrow"></div>' + '<div class="tooltip-inner"></div>' + '</div>',
+    title: '',
+    trigger: 'hover focus'
+  };
+  const DefaultType = {
+    allowList: 'object',
+    animation: 'boolean',
+    boundary: '(string|element)',
+    container: '(string|element|boolean)',
+    customClass: '(string|function)',
+    delay: '(number|object)',
+    fallbackPlacements: 'array',
+    html: 'boolean',
+    offset: '(array|string|function)',
+    placement: '(string|function)',
+    popperConfig: '(null|object|function)',
+    sanitize: 'boolean',
+    sanitizeFn: '(null|function)',
+    selector: '(string|boolean)',
+    template: 'string',
+    title: '(string|element|function)',
+    trigger: 'string'
+  };
+
+  /**
+   * Class definition
+   */
+
+  class Tooltip extends BaseComponent {
+    constructor(element, config) {
+      if (typeof Popper__namespace === 'undefined') {
+        throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)');
+      }
+      super(element, config);
+
+      // Private
+      this._isEnabled = true;
+      this._timeout = 0;
+      this._isHovered = null;
+      this._activeTrigger = {};
+      this._popper = null;
+      this._templateFactory = null;
+      this._newContent = null;
+
+      // Protected
+      this.tip = null;
+      this._setListeners();
+      if (!this._config.selector) {
+        this._fixTitle();
+      }
+    }
+
+    // Getters
+    static get Default() {
+      return Default;
+    }
+    static get DefaultType() {
+      return DefaultType;
+    }
+    static get NAME() {
+      return NAME;
+    }
+
+    // Public
+    enable() {
+      this._isEnabled = true;
+    }
+    disable() {
+      this._isEnabled = false;
+    }
+    toggleEnabled() {
+      this._isEnabled = !this._isEnabled;
+    }
+    toggle() {
+      if (!this._isEnabled) {
+        return;
+      }
+      this._activeTrigger.click = !this._activeTrigger.click;
+      if (this._isShown()) {
+        this._leave();
+        return;
+      }
+      this._enter();
+    }
+    dispose() {
+      clearTimeout(this._timeout);
+      EventHandler.off(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIDE, this._hideModalHandler);
+      if (this._element.getAttribute('data-bs-original-title')) {
+        this._element.setAttribute('title', this._element.getAttribute('data-bs-original-title'));
+      }
+      this._disposePopper();
+      super.dispose();
+    }
+    show() {
+      if (this._element.style.display === 'none') {
+        throw new Error('Please use show on visible elements');
+      }
+      if (!(this._isWithContent() && this._isEnabled)) {
+        return;
+      }
+      const showEvent = EventHandler.trigger(this._element, this.constructor.eventName(EVENT_SHOW));
+      const shadowRoot = index_js.findShadowRoot(this._element);
+      const isInTheDom = (shadowRoot || this._element.ownerDocument.documentElement).contains(this._element);
+      if (showEvent.defaultPrevented || !isInTheDom) {
+        return;
+      }
+
+      // TODO: v6 remove this or make it optional
+      this._disposePopper();
+      const tip = this._getTipElement();
+      this._element.setAttribute('aria-describedby', tip.getAttribute('id'));
+      const {
+        container
+      } = this._config;
+      if (!this._element.ownerDocument.documentElement.contains(this.tip)) {
+        container.append(tip);
+        EventHandler.trigger(this._element, this.constructor.eventName(EVENT_INSERTED));
+      }
+      this._popper = this._createPopper(tip);
+      tip.classList.add(CLASS_NAME_SHOW);
+
+      // If this is a touch-enabled device we add extra
+      // empty mouseover listeners to the body's immediate children;
+      // only needed because of broken event delegation on iOS
+      // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
+      if ('ontouchstart' in document.documentElement) {
+        for (const element of [].concat(...document.body.children)) {
+          EventHandler.on(element, 'mouseover', index_js.noop);
+        }
+      }
+      const complete = () => {
+        EventHandler.trigger(this._element, this.constructor.eventName(EVENT_SHOWN));
+        if (this._isHovered === false) {
+          this._leave();
+        }
+        this._isHovered = false;
+      };
+      this._queueCallback(complete, this.tip, this._isAnimated());
+    }
+    hide() {
+      if (!this._isShown()) {
+        return;
+      }
+      const hideEvent = EventHandler.trigger(this._element, this.constructor.eventName(EVENT_HIDE));
+      if (hideEvent.defaultPrevented) {
+        return;
+      }
+      const tip = this._getTipElement();
+      tip.classList.remove(CLASS_NAME_SHOW);
+
+      // If this is a touch-enabled device we remove the extra
+      // empty mouseover listeners we added for iOS support
+      if ('ontouchstart' in document.documentElement) {
+        for (const element of [].concat(...document.body.children)) {
+          EventHandler.off(element, 'mouseover', index_js.noop);
+        }
+      }
+      this._activeTrigger[TRIGGER_CLICK] = false;
+      this._activeTrigger[TRIGGER_FOCUS] = false;
+      this._activeTrigger[TRIGGER_HOVER] = false;
+      this._isHovered = null; // it is a trick to support manual triggering
+
+      const complete = () => {
+        if (this._isWithActiveTrigger()) {
+          return;
+        }
+        if (!this._isHovered) {
+          this._disposePopper();
+        }
+        this._element.removeAttribute('aria-describedby');
+        EventHandler.trigger(this._element, this.constructor.eventName(EVENT_HIDDEN));
+      };
+      this._queueCallback(complete, this.tip, this._isAnimated());
+    }
+    update() {
+      if (this._popper) {
+        this._popper.update();
+      }
+    }
+
+    // Protected
+    _isWithContent() {
+      return Boolean(this._getTitle());
+    }
+    _getTipElement() {
+      if (!this.tip) {
+        this.tip = this._createTipElement(this._newContent || this._getContentForTemplate());
+      }
+      return this.tip;
+    }
+    _createTipElement(content) {
+      const tip = this._getTemplateFactory(content).toHtml();
+
+      // TODO: remove this check in v6
+      if (!tip) {
+        return null;
+      }
+      tip.classList.remove(CLASS_NAME_FADE, CLASS_NAME_SHOW);
+      // TODO: v6 the following can be achieved with CSS only
+      tip.classList.add(`bs-${this.constructor.NAME}-auto`);
+      const tipId = index_js.getUID(this.constructor.NAME).toString();
+      tip.setAttribute('id', tipId);
+      if (this._isAnimated()) {
+        tip.classList.add(CLASS_NAME_FADE);
+      }
+      return tip;
+    }
+    setContent(content) {
+      this._newContent = content;
+      if (this._isShown()) {
+        this._disposePopper();
+        this.show();
+      }
+    }
+    _getTemplateFactory(content) {
+      if (this._templateFactory) {
+        this._templateFactory.changeContent(content);
+      } else {
+        this._templateFactory = new TemplateFactory({
+          ...this._config,
+          // the `content` var has to be after `this._config`
+          // to override config.content in case of popover
+          content,
+          extraClass: this._resolvePossibleFunction(this._config.customClass)
+        });
+      }
+      return this._templateFactory;
+    }
+    _getContentForTemplate() {
+      return {
+        [SELECTOR_TOOLTIP_INNER]: this._getTitle()
+      };
+    }
+    _getTitle() {
+      return this._resolvePossibleFunction(this._config.title) || this._element.getAttribute('data-bs-original-title');
+    }
+
+    // Private
+    _initializeOnDelegatedTarget(event) {
+      return this.constructor.getOrCreateInstance(event.delegateTarget, this._getDelegateConfig());
+    }
+    _isAnimated() {
+      return this._config.animation || this.tip && this.tip.classList.contains(CLASS_NAME_FADE);
+    }
+    _isShown() {
+      return this.tip && this.tip.classList.contains(CLASS_NAME_SHOW);
+    }
+    _createPopper(tip) {
+      const placement = index_js.execute(this._config.placement, [this, tip, this._element]);
+      const attachment = AttachmentMap[placement.toUpperCase()];
+      return Popper__namespace.createPopper(this._element, tip, this._getPopperConfig(attachment));
+    }
+    _getOffset() {
+      const {
+        offset
+      } = this._config;
+      if (typeof offset === 'string') {
+        return offset.split(',').map(value => Number.parseInt(value, 10));
+      }
+      if (typeof offset === 'function') {
+        return popperData => offset(popperData, this._element);
+      }
+      return offset;
+    }
+    _resolvePossibleFunction(arg) {
+      return index_js.execute(arg, [this._element]);
+    }
+    _getPopperConfig(attachment) {
+      const defaultBsPopperConfig = {
+        placement: attachment,
+        modifiers: [{
+          name: 'flip',
+          options: {
+            fallbackPlacements: this._config.fallbackPlacements
+          }
+        }, {
+          name: 'offset',
+          options: {
+            offset: this._getOffset()
+          }
+        }, {
+          name: 'preventOverflow',
+          options: {
+            boundary: this._config.boundary
+          }
+        }, {
+          name: 'arrow',
+          options: {
+            element: `.${this.constructor.NAME}-arrow`
+          }
+        }, {
+          name: 'preSetPlacement',
+          enabled: true,
+          phase: 'beforeMain',
+          fn: data => {
+            // Pre-set Popper's placement attribute in order to read the arrow sizes properly.
+            // Otherwise, Popper mixes up the width and height dimensions since the initial arrow style is for top placement
+            this._getTipElement().setAttribute('data-popper-placement', data.state.placement);
+          }
+        }]
+      };
+      return {
+        ...defaultBsPopperConfig,
+        ...index_js.execute(this._config.popperConfig, [defaultBsPopperConfig])
+      };
+    }
+    _setListeners() {
+      const triggers = this._config.trigger.split(' ');
+      for (const trigger of triggers) {
+        if (trigger === 'click') {
+          EventHandler.on(this._element, this.constructor.eventName(EVENT_CLICK), this._config.selector, event => {
+            const context = this._initializeOnDelegatedTarget(event);
+            context.toggle();
+          });
+        } else if (trigger !== TRIGGER_MANUAL) {
+          const eventIn = trigger === TRIGGER_HOVER ? this.constructor.eventName(EVENT_MOUSEENTER) : this.constructor.eventName(EVENT_FOCUSIN);
+          const eventOut = trigger === TRIGGER_HOVER ? this.constructor.eventName(EVENT_MOUSELEAVE) : this.constructor.eventName(EVENT_FOCUSOUT);
+          EventHandler.on(this._element, eventIn, this._config.selector, event => {
+            const context = this._initializeOnDelegatedTarget(event);
+            context._activeTrigger[event.type === 'focusin' ? TRIGGER_FOCUS : TRIGGER_HOVER] = true;
+            context._enter();
+          });
+          EventHandler.on(this._element, eventOut, this._config.selector, event => {
+            const context = this._initializeOnDelegatedTarget(event);
+            context._activeTrigger[event.type === 'focusout' ? TRIGGER_FOCUS : TRIGGER_HOVER] = context._element.contains(event.relatedTarget);
+            context._leave();
+          });
+        }
+      }
+      this._hideModalHandler = () => {
+        if (this._element) {
+          this.hide();
+        }
+      };
+      EventHandler.on(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIDE, this._hideModalHandler);
+    }
+    _fixTitle() {
+      const title = this._element.getAttribute('title');
+      if (!title) {
+        return;
+      }
+      if (!this._element.getAttribute('aria-label') && !this._element.textContent.trim()) {
+        this._element.setAttribute('aria-label', title);
+      }
+      this._element.setAttribute('data-bs-original-title', title); // DO NOT USE IT. Is only for backwards compatibility
+      this._element.removeAttribute('title');
+    }
+    _enter() {
+      if (this._isShown() || this._isHovered) {
+        this._isHovered = true;
+        return;
+      }
+      this._isHovered = true;
+      this._setTimeout(() => {
+        if (this._isHovered) {
+          this.show();
+        }
+      }, this._config.delay.show);
+    }
+    _leave() {
+      if (this._isWithActiveTrigger()) {
+        return;
+      }
+      this._isHovered = false;
+      this._setTimeout(() => {
+        if (!this._isHovered) {
+          this.hide();
+        }
+      }, this._config.delay.hide);
+    }
+    _setTimeout(handler, timeout) {
+      clearTimeout(this._timeout);
+      this._timeout = setTimeout(handler, timeout);
+    }
+    _isWithActiveTrigger() {
+      return Object.values(this._activeTrigger).includes(true);
+    }
+    _getConfig(config) {
+      const dataAttributes = Manipulator.getDataAttributes(this._element);
+      for (const dataAttribute of Object.keys(dataAttributes)) {
+        if (DISALLOWED_ATTRIBUTES.has(dataAttribute)) {
+          delete dataAttributes[dataAttribute];
+        }
+      }
+      config = {
+        ...dataAttributes,
+        ...(typeof config === 'object' && config ? config : {})
+      };
+      config = this._mergeConfigObj(config);
+      config = this._configAfterMerge(config);
+      this._typeCheckConfig(config);
+      return config;
+    }
+    _configAfterMerge(config) {
+      config.container = config.container === false ? document.body : index_js.getElement(config.container);
+      if (typeof config.delay === 'number') {
+        config.delay = {
+          show: config.delay,
+          hide: config.delay
+        };
+      }
+      if (typeof config.title === 'number') {
+        config.title = config.title.toString();
+      }
+      if (typeof config.content === 'number') {
+        config.content = config.content.toString();
+      }
+      return config;
+    }
+    _getDelegateConfig() {
+      const config = {};
+      for (const [key, value] of Object.entries(this._config)) {
+        if (this.constructor.Default[key] !== value) {
+          config[key] = value;
+        }
+      }
+      config.selector = false;
+      config.trigger = 'manual';
+
+      // In the future can be replaced with:
+      // const keysWithDifferentValues = Object.entries(this._config).filter(entry => this.constructor.Default[entry[0]] !== this._config[entry[0]])
+      // `Object.fromEntries(keysWithDifferentValues)`
+      return config;
+    }
+    _disposePopper() {
+      if (this._popper) {
+        this._popper.destroy();
+        this._popper = null;
+      }
+      if (this.tip) {
+        this.tip.remove();
+        this.tip = null;
+      }
+    }
+
+    // Static
+    static jQueryInterface(config) {
+      return this.each(function () {
+        const data = Tooltip.getOrCreateInstance(this, config);
+        if (typeof config !== 'string') {
+          return;
+        }
+        if (typeof data[config] === 'undefined') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+        data[config]();
+      });
+    }
+  }
+
+  /**
+   * jQuery
+   */
+
+  index_js.defineJQueryPlugin(Tooltip);
+
+  return Tooltip;
+
+}));
+//# sourceMappingURL=tooltip.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap/js/dist/util/backdrop.js":
 /*!*********************************************************!*\
   !*** ./node_modules/bootstrap/js/dist/util/backdrop.js ***!
@@ -5851,6 +6406,129 @@ function withinMaxClamp(min, value, max) {
 
 /***/ }),
 
+/***/ "./node_modules/bootstrap/js/dist/util/sanitizer.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/bootstrap/js/dist/util/sanitizer.js ***!
+  \**********************************************************/
+/***/ (function(__unused_webpack_module, exports) {
+
+/*!
+  * Bootstrap sanitizer.js v5.3.3 (https://getbootstrap.com/)
+  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+  */
+(function (global, factory) {
+   true ? factory(exports) :
+  0;
+})(this, (function (exports) { 'use strict';
+
+  /**
+   * --------------------------------------------------------------------------
+   * Bootstrap util/sanitizer.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+
+  // js-docs-start allow-list
+  const ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
+  const DefaultAllowlist = {
+    // Global attributes allowed on any supplied element below.
+    '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
+    a: ['target', 'href', 'title', 'rel'],
+    area: [],
+    b: [],
+    br: [],
+    col: [],
+    code: [],
+    dd: [],
+    div: [],
+    dl: [],
+    dt: [],
+    em: [],
+    hr: [],
+    h1: [],
+    h2: [],
+    h3: [],
+    h4: [],
+    h5: [],
+    h6: [],
+    i: [],
+    img: ['src', 'srcset', 'alt', 'title', 'width', 'height'],
+    li: [],
+    ol: [],
+    p: [],
+    pre: [],
+    s: [],
+    small: [],
+    span: [],
+    sub: [],
+    sup: [],
+    strong: [],
+    u: [],
+    ul: []
+  };
+  // js-docs-end allow-list
+
+  const uriAttributes = new Set(['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href']);
+
+  /**
+   * A pattern that recognizes URLs that are safe wrt. XSS in URL navigation
+   * contexts.
+   *
+   * Shout-out to Angular https://github.com/angular/angular/blob/15.2.8/packages/core/src/sanitization/url_sanitizer.ts#L38
+   */
+  // eslint-disable-next-line unicorn/better-regex
+  const SAFE_URL_PATTERN = /^(?!javascript:)(?:[a-z0-9+.-]+:|[^&:/?#]*(?:[/?#]|$))/i;
+  const allowedAttribute = (attribute, allowedAttributeList) => {
+    const attributeName = attribute.nodeName.toLowerCase();
+    if (allowedAttributeList.includes(attributeName)) {
+      if (uriAttributes.has(attributeName)) {
+        return Boolean(SAFE_URL_PATTERN.test(attribute.nodeValue));
+      }
+      return true;
+    }
+
+    // Check if a regular expression validates the attribute.
+    return allowedAttributeList.filter(attributeRegex => attributeRegex instanceof RegExp).some(regex => regex.test(attributeName));
+  };
+  function sanitizeHtml(unsafeHtml, allowList, sanitizeFunction) {
+    if (!unsafeHtml.length) {
+      return unsafeHtml;
+    }
+    if (sanitizeFunction && typeof sanitizeFunction === 'function') {
+      return sanitizeFunction(unsafeHtml);
+    }
+    const domParser = new window.DOMParser();
+    const createdDocument = domParser.parseFromString(unsafeHtml, 'text/html');
+    const elements = [].concat(...createdDocument.body.querySelectorAll('*'));
+    for (const element of elements) {
+      const elementName = element.nodeName.toLowerCase();
+      if (!Object.keys(allowList).includes(elementName)) {
+        element.remove();
+        continue;
+      }
+      const attributeList = [].concat(...element.attributes);
+      const allowedAttributes = [].concat(allowList['*'] || [], allowList[elementName] || []);
+      for (const attribute of attributeList) {
+        if (!allowedAttribute(attribute, allowedAttributes)) {
+          element.removeAttribute(attribute.nodeName);
+        }
+      }
+    }
+    return createdDocument.body.innerHTML;
+  }
+
+  exports.DefaultAllowlist = DefaultAllowlist;
+  exports.sanitizeHtml = sanitizeHtml;
+
+  Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+
+}));
+//# sourceMappingURL=sanitizer.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap/js/dist/util/scrollbar.js":
 /*!**********************************************************!*\
   !*** ./node_modules/bootstrap/js/dist/util/scrollbar.js ***!
@@ -5969,6 +6647,166 @@ function withinMaxClamp(min, value, max) {
 
 }));
 //# sourceMappingURL=scrollbar.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap/js/dist/util/template-factory.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/bootstrap/js/dist/util/template-factory.js ***!
+  \*****************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+/*!
+  * Bootstrap template-factory.js v5.3.3 (https://getbootstrap.com/)
+  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+  */
+(function (global, factory) {
+   true ? module.exports = factory(__webpack_require__(/*! ../dom/selector-engine.js */ "./node_modules/bootstrap/js/dist/dom/selector-engine.js"), __webpack_require__(/*! ./config.js */ "./node_modules/bootstrap/js/dist/util/config.js"), __webpack_require__(/*! ./sanitizer.js */ "./node_modules/bootstrap/js/dist/util/sanitizer.js"), __webpack_require__(/*! ./index.js */ "./node_modules/bootstrap/js/dist/util/index.js")) :
+  0;
+})(this, (function (SelectorEngine, Config, sanitizer_js, index_js) { 'use strict';
+
+  /**
+   * --------------------------------------------------------------------------
+   * Bootstrap util/template-factory.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+
+
+  /**
+   * Constants
+   */
+
+  const NAME = 'TemplateFactory';
+  const Default = {
+    allowList: sanitizer_js.DefaultAllowlist,
+    content: {},
+    // { selector : text ,  selector2 : text2 , }
+    extraClass: '',
+    html: false,
+    sanitize: true,
+    sanitizeFn: null,
+    template: '<div></div>'
+  };
+  const DefaultType = {
+    allowList: 'object',
+    content: 'object',
+    extraClass: '(string|function)',
+    html: 'boolean',
+    sanitize: 'boolean',
+    sanitizeFn: '(null|function)',
+    template: 'string'
+  };
+  const DefaultContentType = {
+    entry: '(string|element|function|null)',
+    selector: '(string|element)'
+  };
+
+  /**
+   * Class definition
+   */
+
+  class TemplateFactory extends Config {
+    constructor(config) {
+      super();
+      this._config = this._getConfig(config);
+    }
+
+    // Getters
+    static get Default() {
+      return Default;
+    }
+    static get DefaultType() {
+      return DefaultType;
+    }
+    static get NAME() {
+      return NAME;
+    }
+
+    // Public
+    getContent() {
+      return Object.values(this._config.content).map(config => this._resolvePossibleFunction(config)).filter(Boolean);
+    }
+    hasContent() {
+      return this.getContent().length > 0;
+    }
+    changeContent(content) {
+      this._checkContent(content);
+      this._config.content = {
+        ...this._config.content,
+        ...content
+      };
+      return this;
+    }
+    toHtml() {
+      const templateWrapper = document.createElement('div');
+      templateWrapper.innerHTML = this._maybeSanitize(this._config.template);
+      for (const [selector, text] of Object.entries(this._config.content)) {
+        this._setContent(templateWrapper, text, selector);
+      }
+      const template = templateWrapper.children[0];
+      const extraClass = this._resolvePossibleFunction(this._config.extraClass);
+      if (extraClass) {
+        template.classList.add(...extraClass.split(' '));
+      }
+      return template;
+    }
+
+    // Private
+    _typeCheckConfig(config) {
+      super._typeCheckConfig(config);
+      this._checkContent(config.content);
+    }
+    _checkContent(arg) {
+      for (const [selector, content] of Object.entries(arg)) {
+        super._typeCheckConfig({
+          selector,
+          entry: content
+        }, DefaultContentType);
+      }
+    }
+    _setContent(template, content, selector) {
+      const templateElement = SelectorEngine.findOne(selector, template);
+      if (!templateElement) {
+        return;
+      }
+      content = this._resolvePossibleFunction(content);
+      if (!content) {
+        templateElement.remove();
+        return;
+      }
+      if (index_js.isElement(content)) {
+        this._putElementInTemplate(index_js.getElement(content), templateElement);
+        return;
+      }
+      if (this._config.html) {
+        templateElement.innerHTML = this._maybeSanitize(content);
+        return;
+      }
+      templateElement.textContent = content;
+    }
+    _maybeSanitize(arg) {
+      return this._config.sanitize ? sanitizer_js.sanitizeHtml(arg, this._config.allowList, this._config.sanitizeFn) : arg;
+    }
+    _resolvePossibleFunction(arg) {
+      return index_js.execute(arg, [this]);
+    }
+    _putElementInTemplate(element, templateElement) {
+      if (this._config.html) {
+        templateElement.innerHTML = '';
+        templateElement.append(element);
+        return;
+      }
+      templateElement.textContent = element.textContent;
+    }
+  }
+
+  return TemplateFactory;
+
+}));
+//# sourceMappingURL=template-factory.js.map
 
 
 /***/ }),
@@ -24170,6 +25008,41 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/vanilla-calendar-pro/index.mjs":
+/*!*****************************************************!*\
+  !*** ./node_modules/vanilla-calendar-pro/index.mjs ***!
+  \*****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Calendar: () => (/* binding */ Calendar)
+/* harmony export */ });
+/*! name: vanilla-calendar-pro v3.0.5 | url: https://github.com/uvarov-frontend/vanilla-calendar-pro */
+var __defProp=Object.defineProperty,__defProps=Object.defineProperties,__getOwnPropDescs=Object.getOwnPropertyDescriptors,__getOwnPropSymbols=Object.getOwnPropertySymbols,__hasOwnProp=Object.prototype.hasOwnProperty,__propIsEnum=Object.prototype.propertyIsEnumerable,__defNormalProp=(e,t,n)=>t in e?__defProp(e,t,{enumerable:!0,configurable:!0,writable:!0,value:n}):e[t]=n,__spreadValues=(e,t)=>{for(var n in t||(t={}))__hasOwnProp.call(t,n)&&__defNormalProp(e,n,t[n]);if(__getOwnPropSymbols)for(var n of __getOwnPropSymbols(t))__propIsEnum.call(t,n)&&__defNormalProp(e,n,t[n]);return e},__spreadProps=(e,t)=>__defProps(e,__getOwnPropDescs(t)),__publicField=(e,t,n)=>(__defNormalProp(e,"symbol"!=typeof t?t+"":t,n),n);const errorMessages={notFoundSelector:e=>`${e} is not found, check the first argument passed to new Calendar.`,notInit:'The calendar has not been initialized, please initialize it using the "init()" method first.',notLocale:"You specified an incorrect language label or did not specify the required number of values ​​for «locale.weekdays» or «locale.months».",incorrectTime:"The value of the time property can be: false, 12 or 24.",incorrectMonthsCount:"For the «multiple» calendar type, the «displayMonthsCount» parameter can have a value from 2 to 12, and for all others it cannot be greater than 1."},setContext=(e,t,n)=>{e.context[t]=n},destroy=e=>{var t,n,a,l,o;if(!e.context.isInit)throw new Error(errorMessages.notInit);e.inputMode?(null==(t=e.context.mainElement.parentElement)||t.removeChild(e.context.mainElement),null==(a=null==(n=e.context.inputElement)?void 0:n.replaceWith)||a.call(n,e.context.originalElement),setContext(e,"inputElement",void 0)):null==(o=(l=e.context.mainElement).replaceWith)||o.call(l,e.context.originalElement),setContext(e,"mainElement",e.context.originalElement),e.onDestroy&&e.onDestroy(e)},hide=e=>{e.context.isShowInInputMode&&e.context.currentType&&(e.context.mainElement.dataset.vcCalendarHidden="",setContext(e,"isShowInInputMode",!1),e.context.cleanupHandlers[0]&&(e.context.cleanupHandlers.forEach((e=>e())),setContext(e,"cleanupHandlers",[])),e.onHide&&e.onHide(e))};function getOffset(e){if(!e||!e.getBoundingClientRect)return{top:0,bottom:0,left:0,right:0};const t=e.getBoundingClientRect(),n=document.documentElement;return{bottom:t.bottom,right:t.right,top:t.top+window.scrollY-n.clientTop,left:t.left+window.scrollX-n.clientLeft}}function getViewportDimensions(){return{vw:Math.max(document.documentElement.clientWidth||0,window.innerWidth||0),vh:Math.max(document.documentElement.clientHeight||0,window.innerHeight||0)}}function getWindowScrollPosition(){return{left:window.scrollX||document.documentElement.scrollLeft||0,top:window.scrollY||document.documentElement.scrollTop||0}}function calculateAvailableSpace(e){const{top:t,left:n}=getWindowScrollPosition(),{top:a,left:l}=getOffset(e),{vh:o,vw:s}=getViewportDimensions(),i=a-t,r=l-n;return{top:i,bottom:o-(i+e.clientHeight),left:r,right:s-(r+e.clientWidth)}}function getAvailablePosition(e,t,n=5){const a={top:!0,bottom:!0,left:!0,right:!0},l=[];if(!t||!e)return{canShow:a,parentPositions:l};const{bottom:o,top:s}=calculateAvailableSpace(e),{top:i,left:r}=getOffset(e),{height:c,width:d}=t.getBoundingClientRect(),{vh:u,vw:m}=getViewportDimensions(),h=m/2,p=u/2;return[{condition:i<p,position:"top"},{condition:i>p,position:"bottom"},{condition:r<h,position:"left"},{condition:r>h,position:"right"}].forEach((({condition:e,position:t})=>{e&&l.push(t)})),Object.assign(a,{top:c<=s-n,bottom:c<=o-n,left:d<=r,right:d<=m-r}),{canShow:a,parentPositions:l}}const handleDay=(e,t,n,a)=>{var l;const o=a.querySelector(`[data-vc-date="${t}"]`),s=null==o?void 0:o.querySelector("[data-vc-date-btn]");if(!o||!s)return;if((null==n?void 0:n.modifier)&&s.classList.add(...n.modifier.trim().split(" ")),!(null==n?void 0:n.html))return;const i=document.createElement("div");i.className=e.styles.datePopup,i.dataset.vcDatePopup="",i.innerHTML=e.sanitizerHTML(n.html),s.ariaExpanded="true",s.ariaLabel=`${s.ariaLabel}, ${null==(l=null==i?void 0:i.textContent)?void 0:l.replace(/^\s+|\s+(?=\s)|\s+$/g,"").replace(/&nbsp;/g," ")}`,o.appendChild(i),requestAnimationFrame((()=>{if(!i)return;const{canShow:e}=getAvailablePosition(o,i),t=e.bottom?o.offsetHeight:-i.offsetHeight,n=e.left&&!e.right?o.offsetWidth-i.offsetWidth/2:!e.left&&e.right?i.offsetWidth/2:0;Object.assign(i.style,{left:`${n}px`,top:`${t}px`})}))},createDatePopup=(e,t)=>{var n;e.popups&&(null==(n=Object.entries(e.popups))||n.forEach((([n,a])=>handleDay(e,n,a,t))))},getDate=e=>new Date(`${e}T00:00:00`),getDateString=e=>`${e.getFullYear()}-${String(e.getMonth()+1).padStart(2,"0")}-${String(e.getDate()).padStart(2,"0")}`,parseDates=e=>e.reduce(((e,t)=>{if(t instanceof Date||"number"==typeof t){const n=t instanceof Date?t:new Date(t);e.push(n.toISOString().substring(0,10))}else t.match(/^(\d{4}-\d{2}-\d{2})$/g)?e.push(t):t.replace(/(\d{4}-\d{2}-\d{2}).*?(\d{4}-\d{2}-\d{2})/g,((t,n,a)=>{const l=getDate(n),o=getDate(a),s=new Date(l.getTime());for(;s<=o;s.setDate(s.getDate()+1))e.push(getDateString(s));return t}));return e}),[]),updateAttribute=(e,t,n,a="")=>{t?e.setAttribute(n,a):e.getAttribute(n)===a&&e.removeAttribute(n)},setDateModifier=(e,t,n,a,l,o,s)=>{var i,r,c,d;const u=getDate(e.context.displayDateMin)>getDate(o)||getDate(e.context.displayDateMax)<getDate(o)||(null==(i=e.context.disableDates)?void 0:i.includes(o))||!e.selectionMonthsMode&&"current"!==s||!e.selectionYearsMode&&getDate(o).getFullYear()!==t;updateAttribute(n,u,"data-vc-date-disabled"),a&&updateAttribute(a,u,"aria-disabled","true"),a&&updateAttribute(a,u,"tabindex","-1"),updateAttribute(n,!e.disableToday&&e.context.dateToday===o,"data-vc-date-today"),updateAttribute(n,!e.disableToday&&e.context.dateToday===o,"aria-current","date"),updateAttribute(n,null==(r=e.selectedWeekends)?void 0:r.includes(l),"data-vc-date-weekend");const m=(null==(c=e.selectedHolidays)?void 0:c[0])?parseDates(e.selectedHolidays):[];if(updateAttribute(n,m.includes(o),"data-vc-date-holiday"),(null==(d=e.context.selectedDates)?void 0:d.includes(o))?(n.setAttribute("data-vc-date-selected",""),a&&a.setAttribute("aria-selected","true"),e.context.selectedDates.length>1&&"multiple-ranged"===e.selectionDatesMode&&(e.context.selectedDates[0]===o&&e.context.selectedDates[e.context.selectedDates.length-1]===o?n.setAttribute("data-vc-date-selected","first-and-last"):e.context.selectedDates[0]===o?n.setAttribute("data-vc-date-selected","first"):e.context.selectedDates[e.context.selectedDates.length-1]===o&&n.setAttribute("data-vc-date-selected","last"),e.context.selectedDates[0]!==o&&e.context.selectedDates[e.context.selectedDates.length-1]!==o&&n.setAttribute("data-vc-date-selected","middle"))):n.hasAttribute("data-vc-date-selected")&&(n.removeAttribute("data-vc-date-selected"),a&&a.removeAttribute("aria-selected")),!e.context.disableDates.includes(o)&&e.enableEdgeDatesOnly&&e.context.selectedDates.length>1&&"multiple-ranged"===e.selectionDatesMode){const t=getDate(e.context.selectedDates[0]),a=getDate(e.context.selectedDates[e.context.selectedDates.length-1]),l=getDate(o);updateAttribute(n,l>t&&l<a,"data-vc-date-selected","middle")}},getLocaleString=(e,t,n)=>new Date(`${e}T00:00:00.000Z`).toLocaleString(t,n),getWeekNumber=(e,t)=>{const n=getDate(e),a=(n.getDay()-t+7)%7;n.setDate(n.getDate()+4-a);const l=new Date(n.getFullYear(),0,1),o=Math.ceil(((+n-+l)/864e5+1)/7);return{year:n.getFullYear(),week:o}},addWeekNumberForDate=(e,t,n)=>{const a=getWeekNumber(n,e.firstWeekday);a&&(t.dataset.vcDateWeekNumber=String(a.week))},setDaysAsDisabled=(e,t,n)=>{var a,l,o,s,i;const r=null==(a=e.disableWeekdays)?void 0:a.includes(n),c=e.disableAllDates&&!!(null==(l=e.context.enableDates)?void 0:l[0]);!r&&!c||(null==(o=e.context.enableDates)?void 0:o.includes(t))||(null==(s=e.context.disableDates)?void 0:s.includes(t))||(e.context.disableDates.push(t),null==(i=e.context.disableDates)||i.sort(((e,t)=>+new Date(e)-+new Date(t))))},createDate=(e,t,n,a,l,o)=>{const s=getDate(l).getDay(),i="string"==typeof e.locale&&e.locale.length?e.locale:"en",r=document.createElement("div");let c;r.className=e.styles.date,r.dataset.vcDate=l,r.dataset.vcDateMonth=o,r.dataset.vcDateWeekDay=String(s),("current"===o||e.displayDatesOutside)&&(c=document.createElement("button"),c.className=e.styles.dateBtn,c.type="button",c.role="gridcell",c.ariaLabel=getLocaleString(l,i,{dateStyle:"long",timeZone:"UTC"}),c.dataset.vcDateBtn="",c.innerText=String(a),r.appendChild(c)),e.enableWeekNumbers&&addWeekNumberForDate(e,r,l),setDaysAsDisabled(e,l,s),setDateModifier(e,t,r,c,s,l,o),n.appendChild(r),e.onCreateDateEls&&e.onCreateDateEls(e,r)},createDatesFromCurrentMonth=(e,t,n,a,l)=>{for(let o=1;o<=n;o++){const n=new Date(a,l,o);createDate(e,a,t,o,getDateString(n),"current")}},createDatesFromNextMonth=(e,t,n,a,l,o)=>{const s=o+n,i=7*Math.ceil(s/7)-s,r=l+1===12?a+1:a,c=l+1===12?"01":l+2<10?`0${l+2}`:l+2;for(let n=1;n<=i;n++){const l=n<10?`0${n}`:String(n);createDate(e,a,t,n,`${r}-${c}-${l}`,"next")}},createDatesFromPrevMonth=(e,t,n,a,l)=>{let o=new Date(n,a,0).getDate()-(l-1);const s=0===a?n-1:n,i=0===a?12:a<10?`0${a}`:a;for(let a=l;a>0;a--,o++){createDate(e,n,t,o,`${s}-${i}-${o}`,"prev")}},createWeekNumbers=(e,t,n,a,l)=>{if(!e.enableWeekNumbers)return;a.textContent="";const o=document.createElement("b");o.className=e.styles.weekNumbersTitle,o.innerText="#",o.dataset.vcWeekNumbers="title",a.appendChild(o);const s=document.createElement("div");s.className=e.styles.weekNumbersContent,s.dataset.vcWeekNumbers="content",a.appendChild(s);const i=document.createElement("button");i.type="button",i.className=e.styles.weekNumber;const r=l.querySelectorAll("[data-vc-date]"),c=Math.ceil((t+n)/7);for(let t=0;t<c;t++){const n=r[0===t?6:7*t].dataset.vcDate,a=getWeekNumber(n,e.firstWeekday);if(!a)return;const l=i.cloneNode(!0);l.innerText=String(a.week),l.dataset.vcWeekNumber=String(a.week),l.dataset.vcWeekYear=String(a.year),l.role="rowheader",l.ariaLabel=`${a.week}`,s.appendChild(l)}},createDates=e=>{const t=new Date(e.context.selectedYear,e.context.selectedMonth,1),n=e.context.mainElement.querySelectorAll('[data-vc="dates"]'),a=e.context.mainElement.querySelectorAll('[data-vc-week="numbers"]');n.forEach(((n,l)=>{e.selectionDatesMode||(n.dataset.vcDatesDisabled=""),n.textContent="";const o=new Date(t);o.setMonth(o.getMonth()+l);const s=o.getMonth(),i=o.getFullYear(),r=(new Date(i,s,1).getDay()-e.firstWeekday+7)%7,c=new Date(i,s+1,0).getDate();createDatesFromPrevMonth(e,n,i,s,r),createDatesFromCurrentMonth(e,n,c,i,s),createDatesFromNextMonth(e,n,c,i,s,r),createDatePopup(e,n),createWeekNumbers(e,r,c,a[l],n)}))},layoutDefault=e=>`\n  <div class="${e.styles.header}" data-vc="header" role="toolbar" aria-label="${e.labels.navigation}">\n    <#ArrowPrev [month] />\n    <div class="${e.styles.headerContent}" data-vc-header="content">\n      <#Month />\n      <#Year />\n    </div>\n    <#ArrowNext [month] />\n  </div>\n  <div class="${e.styles.wrapper}" data-vc="wrapper">\n    <#WeekNumbers />\n    <div class="${e.styles.content}" data-vc="content">\n      <#Week />\n      <#Dates />\n      <#DateRangeTooltip />\n    </div>\n  </div>\n  <#ControlTime />\n`,layoutMonths=e=>`\n  <div class="${e.styles.header}" data-vc="header" role="toolbar" aria-label="${e.labels.navigation}">\n    <div class="${e.styles.headerContent}" data-vc-header="content">\n      <#Month />\n      <#Year />\n    </div>\n  </div>\n  <div class="${e.styles.wrapper}" data-vc="wrapper">\n    <div class="${e.styles.content}" data-vc="content">\n      <#Months />\n    </div>\n  </div>\n`,layoutMultiple=e=>`\n  <div class="${e.styles.controls}" data-vc="controls" role="toolbar" aria-label="${e.labels.navigation}">\n    <#ArrowPrev [month] />\n    <#ArrowNext [month] />\n  </div>\n  <div class="${e.styles.grid}" data-vc="grid">\n    <#Multiple>\n      <div class="${e.styles.column}" data-vc="column" role="region">\n        <div class="${e.styles.header}" data-vc="header">\n          <div class="${e.styles.headerContent}" data-vc-header="content">\n            <#Month />\n            <#Year />\n          </div>\n        </div>\n        <div class="${e.styles.wrapper}" data-vc="wrapper">\n          <#WeekNumbers />\n          <div class="${e.styles.content}" data-vc="content">\n            <#Week />\n            <#Dates />\n          </div>\n        </div>\n      </div>\n    <#/Multiple>\n    <#DateRangeTooltip />\n  </div>\n  <#ControlTime />\n`,layoutYears=e=>`\n  <div class="${e.styles.header}" data-vc="header" role="toolbar" aria-label="${e.labels.navigation}">\n    <#ArrowPrev [year] />\n    <div class="${e.styles.headerContent}" data-vc-header="content">\n      <#Month />\n      <#Year />\n    </div>\n    <#ArrowNext [year] />\n  </div>\n  <div class="${e.styles.wrapper}" data-vc="wrapper">\n    <div class="${e.styles.content}" data-vc="content">\n      <#Years />\n    </div>\n  </div>\n`,ArrowNext=(e,t)=>`<button type="button" class="${e.styles.arrowNext}" data-vc-arrow="next" aria-label="${e.labels.arrowNext[t]}"></button>`,ArrowPrev=(e,t)=>`<button type="button" class="${e.styles.arrowPrev}" data-vc-arrow="prev" aria-label="${e.labels.arrowPrev[t]}"></button>`,ControlTime=e=>e.selectionTimeMode?`<div class="${e.styles.time}" data-vc="time" role="group" aria-label="${e.labels.selectingTime}"></div>`:"",DateRangeTooltip=e=>e.onCreateDateRangeTooltip?`<div class="${e.styles.dateRangeTooltip}" data-vc-date-range-tooltip="hidden"></div>`:"",Dates=e=>`<div class="${e.styles.dates}" data-vc="dates" role="grid" aria-live="assertive" aria-label="${e.labels.dates}" ${"multiple"===e.type?"aria-multiselectable":""}></div>`,Month=e=>`<button type="button" class="${e.styles.month}" data-vc="month"></button>`,Months=e=>`<div class="${e.styles.months}" data-vc="months" role="grid" aria-live="assertive" aria-label="${e.labels.months}"></div>`,Week=e=>`<div class="${e.styles.week}" data-vc="week" role="row" aria-label="${e.labels.week}"></div>`,WeekNumbers=e=>e.enableWeekNumbers?`<div class="${e.styles.weekNumbers}" data-vc-week="numbers" role="row" aria-label="${e.labels.weekNumber}"></div>`:"",Year=e=>`<button type="button" class="${e.styles.year}" data-vc="year"></button>`,Years=e=>`<div class="${e.styles.years}" data-vc="years" role="grid" aria-live="assertive" aria-label="${e.labels.years}"></div>`,components={ArrowNext:ArrowNext,ArrowPrev:ArrowPrev,ControlTime:ControlTime,Dates:Dates,DateRangeTooltip:DateRangeTooltip,Month:Month,Months:Months,Week:Week,WeekNumbers:WeekNumbers,Year:Year,Years:Years},getComponent=e=>components[e],parseLayout=(e,t)=>t.replace(/[\n\t]/g,"").replace(/<#(?!\/?Multiple)(.*?)>/g,((t,n)=>{const a=(n.match(/\[(.*?)\]/)||[])[1],l=n.replace(/[/\s\n\t]|\[(.*?)\]/g,""),o=getComponent(l),s=o?o(e,null!=a?a:null):"";return e.sanitizerHTML(s)})).replace(/[\n\t]/g,""),parseMultipleLayout=(e,t)=>t.replace(new RegExp("<#Multiple>(.*?)<#\\/Multiple>","gs"),((t,n)=>{const a=Array(e.context.displayMonthsCount).fill(n).join("");return e.sanitizerHTML(a)})).replace(/[\n\t]/g,""),createLayouts=(e,t)=>{const n={default:layoutDefault,month:layoutMonths,year:layoutYears,multiple:layoutMultiple};if(Object.keys(n).forEach((t=>{const a=t;e.layouts[a].length||(e.layouts[a]=n[a](e))})),e.context.mainElement.className=e.styles.calendar,e.context.mainElement.dataset.vc="calendar",e.context.mainElement.dataset.vcType=e.context.currentType,e.context.mainElement.role="application",e.context.mainElement.tabIndex=0,e.context.mainElement.ariaLabel=e.labels.application,"multiple"!==e.context.currentType){if("multiple"===e.type&&t){const n=e.context.mainElement.querySelector('[data-vc="controls"]'),a=e.context.mainElement.querySelector('[data-vc="grid"]'),l=t.closest('[data-vc="column"]');return n&&e.context.mainElement.removeChild(n),a&&(a.dataset.vcGrid="hidden"),l&&(l.dataset.vcColumn=e.context.currentType),void(l&&(l.innerHTML=e.sanitizerHTML(parseLayout(e,e.layouts[e.context.currentType]))))}e.context.mainElement.innerHTML=e.sanitizerHTML(parseLayout(e,e.layouts[e.context.currentType]))}else e.context.mainElement.innerHTML=e.sanitizerHTML(parseMultipleLayout(e,parseLayout(e,e.layouts[e.context.currentType])))},setVisibilityArrows=(e,t,n,a)=>{e.style.visibility=n?"hidden":"",t.style.visibility=a?"hidden":""},handleDefaultType=(e,t,n)=>{const a=getDate(getDateString(new Date(e.context.selectedYear,e.context.selectedMonth,1))),l=new Date(a.getTime()),o=new Date(a.getTime());l.setMonth(l.getMonth()-e.monthsToSwitch),o.setMonth(o.getMonth()+e.monthsToSwitch);const s=getDate(e.context.dateMin),i=getDate(e.context.dateMax);e.selectionYearsMode||(s.setFullYear(a.getFullYear()),i.setFullYear(a.getFullYear()));const r=!e.selectionMonthsMode||l.getFullYear()<s.getFullYear()||l.getFullYear()===s.getFullYear()&&l.getMonth()<s.getMonth(),c=!e.selectionMonthsMode||o.getFullYear()>i.getFullYear()||o.getFullYear()===i.getFullYear()&&o.getMonth()>i.getMonth()-(e.context.displayMonthsCount-1);setVisibilityArrows(t,n,r,c)},handleYearType=(e,t,n)=>{const a=getDate(e.context.dateMin),l=getDate(e.context.dateMax),o=!!(a.getFullYear()&&e.context.displayYear-7<=a.getFullYear()),s=!!(l.getFullYear()&&e.context.displayYear+7>=l.getFullYear());setVisibilityArrows(t,n,o,s)},visibilityArrows=e=>{if("month"===e.context.currentType)return;const t=e.context.mainElement.querySelector('[data-vc-arrow="prev"]'),n=e.context.mainElement.querySelector('[data-vc-arrow="next"]');if(!t||!n)return;({default:()=>handleDefaultType(e,t,n),year:()=>handleYearType(e,t,n)})["multiple"===e.context.currentType?"default":e.context.currentType]()},visibilityHandler=(e,t,n,a,l)=>{const o=new Date(a.setFullYear(e.context.selectedYear,e.context.selectedMonth+n)).getFullYear(),s=new Date(a.setMonth(e.context.selectedMonth+n)).getMonth(),i=e.context.locale.months.long[s],r=t.closest('[data-vc="column"]');r&&(r.ariaLabel=`${i} ${o}`);const c={month:{id:s,label:i},year:{id:o,label:o}};t.innerText=String(c[l].label),t.dataset[`vc${l.charAt(0).toUpperCase()+l.slice(1)}`]=String(c[l].id),t.ariaLabel=`${e.labels[l]} ${c[l].label}`;const d={month:e.selectionMonthsMode,year:e.selectionYearsMode},u=!1===d[l]||"only-arrows"===d[l];u&&(t.tabIndex=-1),t.disabled=u},visibilityTitle=e=>{const t=e.context.mainElement.querySelectorAll('[data-vc="month"]'),n=e.context.mainElement.querySelectorAll('[data-vc="year"]'),a=new Date(e.context.selectedYear,e.context.selectedMonth,1);[t,n].forEach((t=>null==t?void 0:t.forEach(((t,n)=>visibilityHandler(e,t,n,a,t.dataset.vc)))))},setYearModifier=(e,t,n,a,l)=>{var o;const s={month:"[data-vc-months-month]",year:"[data-vc-years-year]"},i={month:{selected:"data-vc-months-month-selected",aria:"aria-selected",value:"vcMonthsMonth",selectedProperty:"selectedMonth"},year:{selected:"data-vc-years-year-selected",aria:"aria-selected",value:"vcYearsYear",selectedProperty:"selectedYear"}};l&&(null==(o=e.context.mainElement.querySelectorAll(s[n]))||o.forEach((e=>{e.removeAttribute(i[n].selected),e.removeAttribute(i[n].aria)})),setContext(e,i[n].selectedProperty,Number(t.dataset[i[n].value])),visibilityTitle(e),"year"===n&&visibilityArrows(e)),a&&(t.setAttribute(i[n].selected,""),t.setAttribute(i[n].aria,"true"))},getColumnID=(e,t)=>{var n;if("multiple"!==e.type)return{currentValue:null,columnID:0};const a=e.context.mainElement.querySelectorAll('[data-vc="column"]'),l=Array.from(a).findIndex((e=>e.closest(`[data-vc-column="${t}"]`)));return{currentValue:l>=0?Number(null==(n=a[l].querySelector(`[data-vc="${t}"]`))?void 0:n.getAttribute(`data-vc-${t}`)):null,columnID:Math.max(l,0)}},createMonthEl=(e,t,n,a,l,o,s)=>{const i=t.cloneNode(!1);return i.className=e.styles.monthsMonth,i.innerText=a,i.ariaLabel=l,i.role="gridcell",i.dataset.vcMonthsMonth=`${s}`,o&&(i.ariaDisabled="true"),o&&(i.tabIndex=-1),i.disabled=o,setYearModifier(e,i,"month",n===s,!1),i},createMonths=(e,t)=>{var n,a;const l=null==(n=null==t?void 0:t.closest('[data-vc="header"]'))?void 0:n.querySelector('[data-vc="year"]'),o=l?Number(l.dataset.vcYear):e.context.selectedYear,s=(null==t?void 0:t.dataset.vcMonth)?Number(t.dataset.vcMonth):e.context.selectedMonth;setContext(e,"currentType","month"),createLayouts(e,t),visibilityTitle(e);const i=e.context.mainElement.querySelector('[data-vc="months"]');if(!e.selectionMonthsMode||!i)return;const r=e.monthsToSwitch>1?e.context.locale.months.long.map(((t,n)=>s-e.monthsToSwitch*n)).concat(e.context.locale.months.long.map(((t,n)=>s+e.monthsToSwitch*n))).filter((e=>e>=0&&e<=12)):Array.from(Array(12).keys()),c=document.createElement("button");c.type="button";for(let t=0;t<12;t++){const n=getDate(e.context.dateMin),a=getDate(e.context.dateMax),l=e.context.displayMonthsCount-1,{columnID:d}=getColumnID(e,"month"),u=o<=n.getFullYear()&&t<n.getMonth()+d||o>=a.getFullYear()&&t>a.getMonth()-l+d||o>a.getFullYear()||t!==s&&!r.includes(t),m=createMonthEl(e,c,s,e.context.locale.months.short[t],e.context.locale.months.long[t],u,t);i.appendChild(m),e.onCreateMonthEls&&e.onCreateMonthEls(e,m)}null==(a=e.context.mainElement.querySelector("[data-vc-months-month]:not([disabled])"))||a.focus()},TimeInput=(e,t,n,a,l)=>`\n  <label class="${t}" data-vc-time-input="${e}">\n    <input type="text" name="${e}" maxlength="2" aria-label="${n[`input${e.charAt(0).toUpperCase()+e.slice(1)}`]}" value="${a}" ${l?"disabled":""}>\n  </label>\n`,TimeRange=(e,t,n,a,l,o,s)=>`\n  <label class="${t}" data-vc-time-range="${e}">\n    <input type="range" name="${e}" min="${a}" max="${l}" step="${o}" aria-label="${n[`range${e.charAt(0).toUpperCase()+e.slice(1)}`]}" value="${s}">\n  </label>\n`,handleActions=(e,t,n,a)=>{({hour:()=>setContext(e,"selectedHours",n),minute:()=>setContext(e,"selectedMinutes",n)})[a](),setContext(e,"selectedTime",`${e.context.selectedHours}:${e.context.selectedMinutes}${e.context.selectedKeeping?` ${e.context.selectedKeeping}`:""}`),e.onChangeTime&&e.onChangeTime(e,t,!1),e.inputMode&&e.context.inputElement&&e.context.mainElement&&e.onChangeToInput&&e.onChangeToInput(e,t)},transformTime24=(e,t)=>{var n;return(null==(n={0:{AM:"00",PM:"12"},1:{AM:"01",PM:"13"},2:{AM:"02",PM:"14"},3:{AM:"03",PM:"15"},4:{AM:"04",PM:"16"},5:{AM:"05",PM:"17"},6:{AM:"06",PM:"18"},7:{AM:"07",PM:"19"},8:{AM:"08",PM:"20"},9:{AM:"09",PM:"21"},10:{AM:"10",PM:"22"},11:{AM:"11",PM:"23"},12:{AM:"00",PM:"12"}}[Number(e)])?void 0:n[t])||String(e)},handleClickKeepingTime=(e,t,n,a,l)=>{const o=o=>{const s="AM"===e.context.selectedKeeping?"PM":"AM",i=transformTime24(e.context.selectedHours,s);Number(i)<=a&&Number(i)>=l?(setContext(e,"selectedKeeping",s),n.value=i,handleActions(e,o,e.context.selectedHours,"hour"),t.ariaLabel=`${e.labels.btnKeeping} ${e.context.selectedKeeping}`,t.innerText=e.context.selectedKeeping):e.onChangeTime&&e.onChangeTime(e,o,!0)};return t.addEventListener("click",o),()=>{t.removeEventListener("click",o)}},transformTime12=e=>({0:"12",13:"01",14:"02",15:"03",16:"04",17:"05",18:"06",19:"07",20:"08",21:"09",22:"10",23:"11"}[Number(e)]||String(e)),updateInputAndRange=(e,t,n,a)=>{e.value=n,t.value=a},updateKeepingTime$1=(e,t,n)=>{t&&n&&(setContext(e,"selectedKeeping",n),t.innerText=n)},handleInput$1=(e,t,n,a,l,o,s)=>{const i={hour:(i,r,c)=>{if(!e.selectionTimeMode)return;({12:()=>{if(!e.context.selectedKeeping)return;const d=Number(transformTime24(r,e.context.selectedKeeping));if(!(d<=o&&d>=s))return updateInputAndRange(n,t,e.context.selectedHours,e.context.selectedHours),void(e.onChangeTime&&e.onChangeTime(e,c,!0));updateInputAndRange(n,t,transformTime12(r),transformTime24(r,e.context.selectedKeeping)),i>12&&updateKeepingTime$1(e,a,"PM"),handleActions(e,c,transformTime12(r),l)},24:()=>{if(!(i<=o&&i>=s))return updateInputAndRange(n,t,e.context.selectedHours,e.context.selectedHours),void(e.onChangeTime&&e.onChangeTime(e,c,!0));updateInputAndRange(n,t,r,r),handleActions(e,c,r,l)}})[e.selectionTimeMode]()},minute:(a,i,r)=>{if(!(a<=o&&a>=s))return n.value=e.context.selectedMinutes,void(e.onChangeTime&&e.onChangeTime(e,r,!0));n.value=i,t.value=i,handleActions(e,r,i,l)}},r=e=>{const t=Number(n.value),a=n.value.padStart(2,"0");i[l]&&i[l](t,a,e)};return n.addEventListener("change",r),()=>{n.removeEventListener("change",r)}},updateInputAndTime=(e,t,n,a,l)=>{t.value=l,handleActions(e,n,l,a)},updateKeepingTime=(e,t,n)=>{t&&(setContext(e,"selectedKeeping",n),t.innerText=n)},handleRange=(e,t,n,a,l)=>{const o=o=>{const s=Number(t.value),i=t.value.padStart(2,"0"),r="hour"===l,c=24===e.selectionTimeMode,d=s>0&&s<12;r&&!c&&updateKeepingTime(e,a,0===s||d?"AM":"PM"),updateInputAndTime(e,n,o,l,!r||c||d?i:transformTime12(t.value))};return t.addEventListener("input",o),()=>{t.removeEventListener("input",o)}},handleMouseOver=e=>e.setAttribute("data-vc-input-focus",""),handleMouseOut=e=>e.removeAttribute("data-vc-input-focus"),handleTime=(e,t)=>{const n=t.querySelector('[data-vc-time-range="hour"] input[name="hour"]'),a=t.querySelector('[data-vc-time-range="minute"] input[name="minute"]'),l=t.querySelector('[data-vc-time-input="hour"] input[name="hour"]'),o=t.querySelector('[data-vc-time-input="minute"] input[name="minute"]'),s=t.querySelector('[data-vc-time="keeping"]');if(!(n&&a&&l&&o))return;const i=e=>{e.target===n&&handleMouseOver(l),e.target===a&&handleMouseOver(o)},r=e=>{e.target===n&&handleMouseOut(l),e.target===a&&handleMouseOut(o)};return t.addEventListener("mouseover",i),t.addEventListener("mouseout",r),handleInput$1(e,n,l,s,"hour",e.timeMaxHour,e.timeMinHour),handleInput$1(e,a,o,s,"minute",e.timeMaxMinute,e.timeMinMinute),handleRange(e,n,l,s,"hour"),handleRange(e,a,o,s,"minute"),s&&handleClickKeepingTime(e,s,n,e.timeMaxHour,e.timeMinHour),()=>{t.removeEventListener("mouseover",i),t.removeEventListener("mouseout",r)}},createTime=e=>{const t=e.context.mainElement.querySelector('[data-vc="time"]');if(!e.selectionTimeMode||!t)return;const[n,a]=[e.timeMinHour,e.timeMaxHour],[l,o]=[e.timeMinMinute,e.timeMaxMinute],s=e.context.selectedKeeping?transformTime24(e.context.selectedHours,e.context.selectedKeeping):e.context.selectedHours,i="range"===e.timeControls;var r;t.innerHTML=e.sanitizerHTML(`\n    <div class="${e.styles.timeContent}" data-vc-time="content">\n      ${TimeInput("hour",e.styles.timeHour,e.labels,e.context.selectedHours,i)}\n      ${TimeInput("minute",e.styles.timeMinute,e.labels,e.context.selectedMinutes,i)}\n      ${12===e.selectionTimeMode?(r=e.context.selectedKeeping,`<button type="button" class="${e.styles.timeKeeping}" aria-label="${e.labels.btnKeeping} ${r}" data-vc-time="keeping" ${i?"disabled":""}>${r}</button>`):""}\n    </div>\n    <div class="${e.styles.timeRanges}" data-vc-time="ranges">\n      ${TimeRange("hour",e.styles.timeRange,e.labels,n,a,e.timeStepHour,s)}\n      ${TimeRange("minute",e.styles.timeRange,e.labels,l,o,e.timeStepMinute,e.context.selectedMinutes)}\n    </div>\n  `),handleTime(e,t)},createWeek=e=>{const t=e.selectedWeekends?[...e.selectedWeekends]:[],n=[...e.context.locale.weekdays.long].reduce(((n,a,l)=>[...n,{id:l,titleShort:e.context.locale.weekdays.short[l],titleLong:a,isWeekend:t.includes(l)}]),[]),a=[...n.slice(e.firstWeekday),...n.slice(0,e.firstWeekday)];e.context.mainElement.querySelectorAll('[data-vc="week"]').forEach((t=>{const n=e.onClickWeekDay?document.createElement("button"):document.createElement("b");e.onClickWeekDay&&(n.type="button"),a.forEach((a=>{const l=n.cloneNode(!0);l.innerText=a.titleShort,l.className=e.styles.weekDay,l.role="columnheader",l.ariaLabel=a.titleLong,l.dataset.vcWeekDay=String(a.id),a.isWeekend&&(l.dataset.vcWeekDayOff=""),t.appendChild(l)}))}))},createYearEl=(e,t,n,a,l)=>{const o=t.cloneNode(!1);return o.className=e.styles.yearsYear,o.innerText=String(l),o.ariaLabel=String(l),o.role="gridcell",o.dataset.vcYearsYear=`${l}`,a&&(o.ariaDisabled="true"),a&&(o.tabIndex=-1),o.disabled=a,setYearModifier(e,o,"year",n===l,!1),o},createYears=(e,t)=>{var n;const a=(null==t?void 0:t.dataset.vcYear)?Number(t.dataset.vcYear):e.context.selectedYear;setContext(e,"currentType","year"),createLayouts(e,t),visibilityTitle(e),visibilityArrows(e);const l=e.context.mainElement.querySelector('[data-vc="years"]');if(!e.selectionYearsMode||!l)return;const o="multiple"!==e.type||e.context.selectedYear===a?0:1,s=document.createElement("button");s.type="button";for(let t=e.context.displayYear-7;t<e.context.displayYear+8;t++){const n=t<getDate(e.context.dateMin).getFullYear()+o||t>getDate(e.context.dateMax).getFullYear(),i=createYearEl(e,s,a,n,t);l.appendChild(i),e.onCreateYearEls&&e.onCreateYearEls(e,i)}null==(n=e.context.mainElement.querySelector("[data-vc-years-year]:not([disabled])"))||n.focus()},trackChangesHTMLElement=(e,t,n)=>{new MutationObserver((e=>{for(let a=0;a<e.length;a++){if(e[a].attributeName===t){n();break}}})).observe(e,{attributes:!0})},haveListener={value:!1,set:()=>haveListener.value=!0,check:()=>haveListener.value},setTheme=(e,t)=>e.dataset.vcTheme=t,trackChangesThemeInSystemSettings=(e,t)=>{if(setTheme(e.context.mainElement,t.matches?"dark":"light"),"system"!==e.selectedTheme||haveListener.check())return;const n=e=>{const t=document.querySelectorAll('[data-vc="calendar"]');null==t||t.forEach((t=>setTheme(t,e.matches?"dark":"light")))};t.addEventListener?t.addEventListener("change",n):t.addListener(n),haveListener.set()},detectTheme=(e,t)=>{const n=e.themeAttrDetect.length?document.querySelector(e.themeAttrDetect):null,a=e.themeAttrDetect.replace(/^.*\[(.+)\]/g,((e,t)=>t));if(!n||"system"===n.getAttribute(a))return void trackChangesThemeInSystemSettings(e,t);const l=n.getAttribute(a);l?(setTheme(e.context.mainElement,l),trackChangesHTMLElement(n,a,(()=>{const t=n.getAttribute(a);t&&setTheme(e.context.mainElement,t)}))):trackChangesThemeInSystemSettings(e,t)},handleTheme=e=>{"not all"!==window.matchMedia("(prefers-color-scheme)").media?"system"===e.selectedTheme?detectTheme(e,window.matchMedia("(prefers-color-scheme: dark)")):setTheme(e.context.mainElement,e.selectedTheme):setTheme(e.context.mainElement,"light")},capitalizeFirstLetter=e=>e.charAt(0).toUpperCase()+e.slice(1).replace(/\./,""),getLocaleWeekday=(e,t,n)=>{const a=new Date(`1978-01-0${t+1}T00:00:00.000Z`),l=a.toLocaleString(n,{weekday:"short",timeZone:"UTC"}),o=a.toLocaleString(n,{weekday:"long",timeZone:"UTC"});e.context.locale.weekdays.short.push(capitalizeFirstLetter(l)),e.context.locale.weekdays.long.push(capitalizeFirstLetter(o))},getLocaleMonth=(e,t,n)=>{const a=new Date(`1978-${String(t+1).padStart(2,"0")}-01T00:00:00.000Z`),l=a.toLocaleString(n,{month:"short",timeZone:"UTC"}),o=a.toLocaleString(n,{month:"long",timeZone:"UTC"});e.context.locale.months.short.push(capitalizeFirstLetter(l)),e.context.locale.months.long.push(capitalizeFirstLetter(o))},getLocale=e=>{var t,n,a,l,o,s,i,r;if(!(e.context.locale.weekdays.short[6]&&e.context.locale.weekdays.long[6]&&e.context.locale.months.short[11]&&e.context.locale.months.long[11]))if("string"==typeof e.locale){if("string"==typeof e.locale&&!e.locale.length)throw new Error(errorMessages.notLocale);Array.from({length:7},((t,n)=>getLocaleWeekday(e,n,e.locale))),Array.from({length:12},((t,n)=>getLocaleMonth(e,n,e.locale)))}else{if(!((null==(n=null==(t=e.locale)?void 0:t.weekdays)?void 0:n.short[6])&&(null==(l=null==(a=e.locale)?void 0:a.weekdays)?void 0:l.long[6])&&(null==(s=null==(o=e.locale)?void 0:o.months)?void 0:s.short[11])&&(null==(r=null==(i=e.locale)?void 0:i.months)?void 0:r.long[11])))throw new Error(errorMessages.notLocale);setContext(e,"locale",__spreadValues({},e.locale))}},create=e=>{const t={default:()=>{createWeek(e),createDates(e)},multiple:()=>{createWeek(e),createDates(e)},month:()=>createMonths(e),year:()=>createYears(e)};handleTheme(e),getLocale(e),createLayouts(e),visibilityTitle(e),visibilityArrows(e),createTime(e),t[e.context.currentType]()},handleArrowKeys=e=>{const t=t=>{var n;const a=t.target;if(!["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(t.key)||"button"!==a.localName)return;const l=Array.from(e.context.mainElement.querySelectorAll('[data-vc="calendar"] button')),o=l.indexOf(a);if(-1===o)return;const s=(i=l[o]).hasAttribute("data-vc-date-btn")?7:i.hasAttribute("data-vc-months-month")?4:i.hasAttribute("data-vc-years-year")?5:1;var i;const r=(0,{ArrowUp:()=>Math.max(0,o-s),ArrowDown:()=>Math.min(l.length-1,o+s),ArrowLeft:()=>Math.max(0,o-1),ArrowRight:()=>Math.min(l.length-1,o+1)}[t.key])();null==(n=l[r])||n.focus()};return e.context.mainElement.addEventListener("keydown",t),()=>e.context.mainElement.removeEventListener("keydown",t)},handleMonth=(e,t)=>{const n=getDate(getDateString(new Date(e.context.selectedYear,e.context.selectedMonth,1)));({prev:()=>n.setMonth(n.getMonth()-e.monthsToSwitch),next:()=>n.setMonth(n.getMonth()+e.monthsToSwitch)})[t](),setContext(e,"selectedMonth",n.getMonth()),setContext(e,"selectedYear",n.getFullYear()),visibilityTitle(e),visibilityArrows(e),createDates(e)},handleClickArrow=(e,t)=>{const n=t.target.closest("[data-vc-arrow]");if(n){if(["default","multiple"].includes(e.context.currentType))handleMonth(e,n.dataset.vcArrow);else if("year"===e.context.currentType&&void 0!==e.context.displayYear){const a={prev:-15,next:15}[n.dataset.vcArrow];setContext(e,"displayYear",e.context.displayYear+a),createYears(e,t.target)}e.onClickArrow&&e.onClickArrow(e,t)}},canToggleSelection=e=>void 0===e.enableDateToggle||("function"==typeof e.enableDateToggle?e.enableDateToggle(e):e.enableDateToggle),handleSelectDate=(e,t,n)=>{const a=t.dataset.vcDate,l=t.closest("[data-vc-date][data-vc-date-selected]"),o=canToggleSelection(e);if(l&&!o)return;const s=l?e.context.selectedDates.filter((e=>e!==a)):n?[...e.context.selectedDates,a]:[a];setContext(e,"selectedDates",s)},createDateRangeTooltip=(e,t,n)=>{if(!t)return;if(!n)return t.dataset.vcDateRangeTooltip="hidden",void(t.textContent="");const a=e.context.mainElement.getBoundingClientRect(),l=n.getBoundingClientRect();t.style.left=l.left-a.left+l.width/2+"px",t.style.top=l.bottom-a.top-l.height+"px",t.dataset.vcDateRangeTooltip="visible",t.innerHTML=e.sanitizerHTML(e.onCreateDateRangeTooltip(e,n,t,l,a))},state={self:null,lastDateEl:null,isHovering:!1,rangeMin:void 0,rangeMax:void 0,tooltipEl:null,timeoutId:null},addHoverEffect=(e,t,n)=>{var a,l,o;if(!(null==(l=null==(a=state.self)?void 0:a.context)?void 0:l.selectedDates[0]))return;const s=getDateString(e);(null==(o=state.self.context.disableDates)?void 0:o.includes(s))||(state.self.context.mainElement.querySelectorAll(`[data-vc-date="${s}"]`).forEach((e=>e.dataset.vcDateHover="")),t.forEach((e=>e.dataset.vcDateHover="first")),n.forEach((e=>{"first"===e.dataset.vcDateHover?e.dataset.vcDateHover="first-and-last":e.dataset.vcDateHover="last"})))},removeHoverEffect=()=>{var e,t;if(!(null==(t=null==(e=state.self)?void 0:e.context)?void 0:t.mainElement))return;state.self.context.mainElement.querySelectorAll("[data-vc-date-hover]").forEach((e=>e.removeAttribute("data-vc-date-hover")))},handleHoverDatesEvent=e=>{var t,n;if(!e||!(null==(n=null==(t=state.self)?void 0:t.context)?void 0:n.selectedDates[0]))return;if(!e.closest('[data-vc="dates"]'))return state.lastDateEl=null,createDateRangeTooltip(state.self,state.tooltipEl,null),void removeHoverEffect();const a=e.closest("[data-vc-date]");if(!a||state.lastDateEl===a)return;state.lastDateEl=a,createDateRangeTooltip(state.self,state.tooltipEl,a),removeHoverEffect();const l=a.dataset.vcDate,o=getDate(state.self.context.selectedDates[0]),s=getDate(l),i=state.self.context.mainElement.querySelectorAll(`[data-vc-date="${state.self.context.selectedDates[0]}"]`),r=state.self.context.mainElement.querySelectorAll(`[data-vc-date="${l}"]`),[c,d]=o<s?[i,r]:[r,i],[u,m]=o<s?[o,s]:[s,o];for(let e=new Date(u);e<=m;e.setDate(e.getDate()+1))addHoverEffect(e,c,d)},handleHoverSelectedDatesRangeEvent=e=>{const t=null==e?void 0:e.closest("[data-vc-date-selected]");if(!t&&state.lastDateEl)return state.lastDateEl=null,void createDateRangeTooltip(state.self,state.tooltipEl,null);t&&state.lastDateEl!==t&&(state.lastDateEl=t,createDateRangeTooltip(state.self,state.tooltipEl,t))},optimizedHoverHandler=e=>t=>{const n=t.target;state.isHovering||(state.isHovering=!0,requestAnimationFrame((()=>{e(n),state.isHovering=!1})))},optimizedHandleHoverDatesEvent=optimizedHoverHandler(handleHoverDatesEvent),optimizedHandleHoverSelectedDatesRangeEvent=optimizedHoverHandler(handleHoverSelectedDatesRangeEvent),handleCancelSelectionDates=e=>{state.self&&"Escape"===e.key&&(state.lastDateEl=null,setContext(state.self,"selectedDates",[]),state.self.context.mainElement.removeEventListener("mousemove",optimizedHandleHoverDatesEvent),state.self.context.mainElement.removeEventListener("keydown",handleCancelSelectionDates),createDateRangeTooltip(state.self,state.tooltipEl,null),removeHoverEffect())},handleMouseLeave=()=>{null!==state.timeoutId&&clearTimeout(state.timeoutId),state.timeoutId=setTimeout((()=>{state.lastDateEl=null,createDateRangeTooltip(state.self,state.tooltipEl,null),removeHoverEffect()}),50)},updateDisabledDates=()=>{var e,t,n,a;if(!(null==(n=null==(t=null==(e=state.self)?void 0:e.context)?void 0:t.selectedDates)?void 0:n[0])||!(null==(a=state.self.context.disableDates)?void 0:a[0]))return;const l=getDate(state.self.context.selectedDates[0]),[o,s]=state.self.context.disableDates.map((e=>getDate(e))).reduce((([e,t],n)=>[l>=n?n:e,l<n&&null===t?n:t]),[null,null]);o&&setContext(state.self,"displayDateMin",getDateString(new Date(o.setDate(o.getDate()+1)))),s&&setContext(state.self,"displayDateMax",getDateString(new Date(s.setDate(s.getDate()-1))));state.self.disableDatesPast&&!state.self.disableAllDates&&getDate(state.self.context.displayDateMin)<getDate(state.self.context.dateToday)&&setContext(state.self,"displayDateMin",state.self.context.dateToday)},handleSelectDateRange=(e,t)=>{state.self=e,state.lastDateEl=t,removeHoverEffect(),e.disableDatesGaps&&(state.rangeMin=state.rangeMin?state.rangeMin:e.context.displayDateMin,state.rangeMax=state.rangeMax?state.rangeMax:e.context.displayDateMax),e.onCreateDateRangeTooltip&&(state.tooltipEl=e.context.mainElement.querySelector("[data-vc-date-range-tooltip]"));const n=null==t?void 0:t.dataset.vcDate;if(n){const t=1===e.context.selectedDates.length&&e.context.selectedDates[0].includes(n),a=t&&!canToggleSelection(e)?[n,n]:t&&canToggleSelection(e)?[]:e.context.selectedDates.length>1?[n]:[...e.context.selectedDates,n];setContext(e,"selectedDates",a),e.context.selectedDates.length>1&&e.context.selectedDates.sort(((e,t)=>+new Date(e)-+new Date(t)))}({set:()=>(e.disableDatesGaps&&updateDisabledDates(),createDateRangeTooltip(state.self,state.tooltipEl,t),state.self.context.mainElement.removeEventListener("mousemove",optimizedHandleHoverSelectedDatesRangeEvent),state.self.context.mainElement.removeEventListener("mouseleave",handleMouseLeave),state.self.context.mainElement.removeEventListener("keydown",handleCancelSelectionDates),state.self.context.mainElement.addEventListener("mousemove",optimizedHandleHoverDatesEvent),state.self.context.mainElement.addEventListener("mouseleave",handleMouseLeave),state.self.context.mainElement.addEventListener("keydown",handleCancelSelectionDates),()=>{state.self.context.mainElement.removeEventListener("mousemove",optimizedHandleHoverDatesEvent),state.self.context.mainElement.removeEventListener("mouseleave",handleMouseLeave),state.self.context.mainElement.removeEventListener("keydown",handleCancelSelectionDates)}),reset:()=>{const[n,a]=[e.context.selectedDates[0],e.context.selectedDates[e.context.selectedDates.length-1]],l=e.context.selectedDates[0]!==e.context.selectedDates[e.context.selectedDates.length-1],o=parseDates([`${n}:${a}`]).filter((t=>!e.context.disableDates.includes(t))),s=l?e.enableEdgeDatesOnly?[n,a]:o:[e.context.selectedDates[0],e.context.selectedDates[0]];if(setContext(e,"selectedDates",s),e.disableDatesGaps&&(setContext(e,"displayDateMin",state.rangeMin),setContext(e,"displayDateMax",state.rangeMax)),state.self.context.mainElement.removeEventListener("mousemove",optimizedHandleHoverDatesEvent),state.self.context.mainElement.removeEventListener("mouseleave",handleMouseLeave),state.self.context.mainElement.removeEventListener("keydown",handleCancelSelectionDates),e.onCreateDateRangeTooltip)return e.context.selectedDates[0]||(state.self.context.mainElement.removeEventListener("mousemove",optimizedHandleHoverSelectedDatesRangeEvent),state.self.context.mainElement.removeEventListener("mouseleave",handleMouseLeave),createDateRangeTooltip(state.self,state.tooltipEl,null)),e.context.selectedDates[0]&&(state.self.context.mainElement.addEventListener("mousemove",optimizedHandleHoverSelectedDatesRangeEvent),state.self.context.mainElement.addEventListener("mouseleave",handleMouseLeave),createDateRangeTooltip(state.self,state.tooltipEl,t)),()=>{state.self.context.mainElement.removeEventListener("mousemove",optimizedHandleHoverSelectedDatesRangeEvent),state.self.context.mainElement.removeEventListener("mouseleave",handleMouseLeave)}}})[1===e.context.selectedDates.length?"set":"reset"]()},updateDateModifier=e=>{e.context.mainElement.querySelectorAll("[data-vc-date]").forEach((t=>{const n=t.querySelector("[data-vc-date-btn]"),a=t.dataset.vcDate,l=getDate(a).getDay();setDateModifier(e,e.context.selectedYear,t,n,l,a,"current")}))},handleClickDate=(e,t)=>{var n;const a=t.target,l=a.closest("[data-vc-date-btn]");if(!e.selectionDatesMode||!["single","multiple","multiple-ranged"].includes(e.selectionDatesMode)||!l)return;const o=l.closest("[data-vc-date]");({single:()=>handleSelectDate(e,o,!1),multiple:()=>handleSelectDate(e,o,!0),"multiple-ranged":()=>handleSelectDateRange(e,o)})[e.selectionDatesMode](),null==(n=e.context.selectedDates)||n.sort(((e,t)=>+new Date(e)-+new Date(t))),e.onClickDate&&e.onClickDate(e,t),e.inputMode&&e.context.inputElement&&e.context.mainElement&&e.onChangeToInput&&e.onChangeToInput(e,t);const s=a.closest('[data-vc-date-month="prev"]'),i=a.closest('[data-vc-date-month="next"]');({prev:()=>e.enableMonthChangeOnDayClick?handleMonth(e,"prev"):updateDateModifier(e),next:()=>e.enableMonthChangeOnDayClick?handleMonth(e,"next"):updateDateModifier(e),current:()=>updateDateModifier(e)})[s?"prev":i?"next":"current"]()},typeClick=["month","year"],getValue=(e,t,n)=>{const{currentValue:a,columnID:l}=getColumnID(e,t);return"month"===e.context.currentType&&l>=0?n-l:"year"===e.context.currentType&&e.context.selectedYear!==a?n-1:n},handleMultipleYearSelection=(e,t)=>{const n=getValue(e,"year",Number(t.dataset.vcYearsYear)),a=getDate(e.context.dateMin),l=getDate(e.context.dateMax),o=e.context.displayMonthsCount-1,{columnID:s}=getColumnID(e,"year"),i=e.context.selectedMonth<a.getMonth()&&n<=a.getFullYear(),r=e.context.selectedMonth>l.getMonth()-o+s&&n>=l.getFullYear(),c=n<a.getFullYear(),d=n>l.getFullYear(),u=i||c?a.getFullYear():r||d?l.getFullYear():n,m=i||c?a.getMonth():r||d?l.getMonth()-o+s:e.context.selectedMonth;setContext(e,"selectedYear",u),setContext(e,"selectedMonth",m)},handleMultipleMonthSelection=(e,t)=>{const n=t.closest('[data-vc-column="month"]').querySelector('[data-vc="year"]'),a=getValue(e,"month",Number(t.dataset.vcMonthsMonth)),l=Number(n.dataset.vcYear),o=getDate(e.context.dateMin),s=getDate(e.context.dateMax),i=a<o.getMonth()&&l<=o.getFullYear(),r=a>s.getMonth()&&l>=s.getFullYear();setContext(e,"selectedYear",l),setContext(e,"selectedMonth",i?o.getMonth():r?s.getMonth():a)},handleItemClick=(e,t,n,a)=>{var l;({year:()=>{if("multiple"===e.type)return handleMultipleYearSelection(e,a);setContext(e,"selectedYear",Number(a.dataset.vcYearsYear))},month:()=>{if("multiple"===e.type)return handleMultipleMonthSelection(e,a);setContext(e,"selectedMonth",Number(a.dataset.vcMonthsMonth))}})[n]();({year:()=>{var n;return null==(n=e.onClickYear)?void 0:n.call(e,e,t)},month:()=>{var n;return null==(n=e.onClickMonth)?void 0:n.call(e,e,t)}})[n](),e.context.currentType!==e.type?(setContext(e,"currentType",e.type),create(e),null==(l=e.context.mainElement.querySelector(`[data-vc="${n}"]`))||l.focus()):setYearModifier(e,a,n,!0,!0)},handleClickType=(e,t,n)=>{var a;const l=t.target,o=l.closest(`[data-vc="${n}"]`),s={year:()=>createYears(e,l),month:()=>createMonths(e,l)};if(o&&e.onClickTitle&&e.onClickTitle(e,t),o&&e.context.currentType!==n)return s[n]();const i=l.closest(`[data-vc-${n}s-${n}]`);if(i)return handleItemClick(e,t,n,i);const r=l.closest('[data-vc="grid"]'),c=l.closest('[data-vc="column"]');(e.context.currentType===n&&o||"multiple"===e.type&&e.context.currentType===n&&r&&!c)&&(setContext(e,"currentType",e.type),create(e),null==(a=e.context.mainElement.querySelector(`[data-vc="${n}"]`))||a.focus())},handleClickMonthOrYear=(e,t)=>{const n={month:e.selectionMonthsMode,year:e.selectionYearsMode};typeClick.forEach((a=>{n[a]&&t.target&&handleClickType(e,t,a)}))},handleClickWeekNumber=(e,t)=>{if(!e.enableWeekNumbers||!e.onClickWeekNumber)return;const n=t.target.closest("[data-vc-week-number]"),a=e.context.mainElement.querySelectorAll("[data-vc-date-week-number]");if(!n||!a[0])return;const l=Number(n.innerText),o=Number(n.dataset.vcWeekYear),s=Array.from(a).filter((e=>Number(e.dataset.vcDateWeekNumber)===l));e.onClickWeekNumber(e,l,o,s,t)},handleClickWeekDay=(e,t)=>{if(!e.onClickWeekDay)return;const n=t.target.closest("[data-vc-week-day]"),a=t.target.closest('[data-vc="column"]'),l=a?a.querySelectorAll("[data-vc-date-week-day]"):e.context.mainElement.querySelectorAll("[data-vc-date-week-day]");if(!n||!l[0])return;const o=Number(n.dataset.vcWeekDay),s=Array.from(l).filter((e=>Number(e.dataset.vcDateWeekDay)===o));e.onClickWeekDay(e,o,s,t)},handleClick=e=>{const t=t=>{handleClickArrow(e,t),handleClickWeekDay(e,t),handleClickWeekNumber(e,t),handleClickDate(e,t),handleClickMonthOrYear(e,t)};return e.context.mainElement.addEventListener("click",t),()=>e.context.mainElement.removeEventListener("click",t)},initMonthsCount=e=>{if("multiple"===e.type&&(e.displayMonthsCount<=1||e.displayMonthsCount>12))throw new Error(errorMessages.incorrectMonthsCount);if("multiple"!==e.type&&e.displayMonthsCount>1)throw new Error(errorMessages.incorrectMonthsCount);setContext(e,"displayMonthsCount",e.displayMonthsCount?e.displayMonthsCount:"multiple"===e.type?2:1)},getLocalDate=()=>{const e=new Date;return new Date(e.getTime()-6e4*e.getTimezoneOffset()).toISOString().substring(0,10)},resolveDate=(e,t)=>"today"===e?getLocalDate():e instanceof Date||"number"==typeof e||"string"==typeof e?parseDates([e])[0]:t,initRange=e=>{var t,n,a;const l=resolveDate(e.dateMin,e.dateMin),o=resolveDate(e.dateMax,e.dateMax),s=resolveDate(e.displayDateMin,l),i=resolveDate(e.displayDateMax,o);setContext(e,"dateToday",resolveDate(e.dateToday,e.dateToday)),setContext(e,"displayDateMin",s?getDate(l)>=getDate(s)?l:s:l),setContext(e,"displayDateMax",i?getDate(o)<=getDate(i)?o:i:o);const r=e.disableDatesPast&&!e.disableAllDates&&getDate(s)<getDate(e.context.dateToday);setContext(e,"displayDateMin",r||e.disableAllDates?e.context.dateToday:s),setContext(e,"displayDateMax",e.disableAllDates?e.context.dateToday:i),setContext(e,"disableDates",e.disableDates[0]&&!e.disableAllDates?parseDates(e.disableDates):e.disableAllDates?[e.context.displayDateMin]:[]),e.context.disableDates.length>1&&e.context.disableDates.sort(((e,t)=>+new Date(e)-+new Date(t))),setContext(e,"enableDates",e.enableDates[0]?parseDates(e.enableDates):[]),(null==(t=e.context.enableDates)?void 0:t[0])&&(null==(n=e.context.disableDates)?void 0:n[0])&&setContext(e,"disableDates",e.context.disableDates.filter((t=>!e.context.enableDates.includes(t)))),e.context.enableDates.length>1&&e.context.enableDates.sort(((e,t)=>+new Date(e)-+new Date(t))),(null==(a=e.context.enableDates)?void 0:a[0])&&e.disableAllDates&&(setContext(e,"displayDateMin",e.context.enableDates[0]),setContext(e,"displayDateMax",e.context.enableDates[e.context.enableDates.length-1])),setContext(e,"dateMin",e.displayDisabledDates?l:e.context.displayDateMin),setContext(e,"dateMax",e.displayDisabledDates?o:e.context.displayDateMax)},initSelectedDates=e=>{var t;setContext(e,"selectedDates",(null==(t=e.selectedDates)?void 0:t[0])?parseDates(e.selectedDates):[])},displayClosestValidDate=e=>{const t=t=>{const n=new Date(t);setInitialContext(e,n.getMonth(),n.getFullYear())};if(e.displayDateMin&&"today"!==e.displayDateMin&&(n=e.displayDateMin,a=new Date,new Date(n).getTime()>a.getTime())){const n=e.selectedDates.length&&e.selectedDates[0]?parseDates(e.selectedDates)[0]:e.displayDateMin;return t(getDate(resolveDate(n,e.displayDateMin))),!0}var n,a;if(e.displayDateMax&&"today"!==e.displayDateMax&&((e,t)=>new Date(e).getTime()<t.getTime())(e.displayDateMax,new Date)){const n=e.selectedDates.length&&e.selectedDates[0]?parseDates(e.selectedDates)[0]:e.displayDateMax;return t(getDate(resolveDate(n,e.displayDateMax))),!0}return!1},setInitialContext=(e,t,n)=>{setContext(e,"selectedMonth",t),setContext(e,"selectedYear",n),setContext(e,"displayYear",n)},initSelectedMonthYear=e=>{var t;if(e.enableJumpToSelectedDate&&(null==(t=e.selectedDates)?void 0:t[0])&&void 0===e.selectedMonth&&void 0===e.selectedYear){const t=getDate(parseDates(e.selectedDates)[0]);return void setInitialContext(e,t.getMonth(),t.getFullYear())}if(displayClosestValidDate(e))return;const n=void 0!==e.selectedMonth&&Number(e.selectedMonth)>=0&&Number(e.selectedMonth)<12,a=void 0!==e.selectedYear&&Number(e.selectedYear)>=0&&Number(e.selectedYear)<=9999;setInitialContext(e,n?Number(e.selectedMonth):getDate(e.context.dateToday).getMonth(),a?Number(e.selectedYear):getDate(e.context.dateToday).getFullYear())},initTime=e=>{var t,n,a;if(!e.selectionTimeMode)return;if(![12,24].includes(e.selectionTimeMode))throw new Error(errorMessages.incorrectTime);const l=12===e.selectionTimeMode,o=l?/^(0[1-9]|1[0-2]):([0-5][0-9]) ?(AM|PM)?$/i:/^([0-1]?[0-9]|2[0-3]):([0-5][0-9])$/;let[s,i,r]=null!=(a=null==(n=null==(t=e.selectedTime)?void 0:t.match(o))?void 0:n.slice(1))?a:[];s?l&&!r&&(r="AM"):(s=l?transformTime12(String(e.timeMinHour)):String(e.timeMinHour),i=String(e.timeMinMinute),r=l?Number(transformTime12(String(e.timeMinHour)))>=12?"PM":"AM":null),setContext(e,"selectedHours",s.padStart(2,"0")),setContext(e,"selectedMinutes",i.padStart(2,"0")),setContext(e,"selectedKeeping",r),setContext(e,"selectedTime",`${e.context.selectedHours}:${e.context.selectedMinutes}${r?` ${r}`:""}`)},initAllVariables=e=>{setContext(e,"currentType",e.type),initMonthsCount(e),initRange(e),initSelectedMonthYear(e),initSelectedDates(e),initTime(e)},reset=(e,{year:t,month:n,dates:a,time:l,locale:o},s=!0)=>{var i;const r={year:e.selectedYear,month:e.selectedMonth,dates:e.selectedDates,time:e.selectedTime};if(e.selectedYear=t?r.year:e.context.selectedYear,e.selectedMonth=n?r.month:e.context.selectedMonth,e.selectedTime=l?r.time:e.context.selectedTime,e.selectedDates="only-first"===a&&(null==(i=e.context.selectedDates)?void 0:i[0])?[e.context.selectedDates[0]]:!0===a?r.dates:e.context.selectedDates,o){setContext(e,"locale",{months:{short:[],long:[]},weekdays:{short:[],long:[]}})}initAllVariables(e),s&&create(e),e.selectedYear=r.year,e.selectedMonth=r.month,e.selectedDates=r.dates,e.selectedTime=r.time,"multiple-ranged"===e.selectionDatesMode&&a&&handleSelectDateRange(e,null)},createToInput=e=>{const t=document.createElement("div");return t.className=e.styles.calendar,t.dataset.vc="calendar",t.dataset.vcInput="",t.dataset.vcCalendarHidden="",setContext(e,"inputModeInit",!0),setContext(e,"isShowInInputMode",!1),setContext(e,"mainElement",t),document.body.appendChild(e.context.mainElement),reset(e,{year:!0,month:!0,dates:!0,time:!0,locale:!0}),setTimeout((()=>show(e))),e.onInit&&e.onInit(e),handleArrowKeys(e),handleClick(e)},handleInput=e=>{setContext(e,"inputElement",e.context.mainElement);const t=()=>{e.context.inputModeInit?setTimeout((()=>show(e))):createToInput(e)};return e.context.inputElement.addEventListener("click",t),e.context.inputElement.addEventListener("focus",t),()=>{e.context.inputElement.removeEventListener("click",t),e.context.inputElement.removeEventListener("focus",t)}},init=e=>(setContext(e,"originalElement",e.context.mainElement.cloneNode(!0)),setContext(e,"isInit",!0),e.inputMode?handleInput(e):(initAllVariables(e),create(e),e.onInit&&e.onInit(e),handleArrowKeys(e),handleClick(e))),update=(e,t)=>{if(!e.context.isInit)throw new Error(errorMessages.notInit);reset(e,__spreadValues(__spreadValues({},{year:!0,month:!0,dates:!0,time:!0,locale:!0}),t),!(e.inputMode&&!e.context.inputModeInit)),e.onUpdate&&e.onUpdate(e)},replaceProperties=(e,t)=>{const n=Object.keys(t);for(let a=0;a<n.length;a++){const l=n[a];"object"!=typeof e[l]||"object"!=typeof t[l]||t[l]instanceof Date||Array.isArray(t[l])?void 0!==t[l]&&(e[l]=t[l]):replaceProperties(e[l],t[l])}},set=(e,t,n)=>{replaceProperties(e,t),e.context.isInit&&update(e,n)};function findBestPickerPosition(e,t){const n="left";if(!t||!e)return n;const{canShow:a,parentPositions:l}=getAvailablePosition(e,t),o=a.left&&a.right;return(o&&a.bottom?"center":o&&a.top?["top","center"]:Array.isArray(l)?["bottom"===l[0]?"top":"bottom",...l.slice(1)]:l)||n}const setPosition=(e,t,n)=>{if(!e)return;const a="auto"===n?findBestPickerPosition(e,t):n,l={top:-t.offsetHeight,bottom:e.offsetHeight,left:0,center:e.offsetWidth/2-t.offsetWidth/2,right:e.offsetWidth-t.offsetWidth},o=Array.isArray(a)?a[0]:"bottom",s=Array.isArray(a)?a[1]:a;t.dataset.vcPosition=o;const{top:i,left:r}=getOffset(e),c=i+l[o];let d=r+l[s];const{vw:u}=getViewportDimensions();if(d+t.clientWidth>u){const e=window.innerWidth-document.body.clientWidth;d=u-t.clientWidth-e}else d<0&&(d=0);Object.assign(t.style,{left:`${d}px`,top:`${c}px`})},show=e=>{if(e.context.isShowInInputMode)return;if(!e.context.currentType)return void e.context.mainElement.click();setContext(e,"cleanupHandlers",[]),setContext(e,"isShowInInputMode",!0),setPosition(e.context.inputElement,e.context.mainElement,e.positionToInput),e.context.mainElement.removeAttribute("data-vc-calendar-hidden");const t=()=>{setPosition(e.context.inputElement,e.context.mainElement,e.positionToInput)};window.addEventListener("resize",t),e.context.cleanupHandlers.push((()=>window.removeEventListener("resize",t)));const n=t=>{"Escape"===t.key&&hide(e)};document.addEventListener("keydown",n),e.context.cleanupHandlers.push((()=>document.removeEventListener("keydown",n)));const a=t=>{t.target===e.context.inputElement||e.context.mainElement.contains(t.target)||hide(e)};document.addEventListener("click",a,{capture:!0}),e.context.cleanupHandlers.push((()=>document.removeEventListener("click",a,{capture:!0}))),e.onShow&&e.onShow(e)},labels={application:"Calendar",navigation:"Calendar Navigation",arrowNext:{month:"Next month",year:"Next list of years"},arrowPrev:{month:"Previous month",year:"Previous list of years"},month:"Select month, current selected month:",months:"List of months",year:"Select year, current selected year:",years:"List of years",week:"Days of the week",weekNumber:"Numbers of weeks in a year",dates:"Dates in the current month",selectingTime:"Selecting a time ",inputHour:"Hours",inputMinute:"Minutes",rangeHour:"Slider for selecting hours",rangeMinute:"Slider for selecting minutes",btnKeeping:"Switch AM/PM, current position:"},styles={calendar:"vc",controls:"vc-controls",grid:"vc-grid",column:"vc-column",header:"vc-header",headerContent:"vc-header__content",month:"vc-month",year:"vc-year",arrowPrev:"vc-arrow vc-arrow_prev",arrowNext:"vc-arrow vc-arrow_next",wrapper:"vc-wrapper",content:"vc-content",months:"vc-months",monthsMonth:"vc-months__month",years:"vc-years",yearsYear:"vc-years__year",week:"vc-week",weekDay:"vc-week__day",weekNumbers:"vc-week-numbers",weekNumbersTitle:"vc-week-numbers__title",weekNumbersContent:"vc-week-numbers__content",weekNumber:"vc-week-number",dates:"vc-dates",date:"vc-date",dateBtn:"vc-date__btn",datePopup:"vc-date__popup",dateRangeTooltip:"vc-date-range-tooltip",time:"vc-time",timeContent:"vc-time__content",timeHour:"vc-time__hour",timeMinute:"vc-time__minute",timeKeeping:"vc-time__keeping",timeRanges:"vc-time__ranges",timeRange:"vc-time__range"};class OptionsCalendar{constructor(){__publicField(this,"type","default"),__publicField(this,"inputMode",!1),__publicField(this,"positionToInput","left"),__publicField(this,"firstWeekday",1),__publicField(this,"monthsToSwitch",1),__publicField(this,"themeAttrDetect","html[data-theme]"),__publicField(this,"locale","en"),__publicField(this,"dateToday","today"),__publicField(this,"dateMin","1970-01-01"),__publicField(this,"dateMax","2470-12-31"),__publicField(this,"displayDateMin"),__publicField(this,"displayDateMax"),__publicField(this,"displayDatesOutside",!0),__publicField(this,"displayDisabledDates",!1),__publicField(this,"displayMonthsCount"),__publicField(this,"disableDates",[]),__publicField(this,"disableAllDates",!1),__publicField(this,"disableDatesPast",!1),__publicField(this,"disableDatesGaps",!1),__publicField(this,"disableWeekdays",[]),__publicField(this,"disableToday",!1),__publicField(this,"enableDates",[]),__publicField(this,"enableEdgeDatesOnly",!0),__publicField(this,"enableDateToggle",!0),__publicField(this,"enableWeekNumbers",!1),__publicField(this,"enableMonthChangeOnDayClick",!0),__publicField(this,"enableJumpToSelectedDate",!1),__publicField(this,"selectionDatesMode","single"),__publicField(this,"selectionMonthsMode",!0),__publicField(this,"selectionYearsMode",!0),__publicField(this,"selectionTimeMode",!1),__publicField(this,"selectedDates",[]),__publicField(this,"selectedMonth"),__publicField(this,"selectedYear"),__publicField(this,"selectedHolidays",[]),__publicField(this,"selectedWeekends",[0,6]),__publicField(this,"selectedTime"),__publicField(this,"selectedTheme","system"),__publicField(this,"timeMinHour",0),__publicField(this,"timeMaxHour",23),__publicField(this,"timeMinMinute",0),__publicField(this,"timeMaxMinute",59),__publicField(this,"timeControls","all"),__publicField(this,"timeStepHour",1),__publicField(this,"timeStepMinute",1),__publicField(this,"sanitizerHTML",(e=>e)),__publicField(this,"onClickDate"),__publicField(this,"onClickWeekDay"),__publicField(this,"onClickWeekNumber"),__publicField(this,"onClickTitle"),__publicField(this,"onClickMonth"),__publicField(this,"onClickYear"),__publicField(this,"onClickArrow"),__publicField(this,"onChangeTime"),__publicField(this,"onChangeToInput"),__publicField(this,"onCreateDateRangeTooltip"),__publicField(this,"onCreateDateEls"),__publicField(this,"onCreateMonthEls"),__publicField(this,"onCreateYearEls"),__publicField(this,"onInit"),__publicField(this,"onUpdate"),__publicField(this,"onDestroy"),__publicField(this,"onShow"),__publicField(this,"onHide"),__publicField(this,"popups",{}),__publicField(this,"labels",__spreadValues({},labels)),__publicField(this,"layouts",{default:"",multiple:"",month:"",year:""}),__publicField(this,"styles",__spreadValues({},styles))}}const _Calendar=class e extends OptionsCalendar{constructor(t,n){var a;super(),__publicField(this,"init",(()=>init(this))),__publicField(this,"update",(e=>update(this,e))),__publicField(this,"destroy",(()=>destroy(this))),__publicField(this,"show",(()=>show(this))),__publicField(this,"hide",(()=>hide(this))),__publicField(this,"set",((e,t)=>set(this,e,t))),__publicField(this,"context"),this.context=__spreadProps(__spreadValues({},this.context),{locale:{months:{short:[],long:[]},weekdays:{short:[],long:[]}}}),setContext(this,"mainElement","string"==typeof t?null!=(a=e.memoizedElements.get(t))?a:this.queryAndMemoize(t):t),n&&replaceProperties(this,n)}queryAndMemoize(t){const n=document.querySelector(t);if(!n)throw new Error(errorMessages.notFoundSelector(t));return e.memoizedElements.set(t,n),n}};__publicField(_Calendar,"memoizedElements",new Map);let Calendar=_Calendar;
+
+/***/ }),
+
+/***/ "./node_modules/vanilla-calendar-pro/utils/index.mjs":
+/*!***********************************************************!*\
+  !*** ./node_modules/vanilla-calendar-pro/utils/index.mjs ***!
+  \***********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getDate: () => (/* binding */ getDate),
+/* harmony export */   getDateString: () => (/* binding */ getDateString),
+/* harmony export */   getWeekNumber: () => (/* binding */ getWeekNumber),
+/* harmony export */   parseDates: () => (/* binding */ parseDates)
+/* harmony export */ });
+/*! name: vanilla-calendar-pro v3.0.5 | url: https://github.com/uvarov-frontend/vanilla-calendar-pro */
+const getDate$1=e=>new Date(`${e}T00:00:00`),getDateString$1=e=>`${e.getFullYear()}-${String(e.getMonth()+1).padStart(2,"0")}-${String(e.getDate()).padStart(2,"0")}`,getWeekNumber$1=(e,t)=>{const a=getDate$1(e),g=(a.getDay()-t+7)%7;a.setDate(a.getDate()+4-g);const r=new Date(a.getFullYear(),0,1),D=Math.ceil(((+a-+r)/864e5+1)/7);return{year:a.getFullYear(),week:D}},parseDates$1=e=>e.reduce(((e,t)=>{if(t instanceof Date||"number"==typeof t){const a=t instanceof Date?t:new Date(t);e.push(a.toISOString().substring(0,10))}else t.match(/^(\d{4}-\d{2}-\d{2})$/g)?e.push(t):t.replace(/(\d{4}-\d{2}-\d{2}).*?(\d{4}-\d{2}-\d{2})/g,((t,a,g)=>{const r=getDate$1(a),D=getDate$1(g),n=new Date(r.getTime());for(;n<=D;n.setDate(n.getDate()+1))e.push(getDateString$1(n));return t}));return e}),[]),parseDates=e=>parseDates$1(e),getDateString=e=>getDateString$1(e),getDate=e=>getDate$1(e),getWeekNumber=(e,t)=>getWeekNumber$1(e,t);
+
+/***/ }),
+
 /***/ "./src/js/_components.js":
 /*!*******************************!*\
   !*** ./src/js/_components.js ***!
@@ -24186,11 +25059,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_accordion_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/accordion.js */ "./src/js/components/accordion.js");
 /* harmony import */ var _components_dropdown_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/dropdown.js */ "./src/js/components/dropdown.js");
 /* harmony import */ var _components_dropdown_filter_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/dropdown-filter.js */ "./src/js/components/dropdown-filter.js");
-/* harmony import */ var _components_tabs_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/tabs.js */ "./src/js/components/tabs.js");
-/* harmony import */ var _components_offcanvas_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/offcanvas.js */ "./src/js/components/offcanvas.js");
-/* harmony import */ var _components_modal_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/modal.js */ "./src/js/components/modal.js");
-/* harmony import */ var _components_transfer_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/transfer.js */ "./src/js/components/transfer.js");
-/* harmony import */ var _components_swiper_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/swiper.js */ "./src/js/components/swiper.js");
+/* harmony import */ var _components_field_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/field.js */ "./src/js/components/field.js");
+/* harmony import */ var _components_calendar_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/calendar.js */ "./src/js/components/calendar.js");
+/* harmony import */ var _components_tabs_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/tabs.js */ "./src/js/components/tabs.js");
+/* harmony import */ var _components_offcanvas_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/offcanvas.js */ "./src/js/components/offcanvas.js");
+/* harmony import */ var _components_modal_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/modal.js */ "./src/js/components/modal.js");
+/* harmony import */ var _components_tooltip_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/tooltip.js */ "./src/js/components/tooltip.js");
+/* harmony import */ var _components_transfer_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/transfer.js */ "./src/js/components/transfer.js");
+/* harmony import */ var _components_swiper_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/swiper.js */ "./src/js/components/swiper.js");
+
+
+
 
 
 
@@ -24251,6 +25130,152 @@ document.querySelectorAll('[data-bs-toggle="collapse"]')?.forEach(button => {
 
 /***/ }),
 
+/***/ "./src/js/components/calendar.js":
+/*!***************************************!*\
+  !*** ./src/js/components/calendar.js ***!
+  \***************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vanilla_calendar_pro__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vanilla-calendar-pro */ "./node_modules/vanilla-calendar-pro/index.mjs");
+/* harmony import */ var vanilla_calendar_pro_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vanilla-calendar-pro/utils */ "./node_modules/vanilla-calendar-pro/utils/index.mjs");
+
+
+
+/** Преобразует любое входное значение в ISO 'YYYY-MM-DD' через getDateString,
+ *  затем в 'DD.MM.YYYY' */
+function isoToDisplay(value) {
+  if (!value && value !== 0) return '';
+
+  // Преобразуем value в Date корректно:
+  // если это уже Date — используем, если число — new Date(number), если строка — new Date(string)
+  const date = value instanceof Date ? value : new Date(value);
+
+  // getDateString вернёт 'YYYY-MM-DD'
+  const iso = (0,vanilla_calendar_pro_utils__WEBPACK_IMPORTED_MODULE_1__.getDateString)(date);
+  if (!iso) return '';
+  const [y, m, d] = iso.split('-');
+  return `${d}.${m}.${y}`;
+}
+
+/** Форматирует выбранное значение. Поддерживает:
+ *  - строку 'YYYY-MM-DD'
+ *  - диапазон 'YYYY-MM-DD:YYYY-MM-DD'
+ *  - timestamp (number)
+ *  - Date
+ *  - массив (selectedDates) */
+function formatSelected(selected) {
+  if (!selected) return '';
+
+  // если передали массив (self.context.selectedDates)
+  if (Array.isArray(selected)) {
+    if (selected.length === 0) return '';
+    // Если нужно показывать только первую запись, можно взять selected[0].
+    // Если нужно отобразить диапазон/несколько — адаптируй логику.
+    // Тут мы обработаем оба случая: если first содержит ':', то распарсим диапазон.
+    return formatSelected(selected[0]);
+  }
+
+  // строка-диапазон
+  if (typeof selected === 'string' && selected.includes(':')) {
+    return selected.split(':').map(iso => isoToDisplay(iso)).join(' – ');
+  }
+
+  // одиночная дата (string/number/Date)
+  return isoToDisplay(selected);
+}
+
+/** Возвращает дату завтра в формате 'YYYY-MM-DD' */
+function getTomorrowDate() {
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const yyyy = tomorrow.getFullYear();
+  const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+  const dd = String(tomorrow.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`;
+}
+document.querySelectorAll('[data-calendar]')?.forEach(el => {
+  const type = el.dataset.calendar;
+  const setDates = () => {
+    if (type === 'select') {
+      const input = el.closest('.dropdown--select')?.querySelector('input[name="date"]');
+      if (input?.value) {
+        // если значение — одна дата (2025-10-04)
+        if (!input.value.includes(':')) {
+          return [input.value];
+        }
+        return [input.value];
+      }
+    }
+    return [];
+  };
+  const upadteDates = value => {
+    if (type === 'select') {
+      const input = el.closest('.dropdown--select')?.querySelector('input[name="date"]');
+      const dropdownToggle = el.closest('.dropdown--select')?.querySelector('.dropdown-toggle');
+      const dropdownToggleValue = dropdownToggle?.querySelector('.text');
+      const display = value?.context?.selectedDates ? formatSelected(value.context.selectedDates) : formatSelected(value);
+      if (display) {
+        dropdownToggle?.classList.remove('is-placeholder');
+        if (dropdownToggleValue) dropdownToggleValue.textContent = display;
+        if (input) input.value = display;
+      } else {
+        dropdownToggle?.classList.add('is-placeholder');
+        if (dropdownToggleValue) dropdownToggleValue.textContent = 'Дата доставки';
+        if (input) input.value = null;
+      }
+    }
+  };
+  const calendar = new vanilla_calendar_pro__WEBPACK_IMPORTED_MODULE_0__.Calendar(el, {
+    locale: 'ru',
+    selectedTheme: 'light',
+    displayDateMin: getTomorrowDate(),
+    displayDatesOutside: false,
+    disableToday: true,
+    selectedDates: setDates(),
+    selectionDatesMode: 'single',
+    onInit(self) {
+      upadteDates(setDates());
+    },
+    onClickDate(self, event) {
+      upadteDates(self);
+      if (type === 'select') {
+        const dropdownElement = el.closest('.dropdown').querySelector('[data-bs-toggle="dropdown"]');
+        if (dropdownElement) {
+          const dropdownInstance = window.dropdownInstances.get(dropdownElement);
+          if (dropdownInstance) {
+            self.context.selectedDates.length > 0 && dropdownInstance.hide();
+          }
+        }
+      }
+    },
+    layouts: {
+      default: `
+        <div class="vc-header" data-vc="header" role="toolbar" aria-label="Calendar Navigation">
+          <div class="vc-header__content" data-vc-header="content">
+            <#Year /> <#Month />
+          </div>
+          <#ArrowPrev />
+          <#ArrowNext />
+        </div>
+        <div class="vc-wrapper" data-vc="wrapper">
+          <#WeekNumbers />
+          <div class="vc-content" data-vc="content">
+            <#Dates />
+            <#Week />
+            <#DateRangeTooltip />
+          </div>
+        </div>
+        <#ControlTime />
+      `
+    }
+  });
+  calendar.init();
+});
+
+/***/ }),
+
 /***/ "./src/js/components/choices.js":
 /*!**************************************!*\
   !*** ./src/js/components/choices.js ***!
@@ -24263,74 +25288,78 @@ __webpack_require__.r(__webpack_exports__);
 
 document.querySelectorAll('[data-choices]')?.forEach(el => {
   const type = el.dataset.choices;
+  const optionsCount = el.querySelectorAll('option').length;
   const config = {
-    searchEnabled: false,
+    searchEnabled: optionsCount > 12,
     shouldSort: false,
     resetScrollPosition: false,
     renderSelectedChoices: 'always',
     itemSelectText: '',
     loadingText: 'Загрузка...',
-    noResultsText: 'Ничего не найдено'
+    noResultsText: 'Ничего не найдено',
+    callbackOnCreateTemplates: (strToEl, escapeForTemplate, getClassNames) => {
+      return {
+        containerInner: _ref => {
+          let {
+            classNames
+          } = _ref;
+          const isTime = type === 'choices--time';
+          const iconName = isTime ? 'clock' : 'arrow-down';
+          const extraClass = isTime ? '' : `${getClassNames(classNames.list).join(' ')}-icon`;
+          return strToEl(`
+            <div class="${getClassNames(classNames.containerInner).join(' ')}">
+              <span class="icon ${extraClass}" >
+                <svg>
+                  <use xlink:href="img/icons/${iconName}.svg#svg-${iconName}"></use>
+                </svg>
+              </span>
+            </div>
+          `);
+        },
+        item: (_ref2, data) => {
+          let {
+            classNames
+          } = _ref2;
+          return strToEl(`
+            <div class="${getClassNames(classNames.item).join(' ')}
+              ${getClassNames(data.highlighted ? classNames.highlightedState : classNames.itemSelectable).join(' ')}
+              ${data.placeholder ? classNames.placeholder : ''}"
+              data-item
+              data-id="${data.id}"
+              data-value="${data.value}"
+              ${data.disabled ? 'aria-disabled="true"' : ''}
+              ${data.active ? 'aria-selected="true"' : ''}>
+              ${data.label}
+            </div>
+          `);
+        },
+        choice: (_ref3, data) => {
+          let {
+            classNames
+          } = _ref3;
+          return strToEl(`
+            <div class="${getClassNames(classNames.item).join(' ')}
+              ${getClassNames(classNames.itemChoice).join(' ')}
+              ${getClassNames(data.disabled ? classNames.itemDisabled : classNames.itemSelectable).join(' ')}
+              ${data.placeholder ? 'visually-hidden' : ''}"
+              ${config.itemSelectText ? `data-select-text="${config.itemSelectText}"` : ''}
+              data-choice ${data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'}
+              data-id="${data.id}"
+              data-value="${data.value}"
+              ${data.groupId > 0 ? 'role="treeitem"' : 'role="option"'}>
+              ${data.label}
+            </div>
+          `);
+        }
+      };
+    }
   };
   switch (type) {
-    case 'choices--secondary':
+    case 'choices--filter':
       Object.assign(config, {
         removeItemButton: false,
         classNames: {
-          containerOuter: ['choices', 'choices--secondary']
-        },
-        callbackOnCreateTemplates: (strToEl, escapeForTemplate, getClassNames) => {
-          return {
-            containerInner: _ref => {
-              let {
-                classNames
-              } = _ref;
-              return strToEl(`
-                <div class="${getClassNames(classNames.containerInner).join(' ')}">
-                  <span class="icon ${getClassNames(classNames.list).join(' ') + '-icon'}" >
-                    <svg>
-                      <use xlink:href="img/icons/arrow-down.svg#svg-arrow-down"></use>
-                    </svg>
-                  </span>
-                </div>
-              `);
-            },
-            item: (_ref2, data) => {
-              let {
-                classNames
-              } = _ref2;
-              return strToEl(`
-                <div class="${getClassNames(classNames.item).join(' ')}
-                  ${getClassNames(data.highlighted ? classNames.highlightedState : classNames.itemSelectable).join(' ')}
-                  ${data.placeholder ? classNames.placeholder : ''}"
-                  data-item
-                  data-id="${data.id}"
-                  data-value="${data.value}"
-                  ${data.disabled ? 'aria-disabled="true"' : ''}
-                  ${data.active ? 'aria-selected="true"' : ''}>
-                  ${data.label}
-                </div>
-              `);
-            },
-            choice: (_ref3, data) => {
-              let {
-                classNames
-              } = _ref3;
-              return strToEl(`
-                <div class="${getClassNames(classNames.item).join(' ')}
-                  ${getClassNames(classNames.itemChoice).join(' ')}
-                  ${getClassNames(data.disabled ? classNames.itemDisabled : classNames.itemSelectable).join(' ')}
-                  ${data.placeholder ? 'visually-hidden' : ''}"
-                  ${config.itemSelectText ? `data-select-text="${config.itemSelectText}"` : ''}
-                  data-choice ${data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'}
-                  data-id="${data.id}"
-                  data-value="${data.value}"
-                  ${data.groupId > 0 ? 'role="treeitem"' : 'role="option"'}>
-                  ${data.label}
-                </div>
-              `);
-            }
-          };
+          containerOuter: ['choices', 'choices--filter']
         }
       });
       break;
@@ -24793,6 +25822,49 @@ document.body.addEventListener('click', event => {
       dropdownInstance.hide();
     });
   }
+});
+
+/***/ }),
+
+/***/ "./src/js/components/field.js":
+/*!************************************!*\
+  !*** ./src/js/components/field.js ***!
+  \************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+document.querySelectorAll('.field-wrapper')?.forEach(element => {
+  const input = element.querySelector('input');
+  if (!input) return;
+  const toggleClass = () => {
+    if (input.value.trim() !== '') {
+      element.classList.add('is-input');
+    } else {
+      element.classList.remove('is-input');
+    }
+  };
+  toggleClass();
+  input.addEventListener('input', toggleClass);
+});
+document.querySelectorAll('.field-radio')?.forEach(element => {
+  const input = element.querySelector('input');
+  if (!input) return;
+  if (input.checked) {
+    element.classList.add('is-checked');
+  }
+  input.addEventListener('change', () => {
+    if (input.type === 'radio') {
+      document.querySelectorAll(`input[name="${input.name}"]`).forEach(otherInput => {
+        otherInput.closest('.field-radio')?.classList.remove('is-checked');
+      });
+    }
+    if (input.checked) {
+      element.classList.add('is-checked');
+    } else {
+      element.classList.remove('is-checked');
+    }
+  });
 });
 
 /***/ }),
@@ -25529,33 +26601,37 @@ document.querySelectorAll('[data-bs-toggle="tab"], [data-bs-toggle="pill"]')?.fo
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var bootstrap_js_dist_collapse_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap/js/dist/collapse.js */ "./node_modules/bootstrap/js/dist/collapse.js");
+
 window.handleToggleDismiss = function (value) {
   const toggleBtn = document.querySelector(`[data-toggle="${value}"]`);
+  const targetSelector = toggleBtn?.dataset.target;
   if (toggleBtn) {
     toggleBtn.classList.remove("is-active");
-    value === 'search' && toggleBtn.classList.remove("visually-hidden");
-  }
-  const targetSelector = toggleBtn?.dataset.target;
-  if (targetSelector) {
-    const targetEl = document.querySelector(targetSelector);
-    if (targetEl) {
-      targetEl.classList.remove("is-show");
+    if (value === 'search') {
+      toggleBtn.classList.remove("visually-hidden");
+      if (targetSelector) {
+        const targetEl = document.querySelector(targetSelector);
+        if (targetEl) {
+          targetEl.classList.remove("is-show");
+        }
+      }
     }
   }
 };
 window.handleToggleShow = function (value) {
   const toggleBtn = document.querySelector(`[data-toggle="${value}"]`);
+  const targetSelector = toggleBtn?.dataset.target;
   if (toggleBtn) {
     toggleBtn.classList.add("is-active");
     if (value === "search") {
       toggleBtn.classList.add("visually-hidden");
-    }
-  }
-  const targetSelector = toggleBtn?.dataset.target;
-  if (targetSelector) {
-    const targetEl = document.querySelector(targetSelector);
-    if (targetEl) {
-      targetEl.classList.add("is-show");
+      if (targetSelector) {
+        const targetEl = document.querySelector(targetSelector);
+        if (targetEl) {
+          targetEl.classList.add("is-show");
+        }
+      }
     }
   }
 };
@@ -25570,6 +26646,74 @@ document.querySelectorAll("[data-dismiss]").forEach(dismiss => {
     const dismissValue = dismiss.dataset.dismiss;
     handleToggleDismiss(dismissValue);
   });
+});
+document.querySelectorAll('input[data-toggle="radio-collapse"]')?.forEach(input => {
+  const targetSelector = input.dataset.target;
+  const targetEl = document.querySelector(targetSelector);
+  if (!targetEl) return;
+  if (!targetEl._collapseInstance) {
+    targetEl._collapseInstance = new bootstrap_js_dist_collapse_js__WEBPACK_IMPORTED_MODULE_0__(targetEl, {
+      toggle: false
+    });
+  }
+  const collapse = targetEl._collapseInstance;
+  if (input.checked) {
+    collapse.show();
+  } else {
+    collapse.hide();
+  }
+  input.addEventListener('change', () => {
+    const allInputs = document.querySelectorAll('input[data-toggle="radio-collapse"]');
+    allInputs.forEach(el => el.disabled = true);
+    const unlock = () => {
+      allInputs.forEach(el => el.disabled = false);
+    };
+    targetEl.addEventListener('shown.bs.collapse', unlock, {
+      once: true
+    });
+    targetEl.addEventListener('hidden.bs.collapse', unlock, {
+      once: true
+    });
+    if (input.type === 'radio') {
+      document.querySelectorAll(`input[name="${input.name}"][data-toggle="radio-collapse"]`).forEach(otherInput => {
+        if (otherInput !== input) {
+          const otherTarget = document.querySelector(otherInput.dataset.target);
+          if (otherTarget && otherTarget._collapseInstance) {
+            otherTarget._collapseInstance.hide();
+          }
+        }
+      });
+    }
+    if (input.checked) {
+      collapse.show();
+    } else {
+      collapse.hide();
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./src/js/components/tooltip.js":
+/*!**************************************!*\
+  !*** ./src/js/components/tooltip.js ***!
+  \**************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var bootstrap_js_dist_tooltip_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap/js/dist/tooltip.js */ "./node_modules/bootstrap/js/dist/tooltip.js");
+
+window.tooltipInstances = new Map();
+window.initializeTooltip = function (element) {
+  const tooltip = new bootstrap_js_dist_tooltip_js__WEBPACK_IMPORTED_MODULE_0__(element, {
+    html: true,
+    offset: [0, 12]
+  });
+  tooltipInstances.set(element, tooltip);
+};
+document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(element => {
+  initializeTooltip(element);
 });
 
 /***/ }),
@@ -25861,4 +27005,3 @@ __webpack_require__.r(__webpack_exports__);
 
 /******/ })()
 ;
-//# sourceMappingURL=main.js.map

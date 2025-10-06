@@ -1,0 +1,9 @@
+.list-card {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+
+  > li {
+    display: block;
+  }
+}

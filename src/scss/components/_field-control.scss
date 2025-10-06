@@ -3,6 +3,12 @@
 	position: relative;
 }
 
+.field-col-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .5rem;
+}
+
 .field-control {
   display: flex;
   flex-direction: column;
@@ -14,6 +20,15 @@
       margin-bottom: 0;
     }
   }
+
+  &--textarea {
+
+    &,
+    .field-wrapper,
+    .field {
+      height: 100%;
+    }
+  }
 }
 
 .field-feedback {
@@ -23,11 +38,12 @@
   margin-bottom: .5rem;
 
   &--error {
+    display: none;
     color: var(--error);
   }
 }
 
-.field {
+.field-wrapper {
 	--_width: 100%;
 	--_height: 3rem;
 
@@ -53,6 +69,17 @@
 	--_border-color-hover: currentColor;
 	--_border-color-active: currentColor;
 
+  position: relative;
+
+  &--assent {
+
+    &.is-input {
+      --_padding: .25rem 5.5rem .25rem 1rem;
+    }
+  }
+}
+
+.field {
 	width: var(--_width);
 	min-height: var(--_height);
 	display: block;
@@ -90,6 +117,10 @@ label.field {
   gap: .25rem;
 }
 
+.field-postfix {
+  display: inline-flex;
+}
+
 .field--plaintext {
   max-width: 100%;
   width: auto;
@@ -103,10 +134,21 @@ label.field {
 	outline: none;
 }
 
-.field--error {
+.is-invalid {
 	--_border-color: var(--error);
 	--_border-color-hover: var(--error);
 	--_border-color-active: var(--error);
+
+  ~ .field-feedback--error {
+    display: block;
+  }
+}
+
+.is-input {
+
+  .field-button--assent {
+    display: flex;
+  }
 }
 
 textarea.field {
@@ -129,9 +171,14 @@ textarea.field {
   @include breakpoint-up(lg) {
     --_icon-size: 1rem;
   }
+
+  &--assent {
+    --_fs: .75rem;
+    --_padding: .25rem 1rem;
+
+    display: none;
+  }
 }
-
-
 
 .field-toggle {
   width: 2.5rem;
@@ -190,6 +237,18 @@ textarea.field {
   font-size: .875rem;
   cursor: pointer;
 
+  &-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: .25rem;
+  }
+
+  &-descr {
+    font-size: .75rem;
+    color: var(--text-color-50);
+  }
+
   &-input {
     appearance: none;
     width: 1rem;
@@ -197,16 +256,87 @@ textarea.field {
     display: inline-flex;
     border: .0625rem solid var(--text-color);
     border-radius: 50rem;
+    cursor: pointer;
     transition-property: background-color;
     transition-duration: var(--transition-duration);
     transition-timing-function: var(--transition-timing-function);
 
     &:checked {
       background-color: var(--text-color);
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'><path fill-rule='evenodd' clip-rule='evenodd' d='M14.3066 6.82432C14.3565 6.86798 14.3972 6.92111 14.4263 6.98063C14.4555 7.04016 14.4725 7.10488 14.4764 7.17104C14.4803 7.23719 14.471 7.30347 14.4491 7.36601C14.4272 7.42855 14.393 7.4861 14.3486 7.53532L9.09164 13.3698C9.04705 13.4192 8.99304 13.4592 8.93278 13.4875C8.87253 13.5158 8.80723 13.5317 8.74073 13.5344C8.67423 13.5371 8.60786 13.5265 8.54551 13.5032C8.48316 13.48 8.42609 13.4445 8.37764 13.3988L5.33564 10.5353C5.24438 10.4482 5.18912 10.33 5.18079 10.2041C5.17246 10.0782 5.21165 9.95373 5.29064 9.85532C5.33327 9.80198 5.3863 9.75785 5.44651 9.72562C5.50671 9.69339 5.57284 9.67373 5.64088 9.66784C5.70891 9.66195 5.77744 9.66995 5.84229 9.69134C5.90714 9.71274 5.96697 9.7471 6.01814 9.79232L8.37814 11.9153C8.47668 12.004 8.6064 12.0499 8.7388 12.043C8.87119 12.0361 8.99541 11.9768 9.08414 11.8783L13.6056 6.86482C13.6937 6.76724 13.8165 6.70823 13.9477 6.70056C14.0789 6.69289 14.2078 6.73717 14.3066 6.82382V6.82432Z' fill='white'/></svg>");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+
+  &--block {
+    min-height: 8.75rem;
+    align-items: stretch;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: 700;
+    background-color: var(--light);
+    border: .0625rem solid transparent;
+    border-radius: .5rem;
+    padding: 1rem;
+
+    .icon {
+      --_size: 1.25rem;
+    }
+
+    .field-radio-input {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    &.is-checked {
+      border-color: var(--text-color-20);
+    }
+
+    &.is-invalid {
+      border-color: var(--error);
     }
   }
 }
 
 .field-base {
 	--_height: 2.5rem;
+}
+
+.fieldset-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: var(--light);
+  margin: 0;
+  border: .0625rem solid transparent;
+  border-radius: .5rem;
+  padding: 1rem;
+
+  &-label {
+    display: block;
+    font-size: .875rem;
+    color: var(--text-color-50);
+  }
+
+  &-content {
+    max-height: 13rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .field-radio {
+      align-items: start;
+
+      &-input {
+        margin-top: .125rem;
+      }
+    }
+  }
+
+  &.is-invalid {
+    border-color: var(--error);
+  }
 }

@@ -1,0 +1,18 @@
+:not(html, body)::-webkit-scrollbar {
+  width: .125rem;
+  height: .125rem;
+
+  &-track {
+    background: var(--text-color-20);
+    border-radius: 2rem;
+  }
+
+  &-thumb {
+    background-color: var(--text-color);
+    border-radius: 2rem;
+
+    &:hover {
+      background-color: var(--text-color-70);
+    }
+  }
+}

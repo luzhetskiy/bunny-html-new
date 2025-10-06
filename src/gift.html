@@ -5,7 +5,9 @@
 
 <body class="page-body">
   <div class="site-container">
-    @include('partials/header.html')
+    @include('partials/header.html', {
+      page: 'index'
+    })
 
     <main class="main">
       <div class="main-sections">
@@ -219,22 +221,24 @@
                       </div>
                     </label>
                   </div>
-                  <div class="gift-form">
-                    <div class="gift-fields">
+                  <div class="content-form">
+                    <fieldset class="content-fieldset">
                       <div class="field-control">
-                        <label class="field field--error">
-                          <input type="text" class="field--plaintext" name="nominal" placeholder="Ваш номинал">
-                          <span class="field-postfix">
-                            ₽
-                          </span>
-                        </label>
+                        <div class="field-wrapper is-invalid">
+                          <label class="field">
+                            <input type="text" class="field--plaintext" name="nominal" placeholder="Ваш номинал">
+                            <span class="field-postfix">
+                              ₽
+                            </span>
+                          </label>
+                        </div>
                         <div class="field-feedback field-feedback--error">
                           <p>
                             минимальная сумма сертификата: 500 ₽
                           </p>
                         </div>
                       </div>
-                    </div>
+                    </fieldset>
                   </div>
                 </div>
               </div>
@@ -246,26 +250,54 @@
                 </div>
               </div>
               <div class="content-col">
-                <div class="gift-form">
-                  <div class="gift-fields">
+                <div class="content-form">
+                  <fieldset class="content-fieldset">
                     <div class="field-control">
-                      <input type="email" class="field" name="email" placeholder="email">
+                      <div class="field-wrapper">
+                        <input type="email" class="field" name="email" placeholder="email">
+                      </div>
                       <div class="field-feedback">
                         <p>
                           ссылка на подарочную карту придёт на почту
                         </p>
                       </div>
+                      <div class="field-feedback field-feedback--error">
+                        <p>
+                          Ошибка
+                        </p>
+                      </div>
                     </div>
                     <div class="field-control">
-                      <input type="text" class="field" name="name-get" placeholder="имя получателя">
+                      <div class="field-wrapper">
+                        <input type="text" class="field" name="name-get" placeholder="имя получателя">
+                      </div>
+                      <div class="field-feedback field-feedback--error">
+                        <p>
+                          Ошибка
+                        </p>
+                      </div>
+                    </div>
+                    <div class="field-control field-control--textarea">
+                      <div class="field-wrapper">
+                        <textarea name="message" class="field" placeholder="текст поздравления"></textarea>
+                      </div>
+                      <div class="field-feedback field-feedback--error">
+                        <p>
+                          Ошибка
+                        </p>
+                      </div>
                     </div>
                     <div class="field-control">
-                      <textarea name="message" class="field" placeholder="текст поздравления"></textarea>
+                      <div class="field-wrapper">
+                        <input type="text" class="field" name="name-send" placeholder="имя отправителя">
+                      </div>
+                      <div class="field-feedback field-feedback--error">
+                        <p>
+                          Ошибка
+                        </p>
+                      </div>
                     </div>
-                    <div class="field-control">
-                      <input type="text" class="field" name="name-send" placeholder="имя отправителя">
-                    </div>
-                  </div>
+                  </fieldset>
                 </div>
               </div>
               <div class="content-col">
@@ -277,10 +309,17 @@
               </div>
               <div class="content-col">
                 <div class="gift-footer">
-                  <div class="gift-form">
-                    <div class="gift-fields">
+                  <div class="content-form">
+                    <fieldset class="content-fieldset">
                       <div class="field-control">
-                        <input type="tel" class="field" name="tel" placeholder="+7 (999) 999-99-99">
+                        <div class="field-wrapper">
+                          <input type="tel" class="field" name="tel" placeholder="+7 (999) 999-99-99" required>
+                        </div>
+                        <div class="field-feedback field-feedback--error">
+                          <p>
+                            Ошибка
+                          </p>
+                        </div>
                       </div>
                       <div class="gift-submit">
                         <button type="submit" class="btn btn-lg btn-secondary" disabled>
@@ -294,7 +333,7 @@
                           </span>
                         </button>
                       </div>
-                    </div>
+                    </fieldset>
                   </div>
 
                   <div class="gift-policy">

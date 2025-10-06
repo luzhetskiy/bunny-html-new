@@ -180,6 +180,31 @@
 	text-transform: initial;
 }
 
+.btn-inherit-notcolor {
+	--_fs: inherit;
+	--_fw: inherit;
+	--_lh: inherit;
+	--_ls: inherit;
+
+	display: inline;
+	text-transform: initial;
+}
+
+.btn-inherit--underline {
+  --_color-hover: inherit;
+  --_color-active: inherit;
+
+  @media (hover: hover) {
+		&:is(:hover, :focus-visible) {
+      text-decoration: underline;
+		}
+	}
+}
+
+.btn-underline {
+  text-decoration: underline;
+}
+
 .btn-reset {
   --_fs: .75rem;
   --_color: var(--text-color-50);
@@ -246,6 +271,9 @@
   }
 }
 
+.btn-remove {
+  --_color: var(--text-color-20);
+}
 
 
 .btn-primary {

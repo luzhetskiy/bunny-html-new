@@ -5,7 +5,9 @@
 
 <body class="page-body">
   <div class="site-container">
-    @include('partials/header.html')
+    @include('partials/header.html', {
+      page: 'index'
+    })
 
     <main class="main">
       <div class="main-sections">
@@ -164,7 +166,8 @@
                   </div>
 
                   <div class="product-actions">
-                    <button type="button" class="btn btn-base btn-secondary product-add">
+                    <button type="button" class="btn btn-base btn-secondary product-add"
+                      data-card-button="add">
                       Добавить в корзину
                     </button>
                     <script>
@@ -218,7 +221,9 @@
                         </span>
                       </button>
                       <div class="field-control counter-field-control">
-                        <input type="text" class="field field-base counter-field" name="counter" placeholder="Кол-во" value="1">
+                        <div class="field-wrapper">
+                          <input type="text" class="field field-base counter-field" name="counter" placeholder="Кол-во" value="1">
+                        </div>
                       </div>
                       <button type="button" class="btn btn-icon counter-button counter-increment">
                         <span class="icon">
@@ -548,8 +553,15 @@
                           })
 
                           <div class="review-form-fields">
-                            <div class="field-control">
-                              <textarea class="field" name="message" rows="4" placeholder="Напишите отзыв">Материал нежный, мягкий, буквально бархатный. На выбор много программ вибрации разной интенсивности и ритма. Каждая найдёт что ей по душе. С широкой стороны шейка мягкая, податливая, легко сгибается под разными углами.</textarea>
+                            <div class="field-control field-control--textarea">
+                              <div class="field-wrapper">
+                                <textarea class="field" name="message" rows="4" placeholder="Напишите отзыв">Материал нежный, мягкий, буквально бархатный. На выбор много программ вибрации разной интенсивности и ритма. Каждая найдёт что ей по душе. С широкой стороны шейка мягкая, податливая, легко сгибается под разными углами.</textarea>
+                              </div>
+                              <div class="field-feedback field-feedback--error">
+                                <p>
+                                  Ошибка
+                                </p>
+                              </div>
                             </div>
                           </div>
 

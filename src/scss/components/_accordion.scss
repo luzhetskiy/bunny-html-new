@@ -116,24 +116,11 @@
 }
 
 .accordion-collapse {
-  display: grid;
-  grid-template-rows: 0fr;
-  padding: 0 var(--bs-accordion-body-padding-x, 0);
-  transition-property: grid-template-rows, padding;
-  transition-duration: var(--transition-duration);
-  transition-timing-function: var(--transition-timing-function);
-
-  &.show {
-    grid-template-rows: 1fr;
-    padding: var(--bs-accordion-body-padding-y, 0) var(--bs-accordion-body-padding-x, 0) 0;
-  }
 }
 
 .accordion-body {
   overflow: hidden;
-
-  // &-content {
-  // }
+  padding: var(--bs-accordion-body-padding-y, 0) var(--bs-accordion-body-padding-x, 0) 0;
 }
 
 

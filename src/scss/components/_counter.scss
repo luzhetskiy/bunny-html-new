@@ -44,3 +44,32 @@
     }
   }
 }
+
+.counter-sm {
+  max-width: 5rem;
+  flex: initial;
+  color: var(--text-color);
+  background-color: transparent;
+  border-radius: 0;
+
+  .counter-field {
+    --_height: auto;
+    --_padding: 0;
+
+    flex: 1 1;
+  }
+
+  .counter-button {
+    --_width: 1.5rem;
+    --_height: 1.5rem;
+    --_rounded: .25rem;
+    --_padding: .375rem;
+
+    --_color: var(--text-color-20);
+    --_color-hover: var(--text-color);
+    --_color-active: var(--text-color);
+
+    --_bg-hover: var(--text-color-10);
+    --_bg-active: var(--text-color-10);
+  }
+}

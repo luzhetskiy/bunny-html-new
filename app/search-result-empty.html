@@ -74,14 +74,16 @@
 
       <form id="form-search" class="search">
         <div class="field-control">
-          <input type="text" class="field" name="search" placeholder="Поиск...">
-          <button type="submit" class="btn field-button">
-            <span class="icon">
-              <svg>
-                <use xlink:href="img/icons/search.svg#svg-search"></use>
-              </svg>
-            </span>
-          </button>
+          <div class="field-wrapper">
+            <input type="text" class="field" name="search" placeholder="Поиск...">
+            <button type="submit" class="btn field-button">
+              <span class="icon">
+                <svg>
+                  <use xlink:href="img/icons/search.svg#svg-search"></use>
+                </svg>
+              </span>
+            </button>
+          </div>
         </div>
         <button type="button" class="btn btn-icon btn-gray-200"
           data-dismiss="search">
@@ -97,7 +99,7 @@
       </a>
 
       <div class="header-top-end">
-        <button type="button" class="btn btn-icon btn-gray-200"
+        <button type="button" class="btn btn-icon btn-gray-200 "
           data-transfer-origin="header-top-start"
           data-transfer-breakpoint="991.98"
           data-transfer-placement="last">
@@ -117,7 +119,10 @@
         </button>
         <button type="button" class="btn btn-icon btn-gray-200"
           data-transfer-origin="floating-bottom"
-          data-transfer-breakpoint="991.98">
+          data-transfer-breakpoint="991.98"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-bag-2"
+          aria-controls="offcanvas-bag">
           <span class="badge badge-primary">2</span>
           <span class="icon">
             <svg>
@@ -1134,14 +1139,14 @@
         <section class="section">
           <div class="container">
             <div class="search-result">
-              <div class="search-result-empty">
-                <div class="search-result-empty-picture">
+              <div class="empty">
+                <div class="empty-picture">
                   <img loading="lazy" src="./img/search/empty.svg" class="image" width="66" height="66" alt="Картинка">
                 </div>
-                <div class="search-result-empty-content">
-                  <p>
+                <div class="empty-content">
+                  <h3>
                     ничего не найдено
-                  </p>
+                  </h3>
                 </div>
               </div>
             </div>
@@ -1254,26 +1259,30 @@
 
           <div class="nouislider-fields">
             <div class="field-control">
-              <label class="field">
-                <span class="field-prefix">
-                  от
-                </span>
-                <input type="text" class="field--plaintext" name="price-min" min="50" max="50000">
-                <span class="field-postfix">
-                  ₽
-                </span>
-              </label>
+              <div class="field-wrapper">
+                <label class="field">
+                  <span class="field-prefix">
+                    от
+                  </span>
+                  <input type="text" class="field--plaintext" name="price-min" min="50" max="50000">
+                  <span class="field-postfix">
+                    ₽
+                  </span>
+                </label>
+              </div>
             </div>
             <div class="field-control">
-              <label class="field">
-                <span class="field-prefix">
-                  до
-                </span>
-                <input type="text" class="field--plaintext" name="price-max" min="50" max="50000">
-                <span class="field-postfix">
-                  ₽
-                </span>
-              </label>
+              <div class="field-wrapper">
+                <label class="field">
+                  <span class="field-prefix">
+                    до
+                  </span>
+                  <input type="text" class="field--plaintext" name="price-max" min="50" max="50000">
+                  <span class="field-postfix">
+                    ₽
+                  </span>
+                </label>
+              </div>
             </div>
           </div>
         </div>
@@ -1581,6 +1590,244 @@
   </form>
 </div>
 
+<div class="offcanvas offcanvas--filter offcanvas-bottom" tabindex="-1"
+  id="offcanvas-bag">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <div class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Корзина
+      </h3>
+    </div>
+    <div class="offcanvas-body">
+      <div class="empty">
+        <div class="empty-picture">
+          <img loading="lazy" src="./img/search/empty.svg" class="image" width="66" height="66" alt="Картинка">
+        </div>
+        <div class="empty-content">
+          <h3>
+            в корзине пока пусто… :(
+          </h3>
+          <p>
+            здесь будут появляться товары,
+            <br>
+            которые вы добавите
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="button" class="btn btn-lg btn-secondary">
+        <span>наполнить корзину</span>
+        <span class="icon">
+          <svg>
+            <use xlink:href="img/icons/arrow-right-2.svg#svg-arrow-right-2"></use>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas--bag offcanvas-bottom" tabindex="-1"
+  id="offcanvas-bag-2">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Корзина
+      </h3>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="list-reset list-card">
+        <li>
+          <article class="card card--bag">
+            <div class="card-header">
+              <picture>
+                <source srcset="./img/card/image-1.webp" type="image/webp">
+                <img loading="lazy" src="./img/card/image-1.jpg" class="image" width="90" height="90" alt="Картинка">
+              </picture>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">
+                Анальный лубрикант Bunnylove
+              </h3>
+
+              <div class="counter counter-sm">
+                <button type="button" class="btn btn-icon counter-button counter-decrement">
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/minus.svg#svg-minus"></use>
+                    </svg>
+                  </span>
+                </button>
+                <div class="field-control counter-field-control">
+                  <div class="field-wrapper">
+                    <input type="text" class="field counter-field" name="counter" placeholder="Кол-во" value="1">
+                  </div>
+                </div>
+                <button type="button" class="btn btn-icon counter-button counter-increment">
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/plus.svg#svg-plus"></use>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+
+              <div class="card-stock product-stock">
+                <span class="product-stock-name">
+                  В наличии:
+                </span>
+                <span class="product-stock-value">
+                  Гагарина, 48
+                </span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="button" class="btn btn-remove card-delete">
+                <span class="icon">
+                  <svg>
+                    <use xlink:href="img/icons/close.svg#svg-close"></use>
+                  </svg>
+                </span>
+              </button>
+
+              <div class="card-price product-price">
+                <div class="product-price-main">
+                  <span class="product-price-current">5&nbsp;571&nbsp;₽</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="card card--bag">
+            <div class="card-header">
+              <picture>
+                <source srcset="./img/card/image-2.webp" type="image/webp">
+                <img loading="lazy" src="./img/card/image-2.jpg" class="image" width="90" height="90" alt="Картинка">
+              </picture>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">
+                Боди Adalen
+              </h3>
+
+              <div class="counter counter-sm">
+                <button type="button" class="btn btn-icon counter-button counter-decrement">
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/minus.svg#svg-minus"></use>
+                    </svg>
+                  </span>
+                </button>
+                <div class="field-control counter-field-control">
+                  <div class="field-wrapper">
+                    <input type="text" class="field counter-field" name="counter" placeholder="Кол-во" value="1">
+                  </div>
+                </div>
+                <button type="button" class="btn btn-icon counter-button counter-increment">
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/plus.svg#svg-plus"></use>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+
+              <div class="card-stock product-stock">
+                <span class="product-stock-name">
+                  В наличии:
+                </span>
+                <span class="product-stock-value">
+                  Гагарина, 48 и еще в 1 магазин
+                </span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="button" class="btn btn-remove card-delete">
+                <span class="icon">
+                  <svg>
+                    <use xlink:href="img/icons/close.svg#svg-close"></use>
+                  </svg>
+                </span>
+              </button>
+
+              <div class="card-price product-price">
+                <div class="product-price-main">
+                  <span class="product-price-current">1&nbsp;372&nbsp;₽</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </li>
+      </ul>
+    </div>
+    <div class="offcanvas-footer">
+      <div class="price">
+        <div class="price-name">
+          итого
+        </div>
+        <div class="price-value">
+          3 752 ₽
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-lg btn-light">
+        <span>оформить заказ</span>
+        <span class="icon">
+          <svg>
+            <use xlink:href="img/icons/arrow-right-2.svg#svg-arrow-right-2"></use>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas-bottom" tabindex="-1"
+  id="offcanvas-auth">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Профиль
+      </h3>
+    </div>
+    <div class="offcanvas-body">
+
+    </div>
+    <div class="offcanvas-footer">
+
+    </div>
+  </form>
+</div>
+
       <div role="dialog" class="modal modal-alert fade" tabindex="-1"
   id="modalAgeRestriction"
   data-bs-backdrop="static"
@@ -1614,6 +1861,60 @@
         </button>
         <button type="button" class="btn btn-base btn-secondary">
           Мне еще нет 18 лет
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div role="dialog" class="modal modal-alert fade" tabindex="-1"
+  id="modal-promocode-remove"
+  data-bs-backdrop="static"
+  aria-labelledby="modal-promocode-remove-label"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"
+          id="modal-promocode-remove-label">
+          отмениь промокод?
+        </h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-base btn-primary"
+          data-bs-dismiss="modal">
+          отменить
+        </button>
+        <button type="button" class="btn btn-base btn-outline-secondary"
+          data-bs-dismiss="modal">
+          назад
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div role="dialog" class="modal modal-alert fade" tabindex="-1"
+  id="modal-bonus-remove"
+  data-bs-backdrop="static"
+  aria-labelledby="modal-bonus-remove-label"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"
+          id="modal-bonus-remove-label">
+          отмениь бонус?
+        </h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-base btn-primary"
+          data-bs-dismiss="modal">
+          отменить
+        </button>
+        <button type="button" class="btn btn-base btn-outline-secondary"
+          data-bs-dismiss="modal">
+          назад
         </button>
       </div>
     </div>
@@ -2052,44 +2353,47 @@
 
     <script>
   document.querySelectorAll('.card')?.forEach(card => {
-    const cardAdd = card.querySelector('.card-add')
+    const cardAdd = card.querySelector('[data-card-button]')
 
     if (!cardAdd) return
 
     cardAdd.addEventListener('click', () => {
-      const link = document.createElement('a')
-      link.href = './cart'
-      link.className = 'btn btn-base btn-secondary card-add'
-      link.textContent = 'Оформить заказ'
 
-      cardAdd.replaceWith(link)
+      if (cardAdd.dataset.cardButton === 'add') {
+        const link = document.createElement('a')
+        link.href = './cart'
+        link.className = 'btn btn-base btn-secondary card-add'
+        link.textContent = 'Оформить заказ'
 
-      const alert = document.createElement('div')
-      alert.className = 'alert'
-      alert.innerHTML = `
-        <div class="alert-content">
-          <p>
-            Вы добавили в корзину товары, находящиеся в разных магазинах,
-            это может повлиять на время и стоимость доставки
-          </p>
-        </div>
-      `
+        cardAdd.replaceWith(link)
 
-      const alertContainer = document.querySelector('.alert-container')
-      if (alertContainer) {
-        alertContainer.appendChild(alert)
+        const alert = document.createElement('div')
+        alert.className = 'alert'
+        alert.innerHTML = `
+          <div class="alert-content">
+            <p>
+              Вы добавили в корзину товары, находящиеся в разных магазинах,
+              это может повлиять на время и стоимость доставки
+            </p>
+          </div>
+        `
 
-        requestAnimationFrame(() => {
-          alert.classList.add('is-show')
-        })
+        const alertContainer = document.querySelector('.alert-container')
+        if (alertContainer) {
+          alertContainer.appendChild(alert)
 
-        setTimeout(() => {
-          alert.classList.remove('is-show')
+          requestAnimationFrame(() => {
+            alert.classList.add('is-show')
+          })
 
-          alert.addEventListener('transitionend', (e) => {
-            alert.remove()
-          }, { once: true })
-        }, 5000)
+          setTimeout(() => {
+            alert.classList.remove('is-show')
+
+            alert.addEventListener('transitionend', (e) => {
+              alert.remove()
+            }, { once: true })
+          }, 5000)
+        }
       }
     }, { once: true })
   })

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+
+@include('partials/head.html', {title: 'Способ получения'})
+
+<body class="page-body">
+  <div class="site-container">
+    @include('partials/header.html', {
+      page: 'profile'
+    })
+
+    <main class="main">
+      <div class="main-sections">
+        <section class="section">
+          <div class="container">
+            <div class="page-header">
+              <nav class="breadcrumb">
+                <ul class="list-reset breadcrumb-list">
+                  <li class="breadcrumb-item">
+                    <a href="/" class="btn btn-inherit breadcrumb-link">
+                      проверка заказа
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="/" class="btn btn-inherit breadcrumb-link">
+                      оплата
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <p>
+                      способ получения
+                    </p>
+                  </li>
+                </ul>
+              </nav>
+
+              <h1 class="page-header-title">
+                Способ получения
+              </h1>
+            </div>
+
+            <div class="content-cols">
+              <form class="content-contents">
+                <div class="content-col">
+                  <div class="content">
+                    <h2>
+                      выберите способ получения
+                    </h2>
+                  </div>
+                </div>
+                <div class="content-col">
+                  <div class="content-form">
+                    <label class="field-radio field-radio--block">
+                      <span class="field-radio-content">
+                        <span class="icon">
+                          <svg>
+                            <use xlink:href="img/icons/location-outline.svg#svg-location-outline"></use>
+                          </svg>
+                        </span>
+                        <span class="field-radio-label">самовывоз</span>
+                      </span>
+                      <input type="radio" class="field-radio-input" name="method" required
+                        data-toggle="radio-collapse"
+                        data-target="#radio-collapse-0">
+                    </label>
+                    <label class="field-radio field-radio--block">
+                      <span class="field-radio-content">
+                        <span class="icon">
+                          <svg>
+                            <use xlink:href="img/icons/ozon.svg#svg-ozon"></use>
+                          </svg>
+                        </span>
+                        <span class="field-radio-label">Ozon</span>
+                      </span>
+                      <input type="radio" class="field-radio-input" name="method" required
+                        data-toggle="radio-collapse"
+                        data-target="#radio-collapse-1">
+                    </label>
+                    <label class="field-radio field-radio--block">
+                      <span class="field-radio-content">
+                        <span class="icon">
+                          <svg>
+                            <use xlink:href="img/icons/box.svg#svg-box"></use>
+                          </svg>
+                        </span>
+                        <span class="field-radio-label">курьером</span>
+                      </span>
+                      <input type="radio" class="field-radio-input" name="method" required
+                        data-toggle="radio-collapse"
+                        data-target="#radio-collapse-2">
+                    </label>
+                    <label class="field-radio field-radio--block">
+                      <span class="field-radio-content">
+                        <span class="icon">
+                          <svg>
+                            <use xlink:href="img/icons/car.svg#svg-car"></use>
+                          </svg>
+                        </span>
+                        <span class="field-radio-label">СДЭК</span>
+                      </span>
+                      <input type="radio" class="field-radio-input" name="method" required
+                        data-toggle="radio-collapse"
+                        data-target="#radio-collapse-3">
+                    </label>
+                  </div>
+                </div>
+
+                <div class="content-collapse collapse" id="radio-collapse-0">
+                  <div class="content-cols">
+                    <div class="content-col">
+                      <div class="content">
+                        <h2>
+                          дополнительная информация
+                        </h2>
+                      </div>
+                    </div>
+                    <div class="content-col">
+                      <div class="content-form">
+                        <div class="field-control">
+                          <fieldset class="fieldset-block is-invalid">
+                            <div class="fieldset-block-label">выберите магазин:</div>
+                            <div class="fieldset-block-content">
+                              <label class="field-radio">
+                                <input type="radio" class="field-radio-input" name="shop" checked>
+                                <span class="field-radio-content">
+                                  <span class="field-radio-label">г. Самара, Ул. Ново-Вокзальная, 146а</span>
+                                  <span class="field-radio-descr">Через 1-3 дня, бесплатно круглосуточно</span>
+                                </span>
+                              </label>
+                              <label class="field-radio">
+                                <input type="radio" class="field-radio-input" name="shop">
+                                <span class="field-radio-content">
+                                  <span class="field-radio-label">г. Самара, Московское шоссе, Лит.В</span>
+                                  <span class="field-radio-descr">Через 1-3 дня, бесплатно круглосуточно</span>
+                                </span>
+                              </label>
+                              <label class="field-radio">
+                                <input type="radio" class="field-radio-input" name="shop">
+                                <span class="field-radio-content">
+                                  <span class="field-radio-label">г. Самара, Гагарина, 48</span>
+                                  <span class="field-radio-descr">Через 1-3 дня, бесплатно круглосуточно</span>
+                                </span>
+                              </label>
+                              <label class="field-radio">
+                                <input type="radio" class="field-radio-input" name="shop">
+                                <span class="field-radio-content">
+                                  <span class="field-radio-label">г. Самара, Ул. Авроры, 199</span>
+                                  <span class="field-radio-descr">Через 1-3 дня, бесплатно круглосуточно</span>
+                                </span>
+                              </label>
+                              <label class="field-radio">
+                                <input type="radio" class="field-radio-input" name="shop">
+                                <span class="field-radio-content">
+                                  <span class="field-radio-label">г. Самара, Ул. Авроры, 199</span>
+                                  <span class="field-radio-descr">Через 1-3 дня, бесплатно круглосуточно</span>
+                                </span>
+                              </label>
+                            </div>
+                          </fieldset>
+                          <div class="field-feedback field-feedback--error">
+                            <p>
+                              Ошибка
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="content-col">
+                      <div class="content">
+                        <h2>
+                          введите контактные данные
+                        </h2>
+                      </div>
+                    </div>
+                    <div class="content-col">
+                      <div class="content-form">
+                        <fieldset class="content-fieldset">
+                          <div class="field-control">
+                            <div class="field-wrapper">
+                              <input type="text" class="field" name="name" placeholder="ФИО">
+                            </div>
+                            <div class="field-feedback field-feedback--error">
+                              <p>
+                                Ошибка
+                              </p>
+                            </div>
+                          </div>
+                          <div class="field-control">
+                            <div class="field-wrapper">
+                              <input type="email" class="field" name="email" placeholder="email">
+                            </div>
+                            <div class="field-feedback">
+                              <p>
+                                Необходима для регистрации аккаунта и отправки чека
+                              </p>
+                            </div>
+                            <div class="field-feedback field-feedback--error">
+                              <p>
+                                Ошибка
+                              </p>
+                            </div>
+                          </div>
+                          <div class="field-control">
+                            <div class="field-wrapper">
+                              <input type="tel" class="field" name="phone" placeholder="+7 (999) 999-99-99">
+                            </div>
+                            <div class="field-feedback field-feedback--error">
+                              <p>
+                                Ошибка
+                              </p>
+                            </div>
+                          </div>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-collapse collapse" id="radio-collapse-1">
+                  <div class="content-cols">
+                    <div class="content-col">
+                      <div class="content">
+                        <h2>
+                          дополнительная информация
+                        </h2>
+                      </div>
+                    </div>
+                    <div class="content-col">
+                      <div class="content-form">
+                        <fieldset class="content-fieldset">
+                          <div class="field-control">
+                            <div class="field-wrapper">
+                              <select name="town"
+                                data-choices="">
+                                <option placeholder>Укажите город</option>
+                                <option value="0">г. Архангельск</option>
+                                <option value="1">г. Астрахань</option>
+                                <option value="2">г. Барнаул</option>
+                                <option value="3">г. Белгород</option>
+                                <option value="4">г. Благовещенск</option>
+                                <option value="5">г. Брянск</option>
+                                <option value="6">г. Великий Новгород</option>
+                                <option value="7">г. Владивосток</option>
+                                <option value="8">г. Владикавказ</option>
+                                <option value="9">г. Волгоград</option>
+                                <option value="11">г. Воронеж</option>
+                                <option value="12">г. Екатеринбург</option>
+                                <option value="13">г. Иркутск</option>
+                                <option value="14">г. Казань</option>
+                                <option value="15">г. Калининград</option>
+                                <option value="16">г. Краснодар</option>
+                                <option value="17">г. Москва</option>
+                                <option value="18">г. Нижний Новгород</option>
+                                <option value="19">г. Новосибирск</option>
+                                <option value="20">г. Оренбург</option>
+                                <option value="21">г. Пенза</option>
+                                <option value="22">г. Пермь</option>
+                                <option value="23">г. Ростов-на-Дону</option>
+                                <option value="24">г. Самара</option>
+                                <option value="25">г. Санкт-Петербург</option>
+                                <option value="26">г. Севастополь</option>
+                                <option value="27">г. Смоленск</option>
+                                <option value="28">г. Сочи</option>
+                              </select>
+                            </div>
+                          </div>
+                        </fieldset>
+                      </div>
+                    </div>
+                    <div class="content-col">
+                      <div class="content">
+                        <h2>
+                          введите контактные данные
+                        </h2>
+                      </div>
+                    </div>
+                    <div class="content-col">
+                      <div class="content-form">
+                        <fieldset class="content-fieldset">
+                          <div class="field-control">
+                            <div class="field-wrapper">
+                              <input type="tel" class="field" name="phone" placeholder="+7 (999) 999-99-99">
+                            </div>
+                            <div class="field-feedback">
+                              <p>
+                                Пожалуйста, убедитесь, что Ozon зарегистрирован на этот номер, иначе мы не сможем оформить доставку
+                              </p>
+                            </div>
+                            <div class="field-feedback field-feedback--error">
+                              <p>
+                                Ошибка
+                              </p>
+                            </div>
+                          </div>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-collapse collapse" id="radio-collapse-2">
+                  <div class="content-cols">
+                    <div class="content-col">
+                      <div class="content">
+                        <h2>
+                          дополнительная информация
+                        </h2>
+                      </div>
+                    </div>
+                    <div class="content-col">
+                      <div class="content-form">
+                        <fieldset class="content-fieldset">
+                          <div class="field-control">
+                            <div class="field-wrapper">
+                              <input type="text" class="field" name="address" placeholder="адрес">
+                            </div>
+                            <div class="field-feedback">
+                              <p>
+                                Зона доставки не определена, стоимость доставки будет расчитана менеджером
+                              </p>
+                            </div>
+                            <div class="field-feedback field-feedback--error">
+                              <p>
+                                Ошибка
+                              </p>
+                            </div>
+                          </div>
+
+                          <div class="field-col-2">
+                            <div class="field-control">
+                              <div class="field-wrapper">
+                                <input type="text" class="field" name="apartment" placeholder="квартира">
+                              </div>
+                              <div class="field-feedback field-feedback--error">
+                                <p>
+                                  Ошибка
+                                </p>
+                              </div>
+                            </div>
+                            <div class="field-control">
+                              <div class="field-wrapper">
+                                <input type="text" class="field" name="entrance" placeholder="подъезд">
+                              </div>
+                              <div class="field-feedback field-feedback--error">
+                                <p>
+                                  Ошибка
+                                </p>
+                              </div>
+                            </div>
+                            <div class="field-control">
+                              <div class="field-wrapper">
+                                <input type="text" class="field" name="intercome" placeholder="домофон">
+                              </div>
+                              <div class="field-feedback field-feedback--error">
+                                <p>
+                                  Ошибка
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </fieldset>
+                        <fieldset class="content-fieldset">
+                          <div class="field-control field-control--textarea">
+                            <div class="field-wrapper">
+                              <textarea name="message" class="field" placeholder="комментарий курьеру"></textarea>
+                            </div>
+                            <div class="field-feedback field-feedback--error">
+                              <p>
+                                Ошибка
+                              </p>
+                            </div>
+                          </div>
+                        </fieldset>
+                      </div>
+                    </div>
+                    <div class="content-col">
+                      <div class="content">
+                        <h2>
+                          выберите дату и время доставки
+                        </h2>
+                      </div>
+                    </div>
+                    <div class="content-col">
+                      <div class="content-form">
+                        <fieldset class="content-fieldset">
+                          <div class="field-control">
+                            <div class="dropdown dropdown--select">
+                              <input type="hidden" name="date" value="2026-10-07">
+                              <button type="button" class="btn dropdown-toggle is-placeholder"
+                                data-bs-toggle="dropdown"
+                                data-bs-offset="0, -1"
+                                data-bs-auto-close="outside"
+                                aria-expanded="false">
+                                <span class="text"></span>
+                                <span class="icon">
+                                  <svg>
+                                    <use xlink:href="img/icons/calendar.svg#svg-calendar"></use>
+                                  </svg>
+                                </span>
+                              </button>
+                              <div class="dropdown-menu">
+                                <div class="dropdown-menu-body">
+                                  <div data-calendar="select"></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="field-feedback field-feedback--error">
+                              <p>
+                                Ошибка
+                              </p>
+                            </div>
+                          </div>
+                        </fieldset>
+                        <fieldset class="content-fieldset">
+                          <div class="field-control">
+                            <div class="field-wrapper">
+                              <select name="address-point"
+                                data-choices="choices--time">
+                                <option placeholder>Время доставки</option>
+                                <option value="0">с 9:00 до 12:00 </option>
+                                <option value="1">с 12:00 до 15:00 </option>
+                                <option value="2">с 15:00 до 18:00 </option>
+                                <option value="3">с 18:00 до 21:00 </option>
+                                <option value="4">с 21:00 до 23:00 </option>
+                                <option value="5">с 23:00 до 9:00 </option>
+                              </select>
+                            </div>
+                            <div class="field-feedback field-feedback--error">
+                              <p>
+                                Ошибка
+                              </p>
+                            </div>
+                          </div>
+                          <div class="alert alert--static">
+                            <div class="alert-content">
+                              <p>
+                                Для расчета стоимости доставки, с вами свяжется менеджер в ближайшее время
+                              </p>
+                            </div>
+                          </div>
+                        </fieldset>
+                      </div>
+                    </div>
+                    <div class="content-col">
+                      <div class="content">
+                        <h2>
+                          введите контактные данные
+                        </h2>
+                      </div>
+                    </div>
+                    <div class="content-col">
+                      <div class="content-form">
+                        <fieldset class="content-fieldset">
+                          <div class="field-control">
+                            <div class="field-wrapper">
+                              <input type="text" class="field" name="name" placeholder="Александр(а)">
+                            </div>
+                            <div class="field-feedback field-feedback--error">
+                              <p>
+                                Ошибка
+                              </p>
+                            </div>
+                          </div>
+                          <div class="field-control">
+                            <div class="field-wrapper">
+                              <input type="email" class="field" name="email" placeholder="email">
+                            </div>
+                            <div class="field-feedback field-feedback--error">
+                              <p>
+                                Ошибка
+                              </p>
+                            </div>
+                          </div>
+                          <div class="field-control">
+                            <div class="field-wrapper">
+                              <input type="tel" class="field" name="phone" placeholder="+7 (999) 999-99-99">
+                            </div>
+                            <div class="field-feedback field-feedback--error">
+                              <p>
+                                Ошибка
+                              </p>
+                            </div>
+                          </div>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-collapse collapse" id="radio-collapse-3">
+                  <div class="content-cols">
+                    <div class="content-col">
+                      <div class="content">
+                        <h2>
+                          дополнительная информация
+                        </h2>
+                      </div>
+                    </div>
+                    <div class="content-col">
+                      <div class="content-form">
+                        <fieldset class="content-fieldset">
+                          <div class="field-control">
+                            <div class="field-wrapper">
+                              <select name="address-point"
+                                data-choices="">
+                                <option placeholder>Укажите адрес пункта выдачи</option>
+                                <option value="0">Самара, ул. Крутые ключи, 33</option>
+                                <option value="1">Самара, ул. Советской Армии, 99А</option>
+                                <option value="2">Самара, Николаевский пр-т, 6</option>
+                                <option value="3">Самара, проспект Ленина, 5</option>
+                                <option value="4">Самара, ул. Гастелло, 35А</option>
+                                <option value="5">Самара, ул. Гастелло, 35А</option>
+                                <option value="6">Самара, ул. Гастелло, 35А</option>
+                                <option value="7">Самара, ул. Гастелло, 35А</option>
+                                <option value="8">Самара, ул. Гастелло, 35А</option>
+                                <option value="9">Самара, ул. Гастелло, 35А</option>
+                                <option value="11">Самара, ул. Гастелло, 35А</option>
+                                <option value="12">Самара, ул. Гастелло, 35А</option>
+                              </select>
+                            </div>
+                            <div class="field-feedback field-feedback--error">
+                              <p>
+                                Ошибка
+                              </p>
+                            </div>
+                          </div>
+                        </fieldset>
+                      </div>
+                    </div>
+                    <div class="content-col">
+                      <div class="content">
+                        <h2>
+                          введите контактные данные
+                        </h2>
+                      </div>
+                    </div>
+                    <div class="content-col">
+                      <div class="content-form">
+                        <fieldset class="content-fieldset">
+                          <div class="field-control">
+                            <div class="field-wrapper">
+                              <input type="text" class="field" name="name" placeholder="ФИО">
+                            </div>
+                            <div class="field-feedback field-feedback--error">
+                              <p>
+                                Ошибка
+                              </p>
+                            </div>
+                          </div>
+                          <div class="field-control">
+                            <div class="field-wrapper">
+                              <input type="email" class="field" name="email" placeholder="email">
+                            </div>
+                            <div class="field-feedback">
+                              <p>
+                                Необходима для отправки чека
+                              </p>
+                            </div>
+                            <div class="field-feedback field-feedback--error">
+                              <p>
+                                Ошибка
+                              </p>
+                            </div>
+                          </div>
+                          <div class="field-control">
+                            <div class="field-wrapper">
+                              <input type="tel" class="field" name="phone" placeholder="+7 (999) 999-99-99">
+                            </div>
+                            <div class="field-feedback field-feedback--error">
+                              <p>
+                                Ошибка
+                              </p>
+                            </div>
+                          </div>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="content-col">
+                  <div class="content">
+                    <h2>
+                      итого
+                    </h2>
+                  </div>
+                </div>
+              </form>
+
+              <div class="content-col">
+                <div class="content-form">
+                  <div class="order-summary">
+                    <div class="order-summary-header">
+                      <h3 class="order-summary-total">
+                        3 752 ₽
+                      </h3>
+                    </div>
+
+                    <div class="order-summary-body">
+                      <div class="order-summary-discount">
+                        <dl class="product-characteristics" data-order="summary">
+                          <dt>
+                            2 товара на сумму
+                          </dt>
+                          <dd>
+                            3 752 ₽
+                          </dd>
+                          <dt>
+                            скидка
+                          </dt>
+                          <dd>
+                            -1 ₽
+                          </dd>
+                        </dl>
+                      </div>
+
+                      <div class="order-summary-fields">
+                        <form class="field-control">
+                          <div class="field-wrapper field-wrapper--assent">
+                            <input type="text" class="field" name="promocode" placeholder="ввести промокод"
+                              data-input="promocode">
+                            <button type="submit" class="btn field-button field-button--assent">
+                              <span>
+                                применить
+                              </span>
+                            </button>
+                          </div>
+                          <div class="field-feedback field-feedback--error">
+                            <p>
+                              такого промокода нет
+                            </p>
+                          </div>
+                        </form>
+                        <form class="field-control">
+                          <div class="field-wrapper field-wrapper--assent">
+                            <input type="text" class="field" name="promocode" placeholder="заплатить бонусами"
+                              data-input="bonus">
+                            <button type="submit" class="btn field-button field-button--assent">
+                              <span>
+                                применить
+                              </span>
+                            </button>
+                          </div>
+                          <div class="field-feedback field-feedback--error">
+                            <p>
+                              Максимальная сумма покрытия 30 ₽
+                            </p>
+                          </div>
+                        </form>
+
+                        <!-- (START) Demo Code -->
+                        <script>
+                          document.querySelectorAll('form.field-control')?.forEach((form) => {
+                            const input = form.querySelector('[data-input]');
+                            const wrapper = form.querySelector('.field-wrapper');
+                            const summary = document.querySelectorAll('[data-order="summary"]');
+
+                            if (!input || !wrapper || !summary) return;
+
+                            form.addEventListener('submit', (e) => {
+                              e.preventDefault();
+
+                              const value = input.value.trim();
+                              wrapper.classList.remove('is-invalid');
+
+                              // имитация проверки на "успешность"
+                              fakeRequest(value, input.dataset.input)
+                                .then((discountText) => {
+                                  // скрываем форму
+                                  form.classList.add('visually-hidden');
+
+                                  // добавляем блок в summary
+                                  const dt = document.createElement('dt');
+                                  const dd = document.createElement('dd');
+
+                                  let labelText = '';
+                                  let modalTarget = '';
+
+                                  if (input.dataset.input === 'promocode') {
+                                    labelText = 'промокод';
+                                    modalTarget = '#modal-promocode-remove';
+                                  } else if (input.dataset.input === 'bonus') {
+                                    labelText = 'оплата бонусами';
+                                    modalTarget = '#modal-bonus-remove';
+                                  }
+
+                                  dt.textContent = labelText;
+                                  dd.innerHTML = `
+                                    ${discountText}
+                                    <button type="button" class="btn btn-remove dd-remove" aria-label="Close"
+                                      data-bs-toggle="modal"
+                                      data-bs-target=${modalTarget}>
+                                      <span class="icon">
+                                        <svg>
+                                          <use xlink:href="img/icons/close.svg#svg-close"></use>
+                                        </svg>
+                                      </span>
+                                    </button>
+                                  `;
+
+                                  summary.forEach(element => {
+                                    element.appendChild(dt);
+                                    element.appendChild(dd);
+                                  })
+                                })
+                                .catch(() => {
+                                  wrapper.classList.add('is-invalid');
+                                });
+                            });
+
+                            input.addEventListener('input', () => {
+                              wrapper.classList.remove('is-invalid');
+                            });
+                          });
+
+
+                          // Фейковая проверка
+                          function fakeRequest(value, type) {
+                            return new Promise((resolve, reject) => {
+                              setTimeout(() => {
+                                if (!value) {
+                                  reject();
+                                  return;
+                                }
+
+                                if (type === 'promocode') {
+                                  resolve('-300 ₽');
+                                } else if (type === 'bonus') {
+                                  resolve('-30 ₽');
+                                } else {
+                                  reject();
+                                }
+                              }, 300);
+                            });
+                          }
+                        </script>
+                        <!-- (END) Demo Code -->
+
+                        <div class="order-info">
+                          <div class="order-info-header">
+                            <h4 class="order-info-title">
+                              а еще у нас есть промокоды и бонусный счет
+                            </h4>
+                          </div>
+                          <div class="order-info-body">
+                            <div class="order-info-main">
+                              <p>
+                                с каждой покупки зарегистрированным пользователям мы будем зачислять % от суммы заказа
+                                на бонусный счет для оплаты будущих покупок на сайте
+                              </p>
+                            </div>
+                            <div class="order-info-footer">
+                              <button type="button" class="btn btn-sm btn-secondary"
+                                data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvas-auth">
+                                <span>войти / зарегистрироваться</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="order-summary-actions">
+                        <button type="button" class="btn btn-lg btn-secondary" disabled>
+                          <span>далее</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      @include('partials/floating-bottom.html')
+      @include('partials/offcanvases.html')
+      @include('partials/modals.html')
+      <div class="alert-container"></div>
+    </main>
+
+    @include('partials/footer.html')
+  </div>
+</body>
+
+</html>

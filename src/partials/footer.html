@@ -1,43 +1,46 @@
 <script>
   document.querySelectorAll('.card')?.forEach(card => {
-    const cardAdd = card.querySelector('.card-add')
+    const cardAdd = card.querySelector('[data-card-button]')
 
     if (!cardAdd) return
 
     cardAdd.addEventListener('click', () => {
-      const link = document.createElement('a')
-      link.href = './cart'
-      link.className = 'btn btn-base btn-secondary card-add'
-      link.textContent = 'Оформить заказ'
 
-      cardAdd.replaceWith(link)
+      if (cardAdd.dataset.cardButton === 'add') {
+        const link = document.createElement('a')
+        link.href = './cart'
+        link.className = 'btn btn-base btn-secondary card-add'
+        link.textContent = 'Оформить заказ'
 
-      const alert = document.createElement('div')
-      alert.className = 'alert'
-      alert.innerHTML = `
-        <div class="alert-content">
-          <p>
-            Вы добавили в корзину товары, находящиеся в разных магазинах,
-            это может повлиять на время и стоимость доставки
-          </p>
-        </div>
-      `
+        cardAdd.replaceWith(link)
 
-      const alertContainer = document.querySelector('.alert-container')
-      if (alertContainer) {
-        alertContainer.appendChild(alert)
+        const alert = document.createElement('div')
+        alert.className = 'alert'
+        alert.innerHTML = `
+          <div class="alert-content">
+            <p>
+              Вы добавили в корзину товары, находящиеся в разных магазинах,
+              это может повлиять на время и стоимость доставки
+            </p>
+          </div>
+        `
 
-        requestAnimationFrame(() => {
-          alert.classList.add('is-show')
-        })
+        const alertContainer = document.querySelector('.alert-container')
+        if (alertContainer) {
+          alertContainer.appendChild(alert)
 
-        setTimeout(() => {
-          alert.classList.remove('is-show')
+          requestAnimationFrame(() => {
+            alert.classList.add('is-show')
+          })
 
-          alert.addEventListener('transitionend', (e) => {
-            alert.remove()
-          }, { once: true })
-        }, 5000)
+          setTimeout(() => {
+            alert.classList.remove('is-show')
+
+            alert.addEventListener('transitionend', (e) => {
+              alert.remove()
+            }, { once: true })
+          }, 5000)
+        }
       }
     }, { once: true })
   })

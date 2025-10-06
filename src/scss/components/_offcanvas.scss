@@ -114,25 +114,6 @@
   overflow-y: auto;
   overflow-x: hidden;
 
-  &::-webkit-scrollbar {
-    width: .125rem;
-    height: .125rem;
-
-    &-track {
-      background: var(--text-color-20);
-      border-radius: 2rem;
-    }
-
-    &-thumb {
-      background-color: var(--text-color);
-      border-radius: 2rem;
-
-      &:hover {
-        background-color: var(--text-color-70);
-      }
-    }
-  }
-
   .header-nav {
     flex-direction: column;
     align-items: stretch;
@@ -228,12 +209,17 @@
   }
 
   .offcanvas-content {
+    flex: 1 1;
     display: flex;
     flex-direction: column;
     background-color: var(--bs-offcanvas-bg);
-    border-radius: .5rem;
+    border-radius: .5rem .5rem 0 0;
     overflow: hidden;
     position: relative;
+
+    @include breakpoint-up(sm) {
+      border-radius: .5rem;
+    }
   }
 
   .offcanvas-header,
@@ -253,13 +239,6 @@
 
   .offcanvas-body {
     gap: 1.5rem;
-    margin-right: .25rem;
-    padding-right: .75rem;
-
-    @include breakpoint-up(lg) {
-      margin-right: .5rem;
-      padding-right: 1.75rem;
-    }
   }
 
   .offcanvas-footer {
@@ -275,5 +254,34 @@
 
   .field-radio {
     justify-content: space-between;
+  }
+}
+
+
+.offcanvas--bag {
+
+  .offcanvas-body {
+    background-color: var(--bs-offcanvas-bg);
+    border-bottom-right-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .offcanvas-footer {
+    flex-direction: row;
+    color: var(--light);
+    background-color: var(--text-color);
+    position: relative;
+
+    &::after {
+      content: '';
+      height: 1rem;
+      background-color: var(--text-color);
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      right: 0;
+    }
   }
 }

@@ -5,7 +5,9 @@
 
 <body class="page-body">
   <div class="site-container">
-    @include('partials/header.html')
+    @include('partials/header.html', {
+      page: 'index'
+    })
 
     <main class="main">
       <div class="main-sections">
@@ -68,7 +70,7 @@
                   </div>
                   <div class="filter-start-toggle filter-start-toggle--mobile">
                     <select name="category"
-                      data-choices="choices--secondary"
+                      data-choices="choices--filter"
                       data-placeholder="">
                       <option placeholder>Категории</option>
                       <option value="all">Всё</option>

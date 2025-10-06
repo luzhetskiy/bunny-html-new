@@ -1,0 +1,30 @@
+.price {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  line-height: 1;
+
+  @include breakpoint-up(lg) {
+    gap: .75rem;
+  }
+
+  &-name {
+    font-size: .875rem;
+    font-weight: 700;
+    color: var(--light-20);
+
+    @include breakpoint-up(lg) {
+      font-size: var(--fs-base);
+    }
+  }
+
+  &-value {
+    font-family: var(--font-second);
+    font-size: var(--fs-base);
+    font-weight: 600;
+
+    @include breakpoint-up(lg) {
+      font-size: 1.125rem;
+    }
+  }
+}

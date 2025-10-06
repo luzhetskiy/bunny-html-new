@@ -237,3 +237,125 @@
     }
   }
 }
+
+.dropdown--select {
+
+  .dropdown-toggle {
+    --_height: 3rem;
+    --_fs: .875rem;
+    --_border-width: .0625rem;
+    --_rounded: .5rem;
+    --_padding: .25rem 1rem;
+
+    --_icon-size: 1.25rem;
+
+    --_color: var(--text-color);
+    --_color-hover: var(--text-color);
+    --_color-active: var(--text-color);
+
+    --_bg: var(--light);
+    --_bg-hover: var(--light);
+    --_bg-active: var(--light);
+
+    --_border-color: var(--text-color-20);
+    --_border-color-hover: var(--text-color-20);
+    --_border-color-active: var(--text-color-20);
+
+    --_icon-color: var(--text-color);
+    --_icon-hover-color: var(--text-color);
+    --_icon-active-color: var(--text-color);
+
+    max-width: 100%;
+    width: 100%;
+
+    .text {
+      max-width: 100%;
+      flex: 1 1;
+    }
+
+    &[aria-expanded=true] {
+
+      .icon {
+        transform: initial;
+      }
+    }
+
+    &.is-placeholder {
+      --_color: var(--text-color-50);
+      --_color-hover: var(--text-color-50);
+      --_color-active: var(--text-color-50);
+    }
+  }
+
+  .dropdown-menu {
+    --bs-dropdown-border-width: .0625rem;
+    --bs-dropdown-border-radius: .5rem;
+    --bs-dropdown-padding-y: 0rem;
+    --bs-dropdown-padding-x: 0rem;
+    --bs-dropdown-border-color: var(--text-color-20);
+    --bs-dropdown-box-shadow: none;
+
+    max-width: 100%;
+    width: 100%;
+
+    &[data-popper-placement^="top-"] {
+      border-bottom: none;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+
+      &::after,
+      &::before {
+        top: 100%;
+        bottom: initial;
+      }
+    }
+
+    &[data-popper-placement^="bottom-"] {
+      border-top: none;
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    &::after,
+    &::before {
+      content: '';
+      width: .25rem;
+      height: .5rem;
+      display: block;
+      background-color: var(--bs-dropdown-bg);
+      position: absolute;
+      bottom: 100%;
+    }
+
+    &::before {
+      border-left: .0625rem solid var(--text-color-20);
+      left: -.0625rem;
+    }
+
+    &::after {
+      border-right: .0625rem solid var(--text-color-20);
+      right: -.0625rem;
+    }
+  }
+
+  &.is-invalid {
+
+    .dropdown-toggle {
+      --_border-color: var(--error);
+      --_border-color-hover: var(--error);
+      --_border-color-active: var(--error);
+    }
+
+    .dropdown-menu {
+      --bs-dropdown-border-color: var(--error);
+
+      &::before {
+        border-left-color: var(--error);
+      }
+
+      &::after {
+        border-right-color: var(--error);
+      }
+    }
+  }
+}

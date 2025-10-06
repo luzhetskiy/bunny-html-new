@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+
+@include('partials/head.html', {title: 'Оплата'})
+
+<body class="page-body">
+  <div class="site-container">
+    @include('partials/header.html', {
+      page: 'profile'
+    })
+
+    <main class="main">
+      <div class="main-sections">
+        <section class="section">
+          <div class="container">
+            <div class="page-header">
+              <nav class="breadcrumb">
+                <ul class="list-reset breadcrumb-list">
+                  <li class="breadcrumb-item">
+                    <a href="/" class="btn btn-inherit breadcrumb-link">
+                      проверка заказа
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="/" class="btn btn-inherit breadcrumb-link">
+                      способ получения
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <p>
+                      оплата
+                    </p>
+                  </li>
+                </ul>
+              </nav>
+
+              <h1 class="page-header-title">
+                Оплата
+              </h1>
+            </div>
+
+            <div class="content-cols">
+              <form class="content-contents">
+                <div class="content-col">
+                  <div class="content">
+                    <h2>
+                      выберите способ оплаты
+                    </h2>
+                  </div>
+                </div>
+                <div class="content-col">
+                  <div class="content-form">
+                    <label class="field-radio field-radio--block">
+                      <span class="field-radio-content">
+                        <span class="icon">
+                          <svg>
+                            <use xlink:href="img/icons/card.svg#svg-card"></use>
+                          </svg>
+                        </span>
+                        <span class="field-radio-label">картой онлайн</span>
+                      </span>
+                      <input type="radio" class="field-radio-input" name="payment" required
+                        data-toggle="radio-collapse"
+                        data-target="#radio-collapse-0">
+                    </label>
+                    <label class="field-radio field-radio--block">
+                      <span class="field-radio-content">
+                        <span class="icon">
+                          <svg>
+                            <use xlink:href="img/icons/wallet.svg#svg-wallet"></use>
+                          </svg>
+                        </span>
+                        <span class="field-radio-label">наличными при получении</span>
+                      </span>
+                      <input type="radio" class="field-radio-input" name="payment" required
+                        data-toggle="radio-collapse"
+                        data-target="#radio-collapse-1">
+                    </label>
+                    <label class="field-radio field-radio--block">
+                      <span class="field-radio-content">
+                        <span class="icon">
+                          <svg>
+                            <use xlink:href="img/icons/parts.svg#svg-parts"></use>
+                          </svg>
+                        </span>
+                        <span class="field-radio-label">оплата частями (Сбербанк)</span>
+                      </span>
+                      <input type="radio" class="field-radio-input" name="payment" required
+                        data-toggle="radio-collapse"
+                        data-target="#radio-collapse-2">
+                    </label>
+                  </div>
+                </div>
+
+                <div class="content-collapse collapse visually-hidden" id="radio-collapse-0"></div>
+                <div class="content-collapse collapse visually-hidden" id="radio-collapse-2"></div>
+
+                <div class="content-collapse collapse" id="radio-collapse-1">
+                  <div class="content-cols">
+                    <div class="content-col">
+                      <div class="content">
+                        <h2>
+                          выберите способ подтверждния
+                        </h2>
+                      </div>
+                    </div>
+                    <div class="content-col">
+                      <div class="content-form">
+                        <label class="field-radio field-radio--block">
+                          <span class="field-radio-content">
+                            <span class="icon">
+                              <svg>
+                                <use xlink:href="img/icons/phone.svg#svg-phone"></use>
+                              </svg>
+                            </span>
+                            <span class="field-radio-label">звонок по телефону</span>
+                          </span>
+                          <input type="radio" class="field-radio-input" name="payment-confirm" required
+                            data-toggle="radio-collapse"
+                            data-target="#radio-collapse-1-0">
+                        </label>
+                        <label class="field-radio field-radio--block">
+                          <span class="field-radio-content">
+                            <span class="icon">
+                              <svg>
+                                <use xlink:href="img/icons/telegram-color.svg#svg-telegram-color"></use>
+                              </svg>
+                            </span>
+                            <span class="field-radio-label">Telegram</span>
+                          </span>
+                          <input type="radio" class="field-radio-input" name="payment-confirm" required
+                            data-toggle="radio-collapse"
+                            data-target="#radio-collapse-1-1">
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="content-collapse collapse" id="radio-collapse-1-0">
+                    <div class="content-cols">
+                      <div class="content-col">
+                        <div class="content">
+                          <h2>
+                            укажите телефон
+                          </h2>
+                        </div>
+                      </div>
+                      <div class="content-col">
+                        <div class="content-form">
+                          <fieldset class="content-fieldset">
+                            <div class="field-control">
+                              <div class="field-wrapper">
+                                <input type="tel" class="field" name="phone" placeholder="+7 (999) 999-99-99">
+                              </div>
+                              <div class="field-feedback field-feedback--error">
+                                <p>
+                                  Ошибка
+                                </p>
+                              </div>
+                            </div>
+                          </fieldset>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="content-collapse collapse" id="radio-collapse-1-1">
+                    <div class="content-cols">
+                      <div class="content-col">
+                        <div class="content">
+                          <h2>
+                            укажите никнейм
+                          </h2>
+                        </div>
+                      </div>
+                      <div class="content-col">
+                        <div class="content-form">
+                          <fieldset class="content-fieldset">
+                            <div class="field-control">
+                              <div class="field-wrapper">
+                                <label class="field">
+                                  <input type="text" class="field--plaintext" name="telegram" placeholder="@ваш ник">
+                                  <span class="field-postfix">
+                                    <button type="button" class="btn"
+                                      data-bs-toggle="tooltip"
+                                      data-bs-placement="top"
+                                      data-bs-title="<p><b>Как узнать свой ник в Телеграм:</b></p><ul><li>Открываем меню приложения.</li><li>Жмем на “Настройки”.</li><li>Смотрим на строку под номером телефона — это и есть ник.</li></ul>">
+                                      <span class="icon">
+                                        <svg>
+                                          <use xlink:href="img/icons/tooltip.svg#svg-tooltip"></use>
+                                        </svg>
+                                      </span>
+                                    </button>
+                                  </span>
+                                </label>
+                              </div>
+                              <div class="field-feedback field-feedback--error">
+                                <p>
+                                  Ошибка
+                                </p>
+                              </div>
+                            </div>
+                          </fieldset>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="content-col">
+                  <div class="content">
+                    <h2>
+                      итого
+                    </h2>
+                  </div>
+                </div>
+              </form>
+
+              <div class="content-col">
+                <div class="content-form">
+                  <div class="order-summary">
+                    <div class="order-summary-header">
+                      <h3 class="order-summary-total">
+                        3 752 ₽
+                      </h3>
+                    </div>
+
+                    <div class="order-summary-body">
+                      <div class="order-summary-discount">
+                        <dl class="product-characteristics" data-order="summary">
+                          <dt>
+                            2 товара на сумму
+                          </dt>
+                          <dd>
+                            3 752 ₽
+                          </dd>
+                          <dt>
+                            скидка
+                          </dt>
+                          <dd>
+                            -1 ₽
+                          </dd>
+                        </dl>
+                      </div>
+
+                      <div class="order-summary-fields">
+                        <form class="field-control">
+                          <div class="field-wrapper field-wrapper--assent">
+                            <input type="text" class="field" name="promocode" placeholder="ввести промокод"
+                              data-input="promocode">
+                            <button type="submit" class="btn field-button field-button--assent">
+                              <span>
+                                применить
+                              </span>
+                            </button>
+                          </div>
+                          <div class="field-feedback field-feedback--error">
+                            <p>
+                              такого промокода нет
+                            </p>
+                          </div>
+                        </form>
+                        <form class="field-control">
+                          <div class="field-wrapper field-wrapper--assent">
+                            <input type="text" class="field" name="promocode" placeholder="заплатить бонусами"
+                              data-input="bonus">
+                            <button type="submit" class="btn field-button field-button--assent">
+                              <span>
+                                применить
+                              </span>
+                            </button>
+                          </div>
+                          <div class="field-feedback field-feedback--error">
+                            <p>
+                              Максимальная сумма покрытия 30 ₽
+                            </p>
+                          </div>
+                        </form>
+
+                        <!-- (START) Demo Code -->
+                        <script>
+                          document.querySelectorAll('form.field-control')?.forEach((form) => {
+                            const input = form.querySelector('[data-input]');
+                            const wrapper = form.querySelector('.field-wrapper');
+                            const summary = document.querySelectorAll('[data-order="summary"]');
+
+                            if (!input || !wrapper || !summary) return;
+
+                            form.addEventListener('submit', (e) => {
+                              e.preventDefault();
+
+                              const value = input.value.trim();
+                              wrapper.classList.remove('is-invalid');
+
+                              // имитация проверки на "успешность"
+                              fakeRequest(value, input.dataset.input)
+                                .then((discountText) => {
+                                  // скрываем форму
+                                  form.classList.add('visually-hidden');
+
+                                  // добавляем блок в summary
+                                  const dt = document.createElement('dt');
+                                  const dd = document.createElement('dd');
+
+                                  let labelText = '';
+                                  let modalTarget = '';
+
+                                  if (input.dataset.input === 'promocode') {
+                                    labelText = 'промокод';
+                                    modalTarget = '#modal-promocode-remove';
+                                  } else if (input.dataset.input === 'bonus') {
+                                    labelText = 'оплата бонусами';
+                                    modalTarget = '#modal-bonus-remove';
+                                  }
+
+                                  dt.textContent = labelText;
+                                  dd.innerHTML = `
+                                    ${discountText}
+                                    <button type="button" class="btn btn-remove dd-remove" aria-label="Close"
+                                      data-bs-toggle="modal"
+                                      data-bs-target=${modalTarget}>
+                                      <span class="icon">
+                                        <svg>
+                                          <use xlink:href="img/icons/close.svg#svg-close"></use>
+                                        </svg>
+                                      </span>
+                                    </button>
+                                  `;
+
+                                  summary.forEach(element => {
+                                    element.appendChild(dt);
+                                    element.appendChild(dd);
+                                  })
+                                })
+                                .catch(() => {
+                                  wrapper.classList.add('is-invalid');
+                                });
+                            });
+
+                            input.addEventListener('input', () => {
+                              wrapper.classList.remove('is-invalid');
+                            });
+                          });
+
+
+                          // Фейковая проверка
+                          function fakeRequest(value, type) {
+                            return new Promise((resolve, reject) => {
+                              setTimeout(() => {
+                                if (!value) {
+                                  reject();
+                                  return;
+                                }
+
+                                if (type === 'promocode') {
+                                  resolve('-300 ₽');
+                                } else if (type === 'bonus') {
+                                  resolve('-30 ₽');
+                                } else {
+                                  reject();
+                                }
+                              }, 300);
+                            });
+                          }
+                        </script>
+                        <!-- (END) Demo Code -->
+
+                        <div class="order-info">
+                          <div class="order-info-header">
+                            <h4 class="order-info-title">
+                              а еще у нас есть промокоды и бонусный счет
+                            </h4>
+                          </div>
+                          <div class="order-info-body">
+                            <div class="order-info-main">
+                              <p>
+                                с каждой покупки зарегистрированным пользователям мы будем зачислять % от суммы заказа
+                                на бонусный счет для оплаты будущих покупок на сайте
+                              </p>
+                            </div>
+                            <div class="order-info-footer">
+                              <button type="button" class="btn btn-sm btn-secondary"
+                                data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvas-auth">
+                                <span>войти / зарегистрироваться</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="order-summary-actions">
+                        <button type="button" class="btn btn-lg btn-secondary">
+                          <span>оплатить картой или СБП</span>
+                        </button>
+                      </div>
+
+                      <div class="order-summary-hint">
+                        <p>
+                          нажимая на кнопку, вы даете <a href="#"class="btn btn-inherit-notcolor btn-underline">согласие на обработку персональных данных</a> и соглашаетесь с <a href="#"class="btn btn-inherit-notcolor btn-underline">политикой конфиденциальности</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      @include('partials/floating-bottom.html')
+      @include('partials/offcanvases.html')
+      @include('partials/modals.html')
+      <div class="alert-container"></div>
+    </main>
+
+    @include('partials/footer.html')
+  </div>
+</body>
+
+</html>

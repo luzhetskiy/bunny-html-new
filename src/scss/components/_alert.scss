@@ -9,23 +9,27 @@
   bottom: 0;
   left: 0;
   z-index: 1040;
+
+  .alert {
+    max-width: 30rem;
+    transition-property: transform;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in-out;
+    transform: translateX(-100vw);
+
+    &.is-show {
+      transform: translateX(0);
+    }
+  }
 }
 
 .alert {
-  max-width: 30rem;
+  width: 100%;
   font-size: .875rem;
   line-height: 1.2;
   color: var(--light);
   background-color: var(--text-color);
-  border-radius: 1rem;
+  border-radius: .5rem;
   padding: 1rem 1.5rem;
   pointer-events: auto;
-  transition-property: transform;
-  transition-duration: 300ms;
-  transition-timing-function: ease-in-out;
-  transform: translateX(-100vw);
-
-  &.is-show {
-    transform: translateX(0);
-  }
 }

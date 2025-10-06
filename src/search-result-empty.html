@@ -7,7 +7,9 @@
   @include('partials/h1.html', {title: 'Результат поиска'})
 
   <div class="site-container">
-    @include('partials/header.html')
+    @include('partials/header.html', {
+      page: 'index'
+    })
 
     <main class="main">
       <div class="main-sections">
@@ -19,14 +21,14 @@
         <section class="section">
           <div class="container">
             <div class="search-result">
-              <div class="search-result-empty">
-                <div class="search-result-empty-picture">
+              <div class="empty">
+                <div class="empty-picture">
                   <img loading="lazy" src="./img/search/empty.svg" class="image" width="66" height="66" alt="Картинка">
                 </div>
-                <div class="search-result-empty-content">
-                  <p>
+                <div class="empty-content">
+                  <h3>
                     ничего не найдено
-                  </p>
+                  </h3>
                 </div>
               </div>
             </div>

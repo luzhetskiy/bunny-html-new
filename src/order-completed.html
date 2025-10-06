@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+
+@include('partials/head.html', {title: 'Заказ успешно оформлен'})
+
+<body class="page-body">
+  <div class="site-container">
+    @include('partials/header.html', {
+      page: 'profile'
+    })
+
+    <main class="main">
+      <div class="main-sections">
+        <section class="section feedback">
+          <div class="container">
+            <div class="feedback-body">
+              <div class="feedback-content">
+                <h1>Заказ успешно оформлен</h1>
+                <p>
+                  № 19561
+                </p>
+              </div>
+              <div class="feedback-actions">
+                <a href="./catalog.html" class="btn btn-lg btn-secondary">
+                  <span class="text">
+                    продолжить покупки
+                  </span>
+                  <span class="icon">
+                    <svg>
+                      <use xlink:href="img/icons/arrow-right-2.svg#svg-arrow-right-2"></use>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      @include('partials/floating-bottom.html')
+      @include('partials/offcanvases.html')
+      @include('partials/modals.html')
+      <div class="alert-container"></div>
+    </main>
+
+    @include('partials/footer.html')
+  </div>
+</body>
+
+</html>
