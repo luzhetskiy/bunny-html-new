@@ -1,0 +1,10 @@
+.authfast {
+  display: flex;
+  gap: .5rem;
+
+  > .btn {
+    --_icon-size: 1.5rem;
+
+    flex: 1 1;
+  }
+}

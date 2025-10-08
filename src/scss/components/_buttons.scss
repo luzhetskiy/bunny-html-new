@@ -89,6 +89,20 @@
     .icon {
       --_color: var(--_icon-active-color);
     }
+
+    .icon-container {
+
+      .icon {
+
+        &:first-child {
+          opacity: 0;
+        }
+
+        &:last-child {
+          opacity: 1;
+        }
+      }
+    }
 	}
 
   &:disabled {
@@ -316,6 +330,19 @@
   --_border-color-active: var(--text-color);
 }
 
+.btn-transparent-secondary {
+  --_border-width: 0rem;
+  --_border-color: transparent;
+
+  --_color: var(--text-color);
+  --_color-hover: var(--light);
+  --_color-active: var(--light);
+
+  --_bg: transparent;
+  --_bg-hover: var(--text-color);
+  --_bg-active: var(--text-color);
+}
+
 .btn-light {
   --_color-hover: var(--text-color);
   --_color-active: var(--text-color);
@@ -385,20 +412,6 @@
   }
 
   &.is-active {
-
-    .icon-container {
-
-      .icon {
-
-        &:first-child {
-          opacity: 0;
-        }
-
-        &:last-child {
-          opacity: 1;
-        }
-      }
-    }
 
     .text {
       position: relative;

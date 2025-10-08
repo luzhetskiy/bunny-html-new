@@ -285,3 +285,26 @@
     }
   }
 }
+
+.offcanvas--auth {
+
+  .offcanvas-header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+
+    @include breakpoint-up(sm) {
+      flex-direction: row;
+      align-items: center;
+      text-align: start;
+    }
+  }
+
+  .offcanvas-footer {
+    gap: 1rem;
+
+    .hint {
+      text-align: center;
+    }
+  }
+}

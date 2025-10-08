@@ -1,81 +1,64 @@
+<!-- (START)Demo -->
 <script>
-  document.querySelectorAll('.card')?.forEach(card => {
-    const cardAdd = card.querySelector('[data-card-button]')
+  document.addEventListener('DOMContentLoaded', () => {
+    window.showOffcanvas('#offcanvas-new-password')
 
-    if (!cardAdd) return
+    document.querySelectorAll('.card')?.forEach(card => {
+      const cardAdd = card.querySelector('[data-card-button]')
 
-    cardAdd.addEventListener('click', () => {
+      if (!cardAdd) return
 
-      if (cardAdd.dataset.cardButton === 'add') {
-        const link = document.createElement('a')
-        link.href = './cart'
-        link.className = 'btn btn-base btn-secondary card-add'
-        link.textContent = 'Оформить заказ'
+      cardAdd.addEventListener('click', () => {
 
-        cardAdd.replaceWith(link)
+        if (cardAdd.dataset.cardButton === 'add') {
+          const link = document.createElement('a')
+          link.href = './cart'
+          link.className = 'btn btn-base btn-secondary card-add'
+          link.textContent = 'Оформить заказ'
 
-        const alert = document.createElement('div')
-        alert.className = 'alert'
-        alert.innerHTML = `
-          <div class="alert-content">
-            <p>
-              Вы добавили в корзину товары, находящиеся в разных магазинах,
-              это может повлиять на время и стоимость доставки
-            </p>
-          </div>
-        `
+          cardAdd.replaceWith(link)
 
-        const alertContainer = document.querySelector('.alert-container')
-        if (alertContainer) {
-          alertContainer.appendChild(alert)
-
-          requestAnimationFrame(() => {
-            alert.classList.add('is-show')
-          })
-
-          setTimeout(() => {
-            alert.classList.remove('is-show')
-
-            alert.addEventListener('transitionend', (e) => {
-              alert.remove()
-            }, { once: true })
-          }, 5000)
+          showAlert(
+            'Вы добавили в корзину товары, находящиеся в разных магазинах, это может повлиять на время и стоимость доставки',
+            'info'
+          )
         }
-      }
-    }, { once: true })
-  })
-
-  document.querySelectorAll('.counter')?.forEach(counter => {
-    const increment = counter.querySelector('.counter-increment')
-    const decrement = counter.querySelector('.counter-decrement')
-    const field = counter.querySelector('.counter-field')
-
-    let value = parseInt(field.value, 10) || 0
-
-    increment.addEventListener('click', () => {
-      value++
-      field.value = value
+      }, { once: true })
     })
 
-    decrement.addEventListener('click', () => {
-      if (value > 1) {
-        value--
+    document.querySelectorAll('.counter')?.forEach(counter => {
+      const increment = counter.querySelector('.counter-increment')
+      const decrement = counter.querySelector('.counter-decrement')
+      const field = counter.querySelector('.counter-field')
+
+      let value = parseInt(field.value, 10) || 0
+
+      increment.addEventListener('click', () => {
+        value++
         field.value = value
-      }
-    })
+      })
 
-    field.addEventListener('input', () => {
-      let newValue = parseInt(field.value, 10)
+      decrement.addEventListener('click', () => {
+        if (value > 1) {
+          value--
+          field.value = value
+        }
+      })
 
-      if (isNaN(newValue) || newValue < 1) {
-        newValue = 1
-      }
+      field.addEventListener('input', () => {
+        let newValue = parseInt(field.value, 10)
 
-      value = newValue
-      field.value = value
+        if (isNaN(newValue) || newValue < 1) {
+          newValue = 1
+        }
+
+        value = newValue
+        field.value = value
+      })
     })
   })
 </script>
+<!-- (END)Demo -->
 
 <footer class="footer">
   <div class="container">

@@ -122,10 +122,17 @@
     &-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      font-size: 1rem;
-      font-weight: 700;
+
+      .field-toggle {
+        flex-grow: 1;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+
+        &-content {
+          font-size: 1rem;
+          font-weight: 700;
+        }
+      }
     }
 
     &-body {

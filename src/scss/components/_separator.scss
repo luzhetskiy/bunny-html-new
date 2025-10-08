@@ -1,0 +1,21 @@
+.separator {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .75rem;
+  color: var(--text-color-50);
+  text-align: center;
+
+  @include breakpoint-up(lg) {
+    font-size: .875rem;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    height: .0625rem;
+    flex: 1 1;
+    background-color: var(--text-color-20);
+  }
+}

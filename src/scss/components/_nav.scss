@@ -207,10 +207,20 @@
 //
 
 .nav-fill {
+  gap: .25rem;
+  background-color: var(--light);
+  border: .0625rem solid var(--text-color-20);
+  border-radius: .5rem;
+  padding: .25rem;
+
   > .nav-link,
   .nav-item {
-    flex: 1 1 auto;
+    flex: 1 1;
     text-align: center;
+
+    @include breakpoint-up(sm) {
+      min-width: 7.5rem;
+    }
   }
 }
 

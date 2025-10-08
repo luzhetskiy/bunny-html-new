@@ -1,5 +1,6 @@
 import './components/header.js'
 import './components/createMenu.js'
+import './components/alert.js'
 import './components/toggle.js'
 import './components/nouislider.js'
 import './components/choices.js'

@@ -1,0 +1,8 @@
+.hint {
+  font-size: .75rem;
+  color: var(--text-color-50);
+
+  @include breakpoint-up(lg) {
+    font-size: .875rem;
+  }
+}

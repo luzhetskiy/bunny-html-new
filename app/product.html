@@ -1363,14 +1363,17 @@
                   <div class="product-login">
                     <div class="product-login-content">
                       <p>
-                        <a href="#" class="btn btn-inherit underline">
+                        <a href="#offcanvas-signup" class="btn btn-inherit underline"
+                          data-bs-toggle="offcanvas">
                           <span class="text">Зарегистрируйтесь</span>
                         </a>
                         и получите 500 бонусных рублей за регистрацию и 310 бонусных рублей за покупку
                       </p>
                     </div>
                     <div class="product-login-actions">
-                      <button type="button" class="btn btn-sm btn-secondary">
+                      <button type="button" class="btn btn-sm btn-secondary"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvas-signin">
                         <span class="text">
                           уже есть профиль, войти
                         </span>
@@ -3488,12 +3491,15 @@
     <div class="offcanvas-body">
       <div class="filter-item">
         <div class="filter-item-header">
-          <p>в наличии</p>
-
           <label class="field-toggle">
-            <input type="checkbox" class="visually-hidden" name="instock" checked>
-            <span class="field-toggle-background"></span>
-            <span class="field-toggle-placeholder"></span>
+            <span class="field-toggle-wrapper">
+              <input type="checkbox" class="visually-hidden" name="instock" checked="">
+              <span class="field-toggle-background"></span>
+              <span class="field-toggle-placeholder"></span>
+            </span>
+            <span class="field-toggle-content">
+              в наличии
+            </span>
           </label>
         </div>
       </div>
@@ -4050,8 +4056,8 @@
   </form>
 </div>
 
-<div class="offcanvas offcanvas--filter offcanvas-bottom" tabindex="-1"
-  id="offcanvas-auth">
+<div class="offcanvas offcanvas--filter offcanvas--auth offcanvas-bottom" tabindex="-1"
+  id="offcanvas-signup">
   <button type="button" class="btn btn-close btn-icon btn-gray-200"
     data-bs-dismiss="offcanvas"
     aria-label="Close">
@@ -4066,15 +4072,756 @@
       <h3 class="h6">
         Профиль
       </h3>
+
+      <nav class="nav nav-fill">
+        <button type="button" class="btn btn-sm btn-transparent-secondary nav-item"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-signin"
+          aria-controls="offcanvas-signin">
+          вход
+        </button>
+        <button type="button" class="btn btn-sm btn-transparent-secondary nav-item is-active"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-signup"
+          aria-controls="offcanvas-signup">
+          регистрация
+        </button>
+      </nav>
     </div>
     <div class="offcanvas-body">
-
+      <fieldset class="content-fieldset">
+        <div class="field-control">
+          <div class="field-wrapper is-invalid">
+            <input type="email" class="field" name="email" placeholder="e-mail">
+          </div>
+        </div>
+        <div class="field-control">
+          <div class="field-wrapper is-invalid">
+            <input type="tel" class="field" name="phone" placeholder="+7 (999) 999-99-99">
+          </div>
+        </div>
+        <div class="field-control"
+          data-toggle="password"
+          data-target="#repeat-password">
+          <div class="field-wrapper is-invalid">
+            <label class="field">
+              <input type="password" class="field--plaintext" name="password" placeholder="придумайте пароль">
+              <span class="field-postfix">
+                <button type="button" class="btn" tabindex="-1"
+                  data-toggle="reveal">
+                  <span class="icon-container">
+                    <span class="icon">
+                      <svg>
+                        <use xlink:href="img/icons/eye-close.svg#svg-eye-close"></use>
+                      </svg>
+                    </span>
+                    <span class="icon">
+                      <svg>
+                        <use xlink:href="img/icons/eye-open.svg#svg-eye-open"></use>
+                      </svg>
+                    </span>
+                  </span>
+                </button>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="field-control" id="repeat-password">
+          <div class="field-wrapper is-invalid">
+            <input type="password" class="field" name="password-repeat" placeholder="повторите пароль">
+          </div>
+        </div>
+        <div class="field-toggles">
+          <label class="field-toggle">
+            <span class="field-toggle-wrapper">
+              <input type="checkbox" class="visually-hidden" name="agree-2">
+              <span class="field-toggle-background"></span>
+              <span class="field-toggle-placeholder"></span>
+            </span>
+            <span class="field-toggle-content">
+              согласен на получение писем контроля качества
+            </span>
+          </label>
+          <label class="field-toggle">
+            <span class="field-toggle-wrapper">
+              <input type="checkbox" class="visually-hidden" name="agree-2">
+              <span class="field-toggle-background"></span>
+              <span class="field-toggle-placeholder"></span>
+            </span>
+            <span class="field-toggle-content">
+              добавить в список рассылки
+              <br>
+              (вы получите дополнительно 200 бонусных рублей)
+            </span>
+          </label>
+        </div>
+      </fieldset>
     </div>
     <div class="offcanvas-footer">
-
+      <button type="button" class="btn btn-lg btn-secondary"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvas-email-confirm"
+        onclick="showAlert('Введите корректный номер телефона. <br> Номер должен содержать 11 цифр, например: 8 987 654-3210', 'error')">
+        <span class="text">создать профиль</span>
+        <span class="icon">
+          <svg>
+            <use xlink:href="img/icons/arrow-right-2.svg#svg-arrow-right-2"></use>
+          </svg>
+        </span>
+      </button>
+      <div class="separator">или зарегистрироваться через</div>
+      <div class="authfast">
+        <button type="button" class="btn btn-lg btn-outline-secondary" disabled>
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/google.svg#svg-google"></use>
+            </svg>
+          </span>
+        </button>
+        <button type="button" class="btn btn-lg btn-outline-secondary">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/apple.svg#svg-apple"></use>
+            </svg>
+          </span>
+        </button>
+        <button type="button" class="btn btn-lg btn-outline-secondary">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/yandex.svg#svg-yandex"></use>
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div class="hint">
+        <p>
+          нажимая на кнопку, вы даете <a href="#" class="btn btn-inherit-notcolor btn-underline">согласие на обработку персональных данных</a> и соглашаетесь с <a href="#" class="btn btn-inherit-notcolor btn-underline">политикой конфиденциальности</a>
+        </p>
+      </div>
     </div>
   </form>
 </div>
+
+<div class="offcanvas offcanvas--filter offcanvas--auth offcanvas-bottom" tabindex="-1"
+  id="offcanvas-email-confirm">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Профиль
+      </h3>
+
+      <nav class="nav nav-fill">
+        <button type="button" class="btn btn-sm btn-transparent-secondary nav-item"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-signin"
+          aria-controls="offcanvas-signin">
+          вход
+        </button>
+        <button type="button" class="btn btn-sm btn-transparent-secondary nav-item is-active"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-signup"
+          aria-controls="offcanvas-signup">
+          регистрация
+        </button>
+      </nav>
+    </div>
+    <div class="offcanvas-body">
+      <div class="content-header">
+        <h4 class="content-title">
+          Проверьте свой e-mail
+        </h4>
+        <div class="content-descr">
+          <p>
+            Мы отправили код подтверждения на <b>info@bunnylove.ru</b>
+          </p>
+        </div>
+      </div>
+      <fieldset class="content-fieldset">
+        <div class="field-control">
+          <div class="field-wrapper field-wrapper--code"
+            data-toggle="pin-code">
+            <input type="text" class="field" inputmode="numeric" maxlength="1">
+            <input type="text" class="field" inputmode="numeric" maxlength="1">
+            <input type="text" class="field" inputmode="numeric" maxlength="1">
+            <input type="text" class="field" inputmode="numeric" maxlength="1">
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="button" class="btn btn-lg btn-secondary"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvas-email-success">
+        <span class="text">Подтвердить e-mail</span>
+        <span class="icon">
+          <svg>
+            <use xlink:href="img/icons/arrow-right-2.svg#svg-arrow-right-2"></use>
+          </svg>
+        </span>
+      </button>
+      <div class="hint">
+        <p>
+          <b>Отправить повторно через</b> <span>00:20</span>
+        </p>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas--auth offcanvas-bottom" tabindex="-1"
+  id="offcanvas-email-success">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <div class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Профиль
+      </h3>
+
+      <nav class="nav nav-fill">
+        <button type="button" class="btn btn-sm btn-transparent-secondary nav-item"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-signin"
+          aria-controls="offcanvas-signin">
+          вход
+        </button>
+        <button type="button" class="btn btn-sm btn-transparent-secondary nav-item is-active"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-signup"
+          aria-controls="offcanvas-signup">
+          регистрация
+        </button>
+      </nav>
+    </div>
+    <div class="offcanvas-body">
+      <div class="content-header">
+        <h4 class="content-title">
+          Ваш e-mail
+          <br>
+          подтверждён
+        </h4>
+      </div>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="button" class="btn btn-lg btn-secondary"
+        data-bs-dismiss="offcanvas">
+        <span class="text">Продолжить и войти в аккаунт</span>
+        <span class="icon">
+          <svg>
+            <use xlink:href="img/icons/arrow-right-2.svg#svg-arrow-right-2"></use>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas--auth offcanvas-bottom" tabindex="-1"
+  id="offcanvas-signin">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Профиль
+      </h3>
+
+      <nav class="nav nav-fill">
+        <button type="button" class="btn btn-sm btn-transparent-secondary nav-item is-active"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-signin"
+          aria-controls="offcanvas-signin">
+          вход
+        </button>
+        <button type="button" class="btn btn-sm btn-transparent-secondary nav-item"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-signup"
+          aria-controls="offcanvas-signup">
+          регистрация
+        </button>
+      </nav>
+    </div>
+    <div class="offcanvas-body">
+      <fieldset class="content-fieldset">
+        <div class="field-control">
+          <div class="field-wrapper is-invalid">
+            <input type="email" class="field" name="email" placeholder="e-mail">
+          </div>
+        </div>
+        <div class="field-control"
+          data-toggle="password">
+          <div class="field-wrapper is-invalid">
+            <label class="field">
+              <input type="password" class="field--plaintext" name="password" placeholder="придумайте пароль">
+              <span class="field-postfix">
+                <button type="button" class="btn" tabindex="-1"
+                  data-toggle="reveal">
+                  <span class="icon-container">
+                    <span class="icon">
+                      <svg>
+                        <use xlink:href="img/icons/eye-close.svg#svg-eye-close"></use>
+                      </svg>
+                    </span>
+                    <span class="icon">
+                      <svg>
+                        <use xlink:href="img/icons/eye-open.svg#svg-eye-open"></use>
+                      </svg>
+                    </span>
+                  </span>
+                </button>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="field-actions">
+          <div class="field-action">
+            <p>
+              забыли пароль?
+            </p>
+            <a href="#offcanvas-reset-password" class="btn btn-inherit-notcolor"
+              data-bs-toggle="offcanvas">
+              <span class="text">восстановить</span>
+            </a>
+          </div>
+          <div class="field-action">
+            <a href="#offcanvas-email-signin" class="btn btn-inherit-notcolor"
+              data-bs-toggle="offcanvas">
+              <span class="text">войти по пин-коду</span>
+            </a>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="button" class="btn btn-lg btn-secondary" disabled>
+        <span class="text">войти</span>
+        <span class="icon">
+          <svg>
+            <use xlink:href="img/icons/arrow-right-2.svg#svg-arrow-right-2"></use>
+          </svg>
+        </span>
+      </button>
+      <div class="separator">или войти через</div>
+      <div class="authfast">
+        <button type="button" class="btn btn-lg btn-outline-secondary">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/google.svg#svg-google"></use>
+            </svg>
+          </span>
+        </button>
+        <button type="button" class="btn btn-lg btn-outline-secondary">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/apple.svg#svg-apple"></use>
+            </svg>
+          </span>
+        </button>
+        <button type="button" class="btn btn-lg btn-outline-secondary">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/yandex.svg#svg-yandex"></use>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas--auth offcanvas-bottom" tabindex="-1"
+  id="offcanvas-email-signin">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Профиль
+      </h3>
+
+      <nav class="nav nav-fill">
+        <button type="button" class="btn btn-sm btn-transparent-secondary nav-item is-active"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-signin"
+          aria-controls="offcanvas-signin">
+          вход
+        </button>
+        <button type="button" class="btn btn-sm btn-transparent-secondary nav-item"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-signup"
+          aria-controls="offcanvas-signup">
+          регистрация
+        </button>
+      </nav>
+    </div>
+    <div class="offcanvas-body">
+      <div class="content-header">
+        <h4 class="content-title">
+          Отправить пин-код на email
+        </h4>
+      </div>
+      <fieldset class="content-fieldset">
+        <div class="field-control">
+          <div class="field-wrapper is-invalid">
+            <input type="email" class="field" name="email" placeholder="e-mail">
+          </div>
+        </div>
+        <div class="field-actions">
+          <div class="field-action">
+            <a href="#offcanvas-signin" class="btn btn-inherit-notcolor"
+              data-bs-toggle="offcanvas">
+              <span class="text">войти по паролю</span>
+            </a>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="button" class="btn btn-lg btn-secondary"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvas-email-pincode">
+        <span class="text">отправить пин-код</span>
+        <span class="icon">
+          <svg>
+            <use xlink:href="img/icons/arrow-right-2.svg#svg-arrow-right-2"></use>
+          </svg>
+        </span>
+      </button>
+      <div class="separator">или войти через</div>
+      <div class="authfast">
+        <button type="button" class="btn btn-lg btn-outline-secondary">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/google.svg#svg-google"></use>
+            </svg>
+          </span>
+        </button>
+        <button type="button" class="btn btn-lg btn-outline-secondary">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/apple.svg#svg-apple"></use>
+            </svg>
+          </span>
+        </button>
+        <button type="button" class="btn btn-lg btn-outline-secondary">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/yandex.svg#svg-yandex"></use>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas--auth offcanvas-bottom" tabindex="-1"
+  id="offcanvas-email-pincode">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Профиль
+      </h3>
+
+      <nav class="nav nav-fill">
+        <button type="button" class="btn btn-sm btn-transparent-secondary nav-item is-active"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-signin"
+          aria-controls="offcanvas-signin">
+          вход
+        </button>
+        <button type="button" class="btn btn-sm btn-transparent-secondary nav-item"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-signup"
+          aria-controls="offcanvas-signup">
+          регистрация
+        </button>
+      </nav>
+    </div>
+    <div class="offcanvas-body">
+      <div class="content-header">
+        <h4 class="content-title">
+          Введите ваш пин-код
+        </h4>
+      </div>
+      <fieldset class="content-fieldset">
+        <div class="field-control">
+          <div class="field-wrapper field-wrapper--code"
+            data-toggle="pin-code">
+            <input type="text" class="field" inputmode="numeric" maxlength="1">
+            <input type="text" class="field" inputmode="numeric" maxlength="1">
+            <input type="text" class="field" inputmode="numeric" maxlength="1">
+            <input type="text" class="field" inputmode="numeric" maxlength="1">
+          </div>
+        </div>
+        <div class="field-actions">
+          <div class="field-action">
+            <a href="#offcanvas-signin" class="btn btn-inherit-notcolor"
+              data-bs-toggle="offcanvas">
+              <span class="text">войти по паролю</span>
+            </a>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="submit" class="btn btn-lg btn-secondary">
+        <span class="text">войти</span>
+        <span class="icon">
+          <svg>
+            <use xlink:href="img/icons/arrow-right-2.svg#svg-arrow-right-2"></use>
+          </svg>
+        </span>
+      </button>
+      <div class="separator">или войти через</div>
+      <div class="authfast">
+        <button type="button" class="btn btn-lg btn-outline-secondary">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/google.svg#svg-google"></use>
+            </svg>
+          </span>
+        </button>
+        <button type="button" class="btn btn-lg btn-outline-secondary">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/apple.svg#svg-apple"></use>
+            </svg>
+          </span>
+        </button>
+        <button type="button" class="btn btn-lg btn-outline-secondary">
+          <span class="icon">
+            <svg>
+              <use xlink:href="img/icons/yandex.svg#svg-yandex"></use>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas--auth offcanvas-bottom" tabindex="-1"
+  id="offcanvas-reset-password">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Профиль
+      </h3>
+
+      <nav class="nav nav-fill">
+        <button type="button" class="btn btn-sm btn-transparent-secondary nav-item is-active"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-signin"
+          aria-controls="offcanvas-signin">
+          вход
+        </button>
+        <button type="button" class="btn btn-sm btn-transparent-secondary nav-item"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-signup"
+          aria-controls="offcanvas-signup">
+          регистрация
+        </button>
+      </nav>
+    </div>
+    <div class="offcanvas-body">
+      <div class="content-header">
+        <h4 class="content-title">
+          забыли пароль?
+        </h4>
+        <div class="content-descr">
+          <p>
+            введите адрес электронной почты, который вы использовали при регистрации, и мы вышлем вам инструкции по восстановлению пароля
+          </p>
+        </div>
+      </div>
+      <fieldset class="content-fieldset">
+        <div class="field-control">
+          <div class="field-wrapper is-invalid">
+            <input type="email" class="field" name="email" placeholder="e-mail">
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="button" class="btn btn-lg btn-secondary"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvas-reset-success">
+        <span class="text">отправить</span>
+        <span class="icon">
+          <svg>
+            <use xlink:href="img/icons/arrow-right-2.svg#svg-arrow-right-2"></use>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas--auth offcanvas-bottom" tabindex="-1"
+  id="offcanvas-reset-success">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Профиль
+      </h3>
+
+      <nav class="nav nav-fill">
+        <button type="button" class="btn btn-sm btn-transparent-secondary nav-item is-active"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-signin"
+          aria-controls="offcanvas-signin">
+          вход
+        </button>
+        <button type="button" class="btn btn-sm btn-transparent-secondary nav-item"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-signup"
+          aria-controls="offcanvas-signup">
+          регистрация
+        </button>
+      </nav>
+    </div>
+    <div class="offcanvas-body">
+      <div class="content-header">
+        <h4 class="content-title">
+          проверьте почту
+        </h4>
+        <div class="content-descr">
+          <p>
+            мы только что отправили письмо с инструкцией для восстановления пароля вам на почту <b>info@bunnylove.ru</b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="offcanvas offcanvas--filter offcanvas--auth offcanvas-bottom" tabindex="-1"
+  id="offcanvas-new-password">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        созадать новый пароль
+      </h3>
+    </div>
+    <div class="offcanvas-body">
+      <fieldset class="content-fieldset">
+        <div class="field-control"
+          data-toggle="password"
+          data-target="#repeat-password">
+          <div class="field-wrapper is-invalid">
+            <label class="field">
+              <input type="password" class="field--plaintext" name="password" placeholder="придумайте пароль">
+              <span class="field-postfix">
+                <button type="button" class="btn" tabindex="-1"
+                  data-toggle="reveal">
+                  <span class="icon-container">
+                    <span class="icon">
+                      <svg>
+                        <use xlink:href="img/icons/eye-close.svg#svg-eye-close"></use>
+                      </svg>
+                    </span>
+                    <span class="icon">
+                      <svg>
+                        <use xlink:href="img/icons/eye-open.svg#svg-eye-open"></use>
+                      </svg>
+                    </span>
+                  </span>
+                </button>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="field-control" id="repeat-password">
+          <div class="field-wrapper is-invalid">
+            <input type="password" class="field" name="password-repeat" placeholder="повторите пароль">
+          </div>
+          <div class="field-feedback">
+            <p>
+              пароль может состоять из цифр 0–9, букв латинского и/или русского алфавита
+            </p>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="button" class="btn btn-lg btn-secondary">
+        <span class="text">сохранить</span>
+        <span class="icon">
+          <svg>
+            <use xlink:href="img/icons/arrow-right-2.svg#svg-arrow-right-2"></use>
+          </svg>
+        </span>
+      </button>
+  </form>
+</div>
+
 
       <div role="dialog" class="modal modal-alert fade" tabindex="-1"
   id="modalAgeRestriction"
@@ -4599,84 +5346,67 @@
       <div class="alert-container"></div>
     </main>
 
-    <script>
-  document.querySelectorAll('.card')?.forEach(card => {
-    const cardAdd = card.querySelector('[data-card-button]')
+    <!-- (START)Demo -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    window.showOffcanvas('#offcanvas-new-password')
 
-    if (!cardAdd) return
+    document.querySelectorAll('.card')?.forEach(card => {
+      const cardAdd = card.querySelector('[data-card-button]')
 
-    cardAdd.addEventListener('click', () => {
+      if (!cardAdd) return
 
-      if (cardAdd.dataset.cardButton === 'add') {
-        const link = document.createElement('a')
-        link.href = './cart'
-        link.className = 'btn btn-base btn-secondary card-add'
-        link.textContent = 'Оформить заказ'
+      cardAdd.addEventListener('click', () => {
 
-        cardAdd.replaceWith(link)
+        if (cardAdd.dataset.cardButton === 'add') {
+          const link = document.createElement('a')
+          link.href = './cart'
+          link.className = 'btn btn-base btn-secondary card-add'
+          link.textContent = 'Оформить заказ'
 
-        const alert = document.createElement('div')
-        alert.className = 'alert'
-        alert.innerHTML = `
-          <div class="alert-content">
-            <p>
-              Вы добавили в корзину товары, находящиеся в разных магазинах,
-              это может повлиять на время и стоимость доставки
-            </p>
-          </div>
-        `
+          cardAdd.replaceWith(link)
 
-        const alertContainer = document.querySelector('.alert-container')
-        if (alertContainer) {
-          alertContainer.appendChild(alert)
-
-          requestAnimationFrame(() => {
-            alert.classList.add('is-show')
-          })
-
-          setTimeout(() => {
-            alert.classList.remove('is-show')
-
-            alert.addEventListener('transitionend', (e) => {
-              alert.remove()
-            }, { once: true })
-          }, 5000)
+          showAlert(
+            'Вы добавили в корзину товары, находящиеся в разных магазинах, это может повлиять на время и стоимость доставки',
+            'info'
+          )
         }
-      }
-    }, { once: true })
-  })
-
-  document.querySelectorAll('.counter')?.forEach(counter => {
-    const increment = counter.querySelector('.counter-increment')
-    const decrement = counter.querySelector('.counter-decrement')
-    const field = counter.querySelector('.counter-field')
-
-    let value = parseInt(field.value, 10) || 0
-
-    increment.addEventListener('click', () => {
-      value++
-      field.value = value
+      }, { once: true })
     })
 
-    decrement.addEventListener('click', () => {
-      if (value > 1) {
-        value--
+    document.querySelectorAll('.counter')?.forEach(counter => {
+      const increment = counter.querySelector('.counter-increment')
+      const decrement = counter.querySelector('.counter-decrement')
+      const field = counter.querySelector('.counter-field')
+
+      let value = parseInt(field.value, 10) || 0
+
+      increment.addEventListener('click', () => {
+        value++
         field.value = value
-      }
-    })
+      })
 
-    field.addEventListener('input', () => {
-      let newValue = parseInt(field.value, 10)
+      decrement.addEventListener('click', () => {
+        if (value > 1) {
+          value--
+          field.value = value
+        }
+      })
 
-      if (isNaN(newValue) || newValue < 1) {
-        newValue = 1
-      }
+      field.addEventListener('input', () => {
+        let newValue = parseInt(field.value, 10)
 
-      value = newValue
-      field.value = value
+        if (isNaN(newValue) || newValue < 1) {
+          newValue = 1
+        }
+
+        value = newValue
+        field.value = value
+      })
     })
   })
 </script>
+<!-- (END)Demo -->
 
 <footer class="footer">
   <div class="container">

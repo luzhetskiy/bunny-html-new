@@ -3,24 +3,37 @@ import Offcanvas from 'bootstrap/js/dist/offcanvas.js'
 window.offcanvasInstances = new Map()
 
 window.initializeOffcanvas = function (element) {
-	const offcanvas = new Offcanvas(element)
-	offcanvasInstances.set(element, offcanvas)
+  const offcanvas = new Offcanvas(element)
+  offcanvasInstances.set(element, offcanvas)
+}
+
+window.showOffcanvas = function (selector) {
+  const element = document.querySelector(selector)
+  if (!element) return
+
+  let instance = window.offcanvasInstances.get(element)
+  if (!instance) {
+    instance = new Offcanvas(element)
+    window.offcanvasInstances.set(element, instance)
+  }
+
+  instance.show()
 }
 
 document.querySelectorAll('.offcanvas').forEach((element) => {
-	initializeOffcanvas(element)
+  initializeOffcanvas(element)
 })
 
 document.body.addEventListener('click', (event) => {
-	const target = event.target.closest('[data-bs-toggle="dropdown"]')
-	if (!target) return
+  const target = event.target.closest('[data-bs-toggle="dropdown"]')
+  if (!target) return
 
-	event.preventDefault()
-	event.stopPropagation()
+  event.preventDefault()
+  event.stopPropagation()
 
-	if (!dropdownInstances.has(target)) {
-		initializeDropdown(target)
-	}
+  if (!dropdownInstances.has(target)) {
+    initializeDropdown(target)
+  }
 
-	dropdownInstances.get(target).toggle()
+  dropdownInstances.get(target).toggle()
 })

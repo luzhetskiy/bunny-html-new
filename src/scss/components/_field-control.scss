@@ -74,7 +74,20 @@
   &--assent {
 
     &.is-input {
-      --_padding: .25rem 5.5rem .25rem 1rem;
+      padding-right: 5.5rem;
+    }
+  }
+
+  &--code {
+    --_fs: 1.125rem;
+    --_fw: 600;
+
+    display: flex;
+    gap: .5rem;
+
+    .field {
+      font-family: var(--font-second);
+      text-align: center;
     }
   }
 }
@@ -132,6 +145,11 @@ label.field {
   border: none;
   padding: 0;
 	outline: none;
+
+  &::placeholder {
+    font: inherit;
+    color: var(--_color-placeholder);
+  }
 }
 
 .is-invalid {
@@ -180,13 +198,26 @@ textarea.field {
   }
 }
 
+.field-toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: .5rem;
+}
+
 .field-toggle {
-  width: 2.5rem;
-  height: 1.25rem;
   flex-shrink: 0;
   display: inline-flex;
-  position: relative;
+  align-items: center;
+  gap: .75rem;
   cursor: pointer;
+
+  &-wrapper {
+    width: 3rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+    position: relative;
+  }
 
   &-background,
   &-placeholder {
@@ -195,7 +226,7 @@ textarea.field {
   }
 
   &-background {
-    background-color: var(--text-color-10);
+    background-color: var(--text-color-50);
     border-radius: 2rem;
     position: absolute;
     inset: 0;
@@ -204,14 +235,18 @@ textarea.field {
   }
 
   &-placeholder {
-    width: 1rem;
-    height: 1rem;
-    background-color: var(--text-color);
+    width: 1.25rem;
+    height: 1.25rem;
+    background-color: var(--light);
     margin: .125rem;
     border-radius: 50rem;
     position: absolute;
     z-index: 1;
     transition-property: background-color, transform;
+  }
+
+  &-content {
+    font-size: .875rem;
   }
 
   input:checked {
@@ -297,6 +332,20 @@ textarea.field {
       border-color: var(--error);
     }
   }
+}
+
+.field-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: .875rem;
+  margin-top: .5rem;
+}
+
+.field-action {
+  display: flex;
+  gap: .5rem;
+  color: var(--text-color-20);
 }
 
 .field-base {

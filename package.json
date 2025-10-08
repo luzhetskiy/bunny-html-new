@@ -62,6 +62,7 @@
     "choices.js": "^11.1.0",
     "graph-modal": "^1.0.7",
     "graph-tabs": "^1.0.2",
+    "imask": "^7.6.1",
     "inputmask": "^5.0.8",
     "just-validate": "^4.3.0",
     "nouislider": "^15.8.1",

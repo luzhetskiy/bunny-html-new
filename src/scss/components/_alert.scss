@@ -6,9 +6,14 @@
   padding: 1rem var(--container-offset);
   pointer-events: none;
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
-  z-index: 1040;
+  z-index: 1080;
+
+  @include breakpoint-up(lg) {
+    top: auto;
+    bottom: 0;
+  }
 
   .alert {
     max-width: 30rem;
@@ -32,4 +37,22 @@
   border-radius: .5rem;
   padding: 1rem 1.5rem;
   pointer-events: auto;
+
+  &-body {
+    display: flex;
+    gap: .75rem;
+  }
+
+  &-close {
+    --_color: var(--light);
+  }
+}
+
+.alert-error {
+  background-color: var(--error);
+
+  .alert-close {
+    --_color-hover: var(--text-color);
+    --_color-active: var(--text-color);
+  }
 }
