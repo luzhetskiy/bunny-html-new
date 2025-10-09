@@ -1039,9 +1039,9 @@ textarea.field {
 .field-button {
   --_height: 100%;
   --_icon-size: .75rem;
-  --_transform: translateY(-50%);
-  --_transform-hover: translateY(-50%);
-  --_transform-active: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
   position: absolute;
   top: 50%;
   right: 0;
