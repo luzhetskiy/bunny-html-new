@@ -30435,14 +30435,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _functions_throttle_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../functions/throttle.js */ "./src/js/functions/throttle.js");
 
 
+const header = document.querySelector('.header');
 const headerTopHeight = () => {
-  const header = document.querySelector('.header');
-  header && document.documentElement.style.setProperty('--header-top-height', `${header.offsetHeight}px`);
+  document.documentElement.style.setProperty('--header-top-height', `${header.offsetHeight}px`);
 };
-headerTopHeight();
-(0,_functions_header_height_js__WEBPACK_IMPORTED_MODULE_0__.getHeaderHeight)();
-window.addEventListener('resize', (0,_functions_throttle_js__WEBPACK_IMPORTED_MODULE_1__.throttle)(headerTopHeight));
-window.addEventListener('resize', (0,_functions_throttle_js__WEBPACK_IMPORTED_MODULE_1__.throttle)(_functions_header_height_js__WEBPACK_IMPORTED_MODULE_0__.getHeaderHeight));
+if (header) {
+  headerTopHeight();
+  (0,_functions_header_height_js__WEBPACK_IMPORTED_MODULE_0__.getHeaderHeight)();
+  window.addEventListener('resize', (0,_functions_throttle_js__WEBPACK_IMPORTED_MODULE_1__.throttle)(headerTopHeight));
+  window.addEventListener('resize', (0,_functions_throttle_js__WEBPACK_IMPORTED_MODULE_1__.throttle)(_functions_header_height_js__WEBPACK_IMPORTED_MODULE_0__.getHeaderHeight));
+}
 
 /***/ }),
 
