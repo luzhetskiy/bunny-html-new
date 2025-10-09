@@ -223,9 +223,14 @@ a {
   text-underline-offset: 0.125em;
 }
 
-.stretched-link {
+.stretched-link::after {
+  content: "";
+  display: block;
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 5;
 }
 
@@ -447,9 +452,6 @@ p + p {
   --_border-color: transparent;
   --_border-color-hover: transparent;
   --_border-color-active: transparent;
-  --_transform: translateZ(0);
-  --_transform-hover: translateZ(0);
-  --_transform-active: initial;
   --_icon-size: 1rem;
   --_icon-color: var(--_color);
   --_icon-hover-color: var(--_color-hover);
@@ -476,13 +478,8 @@ p + p {
   pointer-events: auto;
   outline: none;
   text-align: start;
-  -webkit-transform: var(--_transform);
-  -ms-transform: var(--_transform);
-  transform: var(--_transform);
-  -webkit-transition-property: color, text-shadow, background, border, opacity, -webkit-transform;
-  transition-property: color, text-shadow, background, border, opacity, -webkit-transform;
-  transition-property: color, text-shadow, background, border, transform, opacity;
-  transition-property: color, text-shadow, background, border, transform, opacity, -webkit-transform;
+  -webkit-transition-property: color, text-shadow, background-color, border-color, opacity;
+  transition-property: color, text-shadow, background-color, border-color, opacity;
   -webkit-transition-duration: var(--_transition-duration);
   transition-duration: var(--_transition-duration);
   -webkit-transition-timing-function: var(--_transition-timing-function);
@@ -503,9 +500,6 @@ p + p {
     color: var(--_color-hover);
     background-color: var(--_bg-hover);
     border-color: var(--_border-color-hover);
-    -webkit-transform: var(--_transform-hover);
-    -ms-transform: var(--_transform-hover);
-    transform: var(--_transform-hover);
   }
   .btn:is(:hover, :focus-visible) .icon {
     --_color: var(--_icon-hover-color);
@@ -515,9 +509,6 @@ p + p {
   color: var(--_color-active);
   background-color: var(--_bg-active);
   border-color: var(--_border-color-active);
-  -webkit-transform: var(--_transform-active);
-  -ms-transform: var(--_transform-active);
-  transform: var(--_transform-active);
 }
 .btn:is(:active, .is-active) .icon {
   --_color: var(--_icon-active-color);
@@ -4099,6 +4090,9 @@ textarea.field {
 .articles-card-picture {
   border-radius: inherit;
 }
+.articles-card-picture img {
+  width: 100%;
+}
 .articles-card-image {
   display: block;
   aspect-ratio: 16/9;
@@ -4115,10 +4109,13 @@ textarea.field {
   flex-direction: column;
   gap: 0.5rem;
   padding: 1rem;
+  font-size: 0.625rem;
+  color: var(--text-color-50);
 }
 @media (min-width: 991.98px) {
   .articles-card-body {
     gap: 1rem;
+    font-size: 0.75rem;
     padding: 1.5rem 1rem;
   }
 }
@@ -4126,6 +4123,7 @@ textarea.field {
   font-family: var(--font-family);
   font-size: var(--fs-base);
   font-weight: 700;
+  color: var(--text-color);
   text-transform: initial;
   -webkit-transition-property: color;
   transition-property: color;
@@ -4134,14 +4132,19 @@ textarea.field {
   -webkit-transition-timing-function: var(--transition-timing-function);
   transition-timing-function: var(--transition-timing-function);
 }
-.articles-card-description {
-  font-size: 0.625rem;
-  color: var(--text-color-50);
+.articles-card-time {
+  font-size: inherit;
+  color: inherit;
 }
-@media (min-width: 991.98px) {
-  .articles-card-description {
-    font-size: 0.75rem;
-  }
+.articles-card-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 1rem;
 }
 @media (hover: hover) {
   .articles-card .stretched-link:is(:hover, :focus-visible) ~ .articles-card-body .articles-card-title {
@@ -5187,6 +5190,21 @@ textarea.field {
   }
 }
 
+.content-picture {
+  grid-column: -1/1;
+  margin-bottom: 2rem;
+}
+@media (min-width: 991.98px) {
+  .content-picture {
+    margin-bottom: 3rem;
+  }
+}
+.content-picture img {
+  width: 100%;
+  display: block;
+  border-radius: 0.5rem;
+}
+
 .gift-swiper {
   max-width: 100%;
   position: relative;
@@ -5739,6 +5757,37 @@ textarea.field {
   -webkit-box-flex: 1;
   -ms-flex: 1 1;
   flex: 1 1;
+}
+
+.grid-card {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(0, 1fr))[1];
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+}
+@media (min-width: 575.98px) {
+  .grid-card {
+    -ms-grid-columns: (minmax(0, 1fr))[2];
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 767.98px) {
+  .grid-card {
+    -ms-grid-columns: (minmax(0, 1fr))[3];
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.5rem 1rem;
+  }
+}
+
+.grid-more {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-top: 2.5rem;
 }
 
 .map {

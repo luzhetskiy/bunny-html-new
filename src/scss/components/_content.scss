@@ -245,3 +245,18 @@
     font-size: 1.125rem;
   }
 }
+
+.content-picture {
+  grid-column: -1 / 1;
+  margin-bottom: 2rem;
+
+  @include breakpoint-up(lg) {
+    margin-bottom: 3rem;
+  }
+
+  img {
+    width: 100%;
+    display: block;
+    border-radius: .5rem;
+  }
+}

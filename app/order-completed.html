@@ -2562,6 +2562,69 @@
   </form>
 </div>
 
+<div class="offcanvas offcanvas--filter offcanvas--auth offcanvas-bottom" tabindex="-1"
+  id="offcanvas-event">
+  <button type="button" class="btn btn-close btn-icon btn-gray-200"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close">
+    <span class="icon">
+      <svg>
+        <use xlink:href="img/icons/close.svg#svg-close"></use>
+      </svg>
+    </span>
+  </button>
+  <form class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3 class="h6">
+        Запись на мероприятие
+      </h3>
+    </div>
+    <div class="offcanvas-body">
+      <div class="content-header">
+        <h4 class="content-title">
+          Практикум по мануальным ласкам с сомелье и сексологом
+        </h4>
+        <div class="content-descr">
+          <p>
+            <b>3500 ₽</b>
+          </p>
+        </div>
+      </div>
+      <fieldset class="content-fieldset">
+        <div class="field-control">
+          <div class="field-wrapper">
+            <input type="text" class="field" name="name" placeholder="имя">
+          </div>
+        </div>
+        <div class="field-control">
+          <div class="field-wrapper">
+            <input type="email" class="field" name="email" placeholder="email">
+          </div>
+        </div>
+        <div class="field-control">
+          <div class="field-wrapper">
+            <input type="tel" class="field" name="phone" placeholder="+7 (999) 999-99-99">
+          </div>
+        </div>
+        <div class="field-control field-control--textarea">
+          <div class="field-wrapper">
+            <textarea class="field" name="message" rows="4" placeholder="комментарий"></textarea>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="offcanvas-footer">
+      <button type="submit" class="btn btn-lg btn-secondary">
+        <span class="text">оплатить</span>
+      </button>
+      <div class="hint">
+        <p>
+          нажимая на кнопку, вы даете <a href="#" class="btn btn-inherit-notcolor btn-underline">согласие на обработку персональных данных</a> и соглашаетесь с <a href="#" class="btn btn-inherit-notcolor btn-underline">политикой конфиденциальности</a>
+        </p>
+      </div>
+    </div>
+  </form>
+</div>
 
       <div role="dialog" class="modal modal-alert fade" tabindex="-1"
   id="modalAgeRestriction"
@@ -3089,7 +3152,7 @@
     <!-- (START)Demo -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    window.showOffcanvas('#offcanvas-new-password')
+    // window.showOffcanvas('#offcanvas-new-password')
 
     document.querySelectorAll('.card')?.forEach(card => {
       const cardAdd = card.querySelector('[data-card-button]')

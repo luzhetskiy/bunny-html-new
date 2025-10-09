@@ -2,7 +2,9 @@
   <div class="swiper-slide">
 }
   <article class="articles-card">
-    <a href="#" class="stretched-link"></a>
+    @if (!button) {
+      <a href="./blog-page.html" class="stretched-link"></a>
+    }
 
     <picture class="articles-card-picture">
       <source srcset="./img/articles/@img.webp" type="image/webp">
@@ -17,7 +19,22 @@
       <p class="articles-card-description">
         @description
       </p>
+
+      @if (time) {
+        <time datetime="" class="articles-card-time">
+          02.10.2024
+        </time>
+      }
     </div>
+
+    @if (button) {
+      <div class="articles-card-footer">
+        <a href="#offcanvas-event" class="btn btn-base btn-outline-secondary stretched-link"
+          data-bs-toggle="offcanvas">
+          <span>Записаться</span>
+        </a>
+      </div>
+    }
   </article>
 @if (slide === true) {
   </div>

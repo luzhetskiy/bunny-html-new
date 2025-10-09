@@ -24,10 +24,6 @@
 	--_border-color-hover: transparent;
 	--_border-color-active: transparent;
 
-	--_transform: translateZ(0);
-	--_transform-hover: translateZ(0);
-	--_transform-active: initial;
-
 	--_icon-size: 1rem;
 	--_icon-color: var(--_color);
 	--_icon-hover-color: var(--_color-hover);
@@ -53,8 +49,7 @@
   pointer-events: auto;
 	outline: none;
   text-align: start;
-	transform: var(--_transform);
-	transition-property: color, text-shadow, background, border, transform, opacity;
+	transition-property: color, text-shadow, background-color, border-color, opacity;
 	transition-duration: var(--_transition-duration);
 	transition-timing-function: var(--_transition-timing-function);
 
@@ -72,7 +67,6 @@
 			color: var(--_color-hover);
 			background-color: var(--_bg-hover);
 			border-color: var(--_border-color-hover);
-			transform: var(--_transform-hover);
 
       .icon {
         --_color: var(--_icon-hover-color);
@@ -84,7 +78,6 @@
 		color: var(--_color-active);
 		background-color: var(--_bg-active);
 		border-color: var(--_border-color-active);
-		transform: var(--_transform-active);
 
     .icon {
       --_color: var(--_icon-active-color);

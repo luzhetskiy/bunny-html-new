@@ -20,6 +20,10 @@
 
     &-picture {
       border-radius: inherit;
+
+      img {
+        width: 100%;
+      }
     }
 
     &-image {
@@ -34,9 +38,12 @@
       flex-direction: column;
       gap: .5rem;
       padding: 1rem;
+      font-size: .625rem;
+      color: var(--text-color-50);
 
       @include breakpoint-up(lg) {
         gap: 1rem;
+        font-size: .75rem;
         padding: 1.5rem 1rem;
       }
     }
@@ -45,19 +52,22 @@
       font-family: var(--font-family);
       font-size: var(--fs-base);
       font-weight: 700;
+      color: var(--text-color);
       text-transform: initial;
       transition-property: color;
       transition-duration: var(--transition-duration);
       transition-timing-function: var(--transition-timing-function);
     }
 
-    &-description {
-      font-size: .625rem;
-      color: var(--text-color-50);
+    &-time {
+      font-size: inherit;
+      color: inherit;
+    }
 
-      @include breakpoint-up(lg) {
-        font-size: .75rem;
-      }
+    &-footer {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
     }
 
     .stretched-link {

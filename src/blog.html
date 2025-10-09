@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+
+@include('partials/head.html', {title: 'Половое воспитание'})
+
+<body class="page-body">
+  <div class="site-container">
+    @include('partials/header.html', {
+      page: 'index'
+    })
+
+    <main class="main">
+      <div class="main-sections">
+        <section class="section">
+          <div class="container">
+            <div class="page-header">
+              <nav class="breadcrumb">
+                <ul class="list-reset breadcrumb-list">
+                  <li class="breadcrumb-item">
+                    <a href="/" class="btn btn-inherit breadcrumb-link">
+                      главная
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <p>
+                      блог
+                    </p>
+                  </li>
+                </ul>
+              </nav>
+
+              <h1 class="page-header-title">
+                Половое воспитание
+              </h1>
+            </div>
+
+            <div class="grid-card">
+              @loop('partials/articles-card.html', [
+                { "slide": false, "img": "image-1", "title": "Как выбрать интимную смазку", "description": "Интимная смазка — не просто желательное дополнение к моментам близости, но и ключ к более ярким эмоциям. Лубриканты хорошо увлажняют и обеспечивают легкое скольжение: делают каждое движение...", "time": false, "button": false },
+                { "slide": false, "img": "image-1", "title": "Как выбрать интимную смазку", "description": "Интимная смазка — не просто желательное дополнение к моментам близости, но и ключ к более ярким эмоциям. Лубриканты хорошо увлажняют и обеспечивают легкое скольжение: делают каждое движение...", "time": false, "button": false },
+                { "slide": false, "img": "image-1", "title": "Как выбрать интимную смазку", "description": "Интимная смазка — не просто желательное дополнение к моментам близости, но и ключ к более ярким эмоциям. Лубриканты хорошо увлажняют и обеспечивают легкое скольжение: делают каждое движение...", "time": false, "button": false },
+                { "slide": false, "img": "image-1", "title": "Как выбрать интимную смазку", "description": "Интимная смазка — не просто желательное дополнение к моментам близости, но и ключ к более ярким эмоциям. Лубриканты хорошо увлажняют и обеспечивают легкое скольжение: делают каждое движение...", "time": false, "button": false },
+                { "slide": false, "img": "image-1", "title": "Как выбрать интимную смазку", "description": "Интимная смазка — не просто желательное дополнение к моментам близости, но и ключ к более ярким эмоциям. Лубриканты хорошо увлажняют и обеспечивают легкое скольжение: делают каждое движение...", "time": false, "button": false },
+                { "slide": false, "img": "image-1", "title": "Как выбрать интимную смазку", "description": "Интимная смазка — не просто желательное дополнение к моментам близости, но и ключ к более ярким эмоциям. Лубриканты хорошо увлажняют и обеспечивают легкое скольжение: делают каждое движение...", "time": false, "button": false },
+              ])
+            </div>
+            <div class="grid-more">
+              <button type="button" class="btn btn-base btn-outline-secondary">
+                <span class="icon">
+                  <svg>
+                    <use xlink:href="img/icons/plus.svg#svg-plus"></use>
+                  </svg>
+                </span>
+                <span class="text">Показать еще</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        @include('partials/mailing-list.html')
+      </div>
+
+      @include('partials/floating-bottom.html')
+      @include('partials/offcanvases.html')
+      @include('partials/modals.html')
+      <div class="alert-container"></div>
+    </main>
+
+    @include('partials/footer.html')
+  </div>
+</body>
+
+</html>
