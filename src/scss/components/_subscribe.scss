@@ -2,87 +2,64 @@
 
   &-header,
   &-footer {
+    display: flex;
+    gap: .5rem;
     position: relative;
 
     .image {
-      width: 100%;
+
       display: inline-block;
       border-radius: .375rem;
     }
   }
 
   &-header {
+    align-items: flex-end;
 
-    @include breakpoint-down(md) {
-      display: flex;
-      align-items: flex-end;
-      gap: .5rem;
+    @include breakpoint-up(md) {
+      align-items: stretch;
+      gap: 2rem;
     }
 
     picture {
 
       &:first-child {
+        display: none;
 
-        @include breakpoint-down(md) {
-          flex: 1;
+        @include breakpoint-up(md) {
+          display: block;
+          margin-right: auto;
+        }
+      }
+
+      &:nth-child(2) {
+        flex: 1;
+
+        @include breakpoint-up(md) {
+          flex: initial;
         }
 
         .image {
           height: 35vw;
 
           @include breakpoint-up(md) {
-            max-width: 8.75rem;
             height: auto;
-            position: absolute;
-            top: 100%;
-          }
-
-          @include breakpoint-up(xl) {
-            max-width: 12.5rem;
-            top: 110%;
           }
         }
       }
 
-      &:nth-child(2) {
+      &:nth-child(3) {
+        flex: 1;
 
-        @include breakpoint-down(md) {
-          flex: 1;
+        @include breakpoint-up(md) {
+          flex: initial;
         }
 
         .image {
           margin-bottom: 2rem;
 
           @include breakpoint-up(md) {
-            max-width: 12.5rem;
-            margin-left: 22.5%;
             margin-bottom: 0;
-          }
-
-          @include breakpoint-up(xl) {
-            max-width: 14rem;
-            margin-left: 27.5%;
-          }
-        }
-      }
-
-      &:nth-child(3) {
-
-        @include breakpoint-down(md) {
-          display: none;
-        }
-
-        .image {
-
-          @include breakpoint-up(md) {
-            max-width: 8.75rem;
-            position: absolute;
-            top: 70%;
-            right: 0;
-          }
-
-          @include breakpoint-up(xl) {
-            max-width: 12.5rem;
           }
         }
       }
@@ -98,83 +75,56 @@
 
     @include breakpoint-up(lg) {
       gap: 2rem;
-      margin-block: 5rem 3rem;
+      margin-block: 4rem;
     }
   }
 
   &-footer {
 
-    @include breakpoint-down(md) {
-      display: flex;
-      gap: .5rem;
+    @include breakpoint-up(md) {
+      align-items: end;
+      gap: 1.25rem;
     }
 
     picture {
 
       &:first-child {
+        flex-basis: 23.75%;
 
-        @include breakpoint-down(md) {
-          flex-basis: 23.75%;
-        }
-
-        .image {
-
-          @include breakpoint-up(md) {
-            max-width: 12.5rem;
-            margin-top: 3rem;
-            margin-left: 17.5%;
-          }
-
-          @include breakpoint-up(xl) {
-            max-width: 14rem;
-            margin-top: 4rem;
-            margin-left: 25%;
-          }
+        @include breakpoint-up(md) {
+          flex-basis: initial;
         }
       }
 
       &:nth-child(2) {
+        flex: 1;
 
-        @include breakpoint-down(md) {
-          flex: 1;
+        @include breakpoint-up(md) {
+          flex: initial;
         }
 
         .image {
           margin-top: 2.5rem;
 
           @include breakpoint-up(md) {
-            max-width: 7.5rem;
             margin-top: 0;
-            margin-left: 10%;
-            vertical-align: top;
-          }
-
-          @include breakpoint-up(xl) {
-            max-width: 8.75rem;
           }
         }
       }
 
       &:nth-child(3) {
+        flex-basis: 23.75%;
 
-        @include breakpoint-down(md) {
-          flex-basis: 23.75%;
+        @include breakpoint-up(md) {
+          margin-left: auto;
+          flex-basis: initial;
         }
 
         .image {
           margin-top: 100%;
 
           @include breakpoint-up(md) {
-            max-width: 8.75rem;
             margin-top: 0;
-            position: absolute;
-            right: 0;
-            bottom: -2rem;
-          }
-
-          @include breakpoint-up(xl) {
-            max-width: 12.5rem;
-            bottom: -4rem;
           }
         }
       }
